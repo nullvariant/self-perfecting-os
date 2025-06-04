@@ -1,5 +1,6 @@
 ## Hi there 👋
 
+Design/dev/UX. Debugging the universe with AIs as mirrors. Still merging upstream with the better parts of humanity.
 <!--
 **nullvariant/nullvariant** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
