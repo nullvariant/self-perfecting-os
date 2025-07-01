@@ -1,6 +1,8 @@
 ## Hi there 👋
 
-Design/dev/UX. Debugging the universe with AIs as mirrors. Still merging upstream with the better parts of humanity.
+Concept Architect exploring recursive universes. 
+Universe is a self-invoked function—what you send out returns recursively. 
+Debugging metaphors, refactoring consciousness, merging upstream with better human branches, powered by AI mirrors.
 <!--
 **nullvariant/nullvariant** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
