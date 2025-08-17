@@ -1,0 +1,4 @@
+Audit JA (source), EN (translation), and YAML (schema view).
+- List [CRITICAL] inconsistencies first, then MINOR suggestions.
+- Check Five-Views rule, uncertainty marking, URL policy, anti-authority stance.
+- Bullet points only.

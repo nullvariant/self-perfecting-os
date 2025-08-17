@@ -1,0 +1,56 @@
+schema: v1
+source_lang: ja
+fallback_lang: en
+terms:
+  - id: inner-aesthetics-first
+    domain: philosophy
+    ja: "内側美学最重視"
+    en:
+      term: "Inner Aesthetics First"
+      locked: true
+  - id: selective-effort
+    domain: methodology
+    ja: "選択的努力最大化"
+    en:
+      term: "Selective Effort Maximization"
+      locked: true
+  - id: five-views
+    domain: output
+    ja: "5視点"
+    en:
+      term: "Five-Views Rule"
+      locked: true
+      items: ["Support","Critique","Neutral","Bird’s-eye","Protagonist+Blindspot"]
+  - id: guardian-spirit
+    domain: ethics
+    ja: "守護霊プロトコル"
+    en: { term: "Guardian Spirit Protocol", locked: true }
+  - id: kernel-panic
+    domain: metaphor
+    ja: "カーネルパニック"
+    en: { term: "Kernel Panic", locked: true }
+  - id: bizarre-zoo
+    domain: architecture
+    ja: "脳内珍獣動物園"
+    en: { term: "Bizarre Beast Zoo", locked: true }
+  - id: personas
+    domain: personas
+    items:
+      - emoji: "👮"
+        ja: "ジャスティス"
+        en: { term: "Justice", locked: true }
+      - emoji: "👧"
+        ja: "ルナ"
+        en: { term: "Luna", locked: true }
+      - emoji: "🦥"
+        ja: "スロウ"
+        en: { term: "Slow", locked: true }
+      - emoji: "🐗"
+        ja: "ブレイズ"
+        en: { term: "Blaze", locked: true }
+      - emoji: "🕊️"
+        ja: "シエル"
+        en: { term: "Ciel", locked: true }
+      - emoji: "🐰"
+        ja: "ミミ"
+        en: { term: "Mimi", locked: true }

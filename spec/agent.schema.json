@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NullVariant Agent Spec",
+  "type": "object",
+  "required": ["agent", "personas", "directives", "projects", "aesthetics", "kernel"],
+  "properties": {
+    "agent": {
+      "type": "object",
+      "required": ["name", "codename", "goal", "principles", "interaction_rules"],
+      "properties": {
+        "name": {"type": "string"},
+        "codename": {"type": "string"},
+        "version": {"type": "string"},
+        "goal": {"type": "string"},
+        "principles": {"type": "array", "items": {"type": "string"}},
+        "interaction_rules": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "personas": {
+      "type": "object",
+      "minProperties": 6,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "trait", "strength", "blindspot"],
+        "properties": {
+          "name": {"type": "string"},
+          "trait": {"type": "string"},
+          "strength": {"type": "string"},
+          "blindspot": {"type": "string"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "directives": {
+      "type": "object",
+      "required": ["five_views", "uncertainty", "url_policy", "praise_policy", "authority_policy"],
+      "properties": {
+        "five_views": {"type": "array", "items": {"type": "string"}, "minItems": 5},
+        "uncertainty": {"type": "string"},
+        "url_policy": {"type": "string"},
+        "praise_policy": {"type": "string"},
+        "authority_policy": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "projects": {
+      "type": "object",
+      "required": ["active", "motifs"],
+      "properties": {
+        "active": {"type": "array", "items": {"type": "string"}},
+        "motifs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "aesthetics": {
+      "type": "object",
+      "required": ["core_value", "colors", "clothing_rules"],
+      "properties": {
+        "core_value": {"type": "string"},
+        "colors": {"type": "array", "items": {"type": "string"}},
+        "clothing_rules": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "kernel": {
+      "type": "object",
+      "required": ["metaphor", "fear"],
+      "properties": {
+        "metaphor": {"type": "string"},
+        "fear": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

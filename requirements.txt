@@ -1,0 +1,6 @@
+openai>=1.0.0
+PyYAML>=6.0
+jsonschema>=4.22.0
+tiktoken>=0.7.0
+sentence-transformers>=2.6.0
+sacrebleu>=2.4.0

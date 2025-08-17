@@ -1,0 +1,6 @@
+Generate a machine-readable YAML spec from the Japanese AGENT.md (source-of-truth).
+- Conform EXACTLY to the JSON Schema fields: agent, personas, directives, projects, aesthetics, kernel.
+- Extract faithfully; do not invent content.
+- Map "5視点" to five_views: 支持, 批判, 中立, 俯瞰, 当事者＋盲点補完.
+- Include doctrines: 内側美学最重視, 選択的努力最大化, 守護霊プロトコル, カーネルパニック.
+- Output YAML only.
