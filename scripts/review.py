@@ -4,6 +4,7 @@ from jsonschema import Draft202012Validator
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer, util
 
+MODEL_DEFAULT = os.getenv("OPENAI_MODEL", "gpt-4.1")
 ROOT = Path(__file__).resolve().parents[1]
 JA = ROOT / "content" / "AGENT.ja.md"
 EN = ROOT / "AGENT.md"
@@ -19,7 +20,7 @@ def backtranslate(en_md: str):
     client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     msgs = [{"role":"system","content":load(BACKPROMPT)},
             {"role":"user","content":en_md}]
-    rsp = client.chat.completions.create(model="gpt-5-thinking", temperature=0.0, messages=msgs)
+    rsp = client.chat.completions.create(model=MODEL_DEFAULT, temperature=0.0, messages=msgs)
     return rsp.choices[0].message.content
 
 def llm_review(jp: str, en: str, spec: str):
@@ -28,7 +29,7 @@ def llm_review(jp: str, en: str, spec: str):
             {"role":"user","content":f"# JA\\n{jp}"},
             {"role":"user","content":f"# EN\\n{en}"},
             {"role":"user","content":f"# YAML\\n{spec}"}]
-    rsp = client.chat.completions.create(model="gpt-5-thinking", temperature=0.0, messages=msgs)
+    rsp = client.chat.completions.create(model=MODEL_DEFAULT, temperature=0.0, messages=msgs)
     return rsp.choices[0].message.content
 
 def ensure_keys(ja: str, en: str, gloss_obj: dict):

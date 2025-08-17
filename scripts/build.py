@@ -2,6 +2,7 @@ import os, re, json, yaml
 from pathlib import Path
 from openai import OpenAI
 
+MODEL_DEFAULT = os.getenv("OPENAI_MODEL", "gpt-4.1")
 ROOT = Path(__file__).resolve().parents[1]
 JA = ROOT / "content" / "AGENT.ja.md"
 EN = ROOT / "AGENT.md"                     # ← root-level output
@@ -58,12 +59,12 @@ def main():
 
     # 1) JA -> EN
     sys_trans = load(PROMPTS / "01_en_translate.txt")
-    en_md = chat("gpt-5-thinking", sys_trans,
+    en_md = chat(MODEL_DEFAULT, sys_trans,
                  f"### Glossary Map (id->EN)\n{json.dumps(glossary_map, ensure_ascii=False)}\n\n### JA (anchored)\n{ja_anchored}")
 
     # 2) YAML spec
     sys_yaml = load(PROMPTS / "02_yaml_extract.txt")
-    yaml_out = chat("gpt-5-thinking", sys_yaml, f"### JA (truth)\n{ja}")
+    yaml_out = chat(MODEL_DEFAULT, sys_yaml, f"### JA (truth)\n{ja}")
     spec_obj = yaml.safe_load(yaml_out)
 
     save(EN, en_md.strip()+"\n")
