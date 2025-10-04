@@ -33,6 +33,24 @@
         "additionalProperties": false
       }
     },
+    "persona_legend": {
+      "type": "array",
+      "description": "Tabular legend mapping emoji to persona meta info for synchronization with markdown.",
+      "items": {
+        "type": "object",
+        "required": ["emoji", "key", "name", "core_functions"],
+        "properties": {
+          "emoji": {"type": "string", "pattern": "^\\p{Emoji}+$"},
+          "key": {"type": "string", "description": "short identifier e.g. justice, luna"},
+          "name": {"type": "string"},
+          "alias": {"type": "array", "items": {"type": "string"}},
+          "core_functions": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "growth_note": {"type": "string"},
+          "risk_note": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
     "directives": {
       "type": "object",
       "required": ["five_views", "uncertainty", "url_policy", "praise_policy", "authority_policy"],
