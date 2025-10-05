@@ -72,11 +72,38 @@ def parse(md: str):
 
 def build_toc(headings):
     out = ["## 目次 (Table of Contents)", ""]
+    appendix_children = []
     for level, anchor, title in headings:
+        # Normalize section 0 subsections to show 0.X prefix in TOC
+        if anchor.startswith('sec-0-') and level == 3:
+            # Ensure title has 0.X prefix (already transformed in source) -> keep as is
+            out.append(f"  - [{title}](#{anchor})")
+            continue
         if level == 2:
-            out.append(f"- [{title}](#{anchor})")
+            # Appendix parent grouping
+            if anchor == 'appendix':
+                out.append(f"- [{title}](#{anchor})")
+                # defer children collection; will add after loop
+            else:
+                out.append(f"- [{title}](#{anchor})")
         elif level == 3:
-            out.append(f"  - [{title.split(' ')[0]}](#{anchor})" if title.startswith(('3.', '6.')) else f"  - [{title}](#{anchor})")
+            # Suppress deeper-than-2-level for Appendix F internal subsections (anchors starting with f- )
+            if anchor.startswith('f-'):
+                continue
+            if anchor.startswith('app-'):
+                appendix_children.append((title, anchor))
+            else:
+                out.append(f"  - [{title}](#{anchor})")
+    # Inject appendix children after appendix parent
+    if appendix_children:
+        # find index of appendix parent line
+        for i, line in enumerate(out):
+            if '(#appendix)' in line:
+                insert_at = i + 1
+                for t, a in appendix_children:
+                    out.insert(insert_at, f"  - [{t}](#{a})")
+                    insert_at += 1
+                break
     out.append("")
     return '\n'.join(out)
 
