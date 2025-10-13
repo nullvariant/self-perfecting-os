@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [AGENT.ja.md v4.1](content/AGENT.ja.md)
 - [感情辞書 v1.0](content/EmotionMood_Dictionary.ja.md)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
-- note記事 v4.1: （今後投稿予定）
+- [note記事 v4.1](https://note.com/nullvariant/n/n2a9a5fbf6e57)
 
 ---
 

@@ -51,98 +51,127 @@
 
 ## アップデート時の手順
 
-### Step 1: CHANGELOG.md の該当バージョンをコピー
+### Step 1: 手動草稿の作成（オプション）
 
-1. `CHANGELOG.md` を開く
-2. 該当バージョンのセクションをコピー（例: `## [4.1.0] - 2025-10-13` から次のバージョンの手前まで）
-3. テキストエディタに一時保存
+新バージョンの草稿を手動で作成する場合:
 
-**コピー範囲の例:**
-```markdown
-## [4.1.0] - 2025-10-13
+1. `changelogs/note-archives/` に `vX.X-note-draft.md` を作成
+2. CHANGELOG.mdから該当バージョンをコピー
+3. ヘッダー・フッターを追加
 
-### Added
-...
+**推奨**: Step 2のスクリプトで自動生成する方が簡単です。
 
-### Enhanced
-...
+---
 
-### Impact
-...
+### Step 2: 自動スクリプトでnote記事を生成
 
-### Related Links
-...
+**準備:**
+- `CHANGELOG.md` に新バージョンのエントリが記載済み
+- `content/AGENT.ja.md` が最新状態
+
+**実行:**
+```bash
+python scripts/prepare_note_article.py
+```
+
+**スクリプトの処理内容:**
+1. `AGENT.ja.md` を読み込み
+2. アンカータグ `<a id="..."></a>` とTOCを削除
+3. 相対リンクを GitHub 絶対URLに変換
+   - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
+   - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
+4. 出力ファイル: `changelogs/note-archives/vX.X-note-complete.md`（自動上書き）
+
+**確認:**
+```bash
+# 出力ファイルの確認
+cat changelogs/note-archives/v4.1-note-complete.md | head -50
+
+# リンク変換の確認
+grep -n "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
 ```
 
 ---
 
-### Step 2: AGENT.ja.md 本文をコピー
+### Step 3: note に新規投稿
 
-1. `content/AGENT.ja.md` を開く
-2. 全文をコピー（Ctrl+A / Cmd+A → Ctrl+C / Cmd+C）
-3. テキストエディタに一時保存
-
----
-
-### Step 3: note記事テンプレートを使用
-
-以下の「note記事テンプレート」セクションのテンプレートをコピーし、以下を置き換え：
-
-- `{VERSION}`: バージョン番号（例: `v4.1`）
-- `{TITLE}`: アップデートのタイトル（例: `感情辞書統合アップデート`）
-- `{CHANGELOG_CONTENT}`: Step 1でコピーしたChangelog
-- `{AGENT_CONTENT}`: Step 2でコピーしたAGENT.ja.md本文
-- `{GITHUB_REPO_URL}`: GitHubリポジトリのURL
-- `{CHANGELOG_URL}`: CHANGELOG.mdへの直リンク
-
----
-
-### Step 4: note に新規投稿
-
-1. note の「投稿」ボタンをクリック
-2. テンプレートを貼り付け
-3. プレビューで確認：
-   - [ ] リンクが正しく機能するか
-   - [ ] マークダウンが正しくレンダリングされているか
+1. **ファイルを開く**: `changelogs/note-archives/v4.1-note-complete.md`
+2. **全文をコピー**: Cmd+A → Cmd+C (macOS) / Ctrl+A → Ctrl+C (Windows)
+3. **noteの投稿画面**へペースト
+4. **プレビューで確認**:
+   - [ ] GitHubリンクが正しく機能するか
    - [ ] 見出し構造が適切か
+   - [ ] 画像・表が正しく表示されるか
 
-4. タイトルを設定：
+5. **タイトルを設定**:
    ```
-   [AGENT.ja.md] v{VERSION} {TITLE}
-   ```
-   例: `[AGENT.ja.md] v4.1 感情辞書統合アップデート`
+   【AI向け文書】 Self-Perfecting OS Version {VERSION}: Changelog
 
-5. ハッシュタグを追加：
+
    ```
-   #AI #AIエージェント #6ペルソナシステム #感情辞書 #EBI測定
+   例: `【AI向け文書】 Self-Perfecting OS Version 4.1: Changelog
+
+`
+
+6. **ハッシュタグを追加**:
+   ```
+   #自己紹介 #AI向け文書 #AI活用 #AIエージェント #メタ認知 #AIと自由研究 #AIと自分研究 #自己探求 #仕様書 #オイラーの等式 #コンテキストエンジニアリング #NullVariant #自己紹介芸人
    ```
 
-6. **公開設定を確認**:
+7. **マガジンに追加**:
+   - マガジン: `AI専用マガジン`
+   - URL: https://note.com/nullvariant/m/m0d682a2ae34d
+
+8. **公開設定を確認**:
    - [ ] 公開範囲: 全体公開
-   - [ ] コメント設定: お好みで
    - [ ] AI学習: 許可（noteのデフォルト設定）
 
-7. 「公開する」をクリック
+9. **「公開する」をクリック**
+
+---
+
+### Step 4: 公開版を保存
+
+公開後、実際に投稿した内容を記録として保存:
+
+```bash
+# スクリプト出力ファイルを公開版として保存
+cp changelogs/note-archives/v4.1-note-complete.md changelogs/note-archives/v4.1-note.md
+
+# 中間ファイルを削除（不要なファイルの整理）
+rm changelogs/note-archives/v4.1-note-draft.md 2>/dev/null
+rm changelogs/note-archives/v4.1-note-complete.md
+```
+
+**最終的なファイル構成:**
+```
+changelogs/note-archives/
+├── v4.1-note.md  # 実際に公開した最終版（保存）
+```
 
 ---
 
 ### Step 5: note URL を CHANGELOG.md に追記
 
 1. 公開されたnote記事のURLをコピー
+   - 例: `https://note.com/nullvariant/n/n2a9a5fbf6e57`
+
 2. `CHANGELOG.md` を開く
-3. 該当バージョンの `Related Links` セクションに追記：
+
+3. 該当バージョンの `Related Links` セクションを更新:
 
 ```markdown
 ### Related Links
 - [AGENT.ja.md v4.1](content/AGENT.ja.md)
 - [感情辞書 v1.0](content/EmotionMood_Dictionary.ja.md)
-- [note記事: v4.1アップデート](https://note.com/your_account/n/nxxxxxxxx) ← 追加
+- [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
+- [note記事 v4.1](https://note.com/nullvariant/n/n2a9a5fbf6e57)  # ← 追加
 ```
 
 4. Git commit & push:
 ```bash
-git add CHANGELOG.md
-git commit -m "docs: Add note article URL for v4.1"
+git add CHANGELOG.md changelogs/note-archives/v4.1-note.md
+git commit -m "docs: Add note article URL for v4.1 and archive published version"
 git push origin main
 ```
 
@@ -235,27 +264,51 @@ git push origin main
 
 ## チェックリスト
 
-### 📝 投稿前チェック
+### 📝 準備段階（GitHub側）
 
-- [ ] CHANGELOG.md の該当バージョンをコピー済み
-- [ ] AGENT.ja.md 本文をコピー済み
-- [ ] テンプレートの全ての `{変数}` を置き換え済み
-- [ ] GitHub URL が正しい
-- [ ] バージョン番号が正しい
-
-### 🔍 投稿時チェック
-
-- [ ] note のプレビューで確認済み
-- [ ] タイトルが `[AGENT.ja.md] v{VERSION} {TITLE}` 形式
-- [ ] ハッシュタグを追加済み
-- [ ] 公開範囲が「全体公開」
-- [ ] AI学習が許可されている（noteデフォルト）
-
-### ✅ 投稿後チェック
-
-- [ ] 公開されたnote記事のURLをコピー
-- [ ] CHANGELOG.md に note URL を追記
+- [ ] CHANGELOG.md に新バージョンのエントリが記載済み
+- [ ] content/AGENT.ja.md が最新状態
+- [ ] `make gen` と `make val` が正常完了
 - [ ] Git commit & push 完了
+
+### 🔧 スクリプト実行
+
+- [ ] `python scripts/prepare_note_article.py` 実行
+- [ ] `changelogs/note-archives/vX.X-note-complete.md` が生成された
+- [ ] リンク変換の確認:
+  ```bash
+  grep -n "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
+  ```
+- [ ] 未変換リンクがないことを確認:
+  ```bash
+  grep -E '\[.*\]\([^h].*\.md' changelogs/note-archives/v4.1-note-complete.md
+  ```
+
+### � note投稿
+
+- [ ] `vX.X-note-complete.md` の全文をコピー
+- [ ] note投稿画面にペースト
+- [ ] プレビューで確認（リンク・見出し・表）
+- [ ] タイトル設定: `NULLVARIANT OS バージョンX.X.X リリースノート`
+- [ ] ハッシュタグ追加: `#AI #AIエージェント #NULLVARIANT #エージェントOS`
+- [ ] マガジンに追加（オプション）
+- [ ] 公開範囲: 全体公開
+- [ ] AI学習: 許可
+- [ ] 「公開する」をクリック
+
+### ✅ 投稿後処理
+
+- [ ] note記事URLをコピー
+- [ ] `cp changelogs/note-archives/vX.X-note-complete.md changelogs/note-archives/vX.X-note.md`
+- [ ] `rm changelogs/note-archives/vX.X-note-draft.md` （存在する場合）
+- [ ] `rm changelogs/note-archives/vX.X-note-complete.md`
+- [ ] CHANGELOG.md に note URL を追記
+- [ ] Git commit & push:
+  ```bash
+  git add CHANGELOG.md changelogs/note-archives/vX.X-note.md
+  git commit -m "docs: Add note article URL for vX.X and archive published version"
+  git push origin main
+  ```
 - [ ] note記事とGitHubのリンクが双方向に機能することを確認
 
 ---
@@ -298,13 +351,75 @@ git push origin main
 2. CHANGELOG.md も確認・修正
 3. Git commit & push
 
-### Q5: 手動コピーが面倒
+### Q5: スクリプトのリンク変換が正しく動作しない
 
-**A**: Phase 4（自動化検討）で、スクリプト化を検討します。ただし、現時点では手動運用が最も安全で確実です。
+**A**: 以下を確認してください:
+
+1. **相対パスの種類を確認**:
+   - `../file.md` → Pattern 1で変換
+   - `content/file.md` → Pattern 2で変換
+   - `file.md`（同ディレクトリ） → Pattern 3で変換
+
+2. **変換結果の確認**:
+   ```bash
+   grep -n "https://github.com" changelogs/note-archives/v4.1-note-complete.md
+   ```
+
+3. **未変換リンクの検出**:
+   ```bash
+   # 相対パスが残っていないか確認
+   grep -E '\[.*\]\([^h].*\.md' changelogs/note-archives/v4.1-note-complete.md
+   ```
+
+4. **スクリプトの再実行**:
+   ```bash
+   python scripts/prepare_note_article.py
+   ```
+
+### Q6: note記事のタイトルフォーマットは固定ですか？
+
+**A**: いいえ、推奨フォーマットですが変更可能です。
+
+- **推奨**: `NULLVARIANT OS バージョン{VERSION} リリースノート`
+- **理由**: 一貫性とSEO、AI学習データとしての明確性
+- **変更OK**: プロジェクトの方針に応じて調整可能
 
 ---
 
-## 付録: 過去バージョンの移行
+## 付録A: スクリプト詳細
+
+### prepare_note_article.py の仕様
+
+**場所**: `scripts/prepare_note_article.py`
+
+**機能**:
+1. アンカータグ削除: `<a id="xxx"></a>` を除去
+2. TOC削除: `## 📋 目次` セクションを除去
+3. 相対リンク変換: 3つのパターンで絶対URLに変換
+
+**変換パターン**:
+
+| パターン | 元のリンク | 変換後 |
+|---------|-----------|--------|
+| Pattern 1 | `[text](../file.md)` | `[text](https://github.com/nullvariant/nullvariant/blob/main/file.md)` |
+| Pattern 2 | `[text](content/file.md)` | `[text](https://github.com/.../content/file.md)` |
+| Pattern 3 | `[text](file.md)` | `[text](https://github.com/.../content/file.md)` |
+
+**実行方法**:
+```bash
+python scripts/prepare_note_article.py
+```
+
+**入力**:
+- `content/AGENT.ja.md`（メインドキュメント）
+- `changelogs/note-archives/v4.1-note-draft.md`（オプション、なくてもOK）
+
+**出力**:
+- `changelogs/note-archives/v4.1-note-complete.md`（上書き）
+
+---
+
+## 付録B: 過去バージョンの移行
 
 既存のnote記事（ver3.0, 3.1, 4.0）を GitHub CHANGELOG.md へ統合する場合：
 

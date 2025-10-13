@@ -177,7 +177,22 @@ git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
 git commit -m "Release vX.X.X: [変更サマリー]"
 git push origin main
 
-# 7. note 記事作成（NOTE_SYNC_MANUAL.ja.md 参照）
+# 7. note記事の自動生成
+python scripts/prepare_note_article.py
+# → changelogs/note-archives/vX.X-note-complete.md が生成される
+
+# 8. noteに公開（詳細は NOTE_SYNC_MANUAL.ja.md 参照）
+# - vX.X-note-complete.md を note にコピペ
+# - タイトル・ハッシュタグを設定して公開
+# - 公開URLをコピー
+
+# 9. 公開版の保存とCHANGELOG.md更新
+cp changelogs/note-archives/vX.X-note-complete.md changelogs/note-archives/vX.X-note.md
+rm changelogs/note-archives/vX.X-note-complete.md
+# CHANGELOG.md に note URL を追記
+git add CHANGELOG.md changelogs/note-archives/vX.X-note.md
+git commit -m "docs: Add note article URL for vX.X and archive published version"
+git push origin main
 ```
 
 ### 8.2 バージョニングルール
