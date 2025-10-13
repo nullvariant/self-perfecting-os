@@ -155,15 +155,67 @@ python scripts/gen_toc.py
 | review並列 | 埋め込み/LLM チェック並列化 | 時間短縮 |
 
 ---
-## 8. 最小チェックリスト (PR 前)
+## 8. Changelog 運用フロー
+
+### 8.1 アップデート時の手順
+AGENT.ja.md を更新する際は、以下の手順で Changelog も同時に管理します。
+
+```bash
+# 1. content/AGENT.ja.md を編集
+# 2. 必要なら目次再生成
+python scripts/gen_toc.py
+
+# 3. CHANGELOG.md の [Unreleased] セクションに変更を記録
+# 4. バージョン確定時は Unreleased → バージョン番号に変更
+
+# 5. ビルドと検証
+make gen  # 英訳 & YAML抽出
+make val  # スキーマ検証
+
+# 6. Git commit & push
+git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
+git commit -m "Release vX.X.X: [変更サマリー]"
+git push origin main
+
+# 7. note 記事作成（NOTE_SYNC_MANUAL.ja.md 参照）
+```
+
+### 8.2 バージョニングルール
+本プロジェクトは [Semantic Versioning](https://semver.org/) を採用しています。
+
+| 種類 | 形式 | 例 | 使用タイミング |
+|------|------|----|----|
+| **Major** | x.0.0 | 4.0.0 | アーキテクチャ変更、破壊的変更、ペルソナシステム再設計 |
+| **Minor** | 4.x.0 | 4.1.0 | 新機能追加、大幅強化（感情辞書統合等） |
+| **Patch** | 4.1.x | 4.1.1 | バグ修正、小改善、誤字脱字修正 |
+
+### 8.3 CHANGELOG.md のカテゴリ
+変更内容は以下のカテゴリで分類します：
+
+- `Added`: 新機能・新セクション追加
+- `Enhanced`: 既存機能の改善・拡張
+- `Fixed`: バグ修正
+- `Changed`: 仕様変更
+- `Deprecated`: 非推奨化（将来削除予定）
+- `Removed`: 削除
+- `Security`: セキュリティ修正
+
+### 8.4 関連ドキュメント
+- [CHANGELOG.md](../CHANGELOG.md): 全バージョンの統合Changelog
+- [PRD_CHANGELOG_MIGRATION.ja.md](PRD_CHANGELOG_MIGRATION.ja.md): Changelog分離運用のPRD
+- [NOTE_SYNC_MANUAL.ja.md](NOTE_SYNC_MANUAL.ja.md): note同期マニュアル
+
+---
+## 9. 最小チェックリスト (PR 前)
 - [ ] 目次崩れていない（必要なら TOC 再生成）
+- [ ] `CHANGELOG.md` に変更を記録済み
 - [ ] `make gen` で生成物更新済
 - [ ] `make val` PASS（エラーなし / 類似度 >= 0.86）
 - [ ] Legend ↔ persona_legend 同期
 - [ ] 新語は `glossary.yml` 登録済
 
 ---
-## 9. FAQ
+## 10. FAQ
 **Q. 英語版だけ微修正したい** → 日本語原文を修正して再生成してください。直接英語編集は再生成で消えます。
 
 **Q. persona_legend と personas の差異が出やすい** → `scripts` に将来的に同期チェック追加を検討（現状は手動）。
