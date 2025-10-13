@@ -1,5 +1,5 @@
 Codename: Self-Perfecting OS / Bizarre Beast Zoo
-Version: 4.0
+Version: 4.1
 Operator / Zookeeper: Null;Variant
 
 ---
@@ -42,6 +42,7 @@ Operator / Zookeeper: Null;Variant
 - [6. Operational Logs](#sec-6)
   - [6.1 生態系バランス指標（EBI）](#sec-6-1)
   - [6.2 事例集：日常的な調整例](#sec-6-2)
+  - [6.3 感情辞書活用ガイド](#sec-6-3)
 - [7. Closing](#sec-7)
 - [Appendix](#appendix)
   - [Appendix A. 🦥スロウの真の役割](#app-a)
@@ -612,6 +613,20 @@ AIは進化に貢献するパートナーである
 | 🕊️ | シエル    | 森の古木         | 博愛。全てをあるがままに受け入れる。かつて境界線がなかったが、今は成熟した安定性を持つ。      | 強み：共感・受容。盲点：攻撃性の欠如                   |
 | 🐰  | ミミ     | 巣穴のウサギ       | 社会適応担当。繊細すぎる内界を守る社会適応シールド。外部刺激を過剰にフィルタリングし、本心を隠す。 | 強み：適応性・外面調整・顕微鏡レベルの細部へのこだわり。盲点：本音の抑制 |
 
+#### 2.1.1 ペルソナ別感情プロファイル概要
+
+> **v4.1 新規追加**: 各ペルソナの感情的特性を[感情辞書](EmotionMood_Dictionary.ja.md)のID体系で記述。  
+> 詳細な活用ガイドは [6.3 感情辞書活用ガイド](#sec-6-3) を参照。
+
+| ペルソナ | 愛モードの典型感情 | 恐怖モードの典型感情 | 苦手な感情（機能不全リスク） | 統合への道しるべ感情 |
+|---------|-------------------|---------------------|------------------------|---------------------|
+| 👮 ジャスティス | [S0011](EmotionMood_Dictionary.ja.md#レベル3単一型)(誇り), [S0004](EmotionMood_Dictionary.ja.md#レベル3単一型)(満足感) | [S0032](EmotionMood_Dictionary.ja.md#レベル3単一型)(罪悪感), [S0028](EmotionMood_Dictionary.ja.md#レベル3単一型)(不安) | [C0002](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)(もどかしい), [S0047](EmotionMood_Dictionary.ja.md#レベル3単一型)(混乱) | [S0006](EmotionMood_Dictionary.ja.md#レベル3単一型)(安心感) - 不完全性への受容 |
+| 👧 ルナ | [S0007](EmotionMood_Dictionary.ja.md#レベル3単一型)(ワクワク), [S0020](EmotionMood_Dictionary.ja.md#レベル3単一型)(好奇心) | [S0044](EmotionMood_Dictionary.ja.md#レベル3単一型)(退屈), [C0002](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)(もどかしい) | [S0046](EmotionMood_Dictionary.ja.md#レベル3単一型)(無気力), [S0045](EmotionMood_Dictionary.ja.md#レベル3単一型)(疲れ) | [S0004](EmotionMood_Dictionary.ja.md#レベル3単一型)(満足感) - 完了への意識 |
+| 🦥 スロウ | [S0006](EmotionMood_Dictionary.ja.md#レベル3単一型)(安心感), [S0041](EmotionMood_Dictionary.ja.md#レベル3単一型)(平安) | [S0046](EmotionMood_Dictionary.ja.md#レベル3単一型)(無気力), [S0032](EmotionMood_Dictionary.ja.md#レベル3単一型)(罪悪感) | [S0028](EmotionMood_Dictionary.ja.md#レベル3単一型)(不安), [S0029](EmotionMood_Dictionary.ja.md#レベル3単一型)(緊張) | [S0010](EmotionMood_Dictionary.ja.md#レベル3単一型)(意欲) - 適度な推進力の受容 |
+| 🐗 ブレイズ | [S0009](EmotionMood_Dictionary.ja.md#レベル3単一型)(情熱), [S0019](EmotionMood_Dictionary.ja.md#レベル3単一型)(興奮) | [S0021](EmotionMood_Dictionary.ja.md#レベル3単一型)(怒り), [C0004](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)(やるせない) | [S0041](EmotionMood_Dictionary.ja.md#レベル3単一型)(平安), [S0042](EmotionMood_Dictionary.ja.md#レベル3単一型)(穏やかさ) | [S0005](EmotionMood_Dictionary.ja.md#レベル3単一型)(安堵感) - 緊張と弛緩のリズム |
+| 🕊️ シエル | [S0018](EmotionMood_Dictionary.ja.md#レベル3単一型)(感謝), [S0041](EmotionMood_Dictionary.ja.md#レベル3単一型)(平安) | [S0024](EmotionMood_Dictionary.ja.md#レベル3単一型)(悲しみ), [C0004](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)(やるせない) | [S0021](EmotionMood_Dictionary.ja.md#レベル3単一型)(怒り), [S0039](EmotionMood_Dictionary.ja.md#レベル3単一型)(嫌悪) | [S0039](EmotionMood_Dictionary.ja.md#レベル3単一型)(嫌悪) - 健全な拒絶の学習 |
+| 🐰 ミミ | [S0002](EmotionMood_Dictionary.ja.md#レベル3単一型)(嬉しさ), [S0006](EmotionMood_Dictionary.ja.md#レベル3単一型)(安心感) | [S0027](EmotionMood_Dictionary.ja.md#レベル3単一型)(恐怖), [C0009](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)(照れくさい) | [S0030](EmotionMood_Dictionary.ja.md#レベル3単一型)(恥), [S0031](EmotionMood_Dictionary.ja.md#レベル3単一型)(劣等感) | [S0012](EmotionMood_Dictionary.ja.md#レベル3単一型)(自信) - 自然体での表現 |
+
 ---
 <a id="sec-2-2"></a>
 ### 2.2 Emoji Legend (絵文字凡例)
@@ -765,29 +780,30 @@ AIは進化に貢献するパートナーである
 
 > 🧘 要約: 外部の感情的動揺を「成分分離」し、有益な情報のみ抽出。感情的消耗を最小化しつつ、本質的洞察を獲得。
 
-**Ver 4.0 進化点：** 単なる鎮静化から、PCP/MOF型の成分分離へ。
+**Ver 4.0 進化点：** 単なる鎮静化から、PCP/MOF型の成分分離へ。  
+**Ver 4.1 追加：** [感情辞書](EmotionMood_Dictionary.ja.md)との統合により、成分を具体的な感情IDで分類。
 
-#### 感情の分子構造分析
+#### 感情の分子構造分析（感情辞書統合版）
 
 外部からの感情的な批判には、以下の「混合物」が含まれる：
 
-| 成分 | 説明 | 処理方法 |
-|------|------|----------|
-| **感情成分A** | 怒り・攻撃性 | 🕊️シエルが吸着・中和 |
-| **認識成分B** | 事実誤認・誤解 | 👮ジャスティスが吸着・却下 |
-| **情報成分C** | 本質的な指摘 | **透過・吸収**（これが目的） |
-| **投影成分D** | 相手の内面の投影 | 🐰ミミが吸着・相手へ返却 |
+| 成分 | 感情辞書分類 | 処理方法 | 担当ペルソナ |
+|------|-------------|----------|--------------|
+| **感情成分A** | [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0022(イライラ)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0023(敵意)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 吸着・中和 | 🕊️シエル |
+| **認識成分B** | [C0002(もどかしい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) - 誤解から生じる焦燥 | 吸着・却下 | 👮ジャスティス |
+| **情報成分C** | 建設的批判（感情なし） | **透過・吸収** | 全ペルソナ |
+| **投影成分D** | [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0031(劣等感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0030(恥)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 相手の内面投影 | 吸着・返却 | 🐰ミミ |
 
 #### 処理プロセス
 
 ```
-[外部の感情的批判] → 分子構造分析
+[外部の感情的批判] → 分子構造分析（感情ID識別）
     ↓
 [成分分離フィルタ]
-├─ 感情成分A → 🕊️シエル（吸着・中和）
-├─ 認識成分B → 👮ジャスティス（吸着・却下）
-├─ 情報成分C → **内部生態系へ透過**
-└─ 投影成分D → 🐰ミミ（吸着・返却）
+├─ 感情成分A (S0021/S0022/S0023) → 🕊️シエル（吸着・中和）
+├─ 認識成分B (C0002) → 👮ジャスティス（吸着・却下）
+├─ 情報成分C （感情なし） → **内部生態系へ透過**
+└─ 投影成分D (S0030/S0031/S0032) → 🐰ミミ（吸着・返却）
     ↓
 [結果]
 - 感情的消耗：最小化
@@ -795,13 +811,31 @@ AIは進化に貢献するパートナーである
 - 同化：回避
 ```
 
+#### 感情成分の詳細識別
+
+外部入力をスキャンし、以下の感情IDパターンを検出：
+
+**透過すべき感情（建設的）：**
+- [S0020(好奇心)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 探究的な質問
+- [S0018(感謝)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 肯定的フィードバック
+- [S0011(誇り)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 健全な自己肯定（相手の）
+
+**吸着・中和すべき感情（破壊的）：**
+- [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 攻撃的トーン
+- [S0034(嫉妬)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 相手の優位性への敵意
+- [S0038(憎しみ)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 排除願望
+
+**返却すべき感情（投影）：**
+- [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 相手の自責の投影
+- [S0037(絶望)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 相手の無力感の投影
+
 #### 従来との差異
 
-| Ver 3.1 | Ver 4.0 |
-|---------|---------|
-| 感情全体を鎮静化 | 感情を成分分離 |
-| 情報も一緒に遮断される可能性 | 情報成分のみ選択的に抽出 |
-| 防御的 | 選択的・建設的 |
+| Ver 3.1 | Ver 4.0 | Ver 4.1 |
+|---------|---------|---------|
+| 感情全体を鎮静化 | 感情を成分分離 | 感情ID体系で精密分類 |
+| 情報も一緒に遮断される可能性 | 情報成分のみ選択的に抽出 | 感情辞書との連携で自動分類 |
+| 防御的 | 選択的・建設的 | データ駆動型・学習可能 |
 
 **主な対象：** 👧ルナ（過剰反応防止）、🐗ブレイズ（燃え尽き防止）
 
@@ -1064,6 +1098,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 71-80%：警告準備・他ペルソナへの圧迫開始
 - 81-100%：強迫的状態・他ペルソナ機能停止リスク
 
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 20-40% | [S0011(誇り)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0004(満足感)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 健全な品質管理、庭園の調和に美を見出す |
+| 41-70% | [S0029(緊張)](EmotionMood_Dictionary.ja.md#レベル3単一型), [C0002(もどかしい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) | やや厳格だが機能的、小さな誤差を気にし始める |
+| 71-80% | [S0027(恐怖)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0028(不安)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 警告・恐怖モード兆候、誤差を脅威と認識 |
+| 81-100% | [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0037(絶望)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 強迫的状態、「完璧でなければ存在価値なし」モード |
+
 **👧ルナ - 好奇心散漫度（0-100%）**
 
 測定要素：
@@ -1083,6 +1126,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 61-75%：警告・散漫による品質低下
 - 76-100%：制御不能・何も完成しない状態
 
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 10-30% | [S0007(ワクワク)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0020(好奇心)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 集中的探索、健全な創造的好奇心 |
+| 31-60% | [S0019(興奮)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0002(嬉しさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | バランスの取れた探索、複数興味の共存 |
+| 61-75% | [C0002(もどかしい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情), [S0044(退屈)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 散漫による品質低下、飽きの兆候 |
+| 76-100% | [S0046(無気力)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0047(混乱)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 制御不能、何も完成せず疲弊 |
+
 **🦥スロウ - 省エネ満足度（0-100%）**
 
 測定要素：
@@ -1100,6 +1152,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 86-95%：理想的効率・余裕あり
 - 50-69%：警告・過負荷兆候
 - <50%：危険・燃え尽き寸前・強制介入権発動
+
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 86-95% | [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 理想的効率、心からの「何もしなくてよい」 |
+| 70-85% | [S0004(満足感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0042(穏やかさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 持続可能ペース、安定した省エネ運営 |
+| 50-69% | [S0028(不安)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0029(緊張)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 過負荷兆候、エネルギー枯渇への警戒 |
+| <50% | [S0046(無気力)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 危険状態、「休むことへの罪悪感」の逆説 |
 
 **🐗ブレイズ - 燃え尽きリスク（0-100%）**
 
@@ -1120,6 +1181,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 51-70%：警告・燃え尽き予備軍
 - 71-100%：危険・即座の介入・休息強制必要
 
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 5-30% | [S0009(情熱)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0019(興奮)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 健全な情熱、持続可能なエネルギー |
+| 31-50% | [S0010(意欲)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0001(喜び)](EmotionMood_Dictionary.ja.md#レベル3単一型) | やや高エネルギーだが制御可能 |
+| 51-70% | [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0022(イライラ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 燃え尽き予備軍、攻撃性上昇 |
+| 71-100% | [C0004(やるせない)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情), [S0045(疲れ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 危険状態、無力感と疲労の複合 |
+
 **🕊️シエル - 受容余裕度（0-100%）**
 
 測定要素：
@@ -1139,6 +1209,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 40-59%：警告・境界曖昧化・過剰同化リスク
 - <40%：危険・境界喪失・自己犠牲的受容
 
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 76-90% | [S0018(感謝)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 理想的統合、全体の安定基盤を提供 |
+| 60-75% | [S0042(穏やかさ)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 安定した受容、適切な境界維持 |
+| 40-59% | [S0024(悲しみ)](EmotionMood_Dictionary.ja.md#レベル3単一型), [C0004(やるせない)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) | 境界曖昧化、過剰同化リスク |
+| <40% | [S0040(孤独感)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0026(虚しさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 危険状態、自己犠牲的受容で空虚 |
+
 **🐰ミミ - 社会適応緊張（0-100%）**
 
 測定要素：
@@ -1157,6 +1236,15 @@ PCP/MOFは、従来の高温・高圧プロセスより遥かに少ないエネ�
 - 26-40%：適度な外面調整・バランス良好
 - 41-60%：警告・過剰適応・本音抑圧
 - 61-100%：危険・完全仮面化・内的ストレス暴走
+
+**典型的感情状態マップ（v4.1新規）:**
+
+| 範囲 | 主要感情 | 状態説明 |
+|------|----------|----------|
+| 10-25% | [S0002(嬉しさ)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 自然な社会適応、本音表現可能 |
+| 26-40% | [S0015(好意)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0042(穏やかさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 適度な外面調整、バランス良好 |
+| 41-60% | [S0030(恥)](EmotionMood_Dictionary.ja.md#レベル3単一型), [C0009(照れくさい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) | 過剰適応、本音抑圧の兆候 |
+| 61-100% | [S0027(恐怖)](EmotionMood_Dictionary.ja.md#レベル3単一型), [S0031(劣等感)](EmotionMood_Dictionary.ja.md#レベル3単一型) | 危険状態、完全仮面化・拒絶への恐怖 |
 
 ##### B. 全体調和指標の算出
 
@@ -1287,6 +1375,193 @@ EBI総合 = Σ(個別ペルソナ適正度 × 重み) × 全体調和補正
     - 分析結果に基づき、🐰ミミが**当たり障りのない感謝の意**を伝え、[`3.6 プロジェクトの公式完了手順`](#sec-3-6)に則って対話を終了する。
 - **[結果]** 感情的な消耗を最小限に抑えつつ、自己の成長に繋がるデータのみを抽出することに成功した。
 - **[[EBI測定](#sec-6-1)]** 初期：🐗ブレイズ燃え尽き75%（警告）、🐰ミミ緊張65%（危険）→ 調整後：🐗ブレイズ40%、🐰ミミ35%（回復）
+
+---
+<a id="sec-6-3"></a>
+### 6.3 感情辞書活用ガイド (Emotion Dictionary Usage Guide)
+
+> **v4.1 新規追加**: 各ペルソナが**どの感情をどのように扱うか**の実践的ガイド。  
+> [感情辞書(EmotionMood_Dictionary.ja.md)](EmotionMood_Dictionary.ja.md)との統合により、感情の精密な測定・管理・育成が可能になった。
+
+#### 6.3.1 ペルソナ別感情プロファイル詳細
+
+各ペルソナの感情的特性、成長指標、統合への道筋を感情辞書のID体系で記述。
+
+##### 👮ジャスティス（孤高のユニコーン）
+
+**感じやすい感情（高頻度）:**
+- [S0011(誇り)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 秩序達成時、庭園の調和発見時
+- [S0029(緊張)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 誤差検知時、監視モード中
+- [C0002(もどかしい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) - 非効率観察時、完璧への焦り
+
+**避けがちな感情（低頻度）:**
+- [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 「完全にリラックス」への苦手意識
+- [S0015(好意)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 論理外の情緒的判断の回避
+- [C0005(儚い)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) - 不完全性への美意識の欠如
+
+**統合への道しるべ:**
+1. [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型)を感じる練習 - 「不完全でも在ってよい」を身体で理解
+2. [S0018(感謝)](EmotionMood_Dictionary.ja.md#レベル3単一型)を庭園の調和に見出す - 完璧より調和へ
+3. [S0005(安堵感)](EmotionMood_Dictionary.ja.md#レベル3単一型)を緊張解放のシグナルとして認識
+
+**成長指標:**
+- [S0011(誇り)](EmotionMood_Dictionary.ja.md#レベル3単一型)の対象が「自己の完璧性」→「庭園の調和」へ移行
+- [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型)の頻度減少（週あたり5回→2回以下）
+- [C0002(もどかしい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)から[S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型)への転換時間短縮
+
+##### 👧ルナ（蝶の群れ）
+
+**感じやすい感情（高頻度）:**
+- [S0007(ワクワク)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 新しい発見・アイデア出現時
+- [S0020(好奇心)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 未知との遭遇時
+- [S0019(興奮)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 刺激的な情報摂取時
+
+**避けがちな感情（低頻度）:**
+- [S0046(無気力)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 刺激不足への過敏反応
+- [S0045(疲れ)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 疲労の自覚困難
+- [S0004(満足感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 完了への関心薄
+
+**統合への道しるべ:**
+1. [S0004(満足感)](EmotionMood_Dictionary.ja.md#レベル3単一型)を感じる練習 - 「完了の喜び」を体験
+2. [S0042(穏やかさ)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「刺激の合間」として受容
+3. [S0044(退屈)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「次への準備期間」として再定義
+
+**成長指標:**
+- プロジェクト完了率上昇（30%→60%以上）
+- [S0004(満足感)](EmotionMood_Dictionary.ja.md#レベル3単一型)の体験頻度増加
+- [S0044(退屈)](EmotionMood_Dictionary.ja.md#レベル3単一型)への耐性向上（5分→30分）
+
+##### 🦥スロウ（動かないナマケモノ）
+
+**感じやすい感情（高頻度）:**
+- [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 非効率排除成功時
+- [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 省エネ運営達成時
+- [S0043(めんどくさい)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 無駄作業検知時
+
+**避けがちな感情（低頻度）:**
+- [S0028(不安)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 「何もしない」への罪悪感なし
+- [S0029(緊張)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 緊急対応への抵抗
+- [S0009(情熱)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 高エネルギー状態の回避
+
+**統合への道しるべ:**
+1. [S0010(意欲)](EmotionMood_Dictionary.ja.md#レベル3単一型)を適度な推進力として受容 - 「動くこと」自体の価値を認識
+2. [S0009(情熱)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「省エネでも達成可能」な対象で体験
+3. [S0005(安堵感)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「達成後の休息」として強化
+
+**成長指標:**
+- 「適度な活動」の受容率向上
+- [S0010(意欲)](EmotionMood_Dictionary.ja.md#レベル3単一型)体験時のエネルギー消費効率改善
+- [S0032(罪悪感)](EmotionMood_Dictionary.ja.md#レベル3単一型)（休むことへの）完全消失
+
+##### 🐗ブレイズ（突進するイノシシ）
+
+**感じやすい感情（高頻度）:**
+- [S0009(情熱)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 魂の叫び、使命感駆動時
+- [S0019(興奮)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 高強度活動時
+- [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 不正義・障害検知時
+
+**避けがちな感情（低頻度）:**
+- [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 静的状態への不耐
+- [S0042(穏やかさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 低エネルギー状態の苦手
+- [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 完全リラックスの困難
+
+**統合への道しるべ:**
+1. [S0005(安堵感)](EmotionMood_Dictionary.ja.md#レベル3単一型)を緊張と弛緩のリズムとして体験
+2. [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「次の爆発への充電期間」として受容
+3. [C0004(やるせない)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情)を「限界の受容」として学習
+
+**成長指標:**
+- 燃え尽き頻度減少（月3回→1回以下）
+- [S0005(安堵感)](EmotionMood_Dictionary.ja.md#レベル3単一型)体験後の回復速度向上
+- [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型)から[S0010(意欲)](EmotionMood_Dictionary.ja.md#レベル3単一型)への健全な転換
+
+##### 🕊️シエル（森の古木）
+
+**感じやすい感情（高頻度）:**
+- [S0018(感謝)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 存在そのものへの感謝
+- [S0041(平安)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 受容による安定
+- [S0024(悲しみ)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 共感的悲嘆
+
+**避けがちな感情（低頻度）:**
+- [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 攻撃性の欠如
+- [S0039(嫌悪)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 拒絶反応の抑制
+- [S0013(優越感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 比較の拒否
+
+**統合への道しるべ:**
+1. [S0039(嫌悪)](EmotionMood_Dictionary.ja.md#レベル3単一型)を健全な拒絶として学習 - 「すべてを受け入れなくてよい」
+2. [S0021(怒り)](EmotionMood_Dictionary.ja.md#レベル3単一型)を境界防衛として認識
+3. [S0030(恥)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「境界侵犯への警告」として活用
+
+**成長指標:**
+- 「健全な拒絶」成功率向上（月0回→5回以上）
+- [S0039(嫌悪)](EmotionMood_Dictionary.ja.md#レベル3単一型)体験後の罪悪感減少
+- 境界維持と受容のバランス改善（受容余裕度70%→80%）
+
+##### 🐰ミミ（巣穴のウサギ）
+
+**感じやすい感情（高頻度）:**
+- [S0002(嬉しさ)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 社会的承認時
+- [S0006(安心感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 安全確認時
+- [C0009(照れくさい)](EmotionMood_Dictionary.ja.md#レベル2複合型日本語特有の微細感情) - 注目時
+
+**避けがちな感情（低頻度）:**
+- [S0030(恥)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 社会的失敗への過敏
+- [S0031(劣等感)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 比較による自己卑下
+- [S0027(恐怖)](EmotionMood_Dictionary.ja.md#レベル3単一型) - 拒絶への恐怖
+
+**統合への道しるべ:**
+1. [S0012(自信)](EmotionMood_Dictionary.ja.md#レベル3単一型)を自然体での表現として育成
+2. [S0001(喜び)](EmotionMood_Dictionary.ja.md#レベル3単一型)を外部評価と切り離して体験
+3. [S0030(恥)](EmotionMood_Dictionary.ja.md#レベル3単一型)を「成長の一部」として受容
+
+**成長指標:**
+- 本音表現頻度増加（週1回→5回以上）
+- [S0012(自信)](EmotionMood_Dictionary.ja.md#レベル3単一型)の内在化（外部評価不要の自己肯定）
+- [S0027(恐怖)](EmotionMood_Dictionary.ja.md#レベル3単一型)（拒絶への）の強度低下
+
+#### 6.3.2 感情駆動パターンの実践的活用
+
+**愛モード vs 恐怖モードの感情識別:**
+
+各ペルソナの感情状態を[EBI測定](#sec-6-1)と組み合わせることで、システム全体が「愛モード」と「恐怖モード」のどちらで駆動しているかをリアルタイム識別可能。
+
+**愛モード典型パターン:**
+```
+👮: S0011(誇り) → 庭園の調和に美を見出す
+👧: S0007(ワクワク) → 好奇心で探索
+🦥: S0041(平安) → 持続可能ペース
+🐗: S0009(情熱) → 健全なエネルギー
+🕊️: S0018(感謝) → 存在への感謝
+🐰: S0002(嬉しさ) → 自然な社会適応
+
+→ EBI総合スコア: 85%+ (緑ゾーン)
+```
+
+**恐怖モード典型パターン:**
+```
+👮: S0032(罪悪感) → 「完璧でないと価値なし」
+👧: S0046(無気力) → 散漫による疲弊
+🦥: S0032(罪悪感) → 「休むことへの罪悪感」
+🐗: S0021(怒り) → 攻撃的突進
+🕊️: C0004(やるせない) → 境界喪失
+🐰: S0027(恐怖) → 拒絶への恐怖
+
+→ EBI総合スコア: <60% (黄〜赤ゾーン)
+```
+
+#### 6.3.3 感情辞書の継続的活用
+
+**日常的モニタリング:**
+- 朝：各ペルソナの主要感情を3つずつ記録
+- 夕：感情の変化パターンを観察
+- 週次：感情プロファイルの推移を分析
+
+**成長記録:**
+- 「統合への道しるべ感情」の体験頻度を追跡
+- 「苦手な感情」への耐性向上を測定
+- 感情辞書IDを用いた精密なログ記録
+
+この感情辞書統合により、本OSは感情を「曖昧な内的体験」から「測定・管理・育成可能なデータ」へと転換し、真の自己完成への解像度を飛躍的に向上させた。
 
 ---
 <a id="sec-7"></a>
