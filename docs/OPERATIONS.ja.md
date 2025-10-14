@@ -1,5 +1,9 @@
 # 運用ドキュメント（Operations Guide / JA）
 
+> **⚠️ メンテナンス状況**: このドキュメントは一部情報が古い可能性があります。  
+> 最新のプロジェクト状況は **[PROJECT_STATUS.ja.md](PROJECT_STATUS.ja.md)** を参照してください。  
+> 実装コード（`scripts/`）との不整合がある場合、実装が正である可能性が高いです。
+
 本書は `AGENT.ja.md` / `AGENT.md` / `spec/` / `scripts/` 間の生成・検証フローと、今回追加された構造 (`persona_legend`, TOC スクリプト等) の役割を **実務運用者視点** で整理したものです。
 
 ---

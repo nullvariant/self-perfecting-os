@@ -1,12 +1,19 @@
-# Contributing to NULLVARIANT OS
+# Contributing to Self-Perfecting OS
 
-NULLVARIANT OSへのコントリビューションをありがとうございます!
+Self-Perfecting OSへのコントリビューションをありがとうございます!
+
+> **📊 プロジェクト状況**: このプロジェクトは一部メンテナンスが追いついていない領域があります。  
+> 現在のメンテナンス優先度と今後の方向性については **[docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md)** を参照してください。
 
 ## 📋 基本方針
 
 - **編集対象**: `content/AGENT.ja.md`（日本語一次情報）のみ
-- **自動生成**: CI が `AGENT.md`（英語）と `spec/agent.spec.yaml` を生成
+- **自動生成**: CI が `AGENT.md`（英語）と `spec/agent.spec.yaml` を生成（**⚠️ 現在未稼働**）
 - **Changelog**: 全ての変更は `CHANGELOG.md` に記録
+- **現状**: 
+  - ✅ `content/`と`changelogs/`は積極的に更新中
+  - ⚠️ `docs/`配下は一部古い情報あり
+  - ❌ CI/CDパイプラインは未稼働（LLM API選定中）
 
 ---
 
@@ -29,6 +36,8 @@ export OPENAI_API_KEY=sk-...
 
 ### 2. 編集フロー
 
+> **⚠️ 注意**: 現在CI/CDパイプラインが未稼働のため、以下のステップ4は実行不要です。
+
 ```bash
 # 1. AGENT.ja.md を編集
 vim content/AGENT.ja.md
@@ -39,21 +48,24 @@ python scripts/gen_toc.py
 # 3. CHANGELOG.md 更新
 vim CHANGELOG.md  # [Unreleased] セクションに変更を記録
 
-# 4. ビルド＆検証
-make gen  # 英訳＆YAML生成
-make val  # 類似度検証（>= 0.86推奨）
+# 4. (現在スキップ) ビルド＆検証
+# make gen  # 英訳＆YAML生成 (LLM API選定後に実施予定)
+# make val  # 類似度検証 (LLM API選定後に実施予定)
 
 # 5. Commit & Push
-git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
+git add CHANGELOG.md content/AGENT.ja.md
+# ⚠️ CI未稼働のため AGENT.md, spec/agent.spec.yaml は現時点でコミット不要
 git commit -m "feat: [変更内容の簡潔な説明]"
 git push origin feature/your-feature-name
 ```
 
 ### 3. Pull Request
 
+> **⚠️ 注意**: 現在CI/CDが未稼働のため、自動チェックは実行されません。
+
 - 変更内容を説明
-- `make val` が PASS していることを確認
-- CI チェック（pr-guard.yml）が通過することを確認
+- ~~`make val` が PASS していることを確認~~ (CI稼働後に実施)
+- ~~CI チェック（pr-guard.yml）が通過することを確認~~ (CI稼働後に実施)
 
 ---
 
@@ -177,28 +189,39 @@ nullvariant/
 
 ## ✅ Pull Request チェックリスト
 
-### 編集前
+> **⚠️ CI未稼働**: 現在は以下の簡易版チェックリストを使用してください。
+
+### 現在のチェックリスト（Phase 0）
+
+#### 編集前
 - [ ] `content/AGENT.ja.md` のみを編集対象としている
 - [ ] `CHANGELOG.md` の `[Unreleased]` セクションに変更を記録
 
-### 編集後
-- [ ] `make gen` 実行済み（`AGENT.md`, `agent.spec.yaml` 更新）
-- [ ] `make val` PASS（類似度 >= 0.86）
-- [ ] 目次が正しく更新されている（必要な場合）
-- [ ] 新語は `i18n/glossary.yml` に登録済み
+#### 編集後
+- [ ] 目次が正しく更新されている（必要な場合: `python scripts/gen_toc.py`）
+- [ ] マークダウンの構文が正しい（プレビューで確認）
 
-### PR作成時
+#### PR作成時
 - [ ] PR説明に変更内容を明記
-- [ ] CI チェックが全て通過
 - [ ] コミットメッセージが明確
+
+### 将来のチェックリスト（CI稼働後）
+
+以下は現在実行不要です:
+
+- ~~[ ] `make gen` 実行済み（`AGENT.md`, `agent.spec.yaml` 更新）~~
+- ~~[ ] `make val` PASS（類似度 >= 0.86）~~
+- ~~[ ] 新語は `i18n/glossary.yml` に登録済み~~
+- ~~[ ] CI チェックが全て通過~~
 
 ---
 
 ## 🔗 関連ドキュメント
 
-- [OPERATIONS.ja.md](docs/OPERATIONS.ja.md): 運用マニュアル
+- [PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md): **📊 プロジェクト状況・メンテナンス優先度**
+- [OPERATIONS.ja.md](docs/OPERATIONS.ja.md): 運用マニュアル（⚠️ 一部情報が古い可能性あり）
 - [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md): note同期手順
-- [scripts/README.md](scripts/README.md): スクリプト詳細
+- [scripts/README.md](scripts/README.md): スクリプト詳細（⚠️ 一部情報が古い可能性あり）
 
 ---
 

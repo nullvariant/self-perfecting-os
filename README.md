@@ -20,11 +20,11 @@
 
 ---
 
-## � クイックスタート
+## 📖 クイックスタート
 
 ### 最新仕様を読む
-- **日本語** (一次情報): [`content/AGENT.ja.md`](content/AGENT.ja.md)
-- **英語** (自動生成): [`AGENT.md`](AGENT.md)
+- **日本語** (一次情報・最新): [`content/AGENT.ja.md`](content/AGENT.ja.md) ✅
+- **英語** (⚠️ 古い・CI未稼働): [`AGENT.md`](AGENT.md)
 - **感情辞書**: [`content/EmotionMood_Dictionary.ja.md`](content/EmotionMood_Dictionary.ja.md)
 
 ### バージョン履歴
@@ -35,19 +35,23 @@
 
 ## 📂 リポジトリ構成
 
+> **⚠️ メンテナンス状況**: `content/`と`changelogs/`は積極的に更新中。`docs/`配下は一部情報が古い可能性あり。  
+> 詳細は **[docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md)** を参照。
+
 ```
 nullvariant/
-├── content/
+├── content/                      # ✅ 積極的メンテナンス中
 │   ├── AGENT.ja.md                # 🇯🇵 日本語一次仕様書（編集対象）
 │   └── EmotionMood_Dictionary.ja.md  # 感情辞書
-├── AGENT.md                       # 🇬🇧 英語標準仕様書（CI自動生成）
+├── AGENT.md                       # 🇬🇧 英語標準仕様書（⚠️ 古い・CI未稼働）
 ├── CHANGELOG.md                   # 📋 バージョン履歴（Keep a Changelog形式）
 ├── spec/
-│   ├── agent.spec.yaml           # YAML構造化仕様（CI自動生成）
+│   ├── agent.spec.yaml           # YAML構造化仕様（⚠️ 古い・CI未稼働）
 │   └── agent.schema.json         # JSONスキーマ
-├── changelogs/
+├── changelogs/                    # ✅ バージョンごとに更新
 │   └── note-archives/            # note公開版アーカイブ
-├── docs/
+├── docs/                          # ⚠️ 一部情報が古い可能性あり
+│   ├── PROJECT_STATUS.ja.md      # 📊 プロジェクト状況・メンテナンス優先度
 │   ├── OPERATIONS.ja.md          # 運用マニュアル
 │   ├── NOTE_SYNC_MANUAL.ja.md    # note同期手順
 │   └── PRD_CHANGELOG_MIGRATION.ja.md  # Changelog分離PRD
@@ -110,24 +114,29 @@ python scripts/prepare_note_article.py
 
 ---
 
-## � ドキュメント
+## 📖 ドキュメント
 
-| ドキュメント | 説明 |
-|------------|------|
-| [AGENT.ja.md](content/AGENT.ja.md) | 日本語メイン仕様書 |
-| [CHANGELOG.md](CHANGELOG.md) | バージョン履歴 |
-| [EmotionMood_Dictionary.ja.md](content/EmotionMood_Dictionary.ja.md) | 感情辞書 |
-| [OPERATIONS.ja.md](docs/OPERATIONS.ja.md) | 運用マニュアル |
-| [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md) | note同期手順 |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド |
+> **📊 メンテナンス状況**: 詳細は [docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) を参照
+
+| ドキュメント | 説明 | 状態 |
+|------------|------|------|
+| [AGENT.ja.md](content/AGENT.ja.md) | 日本語メイン仕様書 | ✅ 最新 |
+| [CHANGELOG.md](CHANGELOG.md) | バージョン履歴 | ✅ 最新 |
+| [EmotionMood_Dictionary.ja.md](content/EmotionMood_Dictionary.ja.md) | 感情辞書 | ✅ 最新 |
+| [PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) | プロジェクト状況・優先度 | 🆕 |
+| [OPERATIONS.ja.md](docs/OPERATIONS.ja.md) | 運用マニュアル | ⚠️ 要確認 |
+| [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md) | note同期手順 | 🟢 比較的最新 |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
 
 ---
 
 ## 🤝 コントリビューション
 
+> **⚠️ CI/CD未稼働**: 現在LLM API選定中のため、自動生成パイプラインは未稼働です。詳細は [docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) を参照。
+
 1. **編集対象**: `content/AGENT.ja.md` のみ（日本語一次情報）
-2. **自動生成**: CI が `AGENT.md` と `spec/agent.spec.yaml` を生成
-3. **Pull Request**: `pr-guard.yml` が厳格チェックを実行
+2. **自動生成**: CI が `AGENT.md` と `spec/agent.spec.yaml` を生成（予定・現在未稼働）
+3. **Pull Request**: `pr-guard.yml` が厳格チェックを実行（予定・現在未稼働）
 
 詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照。
 
