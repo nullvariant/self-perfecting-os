@@ -183,7 +183,9 @@ git push origin main
 
 # 7. note記事の自動生成
 python scripts/prepare_note_article.py
-# → changelogs/note-archives/vX.X-note-complete.md が生成される
+# 必要に応じてバージョンやドラフトを指定可能
+# python scripts/prepare_note_article.py --version 4.2 --draft path/to/draft.md
+# → changelogs/note-archives/vX.X-note-complete.md が生成される（バージョンは自動推定）
 
 # 8. noteに公開（詳細は NOTE_SYNC_MANUAL.ja.md 参照）
 # - vX.X-note-complete.md を note にコピペ
@@ -192,6 +194,7 @@ python scripts/prepare_note_article.py
 
 # 9. 公開版の保存とCHANGELOG.md更新
 cp changelogs/note-archives/vX.X-note-complete.md changelogs/note-archives/vX.X-note.md
+rm changelogs/note-archives/vX.X-note-draft.md 2>/dev/null
 rm changelogs/note-archives/vX.X-note-complete.md
 # CHANGELOG.md に note URL を追記
 git add CHANGELOG.md changelogs/note-archives/vX.X-note.md

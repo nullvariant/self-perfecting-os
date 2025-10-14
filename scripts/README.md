@@ -44,7 +44,7 @@ python scripts/gen_toc.py
 ```
 
 **対象ファイル**:
-- `content/AGENT.ja.md` の `## 📋 目次 (Table of Contents)` セクション
+- `content/AGENT.ja.md` の `## 目次 (Table of Contents)` セクション
 
 **注意**:
 - `<a id="xxx"></a>` アンカーを自動生成
@@ -57,7 +57,7 @@ python scripts/gen_toc.py
 
 **機能**:
 1. `AGENT.ja.md` からアンカータグ `<a id="..."></a>` を除去
-2. 目次セクション `## 📋 目次 (Table of Contents)` を除去
+2. 目次セクション `## 目次 (Table of Contents)` を除去
 3. 相対リンクを GitHub 絶対URLに変換:
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
    - `content/EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
@@ -66,14 +66,16 @@ python scripts/gen_toc.py
 **実行方法**:
 ```bash
 python scripts/prepare_note_article.py
+# または特定バージョンを指定
+python scripts/prepare_note_article.py --version 4.2
 ```
 
 **入力**:
 - `content/AGENT.ja.md`（メインドキュメント）
-- `changelogs/note-archives/vX.X-note-draft.md`（オプション）
+- `changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動検出、`--draft`で上書き可能）
 
 **出力**:
-- `changelogs/note-archives/vX.X-note-complete.md`（上書き）
+- `changelogs/note-archives/vX.X-note-complete.md`（バージョンは自動推定。`--output`で上書き可能）
 
 **リンク変換パターン**:
 

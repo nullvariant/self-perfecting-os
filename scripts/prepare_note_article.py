@@ -4,24 +4,26 @@ note記事準備スクリプト
 AGENT.ja.mdからアンカーと目次を除去し、note投稿用に整形する
 """
 
+import argparse
 import re
 import sys
 from pathlib import Path
 
+TOC_BLOCK_PATTERN = re.compile(
+    r'## (?:📋 )?目次 \(Table of Contents\).*?(?=\n## )',
+    re.DOTALL
+)
+
+
 def remove_anchors_and_toc(content: str) -> str:
     """アンカータグと目次セクションを除去"""
-    
+
     # アンカータグを除去
     content = re.sub(r'<a id="[^"]+"></a>\n', '', content)
-    
+
     # 目次セクションを除去（"## 目次" から次の "##" セクションまで）
-    content = re.sub(
-        r'## 目次 \(Table of Contents\).*?(?=\n## )',
-        '',
-        content,
-        flags=re.DOTALL
-    )
-    
+    content = TOC_BLOCK_PATTERN.sub('', content)
+
     return content
 
 def convert_relative_to_absolute_links(content: str) -> str:
@@ -96,49 +98,92 @@ def convert_relative_to_absolute_links(content: str) -> str:
     
     return content
 
+
+VERSION_PATTERN = re.compile(r'^Version:\s*([0-9A-Za-z.\-_]+)\s*$', re.MULTILINE)
+
+
+def detect_version(agent_content: str) -> str | None:
+    """AGENT.ja.mdの先頭にあるVersion行からバージョン番号を推定"""
+    match = VERSION_PATTERN.search(agent_content)
+    return match.group(1) if match else None
+
+
+def load_draft(draft_path: Path) -> str:
+    """ドラフトを読み込む。存在しない場合は警告を出しテンプレートを返す。"""
+    if draft_path.exists():
+        print(f"📖 Reading {draft_path}...")
+        return draft_path.read_text(encoding='utf-8')
+
+    print(f"⚠️ Draft file not found: {draft_path}")
+    print("   Using fallback template (AGENT本文のみ) for note export.")
+    return '[ここにAGENT.ja.mdの全文を貼り付け]'
+
+
 def main():
+    parser = argparse.ArgumentParser(description="note投稿用Markdown生成スクリプト")
+    parser.add_argument(
+        "--version",
+        help="出力ファイルのバージョン。省略時は AGENT.ja.md の Version 行から推定"
+    )
+    parser.add_argument(
+        "--draft",
+        help="note草稿ファイルパス。省略時は changelogs/note-archives/v{version}-note-draft.md"
+    )
+    parser.add_argument(
+        "--output",
+        help="出力ファイルパス。省略時は changelogs/note-archives/v{version}-note-complete.md"
+    )
+    args = parser.parse_args()
+
     # パス設定
     project_root = Path(__file__).parent.parent
     agent_file = project_root / 'content' / 'AGENT.ja.md'
-    draft_file = project_root / 'changelogs' / 'note-archives' / 'v4.1-note-draft.md'
-    output_file = project_root / 'changelogs' / 'note-archives' / 'v4.1-note-complete.md'
-    
-    # AGENT.ja.md を読み込み
+
     print(f"📖 Reading {agent_file}...")
-    with open(agent_file, 'r', encoding='utf-8') as f:
-        agent_content = f.read()
-    
+    agent_content = agent_file.read_text(encoding='utf-8')
+
+    version = args.version or detect_version(agent_content)
+    if not version:
+        print("❌ Version could not be detected. Provide --version explicitly.", file=sys.stderr)
+        sys.exit(1)
+
+    draft_file = Path(args.draft) if args.draft else (
+        project_root / 'changelogs' / 'note-archives' / f'v{version}-note-draft.md'
+    )
+    output_file = Path(args.output) if args.output else (
+        project_root / 'changelogs' / 'note-archives' / f'v{version}-note-complete.md'
+    )
+
     # アンカーと目次を除去
     print("🔧 Removing anchors and TOC...")
     clean_content = remove_anchors_and_toc(agent_content)
-    
-    # ドラフトを読み込み
-    print(f"📖 Reading {draft_file}...")
-    with open(draft_file, 'r', encoding='utf-8') as f:
-        draft_content = f.read()
-    
-    # プレースホルダーを置換
+
+    # ドラフトを読み込みして本文を差し込み
+    draft_content = load_draft(draft_file)
+
     print("✂️ Combining draft and content...")
-    final_content = draft_content.replace(
-        '[ここにAGENT.ja.mdの全文を貼り付け]',
-        clean_content
-    )
-    
+    if '[ここにAGENT.ja.mdの全文を貼り付け]' in draft_content:
+        final_content = draft_content.replace('[ここにAGENT.ja.mdの全文を貼り付け]', clean_content)
+    else:
+        print("   Placeholder not found in draft. Appending AGENT content at the end.")
+        final_content = f"{draft_content.rstrip()}\n\n{clean_content}\n"
+
     # 相対パスリンクをGitHub絶対URLに変換
     print("🔗 Converting relative links to absolute URLs...")
     final_content = convert_relative_to_absolute_links(final_content)
-    
+
     # 出力ファイルに保存
     print(f"💾 Saving to {output_file}...")
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(final_content)
-    
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    output_file.write_text(final_content, encoding='utf-8')
+
     print("✅ Complete! Ready for note publication.")
     print(f"📄 Output: {output_file}")
     print("\n次のステップ:")
-    print("1. v4.1-note-complete.md をnoteにコピー＆ペースト")
+    print(f"1. {output_file.name} をnoteにコピー＆ペースト")
     print("2. タイトル・ハッシュタグを設定して公開")
     print("3. 公開後、note URLをCHANGELOG.mdに追記")
+
 
 if __name__ == '__main__':
     try:

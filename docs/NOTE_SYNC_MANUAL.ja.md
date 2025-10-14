@@ -72,6 +72,8 @@
 **実行:**
 ```bash
 python scripts/prepare_note_article.py
+# 任意: バージョンを明示する場合
+python scripts/prepare_note_article.py --version 4.2
 ```
 
 **スクリプトの処理内容:**
@@ -80,22 +82,23 @@ python scripts/prepare_note_article.py
 3. 相対リンクを GitHub 絶対URLに変換
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
    - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
-4. 出力ファイル: `changelogs/note-archives/vX.X-note-complete.md`（自動上書き）
+4. バージョン番号を `AGENT.ja.md` から自動検出（`--version` で上書き可能）
+5. `changelogs/note-archives/vX.X-note-complete.md` を出力（`--draft` / `--output` でパス指定可。ドラフト未作成時はAGENT本文のみを出力）
 
 **確認:**
 ```bash
 # 出力ファイルの確認
-cat changelogs/note-archives/v4.1-note-complete.md | head -50
+cat changelogs/note-archives/v{VERSION}-note-complete.md | head -50
 
 # リンク変換の確認
-grep -n "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
+grep -n "github.com/nullvariant" changelogs/note-archives/v{VERSION}-note-complete.md
 ```
 
 ---
 
 ### Step 3: note に新規投稿
 
-1. **ファイルを開く**: `changelogs/note-archives/v4.1-note-complete.md`
+1. **ファイルを開く**: `changelogs/note-archives/v{VERSION}-note-complete.md`
 2. **全文をコピー**: Cmd+A → Cmd+C (macOS) / Ctrl+A → Ctrl+C (Windows)
 3. **noteの投稿画面**へペースト
 4. **プレビューで確認**:
@@ -136,17 +139,17 @@ grep -n "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
 
 ```bash
 # スクリプト出力ファイルを公開版として保存
-cp changelogs/note-archives/v4.1-note-complete.md changelogs/note-archives/v4.1-note.md
+cp changelogs/note-archives/v{VERSION}-note-complete.md changelogs/note-archives/v{VERSION}-note.md
 
 # 中間ファイルを削除（不要なファイルの整理）
-rm changelogs/note-archives/v4.1-note-draft.md 2>/dev/null
-rm changelogs/note-archives/v4.1-note-complete.md
+rm changelogs/note-archives/v{VERSION}-note-draft.md 2>/dev/null
+rm changelogs/note-archives/v{VERSION}-note-complete.md
 ```
 
 **最終的なファイル構成:**
 ```
 changelogs/note-archives/
-├── v4.1-note.md  # 実際に公開した最終版（保存）
+├── v{VERSION}-note.md  # 実際に公開した最終版（保存）
 ```
 
 ---
@@ -394,7 +397,7 @@ git push origin main
 
 **機能**:
 1. アンカータグ削除: `<a id="xxx"></a>` を除去
-2. TOC削除: `## 📋 目次` セクションを除去
+2. TOC削除: `## 目次 (Table of Contents)` セクションを除去（絵文字付きでも対応）
 3. 相対リンク変換: 3つのパターンで絶対URLに変換
 
 **変換パターン**:
@@ -408,14 +411,16 @@ git push origin main
 **実行方法**:
 ```bash
 python scripts/prepare_note_article.py
+# バージョン・ファイル指定が必要な場合
+python scripts/prepare_note_article.py --version 4.2 --draft path/to/custom-draft.md --output path/to/output.md
 ```
 
 **入力**:
 - `content/AGENT.ja.md`（メインドキュメント）
-- `changelogs/note-archives/v4.1-note-draft.md`（オプション、なくてもOK）
+- `changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動読込。省略可）
 
 **出力**:
-- `changelogs/note-archives/v4.1-note-complete.md`（上書き）
+- `changelogs/note-archives/vX.X-note-complete.md`（バージョン自動推定。`--output`で変更可）
 
 ---
 
