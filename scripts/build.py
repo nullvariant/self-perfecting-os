@@ -38,7 +38,7 @@ def chat(model, system, prompt, temperature=0.0):
     client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     rsp = client.messages.create(
         model=model,
-        max_tokens=8192,
+        max_tokens=64000,  # Anthropic Console 確認: max 64,000
         temperature=temperature,
         system=system,
         messages=[{"role":"user","content":prompt}]

@@ -21,7 +21,7 @@ def backtranslate(en_md: str):
     system = load(BACKPROMPT)
     rsp = client.messages.create(
         model=MODEL_DEFAULT,
-        max_tokens=8192,
+        max_tokens=64000,  # Anthropic Console 確認: max 64,000
         temperature=0.0,
         system=system,
         messages=[{"role":"user","content":en_md}]
@@ -34,7 +34,7 @@ def llm_review(jp: str, en: str, spec: str):
     prompt = f"# JA\n{jp}\n\n# EN\n{en}\n\n# YAML\n{spec}"
     rsp = client.messages.create(
         model=MODEL_DEFAULT,
-        max_tokens=8192,
+        max_tokens=64000,  # Anthropic Console 確認: max 64,000
         temperature=0.0,
         system=system,
         messages=[{"role":"user","content":prompt}]
