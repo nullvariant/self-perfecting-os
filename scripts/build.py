@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# Build script: translates AGENT.ja.md to English and extracts YAML spec
 import os, re, json, yaml
 from pathlib import Path
 from anthropic import Anthropic
