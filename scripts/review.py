@@ -15,34 +15,20 @@ PROMPTS = ROOT / "scripts" / "prompts" / "90_self_review.txt"
 BACKPROMPT = ROOT / "scripts" / "prompts" / "99_backtranslate.txt"
 
 # Rate limit: 8,000 output tokens/min
-MAX_TOKENS_PER_CHUNK = 7000
-RATE_LIMIT_WAIT = 65
+LINES_PER_CHUNK = 100  # 行数ベースの分割
+MAX_OUTPUT_TOKENS = 5000  # 出力トークン制限
+RATE_LIMIT_WAIT = 70  # 60秒 + バッファ
 
 def load(p: Path): return p.read_text(encoding="utf-8")
 
-def estimate_tokens(text: str) -> int:
-    """文字数からトークン数を概算"""
-    return int(len(text) / 3.5)  # 英語は日本語より効率的
-
-def split_text(text: str, max_tokens: int = MAX_TOKENS_PER_CHUNK):
-    """テキストを行数ベースで分割"""
+def split_text_by_lines(text: str, lines_per_chunk: int = LINES_PER_CHUNK):
+    """テキストを行数ベースで分割（トークン推定が不正確なため）"""
     lines = text.split('\n')
     chunks = []
-    current_chunk = []
-    current_est_tokens = 0
 
-    for line in lines:
-        line_tokens = estimate_tokens(line)
-        if current_est_tokens + line_tokens > max_tokens and current_chunk:
-            chunks.append('\n'.join(current_chunk))
-            current_chunk = [line]
-            current_est_tokens = line_tokens
-        else:
-            current_chunk.append(line)
-            current_est_tokens += line_tokens
-
-    if current_chunk:
-        chunks.append('\n'.join(current_chunk))
+    for i in range(0, len(lines), lines_per_chunk):
+        chunk_lines = lines[i:i + lines_per_chunk]
+        chunks.append('\n'.join(chunk_lines))
 
     return chunks
 
@@ -52,17 +38,17 @@ def backtranslate(en_md: str):
     system = load(BACKPROMPT)
 
     # ドキュメントを分割
-    chunks = split_text(en_md, MAX_TOKENS_PER_CHUNK)
+    chunks = split_text_by_lines(en_md, LINES_PER_CHUNK)
     print(f"[INFO] Backtranslating {len(chunks)} chunks...")
 
     translated_chunks = []
     for i, chunk in enumerate(chunks):
-        tokens = estimate_tokens(chunk)
-        print(f"[INFO] Backtranslating chunk {i+1}/{len(chunks)} (~{tokens} tokens)...")
+        lines = chunk.count('\n') + 1
+        print(f"[INFO] Backtranslating chunk {i+1}/{len(chunks)} (~{lines} lines)...")
 
         rsp = client.messages.create(
             model=MODEL_DEFAULT,
-            max_tokens=8000,
+            max_tokens=MAX_OUTPUT_TOKENS,
             temperature=0.0,
             system=system,
             messages=[{"role":"user","content":chunk}],
@@ -100,7 +86,7 @@ def llm_review(jp: str, en: str, spec: str):
 
     rsp = client.messages.create(
         model=MODEL_DEFAULT,
-        max_tokens=4000,  # レビューは短いので4000で十分
+        max_tokens=3000,  # レビューは短いので3000で十分
         temperature=0.0,
         system=system,
         messages=[{"role":"user","content":prompt}],
