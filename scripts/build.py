@@ -43,7 +43,8 @@ def chat(model, system, prompt, temperature=0.0):
         max_tokens=64000,  # Anthropic Console 確認: max 64,000
         temperature=temperature,
         system=system,
-        messages=[{"role":"user","content":prompt}]
+        messages=[{"role":"user","content":prompt}],
+        timeout=600.0  # 10分タイムアウト（大きなドキュメント翻訳用）
     )
     return rsp.content[0].text
 
