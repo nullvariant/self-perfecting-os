@@ -44,7 +44,7 @@ def chat(model, system, prompt, temperature=0.0):
         temperature=temperature,
         system=system,
         messages=[{"role":"user","content":prompt}],
-        timeout=600.0  # 10分タイムアウト（大きなドキュメント翻訳用）
+        timeout=1200.0  # 20分タイムアウト（64,000トークン生成には15-20分必要）
     )
     return rsp.content[0].text
 
