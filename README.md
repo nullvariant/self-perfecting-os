@@ -38,7 +38,7 @@
 ## 📂 リポジトリ構成
 
 > **⚠️ メンテナンス状況**: `content/`と`changelogs/`は積極的に更新中。`docs/`配下は一部情報が古い可能性あり。  
-> 詳細は **[docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md)** を参照。
+> 詳細は **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照。
 
 ```
 nullvariant/
@@ -53,10 +53,10 @@ nullvariant/
 ├── changelogs/                    # ✅ バージョンごとに更新
 │   └── note-archives/            # note公開版アーカイブ
 ├── docs/                          # ⚠️ 一部情報が古い可能性あり
-│   ├── PROJECT_STATUS.ja.md      # 📊 プロジェクト状況・メンテナンス優先度
+│   ├── project-status.ja.md      # 📊 プロジェクト状況・メンテナンス優先度
 │   ├── OPERATIONS.ja.md          # 運用マニュアル
 │   ├── NOTE_SYNC_MANUAL.ja.md    # note同期手順
-│   └── PRD_CHANGELOG_MIGRATION.ja.md  # Changelog分離PRD
+│   └── changelog-migration.ja.md  # Changelog分離PRD
 ├── scripts/
 │   ├── build.py                  # 英訳＆YAML生成
 │   ├── gen_toc.py                # 目次生成
@@ -118,14 +118,14 @@ python scripts/prepare_note_article.py
 
 ## 📖 ドキュメント
 
-> **📊 メンテナンス状況**: 詳細は [docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) を参照
+> **📊 メンテナンス状況**: 詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照
 
 | ドキュメント | 説明 | 状態 |
 |------------|------|------|
 | [AGENT.ja.md](content/AGENT.ja.md) | 日本語メイン仕様書 | ✅ 最新 |
 | [CHANGELOG.md](CHANGELOG.md) | バージョン履歴 | ✅ 最新 |
 | [EmotionMood_Dictionary.ja.md](content/EmotionMood_Dictionary.ja.md) | 感情辞書 | ✅ 最新 |
-| [PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) | プロジェクト状況・優先度 | 🆕 |
+| [project-status.ja.md](docs/project-status.ja.md) | プロジェクト状況・優先度 | 🆕 |
 | [OPERATIONS.ja.md](docs/OPERATIONS.ja.md) | 運用マニュアル | ⚠️ 要確認 |
 | [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md) | note同期手順 | 🟢 比較的最新 |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
@@ -134,7 +134,7 @@ python scripts/prepare_note_article.py
 
 ## 🤝 コントリビューション
 
-> **⚠️ CI/CD未稼働**: 現在LLM API選定中のため、自動生成パイプラインは未稼働です。詳細は [docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md) を参照。
+> **⚠️ CI/CD未稼働**: 現在LLM API選定中のため、自動生成パイプラインは未稼働です。詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照。
 
 1. **編集対象**: `content/AGENT.ja.md` のみ（日本語一次情報）
 2. **自動生成**: CI が `AGENT.md` と `spec/agent.spec.yaml` を生成（予定・現在未稼働）

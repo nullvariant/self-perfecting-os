@@ -3,7 +3,7 @@
 Self-Perfecting OSへのコントリビューションをありがとうございます!
 
 > **📊 プロジェクト状況**: このプロジェクトは一部メンテナンスが追いついていない領域があります。  
-> 現在のメンテナンス優先度と今後の方向性については **[docs/PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md)** を参照してください。
+> 現在のメンテナンス優先度と今後の方向性については **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照してください。
 
 ## 📋 基本方針
 
@@ -169,7 +169,7 @@ nullvariant/
 ├── docs/
 │   ├── OPERATIONS.ja.md         # 運用マニュアル
 │   ├── NOTE_SYNC_MANUAL.ja.md   # note同期手順
-│   └── PRD_CHANGELOG_MIGRATION.ja.md
+│   └── changelog-migration.ja.md
 ├── scripts/
 │   ├── build.py
 │   ├── gen_toc.py
@@ -218,7 +218,7 @@ nullvariant/
 
 ## 🔗 関連ドキュメント
 
-- [PROJECT_STATUS.ja.md](docs/PROJECT_STATUS.ja.md): **📊 プロジェクト状況・メンテナンス優先度**
+- [project-status.ja.md](docs/project-status.ja.md): **📊 プロジェクト状況・メンテナンス優先度**
 - [OPERATIONS.ja.md](docs/OPERATIONS.ja.md): 運用マニュアル（⚠️ 一部情報が古い可能性あり）
 - [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md): note同期手順
 - [scripts/README.md](scripts/README.md): スクリプト詳細（⚠️ 一部情報が古い可能性あり）

@@ -433,7 +433,7 @@ python scripts/prepare_note_article.py --version 4.2 --draft path/to/custom-draf
 3. CHANGELOG.md の該当バージョンセクションに統合
 4. 既存note記事に「最新版はGitHubで管理」の注記を追記（編集機能で）
 
-詳細は [PRD_CHANGELOG_MIGRATION.ja.md](PRD_CHANGELOG_MIGRATION.ja.md) の Phase 2 を参照。
+詳細は [changelog-migration.ja.md](changelog-migration.ja.md) の Phase 2 を参照。
 
 ---
 

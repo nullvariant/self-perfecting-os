@@ -3,7 +3,7 @@
 **作成日**: 2025年10月16日  
 **ステータス**: Draft v2.0  
 **オーナー**: Null;Variant  
-**関連PRD**: [PRD_CHANGELOG_MIGRATION.ja.md](PRD_CHANGELOG_MIGRATION.ja.md)
+**関連PRD**: [changelog-migration.ja.md](changelog-migration.ja.md)
 
 ---
 
@@ -669,7 +669,7 @@ nullvariant/
 │   ├── AGENT.ja.md                       # AI向け仕様書（公開OK）
 │   └── EmotionMood_Dictionary.ja.md
 ├── docs/
-│   ├── PRD_NOTE_WORKFLOW_AUTOMATION.ja.md  # 本PRD
+│   ├── note-workflow-automation.ja.md  # 本PRD
 │   └── WORKFLOW_TEXT_ASSETS.ja.md        # 更新対象
 ├── scripts/
 │   ├── publish_note.py                   # 新規作成

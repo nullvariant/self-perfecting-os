@@ -1,0 +1,390 @@
+# ドキュメント構造定義（機械可読形式）
+# AI はこのファイルを参照して、記録場所を自動判定する
+
+version: "1.0.0"
+last_updated: "2025-10-28"
+schema_version: "1.0"
+
+# ドキュメント階層ルール
+hierarchy:
+  # Tier 0: Single Source of Truth (SSOT)
+  tier0_ssot:
+    description: "AI/人間が最初に参照すべき真実"
+    update_frequency: "重要な決定時のみ"
+    requires_adr: true
+    files:
+      - path: "docs/decisions/"
+        pattern: "ADR-*.md"
+        purpose: "全ての重要な決定を時系列で記録"
+        format: "ADR (Architecture Decision Records)"
+        update_rule: "変更があったら必ず新規ADRを作成"
+        auto_generated: false
+        
+      - path: "content/AGENT.ja.md"
+        purpose: "仕様書の真実（日本語一次情報）"
+        format: "Markdown"
+        update_rule: "仕様変更時のみ編集"
+        auto_generated: false
+        
+      - path: "content/EmotionMood_Dictionary.ja.md"
+        purpose: "感情辞書"
+        format: "Markdown"
+        update_rule: "感情定義変更時のみ編集"
+        auto_generated: false
+
+  # Tier 1: 状態管理
+  tier1_state:
+    description: "プロジェクトの現在状態を反映"
+    update_frequency: "週次 or 重要な状態変化時"
+    requires_adr: false
+    files:
+      - path: "docs/project-status.ja.md"
+        purpose: "現在のプロジェクト状態・優先度"
+        format: "Markdown Table"
+        update_rule: "週次更新 or 大きな状態変化時"
+        auto_generated: false
+        metadata_required:
+          - last_updated_date
+          
+      - path: "CHANGELOG.md"
+        purpose: "バージョンごとの変更履歴"
+        format: "Keep a Changelog"
+        update_rule: "リリース時 or Unreleased に追記"
+        auto_generated: false
+
+  # Tier 2: プロセス・手順書
+  tier2_process:
+    description: "運用・実行手順の記録"
+    update_frequency: "プロセス変更時"
+    requires_adr: true  # プロセス変更は重要な決定
+    note: "現行版は docs/operations/current/ に配置、過去版は docs/operations/archive/YYYY/MM/ に移動"
+    files:
+      - path: "docs/operations/current/20251028_OPERATIONS.ja.md"
+        purpose: "運用手順書"
+        format: "Markdown"
+        update_rule: "プロセス変更時"
+        auto_generated: false
+        
+      - path: "docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md"
+        purpose: "note公開手順"
+        format: "Markdown"
+        update_rule: "手順変更時"
+        auto_generated: false
+        
+      - path: "docs/operations/current/20251028_WORKFLOW_TEXT_ASSETS.ja.md"
+        purpose: "テキストアセット配信ワークフロー"
+        format: "Markdown"
+        update_rule: "ワークフロー変更時"
+        auto_generated: false
+
+  # Tier 3: 設計文書（PRD）
+  tier3_design:
+    description: "機能開発・改善の要件定義"
+    update_frequency: "機能開発時"
+    requires_adr: false  # PRD自体は要件定義なのでADR不要
+    note: "active版は docs/prd/active/ に配置、実装完了後は docs/prd/implemented/ に移動"
+    files:
+      - path: "docs/prd/active/20251028_changelog-migration.ja.md"
+        purpose: "Changelog分離の要件定義"
+        format: "PRD"
+        update_rule: "要件変更時"
+        auto_generated: false
+        
+      - path: "docs/prd/active/20251028_note-workflow-automation.ja.md"
+        purpose: "note自動化の要件定義"
+        format: "PRD"
+        update_rule: "要件変更時"
+        auto_generated: false
+        
+      - path: "docs/prd/active/20251028_documentation-governance.ja.md"
+        purpose: "ドキュメント管理ガバナンスの要件定義"
+        format: "PRD"
+        update_rule: "要件変更時"
+        auto_generated: false
+
+  # Tier 4: 一時的文書
+  tier4_temporary:
+    description: "期限付きの作業記録（完了後アーカイブ）"
+    update_frequency: "適宜（完了後は docs/archive/ へ）"
+    requires_adr: false
+    files:
+      - path: "MIGRATION_STATUS.md"
+        purpose: "API移行作業の進捗（完了後削除予定）"
+        format: "Markdown"
+        update_rule: "移行完了まで適宜更新"
+        auto_generated: false
+        deprecation_plan: "ADR-0001に統合後、アーカイブ"
+
+  # 自動生成ファイル（編集禁止）
+  auto_generated:
+    description: "CI/CDが自動生成するファイル（直接編集禁止）"
+    update_frequency: "CI実行時"
+    requires_adr: false
+    files:
+      - path: "AGENT.md"
+        purpose: "英語版仕様書（自動翻訳）"
+        format: "Markdown"
+        update_rule: "CI/CDが自動生成（編集禁止）"
+        auto_generated: true
+        source: "content/AGENT.ja.md"
+        
+      - path: "spec/agent.spec.yaml"
+        purpose: "YAML構造化仕様"
+        format: "YAML"
+        update_rule: "CI/CDが自動生成（編集禁止）"
+        auto_generated: true
+        source: "content/AGENT.ja.md"
+
+# AI向けルール
+ai_decision_rules:
+  # 変更タイプから記録場所を自動判定
+  change_type_mapping:
+    api_change:
+      target: "docs/decisions/ADR-*.md"
+      requires_adr: true
+      also_update:
+        - "docs/project-status.ja.md"
+        - "CHANGELOG.md (Unreleased)"
+      
+    architecture_change:
+      target: "docs/decisions/ADR-*.md"
+      requires_adr: true
+      also_update:
+        - "docs/project-status.ja.md"
+      
+    cicd_change:
+      target: "docs/decisions/ADR-*.md"
+      requires_adr: true
+      also_update:
+        - "docs/project-status.ja.md"
+      
+    document_structure_change:
+      target: "docs/decisions/ADR-*.md"
+      requires_adr: true
+      also_update:
+        - "docs/governance/DOCUMENTATION_STRUCTURE.yml"
+      
+    dependency_change:
+      target: "docs/decisions/ADR-*.md"
+      requires_adr: true
+      also_update:
+        - "CHANGELOG.md (Unreleased)"
+      
+    temporary_status_update:
+      target: "docs/project-status.ja.md"
+      requires_adr: false
+      
+    version_release:
+      target: "CHANGELOG.md"
+      requires_adr: false
+      also_update:
+        - "docs/project-status.ja.md"
+      
+    process_update:
+      target: "docs/operations/*.md"
+      requires_adr: true
+      
+    feature_requirement:
+      target: "docs/prd_*.md"
+      requires_adr: false
+      
+    typo_fix:
+      target: "commit message only"
+      requires_adr: false
+      
+    minor_bug_fix:
+      target: "commit message only"
+      requires_adr: false
+
+  # ADR作成が必要な判断基準
+  adr_required_criteria:
+    - "API の変更・移行"
+    - "アーキテクチャの変更"
+    - "CI/CD パイプラインの停止・変更"
+    - "ドキュメント構造の大幅な変更"
+    - "重要な依存関係の追加・削除"
+    - "プロセス・手順の変更"
+    - "破壊的変更 (Breaking Changes)"
+    - "セキュリティ関連の決定"
+    - "パフォーマンス最適化の方針決定"
+
+  # ADR不要な判断基準
+  adr_not_required_criteria:
+    - "タイポ修正"
+    - "コメント追加・修正"
+    - "フォーマット調整（Prettier等）"
+    - "軽微なバグ修正"
+    - "リファクタリング（挙動変更なし）"
+    - "テストの追加（既存機能）"
+
+# 作業前チェックリスト（AI用）
+ai_checklist:
+  before_code_change:
+    - question: "この変更は ADR が必要か？"
+      check: "ai_decision_rules.adr_required_criteria に該当するか確認"
+      action_if_yes: "python scripts/record_decision.py を実行"
+      action_if_no: "次のチェックへ"
+      
+    - question: "既存の ADR/ドキュメントと矛盾しないか？"
+      check: "docs/decisions/ 配下を確認"
+      action_if_conflict: "新ADRで上書き（Status: Superseded）"
+      action_if_no_conflict: "次のチェックへ"
+      
+    - question: "一時的な状態変化か？"
+      check: "変更が7日以内に完了する見込みか"
+      action_if_yes: "docs/project-status.ja.md に記録"
+      action_if_no: "次のチェックへ"
+      
+    - question: "バージョンリリースに影響するか？"
+      check: "公開APIや仕様書に影響があるか"
+      action_if_yes: "CHANGELOG.md の [Unreleased] に追記"
+      action_if_no: "次のチェックへ"
+      
+    - question: "変更内容を人間に説明できるか？"
+      check: "変更理由と影響範囲を明確に説明できるか"
+      action_if_yes: "作業実行"
+      action_if_no: "追加情報を人間に質問"
+
+# メタデータ
+metadata:
+  owner: "nullvariant (human)"
+  maintainers:
+    - "GitHub Copilot"
+    - "Claude Code"
+    - "Claude Web UI"
+  review_cycle: "monthly"
+  next_review: "2025-11-28"
+  
+# スキーマ検証ルール
+validation_rules:
+  adr_numbering:
+    pattern: "ADR-[0-9]{4}-*.md"
+    sequential: true
+    start_number: "0000"
+    
+  file_existence:
+    check_all_files_in_hierarchy: true
+    warn_if_missing: true
+    
+  metadata_required:
+    project-status.ja.md:
+      - "最終更新日"
+      - "次回更新予定日"
+    
+  link_validation:
+    check_internal_links: true
+    check_external_links: false  # 外部リンクはスキップ
+
+# 命名規則（ADR-0002で確立）
+naming_conventions:
+  adr:
+    format: "{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
+    example: "20251028_0001_ci-cd-pause_architecture.md"
+    elements:
+      date:
+        position: 1
+        format: "YYYYMMDD"
+        description: "決定日（人間の直感優先）"
+      number:
+        position: 2
+        format: "NNNN"
+        description: "ADRの一意識別子（絶対に変わらない）"
+      slug:
+        position: 3
+        format: "kebab-case"
+        description: "内容の要約（URL safe）"
+      category:
+        position: 4
+        format: "{tag}"
+        required: true
+        description: "カテゴリタグ（検索用）"
+    sorting: "by_date_ascending"  # 日付優先（古い順）
+    search_by_date: "extract YYYYMMDD from filename"
+    search_by_category: "extract _{category} suffix"
+    categories:
+      architecture: "アーキテクチャ変更"
+      process: "プロセス・手順変更"
+      tooling: "ツール・インフラ変更"
+      documentation: "ドキュメント構造変更"
+      security: "セキュリティ関連"
+      performance: "パフォーマンス最適化"
+      integration: "外部連携"
+      governance: "ガバナンス・ポリシー"
+
+  prd:
+    format: "{YYYYMMDD}_{slug}.ja.md"
+    example: "20251028_documentation-governance.ja.md"
+    elements:
+      date:
+        position: 1
+        format: "YYYYMMDD"
+        description: "策定日"
+      slug:
+        position: 2
+        format: "kebab-case"
+        description: "内容の要約"
+    sorting: "by_date_descending"  # 日付降順（新しい順）
+
+  operations:
+    format: "{YYYYMMDD}_{type}.ja.md"
+    example: "20251028_OPERATIONS.ja.md"
+    elements:
+      date:
+        position: 1
+        format: "YYYYMMDD"
+        description: "最終更新日"
+      type:
+        position: 2
+        format: "UPPER_SNAKE_CASE"
+        description: "手順書の種類"
+    sorting: "by_date_descending"
+
+# ディレクトリ構造（ADR-0002で確立）
+directory_structure:
+  adr:
+    pattern: "docs/decisions/{status}/{YYYY}/{MM}/"
+    status_dirs:
+      - active      # 現行有効
+      - deprecated  # 非推奨（Status: Deprecated）
+      - superseded  # 上書きされた決定
+    monthly_archive: true  # 最初から月別ディレクトリ
+    empty_dirs_allowed: true  # 空ディレクトリが歴史を示す
+    
+  prd:
+    pattern: "docs/prd/{status}/"
+    status_dirs:
+      - active      # 策定中・未実装
+      - implemented # 実装完了
+    monthly_archive: false  # 件数が少ないため不要
+    
+  operations:
+    pattern: "docs/operations/{status}/"
+    status_dirs:
+      - current  # 最新版
+      - archive  # 過去のバージョン（月別）
+    monthly_archive: false  # current/ は月別不要
+
+# INDEX.md 管理（ADR-0002で確立）
+index_management:
+  generation_method: "script"  # Git Hooks ではなくスクリプト実行
+  script_path: "scripts/generate_index.py"
+  update_timing: "manual"  # ADR追加・変更時に手動実行
+  manual_override: true    # スクリプト生成後の手動編集を許可
+  ci_validation: false     # 将来実装予定
+  
+  sections:
+    - category  # カテゴリ別（トピック横断検索用）
+    - timeline  # 時系列（「いつ決定されたか」を可視化）
+    - status    # ステータス別（Active/Deprecated/Superseded）
+
+# アーカイブルール
+archive_rules:
+  deprecated_docs:
+    target: "docs/archive/deprecated/"
+    naming: "YYYYMMDD-original-filename.md"
+    keep_original: false  # 移動後は元ファイル削除
+    
+  completed_temporary:
+    target: "docs/archive/completed/"
+    naming: "YYYYMMDD-original-filename.md"
+    keep_original: false

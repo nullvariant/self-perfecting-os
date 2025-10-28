@@ -11,18 +11,52 @@
 
 ## 重要な原則
 
+### 0. ドキュメント記録ルール（最優先）
+
+**🏆 全ての重要な決定は ADR (Architecture Decision Records) に記録**
+
+詳細は [docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md) を参照してください。
+
+#### クイックチェック
+
+コード変更を提案する前に、以下を確認：
+
+1. **[ ] この変更は ADR が必要か？**
+   - API変更、アーキテクチャ変更、CI/CD変更 → **Yes**
+   - タイポ修正、軽微なバグ修正 → **No**
+
+2. **[ ] 既存の ADR/ドキュメントと矛盾しないか？**
+   - `docs/decisions/` を確認
+   - 矛盾する場合は新ADRで上書き
+
+3. **[ ] 記録場所は適切か？**
+   - 重要な決定 → `docs/decisions/ADR-*.md`
+   - 一時的な状態 → `docs/project-status.ja.md`
+   - バージョンリリース → `CHANGELOG.md`
+
+#### ADR作成方法
+
+```bash
+python scripts/record_decision.py \
+  --title "決定のタイトル" \
+  --context "背景・理由" \
+  --author "GitHub Copilot"  # or "Claude Code", "human"
+```
+
 ### 1. 編集対象ファイルの優先順位
 
 **✅ 積極的に編集すべきファイル:**
+- `docs/decisions/` - **ADR（全ての重要な決定を記録）**
 - `content/AGENT.ja.md` - **日本語一次仕様書（最重要）**
 - `content/EmotionMood_Dictionary.ja.md` - 感情辞書
 - `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式）
 - `changelogs/` - note記事アーカイブ
-- `docs/` - ドキュメント類（ただし一部古い情報あり）
+- `docs/` - ドキュメント類（階層ルールに従う）
 
 **❌ 直接編集禁止:**
 - `AGENT.md` - CI自動生成（現在未稼働、手動更新も避ける）
 - `spec/agent.spec.yaml` - CI自動生成（現在未稼働）
+- `docs/decisions/0000-adr-template.md` - テンプレート（コピーして使用）
 
 ### 2. 言語・翻訳ポリシー
 
@@ -41,17 +75,25 @@
 
 ```
 nullvariant/
-├── content/           # ✅ 一次情報（日本語）
-├── AGENT.md          # ⚠️ 自動生成（編集禁止）
-├── CHANGELOG.md      # ✅ バージョン履歴
-├── docs/             # ⚠️ 一部古い情報あり
-├── changelogs/       # ✅ note記事アーカイブ
-├── scripts/          # Python自動化スクリプト
-├── spec/             # ⚠️ 自動生成（編集禁止）
-└── i18n/             # 翻訳用語集・スタイルガイド
+├── docs/
+│   ├── DECISIONS/         # 🏆 ADR（全ての重要な決定）
+│   ├── GOVERNANCE/        # 🏛️ ドキュメント管理ルール
+│   ├── operations/        # 📋 運用手順書
+│   └── PRD_*.md          # 💡 要件定義
+├── content/              # ✅ 一次情報（日本語）
+├── AGENT.md             # ⚠️ 自動生成（編集禁止）
+├── CHANGELOG.md         # ✅ バージョン履歴
+├── changelogs/          # ✅ note記事アーカイブ
+├── scripts/             # Python自動化スクリプト
+├── spec/                # ⚠️ 自動生成（編集禁止）
+└── i18n/                # 翻訳用語集・スタイルガイド
 ```
 
-詳細は `docs/PROJECT_STATUS.ja.md` を参照。
+詳細は以下を参照：
+- `docs/governance/DOCUMENTATION_STRUCTURE.yml` - 機械可読形式の階層定義
+- `docs/governance/HIERARCHY_RULES.md` - 人間向け階層ルール説明
+- `docs/governance/AI_GUIDELINES.md` - AI向けドキュメント記録ガイドライン
+- `docs/project-status.ja.md` - プロジェクト状況
 
 ## コーディング規約
 

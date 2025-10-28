@@ -164,9 +164,9 @@ nullvariant/
 │   ├── v4.0.md
 │   └── README.md                     # changelogs/ の説明
 ├── docs/
-│   ├── AGENT.en.md
+│   ├── agent.en.md
 │   ├── OPERATIONS.ja.md
-│   ├── PRD_CHANGELOG_MIGRATION.ja.md # 🆕 本ドキュメント
+│   ├── changelog-migration.ja.md # 🆕 本ドキュメント
 │   └── NOTE_SYNC_MANUAL.ja.md        # 🆕 note同期マニュアル
 ├── scripts/
 │   ├── build.py
@@ -436,7 +436,7 @@ docs/NOTE_ARTICLES_INVENTORY.md
 - Minor (4.x.0): 新機能追加、大幅強化
 - Patch (4.1.x): バグ修正、小改善
 
-詳細: [PRD_CHANGELOG_MIGRATION.ja.md](PRD_CHANGELOG_MIGRATION.ja.md)
+詳細: [changelog-migration.ja.md](changelog-migration.ja.md)
 ```
 
 **成果物:**

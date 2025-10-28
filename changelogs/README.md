@@ -35,7 +35,7 @@ changelogs/
 ## 関連ドキュメント
 
 - [CHANGELOG.md](../CHANGELOG.md): 全バージョンの統合Changelog
-- [docs/PRD_CHANGELOG_MIGRATION.ja.md](../docs/PRD_CHANGELOG_MIGRATION.ja.md): Changelog分離とnoteミラーリング運用のPRD
+- [docs/prd_CHANGELOG_MIGRATION.ja.md](../docs/prd_CHANGELOG_MIGRATION.ja.md): Changelog分離とnoteミラーリング運用のPRD
 - [docs/NOTE_SYNC_MANUAL.ja.md](../docs/NOTE_SYNC_MANUAL.ja.md): note同期マニュアル
 
 ## 注意事項
