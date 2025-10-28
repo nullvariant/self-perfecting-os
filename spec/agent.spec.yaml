@@ -1,5 +1,5 @@
 # ⚠️  このファイルは古く、手動更新は不要です
-# 将来的にはCI/CDで content/AGENT.ja.md から自動生成される予定です
+# 将来的にはCI/CDで content/ja/AGENT.md から自動生成される予定です
 # 詳細は docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md を参照
 agent:
 	name: NullVariant

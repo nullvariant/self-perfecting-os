@@ -10,8 +10,11 @@ NULLVARIANT OS の開発・運用を支援する自動化スクリプト集で�
 **用途**: AGENT.ja.md の英訳 & YAML抽出
 
 **機能**:
-- `content/AGENT.ja.md` を英訳 → `AGENT.md`
-- `content/AGENT.ja.md` からYAML構造抽出 → `spec/agent.spec.yaml`
+### 処理内容
+
+- `content/ja/*.md` を多言語翻訳 → `content/en/*.md`
+- `content/ja/AGENT.md` からYAML構造抽出 → `spec/agent.spec.yaml`
+- `content/en/AGENT.md` をルートにコピー → `AGENT.md`（英語版エントリポイント）
 - OpenAI API を使用（GPT-4o推奨）
 
 **実行方法**:
@@ -43,8 +46,15 @@ make gen
 python scripts/gen_toc.py
 ```
 
-**対象ファイル**:
-- `content/AGENT.ja.md` の `## 目次 (Table of Contents)` セクション
+### 対象ファイル
+
+- `content/ja/AGENT.md` の `## 目次 (Table of Contents)` セクション
+
+### 使用方法
+
+```bash
+python scripts/gen_toc.py content/ja/AGENT.md
+```
 
 **注意**:
 - `<a id="xxx"></a>` アンカーを自動生成
@@ -60,8 +70,8 @@ python scripts/gen_toc.py
 2. 目次セクション `## 目次 (Table of Contents)` を除去
 3. 相対リンクを GitHub 絶対URLに変換:
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
-   - `content/EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
-   - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
+   - `content/ja/EmotionMood_Dictionary.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
+   - `EmotionMood_Dictionary.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
 
 **実行方法**:
 ```bash
@@ -71,7 +81,9 @@ python scripts/prepare_note_article.py --version 4.2
 ```
 
 **入力**:
-- `content/AGENT.ja.md`（メインドキュメント）
+### 対象ファイル
+
+- `content/ja/AGENT.md`（メインドキュメント）
 - `changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動検出、`--draft`で上書き可能）
 
 **出力**:
@@ -94,8 +106,8 @@ python scripts/prepare_note_article.py --version 4.2
 **用途**: 日英翻訳の類似度検証
 
 **機能**:
-- `AGENT.md` (英語) を日本語に逆翻訳
-- `content/AGENT.ja.md` (原文) との類似度を測定
+- `content/en/AGENT.md` (英語) を日本語に逆翻訳
+- `content/ja/AGENT.md` (原文) との類似度を測定
 - コサイン類似度で評価（閾値: 0.86以上推奨）
 
 **実行方法**:
@@ -106,7 +118,7 @@ make val
 ```
 
 **環境変数**:
-- `OPENAI_API_KEY`: OpenAI APIキー（必須）
+- `ANTHROPIC_API_KEY`: Anthropic Claude APIキー（予定）
 
 **プロンプト**:
 - `prompts/99_backtranslate.txt`: 逆翻訳プロンプト

@@ -38,7 +38,7 @@
 **GPT-5 使用時の特別プロトコル**:
 - ✅ 使用可能: 情報抽出・論理推論（他モデルで代替不可の場合のみ）
 - ❌ 使用禁止: 価値判断・意思決定・長時間対話
-- 🛡️ 必須: 選択的透過フィルタ（[`content/AGENT.ja.md`](../content/AGENT.ja.md) sec-4-7）による無害化
+- 🛡️ 必須: 選択的透過フィルタ（[`content/ja/AGENT.md`](../content/ja/AGENT.md) sec-4-7）による無害化
 - 📊 監視: 👮ジャスティス + 🕊️シエルによる二重チェック
 
 ### ✅ 積極的にメンテナンスされている（最新・信頼できる）
@@ -230,7 +230,7 @@
 ### 🎓 初めてこのプロジェクトを知る方
 
 1. **[README.md](../README.md)**: プロジェクト概要を把握
-2. **[content/AGENT.ja.md](../content/AGENT.ja.md)**: メイン仕様書を読む（最新）
+2. **[content/ja/AGENT.md](../content/ja/AGENT.md)**: メイン仕様書を読む（最新）
 3. **[CHANGELOG.md](../CHANGELOG.md)**: バージョン履歴を確認
 
 ### 🛠️ コントリビューターの方
@@ -241,7 +241,7 @@
 
 ### 🤖 AI/開発者の方
 
-1. **[content/AGENT.ja.md](../content/AGENT.ja.md)**: 日本語版仕様書（**唯一の最新版・一次情報源**）
+1. **[content/ja/AGENT.md](../content/ja/AGENT.md)**: 日本語版仕様書（**唯一の最新版・一次情報源**）
 2. ⚠️ **[AGENT.md](../AGENT.md)**: 英語版仕様書（**古い・CI未稼働のため最新ではない**）
 3. ⚠️ **[spec/agent.spec.yaml](../spec/agent.spec.yaml)**: 構造化仕様（**古い・CI未稼働のため最新ではない**）
 4. **[spec/agent.schema.json](../spec/agent.schema.json)**: JSONスキーマ定義
@@ -249,7 +249,8 @@
 ### ⚠️ 重要な注意事項
 
 - **現在、CI/CDパイプラインが未稼働のため、英語版関連ファイルは古い情報です**
-- **唯一の真実の情報源**: `content/AGENT.ja.md`（日本語版）
+- **唯一の真実の情報源**: `content/ja/AGENT.md`（日本語版）
+- **自動生成**: `content/en/AGENT.md`（英語版）、`AGENT.md`（ルートエントリポイント）、`spec/agent.spec.yaml`（構造化データ）
 - **`AGENT.md`（英語版）は現在最新ではありません** - LLM API選定後に自動生成予定
 - **`docs/`配下のドキュメント**も一部CI稼働を前提とした記述を含むため、注意が必要です
 - 実装コード（`scripts/`）も動作未確認です

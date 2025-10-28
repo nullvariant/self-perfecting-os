@@ -7,13 +7,13 @@ Self-Perfecting OSへのコントリビューションをありがとうござ�
 
 ## 📋 基本方針
 
-- **編集対象**: `content/AGENT.ja.md`（日本語一次情報）のみ
-- **自動生成**: CI が `AGENT.md`（英語）と `spec/agent.spec.yaml` を生成（**⚠️ 現在未稼働**）
+- **編集対象**: `content/ja/AGENT.md`（日本語一次情報）のみ
+- **自動生成**: CI が `content/en/AGENT.md`（英語）、`AGENT.md`（ルートエントリポイント）、`spec/agent.spec.yaml` を生成（**⚠️ 現在未稼働**）
 - **Changelog**: 全ての変更は `CHANGELOG.md` に記録
 - **現状**: 
-  - ✅ `content/`と`changelogs/`は積極的に更新中
-  - ⚠️ `docs/`配下は一部古い情報あり
-  - ❌ CI/CDパイプラインは未稼働（LLM API選定中）
+  - ✅ `content/ja/`、`changelogs/`、`docs/decisions/`、`docs/governance/` は積極的に更新中
+  - ⚠️ `docs/operations/`配下は整備中
+  - ❌ CI/CDパイプラインは未稼働（Claude Sonnet 4.5評価中）
 
 ---
 
@@ -39,22 +39,22 @@ export ANTHROPIC_API_KEY=sk-ant-...
 > **⚠️ 注意**: 現在CI/CDパイプラインが未稼働のため、以下のステップ4は実行不要です。
 
 ```bash
-# 1. AGENT.ja.md を編集
-vim content/AGENT.ja.md
+# 1. AGENT.md を編集（日本語）
+vim content/ja/AGENT.md
 
 # 2. 目次再生成（必要な場合）
-python scripts/gen_toc.py
+python scripts/gen_toc.py content/ja/AGENT.md
 
 # 3. CHANGELOG.md 更新
 vim CHANGELOG.md  # [Unreleased] セクションに変更を記録
 
 # 4. (現在スキップ) ビルド＆検証
-# make gen  # 英訳＆YAML生成 (LLM API選定後に実施予定)
-# make val  # 類似度検証 (LLM API選定後に実施予定)
+# make gen  # 多言語翻訳＆YAML生成 (Claude API設定後に実施予定)
+# make val  # 類似度検証 (CI稼働後に実施予定)
 
 # 5. Commit & Push
-git add CHANGELOG.md content/AGENT.ja.md
-# ⚠️ CI未稼働のため AGENT.md, spec/agent.spec.yaml は現時点でコミット不要
+git add CHANGELOG.md content/ja/AGENT.md
+# ⚠️ CI未稼働のため content/en/, AGENT.md, spec/ は現時点でコミット不要
 git commit -m "feat: [変更内容の簡潔な説明]"
 git push origin feature/your-feature-name
 ```
@@ -118,10 +118,13 @@ git push origin feature/your-feature-name
 
 | スクリプト | 用途 | コマンド |
 |----------|------|---------|
-| `build.py` | 英訳＆YAML生成 | `make gen` |
+| `build.py` | 多言語翻訳＆YAML生成 | `make gen` |
 | `review.py` | 類似度検証 | `make val` |
-| `gen_toc.py` | 目次生成 | `python scripts/gen_toc.py` |
+| `gen_toc.py` | 目次生成 | `python scripts/gen_toc.py content/ja/AGENT.md` |
 | `prepare_note_article.py` | note記事生成 | `python scripts/prepare_note_article.py` |
+| `record_decision.py` | ADR作成支援 | `python scripts/record_decision.py --title "..." --context "..." --category <category>` |
+| `generate_index.py` | INDEX.md自動生成 | `python scripts/generate_index.py` |
+| `validate_docs.py` | ドキュメント整合性チェック | `python scripts/validate_docs.py` |
 
 詳細: [`scripts/README.md`](scripts/README.md)
 
@@ -137,8 +140,9 @@ make val   # review.py 実行（類似度検証）
 ## 🌐 GitHub Actions
 
 ### build.yml
-- **トリガー**: `content/AGENT.ja.md` への push
-- **処理**: 英訳＆YAML生成 → 自動commit
+- **トリガー**: `content/ja/AGENT.md` への push
+- **処理**: 多言語翻訳＆YAML生成 → 自動commit
+- **出力**: `content/en/*.md`, `AGENT.md`, `spec/agent.spec.yaml`
 
 ### pr-guard.yml
 - **トリガー**: Pull Request作成時
@@ -147,8 +151,15 @@ make val   # review.py 実行（類似度検証）
   - スキーマ検証
   - Legend同期チェック
 
+### validate-docs.yml (✅ 稼働中)
+- **トリガー**: Pull Request作成時
+- **処理**:
+  - ADR番号連番チェック
+  - ファイル存在確認
+  - 更新日チェック
+
 ### 必要なSecrets
-- `OPENAI_API_KEY`: OpenAI API キー
+- `ANTHROPIC_API_KEY`: Anthropic Claude API キー（予定）
 
 ---
 
@@ -157,32 +168,54 @@ make val   # review.py 実行（類似度検証）
 ```
 nullvariant/
 ├── content/
-│   ├── AGENT.ja.md               # 🇯🇵 編集対象（日本語一次情報）
-│   └── EmotionMood_Dictionary.ja.md
-├── AGENT.md                      # 🇬🇧 CI自動生成（英語標準）
+│   ├── ja/                       # 🇯🇵 編集対象（日本語一次情報）
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   ├── en/                       # 🇬🇧 CI自動生成（編集禁止）
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   └── README.md                 # 多言語管理の設計思想
+├── AGENT.md                      # 🇬🇧 英語版エントリポイント（CI自動生成）
 ├── CHANGELOG.md                  # 📋 バージョン履歴
 ├── spec/
 │   ├── agent.spec.yaml          # CI自動生成
 │   └── agent.schema.json
-├── changelogs/
-│   └── note-archives/           # note公開版アーカイブ
 ├── docs/
-│   ├── OPERATIONS.ja.md         # 運用マニュアル
-│   ├── NOTE_SYNC_MANUAL.ja.md   # note同期手順
-│   └── changelog-migration.ja.md
+│   ├── decisions/               # 🏆 ADR（全ての重要な決定）
+│   │   ├── active/2025/10/     # 現在有効な決定（月別）
+│   │   ├── deprecated/         # 非推奨
+│   │   ├── superseded/         # 上書きされた決定
+│   │   ├── INDEX.md            # 自動生成索引
+│   │   └── README.md
+│   ├── governance/             # 🏛️ ドキュメント管理ルール
+│   │   ├── AI_GUIDELINES.md
+│   │   ├── DOCUMENTATION_STRUCTURE.yml
+│   │   ├── HIERARCHY_RULES.md
+│   │   └── README.md
+│   ├── prd/                    # 💡 要件定義
+│   ├── operations/             # 📋 運用手順書
+│   ├── project-status.ja.md    # 📊 プロジェクト状況・メンテナンス優先度
+│   └── README.md
+├── changelogs/
+│   ├── note-archives/          # note公開版アーカイブ
+│   └── draft-*.md              # note記事下書き
 ├── scripts/
-│   ├── build.py
-│   ├── gen_toc.py
-│   ├── prepare_note_article.py
-│   ├── review.py
-│   └── prompts/
+│   ├── build.py                # 多言語翻訳＆YAML生成
+│   ├── gen_toc.py              # 目次自動生成
+│   ├── prepare_note_article.py # note記事自動生成
+│   ├── review.py               # 類似度検証
+│   ├── record_decision.py      # ADR作成支援
+│   ├── generate_index.py       # INDEX.md自動生成
+│   ├── validate_docs.py        # ドキュメント整合性チェック
+│   └── prompts/                # LLMプロンプトテンプレート
 ├── i18n/
-│   ├── glossary.yml             # 用語固定辞書
-│   └── style/
+│   ├── glossary.yml            # 用語固定辞書
+│   └── style/                  # スタイルガイド（日英）
 └── .github/
     └── workflows/
-        ├── build.yml
-        └── pr-guard.yml
+        ├── build.yml           # 多言語翻訳（未稼働）
+        ├── pr-guard.yml        # PR検証（未稼働）
+        └── validate-docs.yml   # ドキュメント整合性チェック（✅ 稼働中）
 ```
 
 ---
@@ -194,12 +227,14 @@ nullvariant/
 ### 現在のチェックリスト（Phase 0）
 
 #### 編集前
-- [ ] `content/AGENT.ja.md` のみを編集対象としている
+- [ ] `content/ja/AGENT.md` のみを編集対象としている
 - [ ] `CHANGELOG.md` の `[Unreleased]` セクションに変更を記録
+- [ ] 重要な決定は ADR として記録する（`python scripts/record_decision.py`）
 
 #### 編集後
-- [ ] 目次が正しく更新されている（必要な場合: `python scripts/gen_toc.py`）
+- [ ] 目次が正しく更新されている（必要な場合: `python scripts/gen_toc.py content/ja/AGENT.md`）
 - [ ] マークダウンの構文が正しい（プレビューで確認）
+- [ ] ドキュメント整合性チェックが通る（`python scripts/validate_docs.py`）
 
 #### PR作成時
 - [ ] PR説明に変更内容を明記
@@ -218,10 +253,11 @@ nullvariant/
 
 ## 🔗 関連ドキュメント
 
-- [project-status.ja.md](docs/project-status.ja.md): **📊 プロジェクト状況・メンテナンス優先度**
-- [OPERATIONS.ja.md](docs/OPERATIONS.ja.md): 運用マニュアル（⚠️ 一部情報が古い可能性あり）
-- [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md): note同期手順
-- [scripts/README.md](scripts/README.md): スクリプト詳細（⚠️ 一部情報が古い可能性あり）
+- [docs/project-status.ja.md](docs/project-status.ja.md): **📊 プロジェクト状況・メンテナンス優先度**
+- [docs/decisions/](docs/decisions/): ADR（意思決定記録）
+- [docs/governance/](docs/governance/): ドキュメント管理ルール
+- [content/README.md](content/README.md): 多言語コンテンツ管理
+- [changelogs/README.md](changelogs/README.md): note記事管理
 
 ---
 
@@ -233,8 +269,8 @@ nullvariant/
 3. 原文の構造を簡潔に
 
 ### 新しいセクション追加時
-1. AGENT.ja.md に追加
-2. 目次を再生成: `python scripts/gen_toc.py`
+1. `content/ja/AGENT.md` に追加
+2. 目次を再生成: `python scripts/gen_toc.py content/ja/AGENT.md`
 3. CHANGELOG.md の `Added` カテゴリに記載
 
 ---

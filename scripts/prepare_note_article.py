@@ -34,8 +34,8 @@ def convert_relative_to_absolute_links(content: str) -> str:
     # 相対パスのリンクをGitHub絶対URLに変換
     # 例: [CHANGELOG.md](../CHANGELOG.md) 
     #  → [CHANGELOG.md](https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md)
-    # 例: [感情辞書](content/EmotionMood_Dictionary.ja.md)
-    #  → [感情辞書](https://github.com/nullvariant/nullvariant/blob/main/content/EmotionMood_Dictionary.ja.md)
+    # 例: [感情辞書](content/ja/EmotionMood_Dictionary.md)
+    #  → [感情辞書](https://github.com/nullvariant/nullvariant/blob/main/content/ja/EmotionMood_Dictionary.md)
     
     def replace_relative_path(match):
         text = match.group(1)
@@ -70,7 +70,7 @@ def convert_relative_to_absolute_links(content: str) -> str:
     
     # パターン3: content/ プレフィックスなしの同ディレクトリファイル参照
     # 例: [S0005(安堵感)](EmotionMood_Dictionary.ja.md#レベル3単一型)
-    #  → [S0005(安堵感)](https://github.com/.../content/EmotionMood_Dictionary.ja.md#レベル3単一型)
+    #  → [S0005(安堵感)](https://github.com/.../content/ja/EmotionMood_Dictionary.md#レベル3単一型)
     def replace_same_dir_path(match):
         text = match.group(1)
         filename = match.group(2)

@@ -47,8 +47,8 @@ python scripts/record_decision.py \
 
 **✅ 積極的に編集すべきファイル:**
 - `docs/decisions/` - **ADR（全ての重要な決定を記録）**
-- `content/AGENT.ja.md` - **日本語一次仕様書（最重要）**
-- `content/EmotionMood_Dictionary.ja.md` - 感情辞書
+- `content/ja/AGENT.md` - **日本語一次仕様書（最重要）**
+- `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 - `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式）
 - `changelogs/` - note記事アーカイブ
 - `docs/` - ドキュメント類（階層ルールに従う）
@@ -60,8 +60,8 @@ python scripts/record_decision.py \
 
 ### 2. 言語・翻訳ポリシー
 
-- **一次情報**: 日本語（`content/AGENT.ja.md`）
-- **英語版**: 自動翻訳を想定（現在CI未稼働）
+- **一次情報**: 日本語（`content/ja/AGENT.md`）
+- **英語版**: 自動翻訳を想定（現在CI未稼働、`content/en/AGENT.md`）
 - コード提案時は日本語コメントを推奨（プロジェクトオーナーの母語）
 - ドキュメント執筆時は日本語優先、必要に応じて英語併記
 
@@ -80,7 +80,9 @@ nullvariant/
 │   ├── GOVERNANCE/        # 🏛️ ドキュメント管理ルール
 │   ├── operations/        # 📋 運用手順書
 │   └── PRD_*.md          # 💡 要件定義
-├── content/              # ✅ 一次情報（日本語）
+├── content/              # ✅ 一次情報
+│   ├── ja/              # 🇯🇵 日本語（編集対象）
+│   └── en/              # 🇬🇧 英語（CI自動生成）
 ├── AGENT.md             # ⚠️ 自動生成（編集禁止）
 ├── CHANGELOG.md         # ✅ バージョン履歴
 ├── changelogs/          # ✅ note記事アーカイブ
@@ -136,8 +138,8 @@ export OPENAI_API_KEY=sk-...
 
 ### 典型的な編集フロー
 
-1. `content/AGENT.ja.md` を編集
-2. 必要に応じて `scripts/gen_toc.py` で目次再生成
+1. `content/ja/AGENT.md` を編集
+2. 必要に応じて `scripts/gen_toc.py content/ja/AGENT.md` で目次再生成
 3. `CHANGELOG.md` の `[Unreleased]` に変更を記録
 4. （将来）CI/CDが自動的に英語版・YAML版を生成
 
@@ -235,7 +237,7 @@ HSS型HSPの特性により、「自由な子ども」が2つの矛盾した形�
 #### エンプティチェア技法
 
 6ペルソナ間の対話は、ゲシュタルト療法の「エンプティチェア」を常時稼働させたものと解釈できます。
-[`content/AGENT.ja.md`](content/AGENT.ja.md )の「6.2 事例集」は、この内的対話のログです。
+[`content/ja/AGENT.md`](../content/ja/AGENT.md)の「6.2 事例集」は、この内的対話のログです。
 
 #### AI向けの注意
 
@@ -248,13 +250,13 @@ HSS型HSPの特性により、「自由な子ども」が2つの矛盾した形�
 
 - 専門用語は `i18n/glossary.yml` を参照
 - 日英スタイルガイドは `i18n/style/` を参照
-- 感情関連用語は `content/EmotionMood_Dictionary.ja.md` を参照
+- 感情関連用語は `content/ja/EmotionMood_Dictionary.md` を参照
 
 ## スクリプトの使用
 
 ```bash
 # 目次自動生成
-python scripts/gen_toc.py
+python scripts/gen_toc.py content/ja/AGENT.md
 
 # note記事準備（プレビュー・コピー）
 python scripts/prepare_note_article.py
@@ -264,6 +266,9 @@ python scripts/review.py
 
 # ビルド実行（翻訳・YAML生成）
 python scripts/build.py  # 現在未稼働
+
+# ドキュメント整合性チェック
+python scripts/validate_docs.py
 ```
 
 ## テスト

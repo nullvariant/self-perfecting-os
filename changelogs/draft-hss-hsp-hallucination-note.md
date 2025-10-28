@@ -264,7 +264,7 @@ HSP的FC: でも緻密に観察したい...粗暴なのは嫌...
 統合のための技法 → 日常的な意思決定プロセス
 ```
 
-[`content/AGENT.ja.md`](content/AGENT.ja.md )の「6.2 事例集：日常的な調整例」は、まさにこの内的対話のログです。
+[`content/ja/AGENT.md`](https://github.com/nullvariant/nullvariant/blob/main/content/ja/AGENT.md)の「6.2 事例集:日常的な調整例」は、まさにこの内的対話のログです。
 
 ---
 
