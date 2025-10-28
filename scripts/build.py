@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-# Build script: translates AGENT.ja.md to English and extracts YAML spec
-import os, re, json, yaml, time
+# Build script: translates content/ja/*.md to content/en/*.md and extracts YAML spec
+import os, re, json, yaml, time, shutil
 from pathlib import Path
 from anthropic import Anthropic
 
-MODEL_DEFAULT = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5-20250929")
+MODEL_DEFAULT = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
 ROOT = Path(__file__).resolve().parents[1]
-JA = ROOT / "content" / "AGENT.ja.md"
-EN = ROOT / "AGENT.md"                     # ← root-level output
+
+# ソース言語とターゲット言語
+SOURCE_LANG = "ja"
+TARGET_LANGS = ["en"]  # 将来: ["en", "zh", "fr", ...]
+
+# 入出力パス（多言語対応）
+CONTENT_DIR = ROOT / "content"
+SOURCE_DIR = CONTENT_DIR / SOURCE_LANG
+TARGET_DIR = CONTENT_DIR / TARGET_LANGS[0]  # 現状はenのみ
+ROOT_AGENT_MD = ROOT / "AGENT.md"  # 英語版エントリポイント
+
 SPEC = ROOT / "spec" / "agent.spec.yaml"
 SCHEMA = ROOT / "spec" / "agent.schema.json"
 GLOSS = ROOT / "i18n" / "glossary.yml"
@@ -85,54 +94,53 @@ def chat(model, system, prompt, temperature=0.0):
     )
     return rsp.content[0].text
 
-def main():
-    ja = load(JA)
+def translate_file(source_file: Path, target_file: Path, target_lang: str, glossary_map: dict):
+    """
+    単一ファイルを翻訳
+    
+    Args:
+        source_file: ソースファイルパス（content/ja/AGENT.md等）
+        target_file: ターゲットファイルパス（content/en/AGENT.md等）
+        target_lang: ターゲット言語コード（"en", "zh"等）
+        glossary_map: 用語辞書マップ
+    """
+    print(f"[INFO] Translating {source_file.name} ({SOURCE_LANG} → {target_lang})...")
+    
+    ja = load(source_file)
     gloss = load(GLOSS)
-    entries, gloss_obj = compile_glossary(gloss)
+    entries, _ = compile_glossary(gloss)
     ja_anchored = inject_anchors(ja, entries)
-
-    # glossary map for translator
-    glossary_map = {}
-    for t in yaml.safe_load(gloss).get("terms", []):
-        if t.get("id") == "personas":
-            for it in t.get("items", []):
-                glossary_map[f'personas:{it["emoji"]}'] = it["en"]["term"]
-        else:
-            glossary_map[t["id"]] = t["en"]["term"]
-
+    
     # ドキュメントを分割
-    print("[INFO] Splitting document into chunks...")
+    print(f"[INFO] Splitting {source_file.name} into chunks...")
     chunks, header = split_document_by_lines(ja_anchored, LINES_PER_CHUNK)
     print(f"[INFO] Document split into {len(chunks)} chunks (each ~{LINES_PER_CHUNK} lines)")
-
+    
     # 各チャンクを翻訳
     sys_trans = load(PROMPTS / "01_en_translate.txt")
     translated_chunks = []
-
+    
     for i, chunk in enumerate(chunks):
         lines = chunk.count('\n') + 1
         print(f"[INFO] Translating chunk {i+1}/{len(chunks)} (~{lines} lines)...")
-
+        
         en_chunk = chat(
             MODEL_DEFAULT,
             sys_trans,
             f"### Glossary Map (id->EN)\n{json.dumps(glossary_map, ensure_ascii=False)}\n\n### JA (anchored)\n{chunk}"
         )
         translated_chunks.append(en_chunk)
-
+        
         # レート制限対策: 最後のチャンク以外は待機
         if i < len(chunks) - 1:
             print(f"[INFO] Waiting {RATE_LIMIT_WAIT}s for rate limit...")
             time.sleep(RATE_LIMIT_WAIT)
-
+    
     # 翻訳結果を結合
-    print("[INFO] Merging translated chunks...")
-    # 最初のチャンクはヘッダーを含む、以降はコンテンツのみ
+    print(f"[INFO] Merging translated chunks for {source_file.name}...")
     en_md = translated_chunks[0]
     for chunk in translated_chunks[1:]:
-        # ヘッダー部分を除去して結合
         chunk_lines = chunk.split('\n')
-        # "Codename:" で始まる行から "---" までをスキップ
         content_start = 0
         in_header = False
         for j, line in enumerate(chunk_lines):
@@ -141,30 +149,91 @@ def main():
             elif line.strip() == '---' and in_header:
                 content_start = j + 1
                 break
-
+        
         if content_start > 0:
             chunk_content = '\n'.join(chunk_lines[content_start:])
         else:
             chunk_content = chunk
-
+        
         en_md += '\n\n' + chunk_content.strip()
+    
+    # 保存
+    save(target_file, en_md.strip() + "\n")
+    print(f"[INFO] ✅ {source_file.name} → {target_file.name} completed")
 
-    # 2) YAML spec (元のJAから抽出)
-    print("[INFO] Extracting YAML spec...")
+def main():
+    """
+    多言語翻訳 + YAML抽出 + ルートAGENT.md生成
+    """
+    print("=" * 60)
+    print("📝 Multilingual Build Started")
+    print("=" * 60)
+    
+    # 用語辞書を読み込み
+    gloss = load(GLOSS)
+    entries, gloss_obj = compile_glossary(gloss)
+    
+    # glossary map for translator
+    glossary_map = {}
+    for t in yaml.safe_load(gloss).get("terms", []):
+        if t.get("id") == "personas":
+            for it in t.get("items", []):
+                glossary_map[f'personas:{it["emoji"]}'] = it["en"]["term"]
+        else:
+            glossary_map[t["id"]] = t["en"]["term"]
+    
+    # 1) 多言語翻訳: ja/ の全.mdファイルを en/ に翻訳
+    print("\n" + "=" * 60)
+    print(f"📚 Step 1: Translating {SOURCE_LANG}/ → {TARGET_LANGS[0]}/")
+    print("=" * 60)
+    
+    TARGET_DIR.mkdir(parents=True, exist_ok=True)
+    
+    for source_file in SOURCE_DIR.glob("*.md"):
+        target_file = TARGET_DIR / source_file.name
+        translate_file(source_file, target_file, TARGET_LANGS[0], glossary_map)
+    
+    # 2) ルートAGENT.mdを英語版からコピー
+    print("\n" + "=" * 60)
+    print("📄 Step 2: Copying content/en/AGENT.md → AGENT.md (entry point)")
+    print("=" * 60)
+    
+    en_agent = TARGET_DIR / "AGENT.md"
+    if en_agent.exists():
+        shutil.copy(en_agent, ROOT_AGENT_MD)
+        print(f"[INFO] ✅ AGENT.md created at root (English entry point)")
+    else:
+        print(f"[WARN] ⚠️ content/en/AGENT.md not found, skipping root copy")
+    
+    # 3) YAML spec (元のJAから抽出)
+    print("\n" + "=" * 60)
+    print("📦 Step 3: Extracting YAML spec from content/ja/AGENT.md")
+    print("=" * 60)
+    
+    ja_agent = SOURCE_DIR / "AGENT.md"
+    ja = load(ja_agent)
+    
     sys_yaml = load(PROMPTS / "02_yaml_extract.txt")
     yaml_out = chat(MODEL_DEFAULT, sys_yaml, f"### JA (truth)\n{ja}")
-
+    
     # マークダウンコードブロックを除去
     yaml_clean = yaml_out.strip()
     if yaml_clean.startswith('```'):
         lines = yaml_clean.split('\n')
         yaml_clean = '\n'.join(lines[1:-1])  # 最初と最後の```行を除去
-
+    
     spec_obj = yaml.safe_load(yaml_clean)
-
-    save(EN, en_md.strip()+"\n")
     save(SPEC, yaml.dump(spec_obj, allow_unicode=True, sort_keys=False))
-    print("[INFO] Build completed successfully!")
+    print(f"[INFO] ✅ spec/agent.spec.yaml generated")
+    
+    print("\n" + "=" * 60)
+    print("✅ Multilingual Build Completed Successfully!")
+    print("=" * 60)
+    print(f"\n📁 Generated files:")
+    print(f"  - content/{TARGET_LANGS[0]}/*.md (translations)")
+    print(f"  - AGENT.md (English entry point)")
+    print(f"  - spec/agent.spec.yaml (YAML spec)")
 
 if __name__ == "__main__":
     main()
+```

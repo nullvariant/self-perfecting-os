@@ -41,38 +41,77 @@
 
 ## 📂 リポジトリ構成
 
-> **⚠️ メンテナンス状況**: `content/`と`changelogs/`は積極的に更新中。`docs/`配下は一部情報が古い可能性あり。  
+> **⚠️ メンテナンス状況**: `content/`と`changelogs/`, `docs/decisions/`は積極的に更新中。  
 > 詳細は **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照。
 
 ```
 nullvariant/
-├── content/                      # ✅ 積極的メンテナンス中
+├── content/                      # ✅ 多言語コンテンツ（積極的メンテナンス中）
 │   ├── ja/                       # 🇯🇵 日本語（一次情報・編集対象）
 │   │   ├── AGENT.md
 │   │   └── EmotionMood_Dictionary.md
-│   └── en/                       # 🇬🇧 英語（自動生成・編集禁止）
-│       ├── AGENT.md
-│       └── EmotionMood_Dictionary.md
+│   ├── en/                       # 🇬🇧 英語（自動生成・編集禁止）
+│   │   ├── AGENT.md              # ⚠️ CI未稼働（プレースホルダー）
+│   │   └── EmotionMood_Dictionary.md  # ⚠️ CI未稼働（プレースホルダー）
+│   └── README.md                 # 多言語管理の設計思想
+│
 ├── AGENT.md                       # 🇬🇧 英語版エントリポイント（⚠️ CI未稼働）
 ├── CHANGELOG.md                   # 📋 バージョン履歴（Keep a Changelog形式）
-├── spec/
-│   ├── agent.spec.yaml           # YAML構造化仕様（⚠️ 古い・CI未稼働）
-│   └── agent.schema.json         # JSONスキーマ
+│
+├── docs/                          # 📚 ドキュメント管理
+│   ├── decisions/                # 🏆 ADR（全ての重要な決定）✅
+│   │   ├── active/2025/10/      # 現在有効な決定（月別）
+│   │   ├── deprecated/          # 非推奨
+│   │   ├── superseded/          # 上書きされた決定
+│   │   ├── INDEX.md             # 自動生成索引
+│   │   └── README.md            # ADR管理ルール
+│   ├── governance/              # 🏛️ ガバナンス ✅
+│   │   ├── AI_GUIDELINES.md     # AI向けドキュメント記録ガイドライン
+│   │   ├── DOCUMENTATION_STRUCTURE.yml  # 機械可読形式の階層定義
+│   │   ├── HIERARCHY_RULES.md   # 階層ルール説明
+│   │   └── README.md
+│   ├── prd/                     # 💡 要件定義
+│   │   ├── active/              # 現在進行中のPRD
+│   │   ├── implemented/         # 実装済み
+│   │   ├── INDEX.md
+│   │   └── README.md
+│   ├── operations/              # 📋 運用手順書
+│   │   ├── current/
+│   │   ├── archive/
+│   │   └── README.md
+│   ├── project-status.ja.md     # 📊 プロジェクト状況・メンテナンス優先度
+│   └── README.md                # docs/ ディレクトリの構造説明
+│
 ├── changelogs/                    # ✅ バージョンごとに更新
-│   └── note-archives/            # note公開版アーカイブ
-├── docs/                          # ⚠️ 一部情報が古い可能性あり
-│   ├── project-status.ja.md      # 📊 プロジェクト状況・メンテナンス優先度
-│   ├── OPERATIONS.ja.md          # 運用マニュアル
-│   ├── NOTE_SYNC_MANUAL.ja.md    # note同期手順
-│   └── changelog-migration.ja.md  # Changelog分離PRD
-├── scripts/
-│   ├── build.py                  # 英訳＆YAML生成
-│   ├── gen_toc.py                # 目次生成
+│   ├── note-archives/            # note公開版アーカイブ
+│   │   ├── v2.0-note.md
+│   │   ├── v3.0-note.md
+│   │   ├── v3.1-note.md
+│   │   ├── v4.0-note.md
+│   │   └── v4.1-note.md
+│   └── draft-*.md               # note記事下書き
+│
+├── scripts/                       # 🛠️ 自動化スクリプト
+│   ├── build.py                  # 多言語翻訳＆YAML生成
+│   ├── gen_toc.py                # 目次自動生成
 │   ├── prepare_note_article.py  # note記事自動生成
-│   └── review.py                 # 類似度検証
-└── i18n/
-    ├── glossary.yml              # 用語固定辞書
-    └── style/                    # スタイルガイド
+│   ├── review.py                 # 類似度検証
+│   ├── record_decision.py        # ADR作成支援
+│   ├── generate_index.py         # INDEX.md自動生成
+│   ├── validate_docs.py          # ドキュメント整合性チェック
+│   └── prompts/                  # LLMプロンプトテンプレート
+│
+├── spec/                          # ⚠️ 自動生成（CI未稼働）
+│   ├── agent.spec.yaml           # YAML構造化仕様
+│   └── agent.schema.json         # JSONスキーマ
+│
+├── i18n/                          # 🌍 国際化リソース
+│   ├── glossary.yml              # 用語固定辞書
+│   └── style/                    # スタイルガイド（日英）
+│
+└── .github/                       # GitHub設定
+    └── workflows/                # CI/CD（一部稼働中）
+        └── validate-docs.yml     # ドキュメント整合性チェック ✅
 ```
 
 ---
@@ -85,41 +124,45 @@ nullvariant/
 # 1. 環境構築
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=sk-ant-...
+export ANTHROPIC_API_KEY=sk-ant-...  # Claude API（予定）
 
-# 2. AGENT.ja.md を編集
-vim content/AGENT.ja.md
+# 2. 日本語仕様書を編集
+vim content/ja/AGENT.md
 
 # 3. 目次再生成（必要な場合）
 python scripts/gen_toc.py
 
-# 4. 英訳＆YAML生成
+# 4. 多言語翻訳＆YAML生成（⚠️ CI未稼働）
 make gen
 
 # 5. スキーマ検証
 make val
+
+# 6. ドキュメント整合性チェック
+python scripts/validate_docs.py
 ```
 
 ### バージョンリリース
 
-詳細は [`docs/OPERATIONS.ja.md`](docs/OPERATIONS.ja.md) を参照。
+詳細は [`docs/operations/`](docs/operations/) を参照。
 
 ```bash
 # 1. CHANGELOG.md 更新
 vim CHANGELOG.md  # [Unreleased] → [X.X.X] - YYYY-MM-DD
 
-# 2. ビルド＆検証
+# 2. ビルド＆検証（⚠️ CI未稼働のため手動）
 make gen && make val
 
 # 3. Commit & Push
-git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
+git add CHANGELOG.md content/ja/AGENT.md
 git commit -m "Release vX.X.X: 変更サマリー"
 git push origin main
 
 # 4. note記事生成
 python scripts/prepare_note_article.py
 
-# 5. note公開（詳細は NOTE_SYNC_MANUAL.ja.md 参照）
+# 5. note公開
+# 詳細は changelogs/README.md 参照
 ```
 
 ---
@@ -128,25 +171,60 @@ python scripts/prepare_note_article.py
 
 > **📊 メンテナンス状況**: 詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照
 
+### コンテンツ（一次情報）
+
 | ドキュメント | 説明 | 状態 |
 |------------|------|------|
-| [AGENT.ja.md](content/AGENT.ja.md) | 日本語メイン仕様書 | ✅ 最新 |
+| [content/ja/AGENT.md](content/ja/AGENT.md) | 日本語メイン仕様書 | ✅ 最新 |
+| [content/ja/EmotionMood_Dictionary.md](content/ja/EmotionMood_Dictionary.md) | 感情辞書（日本語） | ✅ 最新 |
+| [content/en/AGENT.md](content/en/AGENT.md) | 英語版仕様書 | ⚠️ プレースホルダー |
+| [content/en/EmotionMood_Dictionary.md](content/en/EmotionMood_Dictionary.md) | 感情辞書（英語） | ⚠️ プレースホルダー |
+
+### プロジェクト管理
+
+| ドキュメント | 説明 | 状態 |
+|------------|------|------|
 | [CHANGELOG.md](CHANGELOG.md) | バージョン履歴 | ✅ 最新 |
-| [EmotionMood_Dictionary.ja.md](content/EmotionMood_Dictionary.ja.md) | 感情辞書 | ✅ 最新 |
-| [project-status.ja.md](docs/project-status.ja.md) | プロジェクト状況・優先度 | 🆕 |
-| [OPERATIONS.ja.md](docs/OPERATIONS.ja.md) | 運用マニュアル | ⚠️ 要確認 |
-| [NOTE_SYNC_MANUAL.ja.md](docs/NOTE_SYNC_MANUAL.ja.md) | note同期手順 | 🟢 比較的最新 |
+| [docs/project-status.ja.md](docs/project-status.ja.md) | プロジェクト状況・優先度 | ✅ 最新 |
+| [docs/decisions/](docs/decisions/) | ADR（意思決定記録） | ✅ 積極的更新中 |
+| [docs/governance/](docs/governance/) | ドキュメント管理ルール | ✅ 最新 |
+
+### 運用・開発
+
+| ドキュメント | 説明 | 状態 |
+|------------|------|------|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
+| [docs/operations/](docs/operations/) | 運用手順書 | 🔵 整備中 |
+| [changelogs/README.md](changelogs/README.md) | note記事管理 | 🟢 比較的最新 |
 
 ---
 
 ## 🤝 コントリビューション
 
-> **⚠️ CI/CD未稼働**: 現在LLM API選定中のため、自動生成パイプラインは未稼働です。詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照。
+> **⚠️ CI/CD未稼働**: 現在LLM API選定中（Claude Sonnet 4.5評価中）のため、自動生成パイプラインは未稼働です。  
+> 詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照。
 
-1. **編集対象**: `content/AGENT.ja.md` のみ（日本語一次情報）
-2. **自動生成**: CI が `AGENT.md` と `spec/agent.spec.yaml` を生成（予定・現在未稼働）
-3. **Pull Request**: `pr-guard.yml` が厳格チェックを実行（予定・現在未稼働）
+### 編集対象ファイル
+
+1. **編集可能**: `content/ja/` 配下のファイル（日本語一次情報）
+   - `content/ja/AGENT.md`
+   - `content/ja/EmotionMood_Dictionary.md`
+
+2. **編集禁止**: `content/en/` 配下のファイル（自動生成予定）
+   - `content/en/AGENT.md`
+   - `content/en/EmotionMood_Dictionary.md`
+
+3. **自動生成**: CI が以下を生成予定（現在未稼働）
+   - `AGENT.md` (英語版エントリポイント)
+   - `spec/agent.spec.yaml` (YAML構造化仕様)
+
+### コントリビューションフロー
+
+1. `content/ja/AGENT.md` を編集
+2. `python scripts/validate_docs.py` で検証
+3. Pull Request作成
+4. （将来）CI が自動で英語版・YAML版を生成
+5. レビュー＆マージ
 
 詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照。
 
@@ -191,4 +269,4 @@ MIT License - See [LICENSE](LICENSE)
 
 ---
 
-_Last Updated: 2025-10-13_
+_Last Updated: 2025-10-28_
