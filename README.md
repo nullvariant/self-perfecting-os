@@ -24,7 +24,7 @@
 
 ## 📖 クイックスタート
 
-> **⚠️ CI/CD Status**: Translation pipeline is temporarily disabled during API migration. See [MIGRATION_STATUS.md](MIGRATION_STATUS.md) for details.
+> **⚠️ CI/CD Status**: Translation pipeline is temporarily disabled during API migration. See [docs/project-status.ja.md](docs/project-status.ja.md) for details.
 
 ### 最新仕様を読む
 - **日本語** (一次情報・最新): [`content/AGENT.ja.md`](content/AGENT.ja.md) ✅
