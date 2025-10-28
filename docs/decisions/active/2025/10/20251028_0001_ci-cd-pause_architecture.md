@@ -11,8 +11,8 @@
 
 `scripts/build.py` は、以下の処理を自動化するために作成されました：
 
-1. **英語翻訳**: `content/AGENT.ja.md` → `AGENT.md`
-2. **YAML抽出**: `content/AGENT.ja.md` → `spec/agent.spec.yaml`
+1. **英語翻訳**: `content/ja/AGENT.md` → `AGENT.md`
+2. **YAML抽出**: `content/ja/AGENT.md` → `spec/agent.spec.yaml`
 
 当初は OpenAI GPT-4 API を使用していましたが、2025年10月下旬に **Claude Sonnet 4.5 API** への移行を決定しました。
 
@@ -72,7 +72,7 @@
 ### ⚠️ デメリット
 
 1. **手動実行の手間**
-   - `content/AGENT.ja.md` 更新のたびに手動ビルドが必要
+   - `content/ja/AGENT.md` 更新のたびに手動ビルドが必要
    - 忘れると `AGENT.md` が古いまま
 
 2. **自動化のメリット喪失**
@@ -80,13 +80,13 @@
    - リリース時の手作業が増える
 
 3. **ドキュメント間の乖離リスク**
-   - `content/AGENT.ja.md` と `AGENT.md` の同期漏れ
+   - `content/ja/AGENT.md` と `AGENT.md` の同期漏れ
 
 ### 📋 TODO
 
 - [x] `scripts/build.py` にレート制限対応のコメント追加
 - [x] `AGENT.md` に「古い・手動更新必要」の警告追加（検討中）
-- [x] `MIGRATION_STATUS.md` に移行状況を記録
+- [x] `docs/project-status.ja.md` に移行状況を記録
 - [ ] `docs/project-status.ja.md` に CI/CD停止中の状態を記録
 - [ ] 選択肢B（分割翻訳）の実装を検討（Phase 2 以降）
 - [ ] レート制限に適合した実装完成後、CI/CD再開
@@ -95,7 +95,7 @@
 
 ### 関連するファイル
 - `scripts/build.py` - ビルドスクリプト（レート制限対応コメント追加済み）
-- `MIGRATION_STATUS.md` - API移行状況の記録（一時文書）
+- `docs/project-status.ja.md` - API移行状況の記録（一時文書）
 - `docs/project-status.ja.md` - プロジェクト状態管理
 - `AGENT.md` - 英語版仕様書（自動生成・現在古い）
 - `spec/agent.spec.yaml` - YAML仕様（自動生成・現在古い）

@@ -141,7 +141,7 @@ CI/CD パイプラインを一時停止し、手動実行に切り替える。
 
 ## Related
 - `scripts/build.py`
-- `MIGRATION_STATUS.md`
+- `docs/project-status.ja.md`
 ```
 
 ### ステップ3: 関連ドキュメントを更新
@@ -151,7 +151,7 @@ ADR作成後、必要に応じて以下も更新：
 ```bash
 # project-status.ja.md に状態を記録
 # CHANGELOG.md の [Unreleased] に追記（必要なら）
-# MIGRATION_STATUS.md に進捗を記録（一時文書の場合）
+# docs/project-status.ja.md に進捗を記録（一時文書の場合）
 ```
 
 ---
@@ -194,8 +194,8 @@ ADR作成後、必要に応じて以下も更新：
 **AI/人間が最初に参照すべき真実**
 
 - `docs/decisions/*.md` - ADR（全ての重要な決定）
-- `content/AGENT.ja.md` - 仕様書（日本語一次情報）
-- `content/EmotionMood_Dictionary.ja.md` - 感情辞書
+- `content/ja/AGENT.md` - 仕様書（日本語一次情報）
+- `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 
 ### Tier 1: 状態管理
 **プロジェクトの現在状態を反映**
@@ -217,7 +217,7 @@ ADR作成後、必要に応じて以下も更新：
 ### Tier 4: 一時的文書
 **期限付きの作業記録（完了後アーカイブ）**
 
-- `MIGRATION_STATUS.md` - 移行作業の進捗
+- `docs/project-status.ja.md` - 移行作業の進捗
 
 ---
 

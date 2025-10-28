@@ -43,8 +43,9 @@ DEPRECATED_PATTERNS = {
 # 除外ディレクトリ
 EXCLUDE_DIRS = {
     '.git', '__pycache__', '.venv', 'node_modules',
-    '.github/workflows',  # CI設定は別途手動更新
-    'docs/decisions',     # ADRは履歴情報として古いパスを保持（OK）
+    '.github/workflows',      # CI設定は別途手動更新
+    'docs/decisions',         # ADRは履歴情報として古いパスを保持（OK）
+    'changelogs/note-archives',  # note公開記事アーカイブ（履歴として保持）
 }
 
 # 除外ファイル

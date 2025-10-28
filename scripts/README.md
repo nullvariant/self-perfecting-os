@@ -25,7 +25,7 @@ make gen
 ```
 
 **環境変数**:
-- `OPENAI_API_KEY`: OpenAI APIキー（必須）
+- `ANTHROPIC_API_KEY`: OpenAI APIキー（必須）
 
 **プロンプト**:
 - `prompts/01_en_translate.txt`: 英訳プロンプト
@@ -98,7 +98,7 @@ python scripts/prepare_note_article.py --version 4.2
 | Pattern 3 | `[text](file.md)` | `[text](https://github.com/.../content/file.md)` |
 
 **詳細**:
-- [NOTE_SYNC_MANUAL.ja.md](../docs/NOTE_SYNC_MANUAL.ja.md) 参照
+- [NOTE_SYNC_MANUAL.ja.md](../docs/operations/current/) 参照
 
 ---
 
@@ -202,8 +202,8 @@ rm changelogs/note-archives/v4.1-note-complete.md
 
 ## 📚 関連ドキュメント
 
-- [OPERATIONS.ja.md](../docs/OPERATIONS.ja.md): 運用マニュアル
-- [NOTE_SYNC_MANUAL.ja.md](../docs/NOTE_SYNC_MANUAL.ja.md): note同期手順
+- [OPERATIONS.ja.md](../docs/operations/current/): 運用マニュアル
+- [NOTE_SYNC_MANUAL.ja.md](../docs/operations/current/): note同期手順
 - [CONTRIBUTING.md](../CONTRIBUTING.md): コントリビューションガイド
 
 ---
@@ -211,10 +211,10 @@ rm changelogs/note-archives/v4.1-note-complete.md
 ## 🔍 トラブルシューティング
 
 ### Q1: OpenAI API エラーが出る
-**A**: 環境変数 `OPENAI_API_KEY` を確認してください。
+**A**: 環境変数 `ANTHROPIC_API_KEY` を確認してください。
 
 ```bash
-export OPENAI_API_KEY=sk-...
+export ANTHROPIC_API_KEY=sk-...
 # または .env ファイルに記載
 ```
 

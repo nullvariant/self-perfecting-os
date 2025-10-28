@@ -595,7 +595,7 @@ AIにも誤解されやすいんだなって...
 
 - GitHub: [nullvariant/nullvariant](https://github.com/nullvariant/nullvariant)
 - 技術ログ: `conversations/2025-10-14_hss-hsp-hallucination.md`
-- 更新された仕様書: `content/AGENT.ja.md`
+- 更新された仕様書: `content/ja/AGENT.md`
 
 ---
 

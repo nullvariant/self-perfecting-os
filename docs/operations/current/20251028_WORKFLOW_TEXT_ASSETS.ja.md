@@ -307,7 +307,7 @@ ObsidianVault/
 ## 関連ドキュメント
 
 - [conversations/README.md](../conversations/README.md) - 対話ログの管理方針
-- [AGENT.ja.md](../content/AGENT.ja.md) - 本体仕様書
+- [AGENT.ja.md](../content/ja/AGENT.md) - 本体仕様書
 - [changelogs/README.md](../changelogs/README.md) - バージョン履歴
 
 ---

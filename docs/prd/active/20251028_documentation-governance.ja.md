@@ -92,10 +92,10 @@ nullvariant/
 | ファイル | 役割 | 問題点 | 対応方針 |
 |---------|------|--------|---------|
 | `README.md` | 概要 | 一部古い情報 | Phase 2で整理 |
-| `MIGRATION_STATUS.md` | 移行状況 | 一時的（完了後削除予定） | ADR-0001に統合検討 |
+| `docs/project-status.ja.md` | 移行状況 | 一時的（完了後削除予定） | ADR-0001に統合検討 |
 | `docs/project-status.ja.md` | プロジェクト状態 | 更新日未記載 | Phase 2で強化 |
-| `docs/OPERATIONS.ja.md` | 運用手順 | 一部古い | Phase 2で精査 |
-| `docs/NOTE_SYNC_MANUAL.ja.md` | note公開手順 | 比較的最新 | Phase 2で検証 |
+| `docs/operations/current/` | 運用手順 | 一部古い | Phase 2で精査 |
+| `docs/operations/current/` | note公開手順 | 比較的最新 | Phase 2で検証 |
 | `docs/prd_CHANGELOG_MIGRATION.ja.md` | Changelog分離PRD | 実装状況不明 | Phase 2で確認 |
 | `docs/prd_NOTE_WORKFLOW_AUTOMATION.ja.md` | note自動化PRD | 実装状況不明 | Phase 2で確認 |
 | `docs/WORKFLOW_TEXT_ASSETS.ja.md` | テキスト資産管理 | 役割不明確 | Phase 2で整理 |
@@ -108,8 +108,8 @@ nullvariant/
 - **更新頻度**: 重要な決定時のみ
 - **ファイル**:
   - `docs/decisions/*.md` (ADR)
-  - `content/AGENT.ja.md` (仕様書)
-  - `content/EmotionMood_Dictionary.ja.md` (感情辞書)
+  - `content/ja/AGENT.md` (仕様書)
+  - `content/ja/EmotionMood_Dictionary.md` (感情辞書)
 
 #### Tier 1: 状態管理
 - **目的**: プロジェクトの現在状態を反映
@@ -141,7 +141,7 @@ nullvariant/
 - **配置**: `docs/temporary/` (新設)
 - **更新頻度**: 適宜（完了後は `docs/archive/` へ）
 - **ファイル**:
-  - `MIGRATION_STATUS.md` → ADR化後削除
+  - `docs/project-status.ja.md` → ADR化後削除
 
 ### 2.3 統合タスク
 
@@ -154,7 +154,7 @@ nullvariant/
 - [ ] `docs/operations/` 配下に既存運用文書を整理
 - [ ] `docs/plans/` に PRD を集約
 - [ ] `docs/temporary/` を新設し、一時文書を移動
-- [ ] `MIGRATION_STATUS.md` → ADR-0001 に統合
+- [ ] `docs/project-status.ja.md` → ADR-0001 に統合
 
 #### Week 3: 検証・修正
 - [ ] `scripts/validate_docs.py` で矛盾チェック

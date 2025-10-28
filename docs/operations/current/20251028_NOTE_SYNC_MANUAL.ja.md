@@ -39,7 +39,7 @@
 
 ### GitHub側の準備完了
 - [ ] `CHANGELOG.md` にバージョン情報が記載済み
-- [ ] `content/AGENT.ja.md` が最新状態
+- [ ] `content/ja/AGENT.md` が最新状態
 - [ ] `make gen` と `make val` が正常完了
 - [ ] Git commit & push 完了
 
@@ -67,7 +67,7 @@
 
 **準備:**
 - `CHANGELOG.md` に新バージョンのエントリが記載済み
-- `content/AGENT.ja.md` が最新状態
+- `content/ja/AGENT.md` が最新状態
 
 **実行:**
 ```bash
@@ -81,7 +81,7 @@ python scripts/prepare_note_article.py --version 4.2
 2. アンカータグ `<a id="..."></a>` とTOCを削除
 3. 相対リンクを GitHub 絶対URLに変換
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
-   - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/EmotionMood_Dictionary.ja.md`
+   - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
 4. バージョン番号を `AGENT.ja.md` から自動検出（`--version` で上書き可能）
 5. `changelogs/note-archives/vX.X-note-complete.md` を出力（`--draft` / `--output` でパス指定可。ドラフト未作成時はAGENT本文のみを出力）
 
@@ -165,8 +165,8 @@ changelogs/note-archives/
 
 ```markdown
 ### Related Links
-- [AGENT.ja.md v4.1](content/AGENT.ja.md)
-- [感情辞書 v1.0](content/EmotionMood_Dictionary.ja.md)
+- [AGENT.ja.md v4.1](content/ja/AGENT.md)
+- [感情辞書 v1.0](content/ja/EmotionMood_Dictionary.md)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - [note記事 v4.1](https://note.com/nullvariant/n/n2a9a5fbf6e57)  # ← 追加
 ```
@@ -207,7 +207,7 @@ git push origin main
 
 - **GitHub リポジトリ（最新版）**: {GITHUB_REPO_URL}
 - **Changelog 全体**: {CHANGELOG_URL}
-- **感情辞書**: {GITHUB_REPO_URL}/blob/main/content/EmotionMood_Dictionary.ja.md
+- **感情辞書**: {GITHUB_REPO_URL}/blob/main/content/ja/EmotionMood_Dictionary.md
 - **note Magazine: AI向けChangelog**: https://note.com/nullvariant/m/m0d682a2ae34d
 
 ---
@@ -252,7 +252,7 @@ git push origin main
 
 - **GitHub リポジトリ（最新版）**: https://github.com/nullvariant/nullvariant
 - **Changelog 全体**: https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md
-- **感情辞書**: https://github.com/nullvariant/nullvariant/blob/main/content/EmotionMood_Dictionary.ja.md
+- **感情辞書**: https://github.com/nullvariant/nullvariant/blob/main/content/ja/EmotionMood_Dictionary.md
 - **note Magazine: AI向けChangelog**: https://note.com/nullvariant/m/m0d682a2ae34d
 
 ---
@@ -270,7 +270,7 @@ git push origin main
 ### 📝 準備段階（GitHub側）
 
 - [ ] CHANGELOG.md に新バージョンのエントリが記載済み
-- [ ] content/AGENT.ja.md が最新状態
+- [ ] content/ja/AGENT.md が最新状態
 - [ ] `make gen` と `make val` が正常完了
 - [ ] Git commit & push 完了
 
@@ -416,7 +416,7 @@ python scripts/prepare_note_article.py --version 4.2 --draft path/to/custom-draf
 ```
 
 **入力**:
-- `content/AGENT.ja.md`（メインドキュメント）
+- `content/ja/AGENT.md`（メインドキュメント）
 - `changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動読込。省略可）
 
 **出力**:

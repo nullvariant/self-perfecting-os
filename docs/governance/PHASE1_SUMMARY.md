@@ -135,7 +135,7 @@ vim docs/decisions/0001-ci-cd-pause.md
 - [ ] `docs/operations/` 配下に既存運用文書を整理
 - [ ] `docs/plans/` に PRD を集約（検討）
 - [ ] `docs/temporary/` を新設し、一時文書を移動
-- [ ] `MIGRATION_STATUS.md` → ADR-0001 に統合
+- [ ] `docs/project-status.ja.md` → ADR-0001 に統合
 
 ### Week 3: 検証・修正
 - [ ] `scripts/validate_docs.py` で矛盾チェック

@@ -98,7 +98,7 @@ git push origin feature/your-structural-change
 
 ### パターン1: ファイルパス変更
 
-**例**: `content/AGENT.ja.md` → `content/ja/AGENT.md`
+**例**: `content/ja/AGENT.md` → `content/ja/AGENT.md`
 
 **チェック対象**:
 - [ ] `.github/copilot-instructions.md` - サンプルコード内のパス
@@ -110,7 +110,7 @@ git push origin feature/your-structural-change
 
 ### パターン2: API変更
 
-**例**: `OPENAI_API_KEY` → `ANTHROPIC_API_KEY`
+**例**: `ANTHROPIC_API_KEY` → `ANTHROPIC_API_KEY`
 
 **チェック対象**:
 - [ ] `README.md` - セットアップ手順
@@ -132,10 +132,10 @@ git push origin feature/your-structural-change
 
 ### パターン4: ドキュメント廃止
 
-**例**: `MIGRATION_STATUS.md` の廃止
+**例**: `docs/project-status.ja.md` の廃止
 
 **チェック対象**:
-- [ ] リンクを張っている全ファイル（`grep -r "MIGRATION_STATUS.md" .`）
+- [ ] リンクを張っている全ファイル（`grep -r "docs/project-status.ja.md" .`）
 - [ ] 新しい移行先を明記（例: `docs/project-status.ja.md`）
 - [ ] ADRに廃止理由を記録
 
@@ -157,9 +157,9 @@ python scripts/check_path_references.py --fix
 ```
 
 **対応パターン**:
-- 多言語移行（`content/AGENT.ja.md` → `content/ja/AGENT.md`）
-- API変更（`OPENAI_API_KEY` → `ANTHROPIC_API_KEY`）
-- 廃止ファイル（`MIGRATION_STATUS.md` → `docs/project-status.ja.md`）
+- 多言語移行（`content/ja/AGENT.md` → `content/ja/AGENT.md`）
+- API変更（`ANTHROPIC_API_KEY` → `ANTHROPIC_API_KEY`）
+- 廃止ファイル（`docs/project-status.ja.md` → `docs/project-status.ja.md`）
 
 **除外対象**:
 - `docs/decisions/` - ADRは履歴として古いパスを保持
@@ -186,10 +186,10 @@ python scripts/validate_docs.py
 **例**:
 ```bash
 # Markdown内の特定パスを検索
-grep -r "content/AGENT.ja.md" . --include="*.md"
+grep -r "content/ja/AGENT.md" . --include="*.md"
 
 # Python内の特定APIキーを検索
-grep -r "OPENAI_API_KEY" . --include="*.py"
+grep -r "ANTHROPIC_API_KEY" . --include="*.py"
 
 # 相対リンクの検索
 grep -r "\.\./content/" . --include="*.md"

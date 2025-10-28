@@ -133,7 +133,7 @@ source .venv/bin/activate  # macOS/Linux
 pip install -r requirements.txt
 
 # OpenAI API キー設定（翻訳機能用）
-export OPENAI_API_KEY=sk-...
+export ANTHROPIC_API_KEY=sk-...
 ```
 
 ### 典型的な編集フロー

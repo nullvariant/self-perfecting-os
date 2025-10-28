@@ -48,7 +48,7 @@
    - note URLを追記
    - Git commit & push
 
-**詳細**: [`docs/NOTE_SYNC_MANUAL.ja.md`](../../docs/NOTE_SYNC_MANUAL.ja.md) を参照
+**詳細**: [`docs/operations/current/`](../../docs/operations/current/) を参照
 
 ---
 
@@ -98,7 +98,7 @@
 - ✅ `-note.md`: 公開版のみ保存
 
 **理由**: 
-- 元データは `CHANGELOG.md` + `content/AGENT.ja.md` に存在
+- 元データは `CHANGELOG.md` + `content/ja/AGENT.md` に存在
 - 必要なら `scripts/prepare_note_article.py` で再生成可能
 - 最終的に必要なのは「実際に公開した内容」のみ
 

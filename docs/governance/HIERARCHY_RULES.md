@@ -50,7 +50,7 @@ nullvariant/
 │   ├── AGENT.ja.md
 │   └── EmotionMood_Dictionary.ja.md
 ├── CHANGELOG.md                 # 📊 Tier 1: 履歴
-└── MIGRATION_STATUS.md          # 📝 Tier 4: 一時文書
+└── docs/project-status.ja.md          # 📝 Tier 4: 一時文書
 ```
 
 ---
@@ -72,8 +72,8 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 | ファイル | 目的 | 編集可否 | 備考 |
 |---------|------|---------|------|
 | `docs/decisions/ADR-*.md` | 決定記録 | ✅ | 新規ADRは追加のみ（既存は編集禁止） |
-| `content/AGENT.ja.md` | 仕様書（日本語） | ✅ | 自動生成の source ファイル |
-| `content/EmotionMood_Dictionary.ja.md` | 感情辞書 | ✅ | 感情定義変更時のみ |
+| `content/ja/AGENT.md` | 仕様書（日本語） | ✅ | 自動生成の source ファイル |
+| `content/ja/EmotionMood_Dictionary.md` | 感情辞書 | ✅ | 感情定義変更時のみ |
 | `AGENT.md` | 仕様書（英語） | ❌ | CI/CDが自動生成 |
 | `spec/agent.spec.yaml` | YAML仕様 | ❌ | CI/CDが自動生成 |
 
@@ -85,10 +85,10 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 2. **自動生成ファイルは絶対に直接編集しない**
    - `AGENT.md` と `spec/agent.spec.yaml` は CI/CD が生成
-   - 編集したい場合は `content/AGENT.ja.md` を変更
+   - 編集したい場合は `content/ja/AGENT.md` を変更
 
 3. **仕様書の変更は慎重に**
-   - `content/AGENT.ja.md` の変更は ADR に記録
+   - `content/ja/AGENT.md` の変更は ADR に記録
    - 破壊的変更は `CHANGELOG.md` にも記載
 
 ---
@@ -211,7 +211,7 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 | ファイル | 目的 | 完了後の扱い | 備考 |
 |---------|------|------------|------|
-| `MIGRATION_STATUS.md` | API移行の進捗 | ADR-0001に統合後、アーカイブ | 一時的 |
+| `docs/project-status.ja.md` | API移行の進捗 | ADR-0001に統合後、アーカイブ | 一時的 |
 
 ### ルール
 
@@ -237,13 +237,13 @@ CI/CDが自動生成するファイル。**絶対に直接編集しない**。
 
 | ファイル | Source | 生成タイミング | 備考 |
 |---------|--------|--------------|------|
-| `AGENT.md` | `content/AGENT.ja.md` | CI実行時 | 英語版仕様書 |
-| `spec/agent.spec.yaml` | `content/AGENT.ja.md` | CI実行時 | YAML構造化仕様 |
+| `AGENT.md` | `content/ja/AGENT.md` | CI実行時 | 英語版仕様書 |
+| `spec/agent.spec.yaml` | `content/ja/AGENT.md` | CI実行時 | YAML構造化仕様 |
 
 ### ルール
 
 1. **編集したい場合は Source を変更**
-   - `content/AGENT.ja.md` を編集
+   - `content/ja/AGENT.md` を編集
    - CI が自動的に `AGENT.md` と `spec/agent.spec.yaml` を生成
 
 2. **自動生成ファイルへの直接編集を検出**

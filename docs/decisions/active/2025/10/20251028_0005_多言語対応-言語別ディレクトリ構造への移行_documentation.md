@@ -10,8 +10,8 @@
 ### 背景
 
 1. **多言語対応の必要性**
-   - `content/AGENT.ja.md` を英語化する必要がある（AI/bot向けエントリポイント）
-   - `content/EmotionMood_Dictionary.ja.md` も翻訳が必要（感情の真意は言語依存）
+   - `content/ja/AGENT.md` を英語化する必要がある（AI/bot向けエントリポイント）
+   - `content/ja/EmotionMood_Dictionary.md` も翻訳が必要（感情の真意は言語依存）
    - 将来的に中国語、フランス語等への展開も視野
 
 2. **既存構造の問題点**
@@ -89,8 +89,8 @@ nullvariant/
 ### 移行作業
 
 1. `content/ja/`, `content/en/` ディレクトリを作成
-2. `content/AGENT.ja.md` → `content/ja/AGENT.md` に移動
-3. `content/EmotionMood_Dictionary.ja.md` → `content/ja/EmotionMood_Dictionary.md` に移動
+2. `content/ja/AGENT.md` → `content/ja/AGENT.md` に移動
+3. `content/ja/EmotionMood_Dictionary.md` → `content/ja/EmotionMood_Dictionary.md` に移動
 4. `content/en/` にプレースホルダーファイルを作成（CI未稼働のため）
 5. `docs/agent.en.md` を削除
 6. `content/README.md` を作成（構造説明）
@@ -123,7 +123,7 @@ nullvariant/
 ### ⚠️ デメリット
 
 1. **既存リンクの更新が必要**
-   - `content/AGENT.ja.md` → `content/ja/AGENT.md`
+   - `content/ja/AGENT.md` → `content/ja/AGENT.md`
    - README, ドキュメント等のリンク修正
 
 2. **CI/CDスクリプトの修正が必要**
@@ -146,8 +146,8 @@ nullvariant/
 ## Related
 
 ### 関連するファイル
-- `content/ja/AGENT.md` (旧: `content/AGENT.ja.md`)
-- `content/ja/EmotionMood_Dictionary.md` (旧: `content/EmotionMood_Dictionary.ja.md`)
+- `content/ja/AGENT.md` (旧: `content/ja/AGENT.md`)
+- `content/ja/EmotionMood_Dictionary.md` (旧: `content/ja/EmotionMood_Dictionary.md`)
 - `content/en/AGENT.md` (新規作成)
 - `content/en/EmotionMood_Dictionary.md` (新規作成)
 - `content/README.md` (新規作成)

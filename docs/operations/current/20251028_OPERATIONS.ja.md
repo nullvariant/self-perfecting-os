@@ -10,7 +10,7 @@
 ## 0. 全体パイプライン概要
 
 ```
-編集 (content/AGENT.ja.md)
+編集 (content/ja/AGENT.md)
   ↓ (必要なら) 目次自動再生成 scripts/gen_toc.py
   ↓ make gen  (build.py) : JA→EN 翻訳 + YAML仕様抽出
   ↓ make val  (review.py) : スキーマ検証 / 用語網羅 / 意味類似度 / 自己レビュー
@@ -19,8 +19,8 @@
 
 | フェーズ | 主担当ファイル | 主目的 | 生成/更新される成果物 |
 |----------|----------------|--------|------------------------|
-| 編集 | `content/AGENT.ja.md` | ソース・オリジナル（日本語真実ソース） | （同ファイル上書き） |
-| TOC再生成 | `scripts/gen_toc.py` | ⽬次・アンカー整合 | `content/AGENT.ja.md` 内目次ブロック更新 |
+| 編集 | `content/ja/AGENT.md` | ソース・オリジナル（日本語真実ソース） | （同ファイル上書き） |
+| TOC再生成 | `scripts/gen_toc.py` | ⽬次・アンカー整合 | `content/ja/AGENT.md` 内目次ブロック更新 |
 | 生成 | `scripts/build.py` | 英語版 & YAML 仕様抽出 (LLM) | `AGENT.md`, `spec/agent.spec.yaml` |
 | 検証 | `scripts/review.py` | スキーマ整合 & 用語網羅 & 意味差分 | 標準出力（ログ） |
 | スキーマ | `spec/agent.schema.json` | 仕様構造定義 (JSON Schema) | 参照されるのみ |
@@ -30,7 +30,7 @@
 ---
 ## 1. 各ファイル役割詳細
 
-### 1.1 `content/AGENT.ja.md`
+### 1.1 `content/ja/AGENT.md`
 - 人間が直接編集する**唯一の真実ソース**。
 - 3.x ポリシー要約（引用ブロック + アイコン）・Emoji Legend・Appendix 要約を含む。
 - 目次 (TOC) は半自動：構造変更多い場合は `python scripts/gen_toc.py` 実行推奨。
@@ -73,12 +73,12 @@
 ### 1.9 `persona_legend` (Schema + YAML + Markdown)
 | 要素 | 用途 | 更新トリガー | 反映対象 |
 |------|------|-------------|----------|
-| Markdown Emoji Legend 表 | 読者可視・記述的 | ペルソナ特性/説明変更 | `content/AGENT.ja.md` |
+| Markdown Emoji Legend 表 | 読者可視・記述的 | ペルソナ特性/説明変更 | `content/ja/AGENT.md` |
 | `persona_legend` (YAML) | 機械可読マッピング | Legend 変更時 | `spec/agent.spec.yaml` |
 | Schema 定義 | 一貫性強制 | フィールド構造変えたい時 | `agent.schema.json` |
 
 同期規則（推奨フロー）:
-1. まず `content/AGENT.ja.md` の Legend 表を編集
+1. まず `content/ja/AGENT.md` の Legend 表を編集
 2. 対応する `spec/agent.spec.yaml` の `persona_legend` 要素を同じ順序で更新
 3. `make val` で Schema + 用語整合チェック
 
@@ -87,7 +87,7 @@
 
 | 変数 | 必須 | 用途 | 例 |
 |------|------|------|----|
-| `OPENAI_API_KEY` | Yes | OpenAI Chat API 呼び出し | sk-... |
+| `ANTHROPIC_API_KEY` | Yes | OpenAI Chat API 呼び出し | sk-... |
 | `OPENAI_MODEL` | No | 既定 LLM モデル（省略時 gpt-4.1） | gpt-4.1-mini |
 
 Python 依存（例）: openai, jsonschema, pyyaml, sentence-transformers, torch (埋め込みモデル自動で要求)。
@@ -112,7 +112,7 @@ python scripts/gen_toc.py
 ## 4. 変更ワークフロー詳細
 
 ### 4.1 ポリシー文面更新
-1. `content/AGENT.ja.md` を編集
+1. `content/ja/AGENT.md` を編集
 2. 大見出し追加/削除したら `python scripts/gen_toc.py`
 3. `make gen` → 英語/仕様再生成
 4. `make val` で整合確認
@@ -165,7 +165,7 @@ python scripts/gen_toc.py
 AGENT.ja.md を更新する際は、以下の手順で Changelog も同時に管理します。
 
 ```bash
-# 1. content/AGENT.ja.md を編集
+# 1. content/ja/AGENT.md を編集
 # 2. 必要なら目次再生成
 python scripts/gen_toc.py
 
@@ -177,7 +177,7 @@ make gen  # 英訳 & YAML抽出
 make val  # スキーマ検証
 
 # 6. Git commit & push
-git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
+git add CHANGELOG.md content/ja/AGENT.md AGENT.md spec/agent.spec.yaml
 git commit -m "Release vX.X.X: [変更サマリー]"
 git push origin main
 

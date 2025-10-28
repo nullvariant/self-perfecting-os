@@ -147,7 +147,7 @@
 
 ### � 優先度: 中（計画的に対応）
 
-5. **`docs/OPERATIONS.ja.md`の見直し**
+5. **`docs/operations/current/`の見直し**
    - **問題**: CI未稼働前提の記述が含まれる
    - **対応**: CI稼働後、実装との整合性を全面チェック、最終更新日を明記
 
@@ -237,7 +237,7 @@
 
 1. **[CONTRIBUTING.md](../CONTRIBUTING.md)**: 貢献方法の基本を理解
 2. **このドキュメント**: 現在のメンテナンス状況を把握
-3. **[docs/OPERATIONS.ja.md](OPERATIONS.ja.md)**: 運用詳細（⚠️ 一部情報が古い可能性あり）
+3. **[docs/operations/current/](OPERATIONS.ja.md)**: 運用詳細（⚠️ 一部情報が古い可能性あり）
 
 ### 🤖 AI/開発者の方
 
@@ -276,7 +276,7 @@
 ### 🟡 高優先度の貢献機会（Phase 0完了後）
 
 3. **ドキュメント整合性チェック**
-   - CI稼働後、`docs/OPERATIONS.ja.md`の実装との照合
+   - CI稼働後、`docs/operations/current/`の実装との照合
    - `scripts/README.md`の更新（Claude Sonnet 4.5 に統一）
    - LLMモデル名の統一（GPT-4o → Claude Sonnet 4.5）
 

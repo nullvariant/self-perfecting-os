@@ -199,9 +199,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [4.1.0] - 2025-10-13
 ### Added
 - **Section 2.1.1**: ペルソナ別感情プロファイル概要テーブル
-  - 各ペルソナの典型的感情を[感情辞書](content/EmotionMood_Dictionary.ja.md)IDで明示化
+  - 各ペルソナの典型的感情を[感情辞書](content/ja/EmotionMood_Dictionary.md)IDで明示化
   - 愛モード/恐怖モード/苦手感情/統合指針を体系化
-  - 参照: [感情辞書 Appendix A](content/EmotionMood_Dictionary.ja.md#appendix-a)
+  - 参照: [感情辞書 Appendix A](content/ja/EmotionMood_Dictionary.md#appendix-a)
 
 - **Section 6.3**: 感情辞書活用ガイド
   - ペルソナ別感情プロファイル詳細（全6体）
@@ -232,8 +232,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ⚠️ 感情辞書の参照が必須（EmotionMood_Dictionary.ja.md）
 
 ### Related Links
-- [AGENT.ja.md v4.1](content/AGENT.ja.md)
-- [感情辞書 v1.0](content/EmotionMood_Dictionary.ja.md)
+- [AGENT.ja.md v4.1](content/ja/AGENT.md)
+- [感情辞書 v1.0](content/ja/EmotionMood_Dictionary.md)
 - [note記事: v4.1アップデート](https://note.com/[account]/n/[note-id]) ※移行後追記
 
 ---
@@ -255,7 +255,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## External Resources
 - [GitHub Repository](https://github.com/nullvariant/nullvariant)
 - [note Magazine](https://note.com/[account]/m/m[magazine-id])
-- [感情辞書](content/EmotionMood_Dictionary.ja.md)
+- [感情辞書](content/ja/EmotionMood_Dictionary.md)
 ```
 
 ### 5.3 AGENT.ja.md の Version History 簡略化
@@ -314,7 +314,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 📖 AGENT.ja.md 本文
 
-【content/AGENT.ja.md 全文をコピー】
+【content/ja/AGENT.md 全文をコピー】
 
 ---
 
@@ -322,7 +322,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **GitHub リポジトリ（最新版）**: https://github.com/nullvariant/nullvariant
 - **Changelog 全体**: https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md
-- **感情辞書**: https://github.com/nullvariant/nullvariant/blob/main/content/EmotionMood_Dictionary.ja.md
+- **感情辞書**: https://github.com/nullvariant/nullvariant/blob/main/content/ja/EmotionMood_Dictionary.md
 
 ---
 
@@ -344,14 +344,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 mkdir -p changelogs
 touch CHANGELOG.md
 touch changelogs/README.md
-touch docs/NOTE_SYNC_MANUAL.ja.md
+touch docs/operations/current/
 ```
 
 **成果物:**
 - [ ] `CHANGELOG.md` 作成
 - [ ] `changelogs/` ディレクトリ作成
 - [ ] `changelogs/README.md` 作成（用途説明）
-- [ ] `docs/NOTE_SYNC_MANUAL.ja.md` 作成
+- [ ] `docs/operations/current/` 作成
 
 #### Task 1.2: CHANGELOG.md 初期構造作成
 - Keep a Changelog フォーマット適用
@@ -407,7 +407,7 @@ docs/NOTE_ARTICLES_INVENTORY.md
 ### Phase 3: 運用体制確立（Week 2-3）
 
 #### Task 3.1: note 同期マニュアル作成
-`docs/NOTE_SYNC_MANUAL.ja.md` に以下を記載:
+`docs/operations/current/` に以下を記載:
 - アップデート時の手順
 - note 記事テンプレート
 - チェックリスト
@@ -418,13 +418,13 @@ docs/NOTE_ARTICLES_INVENTORY.md
 - 所要時間計測
 
 #### Task 3.3: OPERATIONS.ja.md への追記
-既存の `docs/OPERATIONS.ja.md` に Changelog 運用フローを追加:
+既存の `docs/operations/current/` に Changelog 運用フローを追加:
 
 ```markdown
 ## X. Changelog 運用フロー
 
 ### X.1 アップデート時の手順
-1. content/AGENT.ja.md を編集
+1. content/ja/AGENT.md を編集
 2. CHANGELOG.md に変更を記録
 3. make gen でビルド
 4. make val で検証
@@ -440,9 +440,9 @@ docs/NOTE_ARTICLES_INVENTORY.md
 ```
 
 **成果物:**
-- [ ] `docs/NOTE_SYNC_MANUAL.ja.md` 完成
+- [ ] `docs/operations/current/` 完成
 - [ ] 運用テスト完了レポート
-- [ ] `docs/OPERATIONS.ja.md` 更新
+- [ ] `docs/operations/current/` 更新
 
 ---
 
@@ -480,7 +480,7 @@ scripts/sync-to-note.sh
 
 ```mermaid
 graph TD
-    A[content/AGENT.ja.md 編集] --> B{目次更新必要?}
+    A[content/ja/AGENT.md 編集] --> B{目次更新必要?}
     B -->|Yes| C[python scripts/gen_toc.py]
     B -->|No| D[CHANGELOG.md に変更記録]
     C --> D
@@ -498,7 +498,7 @@ graph TD
 ### 7.2 詳細手順（チェックリスト形式）
 
 #### ステップ1: ローカル編集
-- [ ] `content/AGENT.ja.md` を編集
+- [ ] `content/ja/AGENT.md` を編集
 - [ ] 必要なら `python scripts/gen_toc.py` 実行
 - [ ] `CHANGELOG.md` の `[Unreleased]` セクションに変更を記録
 
@@ -516,13 +516,13 @@ make val  # スキーマ検証
 
 #### ステップ4: GitHub へコミット
 ```bash
-git add CHANGELOG.md content/AGENT.ja.md AGENT.md spec/agent.spec.yaml
+git add CHANGELOG.md content/ja/AGENT.md AGENT.md spec/agent.spec.yaml
 git commit -m "Release v4.x.x: [変更サマリー]"
 git push origin main
 ```
 
 #### ステップ5: note 記事作成
-- [ ] `docs/NOTE_SYNC_MANUAL.ja.md` のテンプレートを使用
+- [ ] `docs/operations/current/` のテンプレートを使用
 - [ ] CHANGELOG.md の該当バージョンをコピー
 - [ ] AGENT.ja.md 全文をコピー
 - [ ] GitHub リンクを記載
@@ -587,7 +587,7 @@ git push origin main
 
 #### リスク: note 同期忘れ
 **対策:**
-1. `docs/NOTE_SYNC_MANUAL.ja.md` のチェックリスト必須実施
+1. `docs/operations/current/` のチェックリスト必須実施
 2. GitHub commit メッセージに note 投稿の TODO を記載
 3. 週次レビューで未同期バージョンをチェック
 
