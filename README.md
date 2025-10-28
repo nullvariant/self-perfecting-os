@@ -27,9 +27,11 @@
 > **⚠️ CI/CD Status**: Translation pipeline is temporarily disabled during API migration. See [docs/project-status.ja.md](docs/project-status.ja.md) for details.
 
 ### 最新仕様を読む
-- **日本語** (一次情報・最新): [`content/AGENT.ja.md`](content/AGENT.ja.md) ✅
-- **英語** (⚠️ 古い・CI未稼働): [`AGENT.md`](AGENT.md)
-- **感情辞書**: [`content/EmotionMood_Dictionary.ja.md`](content/EmotionMood_Dictionary.ja.md)
+- **日本語** (一次情報・最新): [`content/ja/AGENT.md`](content/ja/AGENT.md) ✅
+- **英語** (⚠️ CI未稼働): [`AGENT.md`](AGENT.md) または [`content/en/AGENT.md`](content/en/AGENT.md)
+- **感情辞書**:
+  - 日本語: [`content/ja/EmotionMood_Dictionary.md`](content/ja/EmotionMood_Dictionary.md) ✅
+  - English: [`content/en/EmotionMood_Dictionary.md`](content/en/EmotionMood_Dictionary.md) (⚠️ CI未稼働)
 
 ### バージョン履歴
 - **Changelog**: [`CHANGELOG.md`](CHANGELOG.md) - Keep a Changelog形式
@@ -45,9 +47,13 @@
 ```
 nullvariant/
 ├── content/                      # ✅ 積極的メンテナンス中
-│   ├── AGENT.ja.md                # 🇯🇵 日本語一次仕様書（編集対象）
-│   └── EmotionMood_Dictionary.ja.md  # 感情辞書
-├── AGENT.md                       # 🇬🇧 英語標準仕様書（⚠️ 古い・CI未稼働）
+│   ├── ja/                       # 🇯🇵 日本語（一次情報・編集対象）
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   └── en/                       # 🇬🇧 英語（自動生成・編集禁止）
+│       ├── AGENT.md
+│       └── EmotionMood_Dictionary.md
+├── AGENT.md                       # 🇬🇧 英語版エントリポイント（⚠️ CI未稼働）
 ├── CHANGELOG.md                   # 📋 バージョン履歴（Keep a Changelog形式）
 ├── spec/
 │   ├── agent.spec.yaml           # YAML構造化仕様（⚠️ 古い・CI未稼働）
