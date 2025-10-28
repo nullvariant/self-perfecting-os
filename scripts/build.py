@@ -153,7 +153,14 @@ def main():
     print("[INFO] Extracting YAML spec...")
     sys_yaml = load(PROMPTS / "02_yaml_extract.txt")
     yaml_out = chat(MODEL_DEFAULT, sys_yaml, f"### JA (truth)\n{ja}")
-    spec_obj = yaml.safe_load(yaml_out)
+
+    # マークダウンコードブロックを除去
+    yaml_clean = yaml_out.strip()
+    if yaml_clean.startswith('```'):
+        lines = yaml_clean.split('\n')
+        yaml_clean = '\n'.join(lines[1:-1])  # 最初と最後の```行を除去
+
+    spec_obj = yaml.safe_load(yaml_clean)
 
     save(EN, en_md.strip()+"\n")
     save(SPEC, yaml.dump(spec_obj, allow_unicode=True, sort_keys=False))
