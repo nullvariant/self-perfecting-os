@@ -1,6 +1,6 @@
 # Changelogs Directory
 
-このディレクトリは、AGENT.ja.md のバージョン別詳細ドキュメントを管理するためのものです。
+このディレクトリは、[content/ja/AGENT.md](../content/ja/AGENT.md) のバージョン別詳細ドキュメントを管理するためのものです。
 
 ## ディレクトリ構造
 
@@ -19,7 +19,7 @@ changelogs/
 ### note-archives/
 - **目的**: 既存のnote記事をmd形式で保存し、Changelog抽出の元データとして保管
 - **命名規則**: `v{major}.{minor}-note.md`
-- **内容**: note記事の全文（Changelog部分 + AGENT.ja.md本文）
+- **内容**: note記事の全文（Changelog部分 + [content/ja/AGENT.md](../content/ja/AGENT.md)本文）
 
 ### バージョン別詳細（将来的な拡張）
 必要に応じて、以下のような詳細ドキュメントを作成できます：

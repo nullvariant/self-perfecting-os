@@ -87,9 +87,9 @@
 
 ---
 
-## 📖 AGENT.ja.md 本文
+## 📖 content/ja/AGENT.md 本文
 
-（AGENT.ja.md の全文、リンクはGitHub絶対URLに変換済み）
+（content/ja/AGENT.md の全文、リンクはGitHub絶対URLに変換済み）
 
 ---
 

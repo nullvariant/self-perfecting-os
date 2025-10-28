@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to AGENT.ja.md will be documented in this file.
+All notable changes to [content/ja/AGENT.md](content/ja/AGENT.md) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -47,10 +47,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Compatibility
 - ✅ v4.0の全機能を保持
 - ✅ 既存システムとシームレスに統合
-- ⚠️ 感情辞書の参照が必須（EmotionMood_Dictionary.ja.md）
+- ⚠️ 感情辞書の参照が必須（[content/ja/EmotionMood_Dictionary.md](content/ja/EmotionMood_Dictionary.md)）
 
 ### Related Links
-- [AGENT.ja.md v4.1](content/ja/AGENT.md)
+- [content/ja/AGENT.md v4.1](content/ja/AGENT.md)
 - [感情辞書 v1.0](content/ja/EmotionMood_Dictionary.md)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - [note記事 v4.1](https://note.com/nullvariant/n/n2a9a5fbf6e57)
@@ -113,7 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ⚠️ EBI測定基準が精密化されたため、過去ログとの数値比較は要調整
 
 ### Related Links
-- [AGENT.ja.md v4.0](content/ja/AGENT.md)
+- [content/ja/AGENT.md v4.0](content/ja/AGENT.md)
 - [note記事: v4.0アップデート](https://note.com/nullvariant/n/n0c2b7c97a0ba)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - PCP/MOF参照記事: [コーヒーかすから考える多孔質の科学](https://note.com/safe_gibbon6757/n/n992f902ef504)
@@ -159,7 +159,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ 価値判断プロセスの透明化により、システム動作の予測可能性が向上
 
 ### Related Links
-- [AGENT.ja.md v3.1](content/ja/AGENT.md)
+- [content/ja/AGENT.md v3.1](content/ja/AGENT.md)
 - [note記事: v3.1アップデート](https://note.com/nullvariant/n/n353d60ed5ae0)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - 参照記事: [「AIからの肯定」依存の危機](https://note.com/royal_curlew4118/n/nb4096edeaa62)
@@ -217,7 +217,7 @@ Version 3.0の公開から1日で、実運用で2つの根源的な盲点が浮�
 - 美学の不整合: 👮‍♂️ジャスティスが「異物の不在」を美とする誤調整
 
 ### Related Links
-- [AGENT.ja.md v3.0](content/ja/AGENT.md)
+- [content/ja/AGENT.md v3.0](content/ja/AGENT.md)
 - [note記事: v3.0アップデート](https://note.com/nullvariant/n/naf2590195055)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - [前バージョン: v2.0](https://note.com/nullvariant/n/n7f150b19f6a7)
@@ -231,7 +231,7 @@ Version 3.0の公開から1日で、実運用で2つの根源的な盲点が浮�
 
 ## External Resources
 - [GitHub Repository](https://github.com/nullvariant/nullvariant)
-- [AGENT.ja.md](content/ja/AGENT.md)
+- [content/ja/AGENT.md](content/ja/AGENT.md)
 - [感情辞書](content/ja/EmotionMood_Dictionary.md)
 - [note Magazine: AI向けChangelog記事](https://note.com/nullvariant/m/m0d682a2ae34d)
 
