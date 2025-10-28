@@ -7,7 +7,7 @@ NULLVARIANT OS の開発・運用を支援する自動化スクリプト集で�
 ## 📋 スクリプト一覧
 
 ### 1. build.py
-**用途**: AGENT.ja.md の英訳 & YAML抽出
+**用途**: content/ja/AGENT.md の英訳 & YAML抽出
 
 **機能**:
 ### 処理内容
@@ -34,7 +34,7 @@ make gen
 ---
 
 ### 2. gen_toc.py
-**用途**: AGENT.ja.md の目次自動生成
+**用途**: content/ja/AGENT.md の目次自動生成
 
 **機能**:
 - マークダウンの見出し（`##`, `###`）を解析
@@ -66,12 +66,14 @@ python scripts/gen_toc.py content/ja/AGENT.md
 **用途**: note記事の自動生成
 
 **機能**:
-1. `AGENT.ja.md` からアンカータグ `<a id="..."></a>` を除去
+1. `content/ja/AGENT.md` からアンカータグ `<a id="..."></a>` を除去
 2. 目次セクション `## 目次 (Table of Contents)` を除去
 3. 相対リンクを GitHub 絶対URLに変換:
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
    - `content/ja/EmotionMood_Dictionary.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
    - `EmotionMood_Dictionary.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
+
+```
 
 **実行方法**:
 ```bash
@@ -222,7 +224,7 @@ export ANTHROPIC_API_KEY=sk-...
 **A**: 以下を確認:
 1. `i18n/glossary.yml` に用語が登録されているか
 2. 翻訳プロンプト (`prompts/01_en_translate.txt`) が最新か
-3. 原文（AGENT.ja.md）の構造が複雑すぎないか
+3. 原文（content/ja/AGENT.md）の構造が複雑すぎないか
 
 ### Q3: note記事のリンクが変換されない
 **A**: `prepare_note_article.py` の変換パターンを確認:

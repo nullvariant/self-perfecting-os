@@ -28,7 +28,7 @@
 ```
 1. GitHub リンク（最新版への誘導）
 2. 当該バージョンの Changelog
-3. AGENT.ja.md 本文全文
+3. content/ja/AGENT.md 本文全文
 4. 関連リンク
 5. フッターに GitHub リンク再掲
 ```
@@ -77,13 +77,13 @@ python scripts/prepare_note_article.py --version 4.2
 ```
 
 **スクリプトの処理内容:**
-1. `AGENT.ja.md` を読み込み
+1. `content/ja/AGENT.md` を読み込み
 2. アンカータグ `<a id="..."></a>` とTOCを削除
 3. 相対リンクを GitHub 絶対URLに変換
    - `../CHANGELOG.md` → `https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md`
-   - `EmotionMood_Dictionary.ja.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
-4. バージョン番号を `AGENT.ja.md` から自動検出（`--version` で上書き可能）
-5. `changelogs/note-archives/vX.X-note-complete.md` を出力（`--draft` / `--output` でパス指定可。ドラフト未作成時はAGENT本文のみを出力）
+   - `EmotionMood_Dictionary.md` → `https://github.com/.../content/ja/EmotionMood_Dictionary.md`
+4. バージョン番号を `content/ja/AGENT.md` から自動検出（`--version` で上書き可能）
+5. `changelogs/note-archives/vX.X.X-note-complete.md` を出力（`--draft` / `--output` でパス指定可。ドラフト未作成時はAGENT本文のみを出力）
 
 **確認:**
 ```bash
@@ -165,7 +165,7 @@ changelogs/note-archives/
 
 ```markdown
 ### Related Links
-- [AGENT.ja.md v4.1](content/ja/AGENT.md)
+- [content/ja/AGENT.md v4.1](content/ja/AGENT.md)
 - [感情辞書 v1.0](content/ja/EmotionMood_Dictionary.md)
 - [note Magazine: AI向けChangelog](https://note.com/nullvariant/m/m0d682a2ae34d)
 - [note記事 v4.1](https://note.com/nullvariant/n/n2a9a5fbf6e57)  # ← 追加
@@ -183,7 +183,7 @@ git push origin main
 ## note記事テンプレート
 
 ```markdown
-# [AGENT.ja.md] {VERSION} {TITLE}
+# [content/ja/AGENT.md] {VERSION} {TITLE}
 
 > 🔗 **最新版は GitHub で管理しています**  
 > {GITHUB_REPO_URL}  
@@ -197,7 +197,7 @@ git push origin main
 
 ---
 
-## 📖 AGENT.ja.md 本文
+## 📖 content/ja/AGENT.md 本文
 
 {AGENT_CONTENT}
 
@@ -221,7 +221,10 @@ git push origin main
 ### テンプレート使用例（v4.1の場合）
 
 ```markdown
-# [AGENT.ja.md] v4.1 感情辞書統合アップデート
+### テンプレート使用例（v4.1の場合）
+
+```markdown
+# [content/ja/AGENT.md] v4.1 感情辞書統合アップデート
 
 > 🔗 **最新版は GitHub で管理しています**  
 > https://github.com/nullvariant/nullvariant  
@@ -242,13 +245,15 @@ git push origin main
 
 ---
 
-## 📖 AGENT.ja.md 本文
+## 📖 content/ja/AGENT.md 本文
 
-（AGENT.ja.md の全文を貼り付け）
+（content/ja/AGENT.md の全文を貼り付け）
 
 ---
 
 ## 🔗 関連リンク
+
+```
 
 - **GitHub リポジトリ（最新版）**: https://github.com/nullvariant/nullvariant
 - **Changelog 全体**: https://github.com/nullvariant/nullvariant/blob/main/CHANGELOG.md

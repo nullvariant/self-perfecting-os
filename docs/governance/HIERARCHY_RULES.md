@@ -47,8 +47,10 @@ nullvariant/
 │       ├── deprecated/         # 非推奨ドキュメント
 │       └── completed/          # 完了した一時文書
 ├── content/                     # 🏆 Tier 0: 一次情報
-│   ├── AGENT.ja.md
-│   └── EmotionMood_Dictionary.ja.md
+│   ├── ja/
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   └── en/ (自動生成)
 ├── CHANGELOG.md                 # 📊 Tier 1: 履歴
 └── docs/project-status.ja.md          # 📝 Tier 4: 一時文書
 ```

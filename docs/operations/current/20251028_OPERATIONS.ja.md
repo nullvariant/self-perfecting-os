@@ -4,7 +4,7 @@
 > 最新のプロジェクト状況は **[project-status.ja.md](project-status.ja.md)** を参照してください。  
 > 実装コード（`scripts/`）との不整合がある場合、実装が正である可能性が高いです。
 
-本書は `AGENT.ja.md` / `AGENT.md` / `spec/` / `scripts/` 間の生成・検証フローと、今回追加された構造 (`persona_legend`, TOC スクリプト等) の役割を **実務運用者視点** で整理したものです。
+本書は `content/ja/AGENT.md` / `AGENT.md` (ルート) / `spec/` / `scripts/` 間の生成・検証フローと、今回追加された構造 (`persona_legend`, TOC スクリプト等) の役割を **実務運用者視点** で整理したものです。
 
 ---
 ## 0. 全体パイプライン概要
@@ -51,7 +51,7 @@
 - バリデーション：`make val` 実行時に Schema + Glossary チェック。
 
 ### 1.5 `scripts/gen_toc.py`
-- `AGENT.ja.md` の見出し (`##` / `###`) と既存 `<a id="...">` アンカーを走査し TOC ブロックを再生成。
+- `content/ja/AGENT.md` の見出し (`##` / `###`) と既存 `<a id="...">` アンカーを走査し TOC ブロックを再生成。
 - 既存アンカーを尊重し、無い場合はスラグ生成。
 - 失敗時復旧容易なように1ファイル in-place 編集のみ。
 
@@ -162,7 +162,7 @@ python scripts/gen_toc.py
 ## 8. Changelog 運用フロー
 
 ### 8.1 アップデート時の手順
-AGENT.ja.md を更新する際は、以下の手順で Changelog も同時に管理します。
+content/ja/AGENT.md を更新する際は、以下の手順で Changelog も同時に管理します。
 
 ```bash
 # 1. content/ja/AGENT.md を編集

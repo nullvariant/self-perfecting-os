@@ -171,8 +171,10 @@ git commit -m "docs: Update workflow for text asset management"
 ```
 nullvariant/
 ├── content/              # 公開版コンテンツ
-│   ├── AGENT.ja.md
-│   └── EmotionMood_Dictionary.ja.md
+│   ├── ja/
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   └── en/ (自動生成)
 ├── conversations/        # AI対話ログ
 │   ├── README.md
 │   └── 2025-10-13_agent-meta-dialogue.md
@@ -307,8 +309,8 @@ ObsidianVault/
 ## 関連ドキュメント
 
 - [conversations/README.md](../conversations/README.md) - 対話ログの管理方針
-- [AGENT.ja.md](../content/ja/AGENT.md) - 本体仕様書
-- [changelogs/README.md](../changelogs/README.md) - バージョン履歴
+- [content/ja/AGENT.md](../../../content/ja/AGENT.md) - 本体仕様書
+- [changelogs/README.md](../../../changelogs/README.md) - バージョン履歴
 
 ---
 
