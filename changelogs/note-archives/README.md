@@ -12,15 +12,27 @@
 
 ---
 
+## 📋 ファイル命名規則
+
+**形式**: `v{MAJOR}.{MINOR}.{PATCH}-note[-complete].md`
+
+- **`-complete`なし**: note投稿済みの公開版アーカイブ（例: `v4.1.0-note.md`）
+- **`-complete`あり**: note投稿前の作業ファイル（例: `v4.1.1-note-complete.md`）
+
+**SemVer準拠**: 必ず3桁のバージョン番号を使用（例: `v4.1.0` not `v4.1`）
+
+---
+
 ## 📋 ファイル一覧（現在）
 
 | ファイル | 公開日 | バージョン | note URL |
 |---------|-------|-----------|----------|
-| v2.0-note.md | (TBD) | 2.0.0 | - |
-| v3.0-note.md | (TBD) | 3.0.0 | - |
-| v3.1-note.md | (TBD) | 3.1.0 | - |
-| v4.0-note.md | (TBD) | 4.0.0 | - |
-| v4.1-note.md | 2025-10-13 | 4.1.0 | [note.com/nullvariant/n/n2a9a5fbf6e57](https://note.com/nullvariant/n/n2a9a5fbf6e57) |
+| v2.0.0-note.md | (TBD) | 2.0.0 | - |
+| v3.0.0-note.md | (TBD) | 3.0.0 | - |
+| v3.1.0-note.md | (TBD) | 3.1.0 | - |
+| v4.0.0-note.md | (TBD) | 4.0.0 | - |
+| v4.1.0-note.md | 2025-10-13 | 4.1.0 | [note.com/nullvariant/n/n2a9a5fbf6e57](https://note.com/nullvariant/n/n2a9a5fbf6e57) |
+| v4.1.1-note-complete.md | - | 4.1.1 | **未投稿**（作業中） |
 
 ---
 
@@ -30,19 +42,18 @@
 
 1. **note記事生成**:
    ```bash
-   python scripts/prepare_note_article.py
-   # → changelogs/note-archives/vX.X-note-complete.md 生成
+   python scripts/prepare_note_article.py --version X.X.X
+   # → changelogs/note-archives/vX.X.X-note-complete.md 生成
    ```
 
 2. **noteに投稿**:
-   - `vX.X-note-complete.md` を全文コピー
+   - `vX.X.X-note-complete.md` を全文コピー
    - noteにペースト・タイトル設定・公開
 
 3. **公開版保存**:
-   ```bash
-   cp changelogs/note-archives/vX.X-note-complete.md changelogs/note-archives/vX.X-note.md
-   rm changelogs/note-archives/vX.X-note-complete.md
-   ```
+   - noteから投稿済み本文をコピー
+   - `vX.X.X-note.md` として保存（手動整形）
+   - `-complete` ファイルは削除してもOK（またはアーカイブ保持）
 
 4. **CHANGELOG.md更新**:
    - note URLを追記
