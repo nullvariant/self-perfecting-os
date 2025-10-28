@@ -63,7 +63,7 @@ grep -r "旧パス" . --include="*.md" --include="*.py"
 
 **自動修正でOK（確認のみ）**
 
-- [ ] `changelogs/*.md` - note記事アーカイブ
+- [ ] [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - note記事原稿（ADR-0007により移行）
 - [ ] `i18n/*.yml` - 翻訳辞書
 - [ ] `spec/*.yaml` - 自動生成ファイル（CI稼働後は不要）
 
@@ -100,7 +100,7 @@ git push origin feature/your-structural-change
 
 ### パターン1: ファイルパス変更
 
-**例**: `content/ja/AGENT.md` → `content/ja/AGENT.md`
+**例**: `content/AGENT.ja.md` → `content/ja/AGENT.md`
 
 **チェック対象**:
 - [ ] `.github/copilot-instructions.md` - サンプルコード内のパス
@@ -162,10 +162,11 @@ python scripts/check_path_references.py --fix
 - 多言語移行（`content/AGENT.ja.md` → `content/ja/AGENT.md`）
 - API変更（`OPENAI_API_KEY` → `ANTHROPIC_API_KEY`）
 - 廃止ファイル（`MIGRATION_STATUS.md` → `docs/project-status.ja.md`）
+- changelogs移行（`changelogs/` → `../nullvariant-writings/changelogs/`、ADR-0007）
 
 **除外対象**:
 - `docs/decisions/` - ADRは履歴として古いパスを保持
-- `changelogs/note-archives/` - 公開済み記事は履歴として保持
+- `nullvariant-writings/changelogs/note-archives/` - 公開済み記事は履歴として保持
 - `.github/workflows/` - CI設定は手動更新
 
 **パターン辞書の更新**:

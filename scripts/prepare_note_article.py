@@ -129,11 +129,11 @@ def main():
     )
     parser.add_argument(
         "--draft",
-        help="note草稿ファイルパス。省略時は changelogs/note-archives/v{version}-note-draft.md"
+        help="note草稿ファイルパス。省略時は ../nullvariant-writings/changelogs/note-archives/v{version}-note-draft.md"
     )
     parser.add_argument(
         "--output",
-        help="出力ファイルパス。省略時は changelogs/note-archives/v{version}-note-complete.md"
+        help="出力ファイルパス。省略時は ../nullvariant-writings/changelogs/note-archives/v{version}-note-complete.md"
     )
     args = parser.parse_args()
 
@@ -149,11 +149,14 @@ def main():
         print("❌ Version could not be detected. Provide --version explicitly.", file=sys.stderr)
         sys.exit(1)
 
+    # 出力先はnullvariant-writingsリポジトリ（ADR-0007による移行）
+    writings_root = project_root.parent / 'nullvariant-writings'
+    
     draft_file = Path(args.draft) if args.draft else (
-        project_root / 'changelogs' / 'note-archives' / f'v{version}-note-draft.md'
+        writings_root / 'changelogs' / 'note-archives' / f'v{version}-note-draft.md'
     )
     output_file = Path(args.output) if args.output else (
-        project_root / 'changelogs' / 'note-archives' / f'v{version}-note-complete.md'
+        writings_root / 'changelogs' / 'note-archives' / f'v{version}-note-complete.md'
     )
 
     # アンカーと目次を除去

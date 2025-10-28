@@ -21,8 +21,11 @@
 - ✅ **ドキュメント**（`docs/`）
   - マニュアル・解説文書
   
-- ✅ **バージョン履歴**（`changelogs/`）
-  - 思考記録・note-archives
+- ✅ **バージョン履歴**（`CHANGELOG.md`）
+  - 技術的変更履歴（Keep a Changelog形式）
+  
+- ✅ **note記事原稿**（[nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs)）
+  - 人間向け物語版・思考記録（ADR-0007により移行）
 
 ### Obsidian管理対象
 
@@ -105,7 +108,7 @@
    - `conversations/` : AI対話ログ
    - `content/` : 完成版コンテンツ
    - `docs/` : ドキュメント・マニュアル
-   - `changelogs/note-archives/` : 思考記録
+   - [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) : note記事原稿・思考記録（ADR-0007）
 
 **成果物:**
 - 公開可能な品質のMarkdownファイル
@@ -181,9 +184,12 @@ nullvariant/
 ├── docs/                 # ドキュメント
 │   ├── WORKFLOW_TEXT_ASSETS.ja.md  ← この文書
 │   └── ...
-├── changelogs/           # バージョン履歴
-│   └── note-archives/    # 思考記録
+├── CHANGELOG.md          # 技術的変更履歴
 └── scripts/              # スクリプト
+
+nullvariant-writings/     # note記事原稿（別リポジトリ、ADR-0007）
+└── changelogs/           # note記事・思考記録
+    └── note-archives/
 ```
 
 ### Obsidian（ローカル）
@@ -239,10 +245,10 @@ ObsidianVault/
 | AI対話ログ | `conversations/` |
 | 完成版コンテンツ | `content/` |
 | ドキュメント・マニュアル | `docs/` |
-| 思考記録・note記事草案 | `changelogs/note-archives/` |
+| 思考記録・note記事原稿 | [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs)（ADR-0007） |
 | スクリプト・ツール | `scripts/` |
 
-迷った場合は、`conversations/` または `changelogs/note-archives/` に配置してください。
+迷った場合は、`conversations/` または nullvariant-writings リポジトリに配置してください。
 
 ---
 
@@ -310,9 +316,10 @@ ObsidianVault/
 
 - [conversations/README.md](../conversations/README.md) - 対話ログの管理方針
 - [content/ja/AGENT.md](../../../content/ja/AGENT.md) - 本体仕様書
-- [changelogs/README.md](../../../changelogs/README.md) - バージョン履歴
+- [CHANGELOG.md](../../../CHANGELOG.md) - バージョン履歴（技術的差分）
+- [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - note記事原稿（ADR-0007）
 
 ---
 
-**最終更新:** 2025年10月13日  
+**最終更新:** 2025年10月28日  
 **次回評価予定:** 2026年1月13日

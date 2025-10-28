@@ -1,6 +1,6 @@
 # Scripts Directory
 
-NULLVARIANT OS の開発・運用を支援する自動化スクリプト集です。
+Self Perfecting OS の開発・運用を支援する自動化スクリプト集です。
 
 ---
 
@@ -86,10 +86,12 @@ python scripts/prepare_note_article.py --version 4.2
 ### 対象ファイル
 
 - `content/ja/AGENT.md`（メインドキュメント）
-- `changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動検出、`--draft`で上書き可能）
+- `../nullvariant-writings/changelogs/note-archives/vX.X-note-draft.md`（存在すれば自動検出、`--draft`で上書き可能）
 
 **出力**:
-- `changelogs/note-archives/vX.X-note-complete.md`（バージョンは自動推定。`--output`で上書き可能）
+- `../nullvariant-writings/changelogs/note-archives/vX.X-note-complete.md`（バージョンは自動推定。`--output`で上書き可能）
+
+> **Note**: ADR-0007により、note記事原稿は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) リポジトリで管理されています。スクリプトは nullvariant に残存しますが、出力先は nullvariant-writings です。
 
 **リンク変換パターン**:
 
@@ -184,11 +186,11 @@ make val  # review.py実行
 # 1. note記事生成
 python scripts/prepare_note_article.py
 
-# 2. 生成ファイル確認
-cat changelogs/note-archives/v4.1-note-complete.md
+# 2. 生成ファイル確認（出力先: nullvariant-writings）
+cat ../nullvariant-writings/changelogs/note-archives/v4.1-note-complete.md
 
 # 3. リンク変換確認
-grep "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
+grep "github.com/nullvariant" ../nullvariant-writings/changelogs/note-archives/v4.1-note-complete.md
 
 # 4. noteに投稿（手動）
 # - v4.1-note-complete.md をコピー＆ペースト
@@ -196,8 +198,9 @@ grep "github.com/nullvariant" changelogs/note-archives/v4.1-note-complete.md
 # - 公開
 
 # 5. 公開版保存
-cp changelogs/note-archives/v4.1-note-complete.md changelogs/note-archives/v4.1-note.md
-rm changelogs/note-archives/v4.1-note-complete.md
+cd ../nullvariant-writings/changelogs/note-archives
+cp v4.1-note-complete.md v4.1-note.md
+rm v4.1-note-complete.md
 ```
 
 ---

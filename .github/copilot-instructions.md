@@ -49,9 +49,12 @@ python scripts/record_decision.py \
 - `docs/decisions/` - **ADR（全ての重要な決定を記録）**
 - `content/ja/AGENT.md` - **日本語一次仕様書（最重要）**
 - `content/ja/EmotionMood_Dictionary.md` - 感情辞書
-- `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式）
-- `changelogs/` - note記事アーカイブ
+- `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式・技術的差分）
 - `docs/` - ドキュメント類（階層ルールに従う）
+
+**📝 note記事関連:**
+- [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - note記事原稿管理（ADR-0007により移行）
+- `scripts/prepare_note_article.py` - note記事生成スクリプト（このリポジトリに残存、出力先は nullvariant-writings）
 
 **❌ 直接編集禁止:**
 - `AGENT.md` - CI自動生成（現在未稼働、手動更新も避ける）
@@ -90,12 +93,12 @@ nullvariant/
 │   ├── ja/                           # 🇯🇵 日本語（編集対象）
 │   └── en/                           # 🇬🇧 英語（CI自動生成）
 ├── AGENT.md                          # ⚠️ 自動生成（編集禁止）
-├── CHANGELOG.md                      # ✅ バージョン履歴
-├── changelogs/                       # ✅ note記事アーカイブ
+├── CHANGELOG.md                      # ✅ バージョン履歴（技術的差分）
 ├── scripts/                          # Python自動化スクリプト
 │   ├── check_path_references.py      # パス参照チェック・自動修正
 │   ├── validate_docs.py              # ドキュメント整合性検証
-│   └── record_decision.py            # ADR作成支援
+│   ├── record_decision.py            # ADR作成支援
+│   └── prepare_note_article.py       # note記事生成（出力先: nullvariant-writings）
 ├── spec/                             # ⚠️ 自動生成（編集禁止）
 └── i18n/                             # 翻訳用語集・スタイルガイド
 ```

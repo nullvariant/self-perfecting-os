@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## [Unreleased]
+
+### Removed
+- `changelogs/` ディレクトリを nullvariant-writings リポジトリへ移行（ADR-0007参照）
+  - note記事の人間向け物語版は [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) で管理
+  - 技術的変更履歴は本CHANGELOG.mdで継続管理
+  - SEO最適化のため、技術記録と人間向け物語を完全分離（Proposal D）
+
 ### Planned
 - 今後の機能追加や改善予定をここに記載
 

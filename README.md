@@ -34,14 +34,16 @@
   - English: [`content/en/EmotionMood_Dictionary.md`](content/en/EmotionMood_Dictionary.md) (⚠️ CI未稼働)
 
 ### バージョン履歴
-- **Changelog**: [`CHANGELOG.md`](CHANGELOG.md) - Keep a Changelog形式
-- **note記事**: [AI向けChangelog Magazine](https://note.com/nullvariant/m/m0d682a2ae34d)
+- **Changelog**: [`CHANGELOG.md`](CHANGELOG.md) - Keep a Changelog形式（技術的差分）
+- **note記事**: [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - 人間向け物語版
+- **公開記事**: [AI向けChangelog Magazine](https://note.com/nullvariant/m/m0d682a2ae34d) - note.com
 
 ---
 
 ## 📂 リポジトリ構成
 
-> **⚠️ メンテナンス状況**: `content/`と`changelogs/`, `docs/decisions/`は積極的に更新中。  
+> **⚠️ メンテナンス状況**: `content/` と `docs/decisions/` は積極的に更新中。  
+> note記事関連は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings) リポジトリへ移行しました（ADR-0007）。  
 > 詳細は **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照。
 
 ```
@@ -85,15 +87,6 @@ nullvariant/
 │   │   └── README.md
 │   ├── project-status.ja.md     # 📊 プロジェクト状況・メンテナンス優先度
 │   └── README.md                # docs/ ディレクトリの構造説明
-│
-├── changelogs/                    # ✅ バージョンごとに更新
-│   ├── note-archives/            # note公開版アーカイブ
-│   │   ├── v2.0-note.md
-│   │   ├── v3.0-note.md
-│   │   ├── v3.1-note.md
-│   │   ├── v4.0-note.md
-│   │   └── v4.1-note.md
-│   └── draft-*.md               # note記事下書き
 │
 ├── scripts/                       # 🛠️ 自動化スクリプト
 │   ├── build.py                  # 多言語翻訳＆YAML生成
@@ -166,7 +159,8 @@ git push origin main
 python scripts/prepare_note_article.py
 
 # 5. note公開
-# 詳細は changelogs/README.md 参照
+# 詳細は docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md 参照
+# note記事原稿は nullvariant-writings リポジトリで管理（ADR-0007）
 ```
 
 ---
@@ -199,7 +193,7 @@ python scripts/prepare_note_article.py
 |------------|------|------|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
 | [docs/operations/](docs/operations/) | 運用手順書 | 🔵 整備中 |
-| [changelogs/README.md](changelogs/README.md) | note記事管理 | 🟢 比較的最新 |
+| [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) | note記事原稿管理（ADR-0007により移行） | 🟢 比較的最新 |
 
 ---
 
