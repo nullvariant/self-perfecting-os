@@ -1,4 +1,4 @@
-import os, json, yaml
+import os, json, yaml, time
 from pathlib import Path
 from jsonschema import Draft202012Validator
 from anthropic import Anthropic
@@ -14,30 +14,83 @@ GLOSS = ROOT / "i18n" / "glossary.yml"
 PROMPTS = ROOT / "scripts" / "prompts" / "90_self_review.txt"
 BACKPROMPT = ROOT / "scripts" / "prompts" / "99_backtranslate.txt"
 
+# Rate limit: 8,000 output tokens/min
+LINES_PER_CHUNK = 100  # 行数ベースの分割
+MAX_OUTPUT_TOKENS = 5000  # 出力トークン制限
+RATE_LIMIT_WAIT = 70  # 60秒 + バッファ
+
 def load(p: Path): return p.read_text(encoding="utf-8")
 
+def split_text_by_lines(text: str, lines_per_chunk: int = LINES_PER_CHUNK):
+    """テキストを行数ベースで分割（トークン推定が不正確なため）"""
+    lines = text.split('\n')
+    chunks = []
+
+    for i in range(0, len(lines), lines_per_chunk):
+        chunk_lines = lines[i:i + lines_per_chunk]
+        chunks.append('\n'.join(chunk_lines))
+
+    return chunks
+
 def backtranslate(en_md: str):
+    """英語を日本語に逆翻訳（チャンク分割）"""
     client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     system = load(BACKPROMPT)
-    rsp = client.messages.create(
-        model=MODEL_DEFAULT,
-        max_tokens=64000,  # Anthropic Console 確認: max 64,000
-        temperature=0.0,
-        system=system,
-        messages=[{"role":"user","content":en_md}]
-    )
-    return rsp.content[0].text
+
+    # ドキュメントを分割
+    chunks = split_text_by_lines(en_md, LINES_PER_CHUNK)
+    print(f"[INFO] Backtranslating {len(chunks)} chunks...")
+
+    translated_chunks = []
+    for i, chunk in enumerate(chunks):
+        lines = chunk.count('\n') + 1
+        print(f"[INFO] Backtranslating chunk {i+1}/{len(chunks)} (~{lines} lines)...")
+
+        rsp = client.messages.create(
+            model=MODEL_DEFAULT,
+            max_tokens=MAX_OUTPUT_TOKENS,
+            temperature=0.0,
+            system=system,
+            messages=[{"role":"user","content":chunk}],
+            timeout=300.0
+        )
+        translated_chunks.append(rsp.content[0].text)
+
+        if i < len(chunks) - 1:
+            print(f"[INFO] Waiting {RATE_LIMIT_WAIT}s for rate limit...")
+            time.sleep(RATE_LIMIT_WAIT)
+
+    return '\n\n'.join(translated_chunks)
 
 def llm_review(jp: str, en: str, spec: str):
+    """LLMによるレビュー（入力を要約してレート制限を回避）"""
     client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     system = load(PROMPTS)
-    prompt = f"# JA\n{jp}\n\n# EN\n{en}\n\n# YAML\n{spec}"
+
+    # 入力が大きすぎる場合は、サンプリングして確認
+    jp_lines = jp.split('\n')
+    en_lines = en.split('\n')
+
+    # 冒頭200行 + 末尾200行をサンプリング
+    if len(jp_lines) > 500:
+        jp_sample = '\n'.join(jp_lines[:200] + ['... (中略) ...'] + jp_lines[-200:])
+    else:
+        jp_sample = jp
+
+    if len(en_lines) > 500:
+        en_sample = '\n'.join(en_lines[:200] + ['... (omitted) ...'] + en_lines[-200:])
+    else:
+        en_sample = en
+
+    prompt = f"# JA (sample)\n{jp_sample}\n\n# EN (sample)\n{en_sample}\n\n# YAML\n{spec}"
+
     rsp = client.messages.create(
         model=MODEL_DEFAULT,
-        max_tokens=64000,  # Anthropic Console 確認: max 64,000
+        max_tokens=3000,  # レビューは短いので3000で十分
         temperature=0.0,
         system=system,
-        messages=[{"role":"user","content":prompt}]
+        messages=[{"role":"user","content":prompt}],
+        timeout=180.0
     )
     return rsp.content[0].text
 
