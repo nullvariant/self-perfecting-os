@@ -1,53 +1,43 @@
-# Architecture Decision Records (ADR)
+# Decisions ディレクトリ
 
-このディレクトリには、Null;Variant プロジェクトにおける**全ての重要な決定**を時系列で記録します。
-
----
-
-## 📋 ADRとは？
-
-**Architecture Decision Records (ADR)** は、ソフトウェア開発における重要な決定を記録するための軽量なドキュメント形式です。
-
-### なぜ必要なのか？
-
-- ✅ **決定の理由を後から追跡できる**
-- ✅ **AI環境（Claude Code, GitHub Copilot等）を跨いでも文脈が途切れない**
-- ✅ **新しい貢献者（AI/人間）が過去の経緯を理解できる**
-- ✅ **ドキュメント間の矛盾を防ぐ**
+**ADR（Architecture Decision Records）管理**
 
 ---
 
-## 📂 ADR一覧
+## 🎯 このディレクトリについて
 
-| ADR番号 | タイトル | 日付 | Status |
-|---------|---------|------|--------|
-| [0000](0000-adr-template.md) | テンプレート | - | Template |
-| [0001](0001-ci-cd-pause.md) | Claude API レート制限対応によるCI/CD一時停止 | 2025-10-28 | Accepted |
+重要な技術的決定を記録するためのディレクトリです。全ての重要な決定は必ずADRとして記録します。
 
 ---
 
-## 🛠️ ADRの作成方法
+## � 構造
 
-### 方法1: 自動生成（推奨）
-
-```bash
-python scripts/record_decision.py \
-  --title "決定のタイトル" \
-  --context "背景・理由" \
-  --author "GitHub Copilot"  # or "Claude Code", "human"
+```
+decisions/
+├── active/                     # 現在有効な決定
+│   └── 2025/
+│       └── 10/
+│           ├── 20251014_0001_ci-cd-pause_infra.md
+│           ├── 20251027_0002_naming-structure_docs.md
+│           ├── 20251027_0003_lowercase-unification_docs.md
+│           └── 20251028_0004_github-actions_ci.md
+├── deprecated/                 # 非推奨（参考のみ）
+├── superseded/                 # 上書きされた決定
+├── INDEX.md                    # 自動生成索引
+└── README.md                   # このファイル
 ```
 
-### 方法2: 手動作成
+---
 
-1. [`0000-adr-template.md`](0000-adr-template.md) をコピー
-2. ファイル名を `ADR-XXXX-タイトル.md` に変更（XXXX = 連番）
-3. 各セクションを埋める
-4. Status を `Draft` → `Accepted` に変更
-5. このディレクトリに配置
+## 📋 ADR一覧
+
+詳細は [`INDEX.md`](INDEX.md) を参照してください（自動生成）。
 
 ---
 
-## 📝 ADRが必要な場合
+## 📝 ADRとは
+
+### Architecture Decision Records
 
 以下のいずれかに該当する場合、**必ずADRを作成**してください：
 
@@ -58,27 +48,95 @@ python scripts/record_decision.py \
 - ✅ 重要な依存関係の追加・削除
 - ✅ プロセス・手順の変更
 - ✅ 破壊的変更 (Breaking Changes)
+- **定義**: 重要な技術的決定とその理由を記録したドキュメント
+- **目的**: 「なぜこの決定をしたか」を後から追跡可能にする
+- **形式**: 標準テンプレートに従う
+
+---
+
+## ✅ ADRが必要な場合
+
+以下のいずれかに該当する場合、**必ずADRを作成**:
+
+- ✅ API変更・移行
+- ✅ アーキテクチャ変更
+- ✅ CI/CDパイプラインの停止・変更
+- ✅ ドキュメント構造の大幅な変更
+- ✅ 重要な依存関係の追加・削除
+- ✅ プロセス・手順の変更
+- ✅ 破壊的変更 (Breaking Changes)
 - ✅ セキュリティ関連の決定
 - ✅ パフォーマンス最適化の方針決定
 
-詳細は [docs/governance/AI_GUIDELINES.md](../GOVERNANCE/AI_GUIDELINES.md) を参照。
+詳細は [`docs/governance/AI_GUIDELINES.md`](../governance/AI_GUIDELINES.md) を参照。
+
+---
+
+## � ADRの作成方法
+
+### 1. スクリプト実行
+
+```bash
+python scripts/record_decision.py \
+  --title "決定のタイトル" \
+  --context "背景・理由" \
+  --author "human"  # or "GitHub Copilot", "Claude Code"
+```
+
+### 2. 生成されたファイルを編集
+
+テンプレートに従って編集してください。
+
+### 3. INDEX.md更新
+
+```bash
+python scripts/generate_index.py
+```
+
+---
+
+## 📋 ADRのテンプレート
+
+[`decisions/0000_template.md`](0000_template.md) を参照してください。
 
 ---
 
 ## 🔄 ADRのライフサイクル
 
-```
-Draft → Accepted → (Deprecated or Superseded)
+### 1. Draft（草案）
+
+```markdown
+## Status
+- **状態**: Draft
 ```
 
-### Status の意味
+### 2. Accepted（承認）
 
-| Status | 説明 | 次のアクション |
-|--------|------|--------------|
-| **Draft** | 提案段階。レビュー待ち。 | human によるレビュー・承認 |
-| **Accepted** | 承認済み。実装可能。 | 実装・運用 |
-| **Deprecated** | 非推奨。新しいADRで置き換え推奨。 | 新ADR作成 |
-| **Superseded** | 別のADRに置き換えられた。 | Related に新ADR番号を記載 |
+```markdown
+## Status
+- **状態**: Accepted
+```
+
+### 3. Deprecated（非推奨）
+
+```bash
+# deprecated/ に移動
+mv docs/decisions/active/2025/10/20251028_0005_*.md \
+   docs/decisions/deprecated/
+```
+
+### 4. Superseded（上書き）
+
+```markdown
+## Status
+- **状態**: Superseded by ADR-0007
+```
+
+```bash
+# superseded/ に移動
+mv docs/decisions/active/2025/10/20251028_0005_*.md \
+   docs/decisions/superseded/
+```
 
 ---
 
@@ -88,63 +146,21 @@ Draft → Accepted → (Deprecated or Superseded)
 
 1. **ADRの削除**
    - 古くなった ADR は削除せず、Status を `Deprecated` に変更
-   - 新しい ADR で上書きする場合は、Related に旧ADR番号を記載
 
 2. **ADR番号の欠番**
    - ADR番号は連番（0001, 0002, 0003...）
-   - 欠番があると `scripts/validate_docs.py` がエラー
 
 3. **勝手な Status 変更**
    - `Draft` → `Accepted` は human のみ
-   - `Accepted` → `Deprecated` は新ADR作成時のみ
 
 ---
 
 ## 📚 関連ドキュメント
 
-- [docs/governance/AI_GUIDELINES.md](../GOVERNANCE/AI_GUIDELINES.md) - AI向けADR作成ガイド
-- [docs/governance/HIERARCHY_RULES.md](../GOVERNANCE/HIERARCHY_RULES.md) - ドキュメント階層ルール
-- [docs/governance/DOCUMENTATION_STRUCTURE.yml](../GOVERNANCE/DOCUMENTATION_STRUCTURE.yml) - 機械可読形式の定義
-- [Architecture Decision Records (ADR)](https://adr.github.io/) - ADR公式サイト
+- [`docs/governance/AI_GUIDELINES.md`](../governance/AI_GUIDELINES.md)
+- [`docs/governance/HIERARCHY_RULES.md`](../governance/HIERARCHY_RULES.md)
+- [ADR GitHub](https://adr.github.io/)
 
 ---
 
-## 🔍 検索のヒント
-
-### タイトルで検索
-
-```bash
-ls -1 docs/decisions/ | grep "api"
-# ADR-0001-ci-cd-pause.md
-```
-
-### 内容で検索
-
-```bash
-grep -r "Claude API" docs/decisions/
-# docs/decisions/ADR-0001-ci-cd-pause.md:Claude Sonnet 4.5 の出力レート制限が...
-```
-
-### Status で検索
-
-```bash
-grep -l "Status.*Accepted" docs/decisions/*.md
-# docs/decisions/ADR-0001-ci-cd-pause.md
-```
-
----
-
-## 🤖 AI向けの注意
-
-**このディレクトリは Tier 0: Single Source of Truth (SSOT) です。**
-
-- 重要な決定は**必ず**ここに記録してください
-- 迷ったら ADR を作成してください
-- 人間に確認を求めることを躊躇しないでください
-
-詳細は [docs/governance/AI_GUIDELINES.md](../GOVERNANCE/AI_GUIDELINES.md) を参照。
-
----
-
-**最終更新**: 2025-10-28  
-**次回レビュー**: 2025-11-28
+**最終更新**: 2025年10月28日
