@@ -50,7 +50,7 @@ nullvariant/
 │   └── archive/                # 🆕 古いドキュメント退避先
 │       └── deprecated/
 ├── content/                     # 変更なし（一次情報）
-│   ├── AGENT.ja.md
+│   ├── content/ja/AGENT.md
 │   └── EmotionMood_Dictionary.ja.md
 ├── changelogs/                  # 変更なし
 └── scripts/                     # 🆕 ADR生成スクリプト追加

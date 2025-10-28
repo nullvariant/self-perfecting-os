@@ -30,7 +30,7 @@
 ### 1.1 プロジェクトの本質
 
 このリポジトリ（`nullvariant`）は：
-- **AI向け自己紹介**: AGENT.ja.mdを中心とした仕様書
+- **AI向け自己紹介**: content/ja/AGENT.mdを中心とした仕様書
 - **「自己紹介芸人」のアーカイブ**: テキストによる自己表現全般
 - **「遺書代わり」**: 永続的な記録と将来のvariant.fit構築
 
@@ -51,7 +51,7 @@
 現状の資産配置:
 - note.com: 公開記事（AIに見つかることが重要）
 - Obsidian: プライベート全資産（ローカル・Dropbox sync）
-- GitHub: AGENT.ja.md等の仕様書のみ
+- GitHub: content/ja/AGENT.md等の仕様書のみ
 → note記事原稿がどこにも管理されていない
 ```
 
@@ -216,7 +216,7 @@
 ```
 nullvariant/
 ├── content/
-│   ├── AGENT.ja.md                # ✅ 公開OK（AI向け仕様書）
+│   ├── content/ja/AGENT.md                # ✅ 公開OK（AI向け仕様書）
 │   └── EmotionMood_Dictionary.ja.md
 ├── docs/                          # ✅ 公開OK（ドキュメント）
 ├── scripts/                       # ✅ 公開OK（スクリプト）
@@ -226,7 +226,7 @@ nullvariant/
 ```
 
 **目的**: 
-- AGENT.ja.md等の「見せるべき」コンテンツ
+- content/ja/AGENT.md等の「見せるべき」コンテンツ
 - オープンソースとして共有できるスクリプト
 - プロジェクトの概要・使い方
 
@@ -666,7 +666,7 @@ python scripts/import_note_articles.py \
 ```
 nullvariant/
 ├── content/
-│   ├── AGENT.ja.md                       # AI向け仕様書（公開OK）
+│   ├── content/ja/AGENT.md                       # AI向け仕様書（公開OK）
 │   └── EmotionMood_Dictionary.ja.md
 ├── docs/
 │   ├── note-workflow-automation.ja.md  # 本PRD

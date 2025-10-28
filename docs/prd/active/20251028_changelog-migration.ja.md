@@ -25,17 +25,17 @@
 ## 1. エグゼクティブサマリー
 
 ### 1.1 目的
-AGENT.ja.md のバージョン履歴を独立したChangelogドキュメントへ分離し、GitHub を真実の情報源（Single Source of Truth）、note を公開用ミラーとする運用体制を確立する。
+content/ja/AGENT.md のバージョン履歴を独立したChangelogドキュメントへ分離し、GitHub を真実の情報源（Single Source of Truth）、note を公開用ミラーとする運用体制を確立する。
 
 ### 1.2 主要な変更点
 - **CHANGELOG.md** を新規作成し、全バージョン履歴を統合管理
-- **AGENT.ja.md** の Version History セクションを簡略化
+- **content/ja/AGENT.md** の Version History セクションを簡略化
 - 既存 note 記事の Changelog 部分を GitHub へ移行
-- note 記事を「CHANGELOG + AGENT.ja.md 本文」構造で継続投稿
+- note 記事を「CHANGELOG + content/ja/AGENT.md 本文」構造で継続投稿
 
 ### 1.3 期待される成果
 - ✅ バージョン履歴の一元管理と可読性向上
-- ✅ AGENT.ja.md 本体のスリム化
+- ✅ content/ja/AGENT.md 本体のスリム化
 - ✅ AI学習データとしての構造化された履歴提供
 - ✅ note 記事との同期運用の明確化
 
@@ -46,9 +46,9 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
 ### 2.1 現状分析
 
 #### 現在の運用
-- **note 記事**: AI向け記事として「Changelog + AGENT.ja.md本文」を1記事として投稿
+- **note 記事**: AI向け記事として「Changelog + content/ja/AGENT.md本文」を1記事として投稿
 - **プラットフォーム特性**: note は AI学習を許可しているため、更新履歴も学習対象
-- **管理課題**: AGENT.ja.md 内に Version History を記述すると文書が膨大化
+- **管理課題**: content/ja/AGENT.md 内に Version History を記述すると文書が膨大化
 
 #### GitHub 管理の必要性
 - バージョン管理システムとの整合性
@@ -57,7 +57,7 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
 - 標準的な OSS プラクティスへの準拠
 
 ### 2.2 課題
-1. **文書肥大化**: AGENT.ja.md に全履歴を含めると可読性が低下
+1. **文書肥大化**: content/ja/AGENT.md に全履歴を含めると可読性が低下
 2. **重複管理**: note と GitHub で異なる形式での管理
 3. **同期コスト**: 手動コピーペーストによる更新漏れリスク
 4. **検索性**: 過去の変更内容を探しにくい
@@ -82,14 +82,14 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
 
 #### In Scope
 - ✅ CHANGELOG.md の作成とフォーマット定義
-- ✅ AGENT.ja.md の Version History セクション簡略化
+- ✅ content/ja/AGENT.md の Version History セクション簡略化
 - ✅ 既存 note 記事からの Changelog 抽出と統合
 - ✅ note 投稿テンプレートの作成
 - ✅ 運用マニュアルの整備
 
 #### Out of Scope
 - ❌ note API を使った自動投稿（Phase 2 以降で検討）
-- ❌ 他ドキュメント（EmotionMood_Dictionary.ja.md 等）への適用
+- ❌ 他ドキュメント（content/ja/EmotionMood_Dictionary.md 等）への適用
 - ❌ 英語版 Changelog の自動翻訳
 
 ---
@@ -104,7 +104,7 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
   - バージョン番号（セマンティックバージョニング準拠）
   - リリース日（YYYY-MM-DD形式）
   - 変更カテゴリ（Added/Enhanced/Fixed/Changed/Deprecated/Removed/Security）
-  - セクション参照（AGENT.ja.md の対象セクション番号）
+  - セクション参照（content/ja/AGENT.md の対象セクション番号）
   - 影響範囲（Impact）
   - 互換性情報（Compatibility）
 
@@ -114,7 +114,7 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
   - 変更の背景や理由
 ```
 
-#### FR-2: AGENT.ja.md の Version History
+#### FR-2: content/ja/AGENT.md の Version History
 ```markdown
 要件:
   - 最新3バージョンのサマリーのみ表示
@@ -127,7 +127,7 @@ AGENT.ja.md のバージョン履歴を独立したChangelogドキュメント�
 構成:
   1. GitHub リンク（最新版への誘導）
   2. 当該バージョンの Changelog（CHANGELOG.md から抽出）
-  3. AGENT.ja.md 本文全文
+  3. content/ja/AGENT.md 本文全文
   4. フッターに GitHub リンク再掲
 ```
 
@@ -157,8 +157,8 @@ nullvariant/
 ├── CHANGELOG.md                      # 🆕 統合Changelog（全バージョン）
 ├── README.md
 ├── content/
-│   ├── AGENT.ja.md                   # 📝 メイン仕様書（Version History簡略化）
-│   └── EmotionMood_Dictionary.ja.md
+│   ├── content/ja/AGENT.md                   # 📝 メイン仕様書（Version History簡略化）
+│   └── content/ja/EmotionMood_Dictionary.md
 ├── changelogs/                       # 🆕 バージョン別詳細（オプション）
 │   ├── v4.1.md
 │   ├── v4.0.md
@@ -183,7 +183,7 @@ nullvariant/
 ```markdown
 # Changelog
 
-All notable changes to AGENT.ja.md will be documented in this file.
+All notable changes to content/ja/AGENT.md will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -229,10 +229,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Compatibility
 - ✅ v4.0の全機能を保持
 - ✅ 既存システムとシームレスに統合
-- ⚠️ 感情辞書の参照が必須（EmotionMood_Dictionary.ja.md）
+- ⚠️ 感情辞書の参照が必須（content/ja/EmotionMood_Dictionary.md）
 
 ### Related Links
-- [AGENT.ja.md v4.1](content/ja/AGENT.md)
+- [content/ja/AGENT.md v4.1](content/ja/AGENT.md)
 - [感情辞書 v1.0](content/ja/EmotionMood_Dictionary.md)
 - [note記事: v4.1アップデート](https://note.com/[account]/n/[note-id]) ※移行後追記
 
@@ -258,7 +258,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [感情辞書](content/ja/EmotionMood_Dictionary.md)
 ```
 
-### 5.3 AGENT.ja.md の Version History 簡略化
+### 5.3 content/ja/AGENT.md の Version History 簡略化
 
 **変更前（現状）:**
 ```markdown
@@ -298,7 +298,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 5.4 note 記事テンプレート
 
 ```markdown
-# [AGENT.ja.md] v4.1 感情辞書統合アップデート
+# [content/ja/AGENT.md] v4.1 感情辞書統合アップデート
 
 > 🔗 **最新版は GitHub で管理しています**  
 > https://github.com/nullvariant/nullvariant  
@@ -312,7 +312,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## 📖 AGENT.ja.md 本文
+## 📖 content/ja/AGENT.md 本文
 
 【content/ja/AGENT.md 全文をコピー】
 
@@ -358,14 +358,14 @@ touch docs/operations/current/
 - v4.1 の内容を記述（サンプルとして）
 - Unreleased セクション作成
 
-#### Task 1.3: AGENT.ja.md 修正
+#### Task 1.3: content/ja/AGENT.md 修正
 - Version History セクションを簡略化
 - CHANGELOG.md へのリンク追加
 - 最新3バージョンのみサマリー表示
 
 **検証基準:**
 - [ ] CHANGELOG.md が GitHub でレンダリング正常
-- [ ] AGENT.ja.md のリンクが正しく動作
+- [ ] content/ja/AGENT.md のリンクが正しく動作
 - [ ] マークダウンリンター（markdownlint）通過
 
 ---
@@ -454,7 +454,7 @@ scripts/sync-to-note.sh
 ```
 
 **機能案:**
-- CHANGELOG.md と AGENT.ja.md を結合
+- CHANGELOG.md と content/ja/AGENT.md を結合
 - note 用のマークダウン整形
 - クリップボードへコピー（手動投稿補助）
 
@@ -524,7 +524,7 @@ git push origin main
 #### ステップ5: note 記事作成
 - [ ] `docs/operations/current/` のテンプレートを使用
 - [ ] CHANGELOG.md の該当バージョンをコピー
-- [ ] AGENT.ja.md 全文をコピー
+- [ ] content/ja/AGENT.md 全文をコピー
 - [ ] GitHub リンクを記載
 
 #### ステップ6: note 投稿後
