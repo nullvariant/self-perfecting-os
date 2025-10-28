@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate or update the Table of Contents in AGENT.ja.md.
+"""Generate or update the Table of Contents in content/ja/AGENT.md.
 
 Rules:
 - Detect headings starting with ## (level 2) and ### (level 3) but skip the TOC section itself.
@@ -15,7 +15,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-MD_PATH = Path(__file__).resolve().parent.parent / 'content' / 'AGENT.ja.md'
+MD_PATH = Path(__file__).resolve().parent.parent / 'content' / 'ja' / 'AGENT.md'
 TOC_HEADER_PATTERN = re.compile(r'^## 目次')
 ANCHOR_PATTERN = re.compile(r'<a id="([^"]+)"></a>')
 HEADING_PATTERN = re.compile(r'^(#{2,3})\s+(.+?)\s*$')

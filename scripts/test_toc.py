@@ -1,4 +1,4 @@
-"""Lightweight structural tests for AGENT.ja.md TOC and heading/anchor conventions.
+"""Lightweight structural tests for content/ja/AGENT.md TOC and heading/anchor conventions.
 Run: python3 scripts/test_toc.py
 Exit code 0 means PASS; non-zero means a structural violation.
 """
@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DOC = ROOT / "content" / "AGENT.ja.md"
+DOC = ROOT / "content" / "ja" / "AGENT.md"
 
 FAILURES: list[str] = []
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 note記事準備スクリプト
-AGENT.ja.mdからアンカーと目次を除去し、note投稿用に整形する
+content/ja/AGENT.mdからアンカーと目次を除去し、note投稿用に整形する
 """
 
 import argparse

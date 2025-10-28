@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer, util
 
 MODEL_DEFAULT = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5-20250929")
 ROOT = Path(__file__).resolve().parents[1]
-JA = ROOT / "content" / "AGENT.ja.md"
+JA = ROOT / "content" / "ja" / "AGENT.md"
 EN = ROOT / "AGENT.md"
 SPEC = ROOT / "spec" / "agent.spec.yaml"
 SCHEMA = ROOT / "spec" / "agent.schema.json"
