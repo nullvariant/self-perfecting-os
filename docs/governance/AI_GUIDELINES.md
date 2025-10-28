@@ -105,7 +105,7 @@ python scripts/record_decision.py \
 ```bash
 python scripts/record_decision.py \
   --title "Claude API レート制限対応によるCI/CD一時停止" \
-  --context "Claude Sonnet 4.5 の出力レート制限が 8,000 tokens/min と判明。AGENT.ja.md 全体の翻訳には数分かかるため、CI での自動実行が不適切と判断" \
+  --context "Claude Sonnet 4.5 の出力レート制限が 8,000 tokens/min と判明。content/ja/AGENT.md 全体の翻訳には数分かかるため、CI での自動実行が不適切と判断" \
   --author "Claude Code"
 ```
 
@@ -121,7 +121,7 @@ python scripts/record_decision.py \
 
 ## Context
 Claude Sonnet 4.5 の出力レート制限が 8,000 tokens/min と判明。
-AGENT.ja.md 全体の翻訳には数分かかるため、CI での自動実行が不適切と判断。
+content/ja/AGENT.md 全体の翻訳には数分かかるため、CI での自動実行が不適切と判断。
 
 ## Decision
 CI/CD パイプラインを一時停止し、手動実行に切り替える。

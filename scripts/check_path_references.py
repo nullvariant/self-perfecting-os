@@ -26,10 +26,16 @@ ROOT = Path(__file__).parent.parent
 # チェック対象の古いパターン → 新しいパターン
 DEPRECATED_PATTERNS = {
     # 多言語移行（2025-10-28）
+    # パス付き
     r'content/AGENT\.ja\.md': 'content/ja/AGENT.md',
     r'content/EmotionMood_Dictionary\.ja\.md': 'content/ja/EmotionMood_Dictionary.md',
     r'content/AGENT\.en\.md': 'content/en/AGENT.md',
     r'content/EmotionMood_Dictionary\.en\.md': 'content/en/EmotionMood_Dictionary.md',
+    
+    # ファイル名のみ（テキスト中での言及）
+    # 注意: これらは content/ なしで使われる場合のみマッチ
+    r'(?<!/)AGENT\.ja\.md(?!\))': 'content/ja/AGENT.md',
+    r'(?<!/)EmotionMood_Dictionary\.ja\.md(?!\))': 'content/ja/EmotionMood_Dictionary.md',
     
     # API変更（2025-10-28）
     r'OPENAI_API_KEY': 'ANTHROPIC_API_KEY',

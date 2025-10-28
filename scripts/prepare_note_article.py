@@ -76,8 +76,10 @@ def convert_relative_to_absolute_links(content: str) -> str:
         filename = match.group(2)
         anchor = match.group(3) if match.lastindex >= 3 else ''
         
-        # AGENT.ja.mdと同じディレクトリ（content/）と仮定
-        full_url = f"{base_url}/content/{filename}{anchor}"
+        # 多言語移行後: content/ja/ に配置
+        # AGENT.ja.md → AGENT.md, EmotionMood_Dictionary.ja.md → EmotionMood_Dictionary.md
+        filename_clean = filename.replace('.ja.md', '.md').replace('.en.md', '.md')
+        full_url = f"{base_url}/content/ja/{filename_clean}{anchor}"
         return f"[{text}]({full_url})"
     
     # [任意のテキスト](ファイル名.md) または [任意のテキスト](ファイル名.md#アンカー)
@@ -103,7 +105,7 @@ VERSION_PATTERN = re.compile(r'^Version:\s*([0-9A-Za-z.\-_]+)\s*$', re.MULTILINE
 
 
 def detect_version(agent_content: str) -> str | None:
-    """AGENT.ja.mdの先頭にあるVersion行からバージョン番号を推定"""
+    """content/ja/AGENT.mdの先頭にあるVersion行からバージョン番号を推定"""
     match = VERSION_PATTERN.search(agent_content)
     return match.group(1) if match else None
 
@@ -116,14 +118,14 @@ def load_draft(draft_path: Path) -> str:
 
     print(f"⚠️ Draft file not found: {draft_path}")
     print("   Using fallback template (AGENT本文のみ) for note export.")
-    return '[ここにAGENT.ja.mdの全文を貼り付け]'
+    return '[ここにcontent/ja/AGENT.mdの全文を貼り付け]'
 
 
 def main():
     parser = argparse.ArgumentParser(description="note投稿用Markdown生成スクリプト")
     parser.add_argument(
         "--version",
-        help="出力ファイルのバージョン。省略時は AGENT.ja.md の Version 行から推定"
+        help="出力ファイルのバージョン。省略時は content/ja/AGENT.md の Version 行から推定"
     )
     parser.add_argument(
         "--draft",
@@ -137,7 +139,7 @@ def main():
 
     # パス設定
     project_root = Path(__file__).parent.parent
-    agent_file = project_root / 'content' / 'AGENT.ja.md'
+    agent_file = project_root / 'content' / 'ja' / 'AGENT.md'
 
     print(f"📖 Reading {agent_file}...")
     agent_content = agent_file.read_text(encoding='utf-8')
@@ -162,8 +164,8 @@ def main():
     draft_content = load_draft(draft_file)
 
     print("✂️ Combining draft and content...")
-    if '[ここにAGENT.ja.mdの全文を貼り付け]' in draft_content:
-        final_content = draft_content.replace('[ここにAGENT.ja.mdの全文を貼り付け]', clean_content)
+    if '[ここにcontent/ja/AGENT.mdの全文を貼り付け]' in draft_content:
+        final_content = draft_content.replace('[ここにcontent/ja/AGENT.mdの全文を貼り付け]', clean_content)
     else:
         print("   Placeholder not found in draft. Appending AGENT content at the end.")
         final_content = f"{draft_content.rstrip()}\n\n{clean_content}\n"

@@ -39,6 +39,7 @@ grep -r "旧パス" . --include="*.md" --include="*.py"
 - [ ] `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 - [ ] `docs/decisions/active/` - 新ADR作成
 - [ ] `CHANGELOG.md` - `[Unreleased]` に記録
+- [ ] `docs/governance/DOCUMENTATION_STRUCTURE.yml` - **構造変更時は必ず更新**
 
 #### 🟡 Tier 1: 高優先度（状態管理）
 
@@ -48,6 +49,7 @@ grep -r "旧パス" . --include="*.md" --include="*.py"
 - [ ] `.github/copilot-instructions.md` - AI向けガイド
 - [ ] `README.md` - プロジェクト概要
 - [ ] `CONTRIBUTING.md` - コントリビューターガイド
+- [ ] **このチェックリスト自身** (`docs/operations/DOCUMENTATION_UPDATE_CHECKLIST.md`) - パターンや手順の更新
 
 #### 🟢 Tier 2: 中優先度（プロセス・手順書）
 
@@ -157,13 +159,26 @@ python scripts/check_path_references.py --fix
 ```
 
 **対応パターン**:
-- 多言語移行（`content/ja/AGENT.md` → `content/ja/AGENT.md`）
-- API変更（`ANTHROPIC_API_KEY` → `ANTHROPIC_API_KEY`）
-- 廃止ファイル（`docs/project-status.ja.md` → `docs/project-status.ja.md`）
+- 多言語移行（`content/AGENT.ja.md` → `content/ja/AGENT.md`）
+- API変更（`OPENAI_API_KEY` → `ANTHROPIC_API_KEY`）
+- 廃止ファイル（`MIGRATION_STATUS.md` → `docs/project-status.ja.md`）
 
 **除外対象**:
 - `docs/decisions/` - ADRは履歴として古いパスを保持
+- `changelogs/note-archives/` - 公開済み記事は履歴として保持
 - `.github/workflows/` - CI設定は手動更新
+
+**パターン辞書の更新**:
+新しい廃止パターンが発生した場合、`scripts/check_path_references.py`の`DEPRECATED_PATTERNS`辞書を更新:
+
+```python
+DEPRECATED_PATTERNS = {
+    r'旧パターン': '新パターン',
+    # 新しいパターンを追加
+}
+```
+
+更新後、このチェックリストにも記載すること。
 
 ### 2. validate_docs.py
 

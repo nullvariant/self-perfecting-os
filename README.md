@@ -12,10 +12,10 @@
 
 ## 📖 概要
 
-このリポジトリは、**AGENT.ja.md**（日本語一次情報）を中心に、以下を提供します:
+このリポジトリは、**[content/ja/AGENT.md](content/ja/AGENT.md)**（日本語一次情報）を中心に、以下を提供します:
 
 - **脳内珍獣動物園**: 👮👧🦥🐗🕊️🐰6体制
-- **感情辞書**: 54種類の基本感情を体系化した EmotionMood_Dictionary.ja.md
+- **感情辞書**: 54種類の基本感情を体系化した [EmotionMood_Dictionary.md](content/ja/EmotionMood_Dictionary.md)
 - **EBI測定**: Ecosystem Balance Index による状態評価
 - **選択的透過フィルタ**: PCP/MOF原理に基づく多層情報処理
 - **可逆的吸着プロトコル**: 感情の成分分離と選択的統合
@@ -77,6 +77,10 @@ nullvariant/
 │   │   └── README.md
 │   ├── operations/              # 📋 運用手順書
 │   │   ├── current/
+│   │   │   ├── 20251028_OPERATIONS.ja.md
+│   │   │   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
+│   │   │   └── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   │   ├── DOCUMENTATION_UPDATE_CHECKLIST.md  # 📋 ドキュメント更新チェックリスト
 │   │   ├── archive/
 │   │   └── README.md
 │   ├── project-status.ja.md     # 📊 プロジェクト状況・メンテナンス優先度

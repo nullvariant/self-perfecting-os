@@ -20,13 +20,13 @@ hierarchy:
         update_rule: "変更があったら必ず新規ADRを作成"
         auto_generated: false
         
-      - path: "content/AGENT.ja.md"
+      - path: "content/ja/AGENT.md"
         purpose: "仕様書の真実（日本語一次情報）"
         format: "Markdown"
         update_rule: "仕様変更時のみ編集"
         auto_generated: false
         
-      - path: "content/EmotionMood_Dictionary.ja.md"
+      - path: "content/ja/EmotionMood_Dictionary.md"
         purpose: "感情辞書"
         format: "Markdown"
         update_rule: "感情定義変更時のみ編集"
@@ -126,7 +126,21 @@ hierarchy:
         format: "Markdown"
         update_rule: "CI/CDが自動生成（編集禁止）"
         auto_generated: true
-        source: "content/AGENT.ja.md"
+        source: "content/ja/AGENT.md"
+        
+      - path: "content/en/AGENT.md"
+        purpose: "英語版仕様書（自動翻訳）"
+        format: "Markdown"
+        update_rule: "CI/CDが自動生成（編集禁止）"
+        auto_generated: true
+        source: "content/ja/AGENT.md"
+        
+      - path: "content/en/EmotionMood_Dictionary.md"
+        purpose: "感情辞書英語版（自動翻訳）"
+        format: "Markdown"
+        update_rule: "CI/CDが自動生成（編集禁止）"
+        auto_generated: true
+        source: "content/ja/EmotionMood_Dictionary.md"
         
       - path: "spec/agent.spec.yaml"
         purpose: "YAML構造化仕様"

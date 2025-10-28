@@ -76,19 +76,28 @@ python scripts/record_decision.py \
 ```
 nullvariant/
 ├── docs/
-│   ├── DECISIONS/         # 🏆 ADR（全ての重要な決定）
-│   ├── GOVERNANCE/        # 🏛️ ドキュメント管理ルール
-│   ├── operations/        # 📋 運用手順書
-│   └── PRD_*.md          # 💡 要件定義
-├── content/              # ✅ 一次情報
-│   ├── ja/              # 🇯🇵 日本語（編集対象）
-│   └── en/              # 🇬🇧 英語（CI自動生成）
-├── AGENT.md             # ⚠️ 自動生成（編集禁止）
-├── CHANGELOG.md         # ✅ バージョン履歴
-├── changelogs/          # ✅ note記事アーカイブ
-├── scripts/             # Python自動化スクリプト
-├── spec/                # ⚠️ 自動生成（編集禁止）
-└── i18n/                # 翻訳用語集・スタイルガイド
+│   ├── decisions/                    # 🏆 ADR（全ての重要な決定）
+│   ├── governance/                   # 🏛️ ドキュメント管理ルール
+│   │   ├── AI_GUIDELINES.md
+│   │   ├── DOCUMENTATION_STRUCTURE.yml
+│   │   └── HIERARCHY_RULES.md
+│   ├── operations/                   # 📋 運用手順書
+│   │   ├── DOCUMENTATION_UPDATE_CHECKLIST.md  # 構造変更時のチェックリスト
+│   │   └── current/                  # 現行版手順書
+│   ├── prd/                          # 💡 要件定義
+│   └── project-status.ja.md          # プロジェクト状況
+├── content/                           # ✅ 一次情報
+│   ├── ja/                           # 🇯🇵 日本語（編集対象）
+│   └── en/                           # 🇬🇧 英語（CI自動生成）
+├── AGENT.md                          # ⚠️ 自動生成（編集禁止）
+├── CHANGELOG.md                      # ✅ バージョン履歴
+├── changelogs/                       # ✅ note記事アーカイブ
+├── scripts/                          # Python自動化スクリプト
+│   ├── check_path_references.py      # パス参照チェック・自動修正
+│   ├── validate_docs.py              # ドキュメント整合性検証
+│   └── record_decision.py            # ADR作成支援
+├── spec/                             # ⚠️ 自動生成（編集禁止）
+└── i18n/                             # 翻訳用語集・スタイルガイド
 ```
 
 詳細は以下を参照：
