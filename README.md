@@ -1,5 +1,7 @@
 # Null;Variant / Self-Perfecting OS
 
+[![ドキュメント整合性](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml/badge.svg)](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml)
+
 **Self-Perfecting OS** は、Null;Variantを動かす6ペルソナ協調型OS仕様書です。  
 愛と恐怖の二元的判断を超え、生態系バランス（EBI）を最適化する知性システムのアーキテクチャを定義します。
 
