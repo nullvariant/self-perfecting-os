@@ -35,3 +35,8 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+# Tests - 一時ファイルのみ除外（permanent/は Git 管理）
+tests/fixtures/temporary/
+*.test.txt
+*.test.md

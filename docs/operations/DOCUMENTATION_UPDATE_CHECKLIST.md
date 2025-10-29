@@ -123,14 +123,24 @@ git push origin feature/your-structural-change
 
 ### パターン3: ディレクトリ構造変更
 
-**例**: `docs/` 配下の再編成
+**例**: `docs/` 配下の再編成、`tests/` ディレクトリの追加
 
 **チェック対象**:
 - [ ] `README.md` - ディレクトリ構造図
 - [ ] `.github/copilot-instructions.md` - 構造説明
+- [ ] `CONTRIBUTING.md` - コントリビューターガイド
 - [ ] `docs/governance/DOCUMENTATION_STRUCTURE.yml` - 階層定義
 - [ ] `docs/governance/HIERARCHY_RULES.md` - 階層ルール
+- [ ] `scripts/README.md` - スクリプト説明（テストファイル配置ルールなど）
 - [ ] 全ての相対リンク（`grep -r "\.\./docs/" .`）
+
+**tests/ディレクトリ追加時の追加チェック**（ADR-0009）:
+- [ ] `.github/copilot-instructions.md` - テストファイル配置ルール追加
+- [ ] `README.md` - tests/構造図追加
+- [ ] `CONTRIBUTING.md` - tests/構造図追加
+- [ ] `scripts/README.md` - テストファイル配置ルール追加
+- [ ] `tests/README.md` - 配置ガイド作成
+- [ ] `.gitignore` - tests/fixtures/temporary/ 追加
 
 ### パターン4: ドキュメント廃止
 
