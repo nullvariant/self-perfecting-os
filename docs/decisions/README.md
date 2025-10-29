@@ -17,10 +17,15 @@ decisions/
 ├── active/                     # 現在有効な決定
 │   └── 2025/
 │       └── 10/
-│           ├── 20251014_0001_ci-cd-pause_infra.md
-│           ├── 20251027_0002_naming-structure_docs.md
-│           ├── 20251027_0003_lowercase-unification_docs.md
-│           └── 20251028_0004_github-actions_ci.md
+│           ├── 20251028_0001_ci-cd-pause_architecture.md
+│           ├── 20251028_0002_naming-structure_documentation.md
+│           ├── 20251028_0003_ディレクトリ・ファイル名の小文字・ハイフン統一_documentation.md
+│           ├── 20251028_0004_github-actions-によるドキュメント自動バリデー_tooling.md
+│           ├── 20251028_0005_多言語対応-言語別ディレクトリ構造への移行_documentation.md
+│           ├── 20251028_0006_github-pagesランディングページの実装_documentation.md
+│           ├── 20251028_0007_changelogsディレクトリのnullvariant-w_architecture.md
+│           ├── 20251029_0008_対話生ログの永続保存システム確立_governance.md
+│           └── 20251029_0009_テストファイル管理規則testsfixtures配下に集約_process.md
 ├── deprecated/                 # 非推奨（参考のみ）
 ├── superseded/                 # 上書きされた決定
 ├── INDEX.md                    # 自動生成索引

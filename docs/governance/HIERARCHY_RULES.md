@@ -30,18 +30,27 @@ Null;Variant プロジェクトにおける「どこに何を書くか」を明�
 ```
 nullvariant/
 ├── docs/
-│   ├── DECISIONS/              # 🏆 Tier 0: SSOT（最重要）
-│   │   ├── 0000-adr-template.md
-│   │   ├── 0001-ci-cd-pause.md
+│   ├── decisions/              # 🏆 Tier 0: SSOT（最重要）
+│   │   ├── active/2025/10/
+│   │   │   ├── 20251028_0001_ci-cd-pause_architecture.md
+│   │   │   ├── 20251028_0002_naming-structure_documentation.md
+│   │   │   └── ...
+│   │   ├── deprecated/         # 非推奨ADR
+│   │   ├── superseded/         # 上書きされたADR
+│   │   ├── 0000_template.md    # ADRテンプレート
 │   │   └── README.md
-│   ├── GOVERNANCE/             # 🏛️ ガバナンス定義
+│   ├── governance/             # 🏛️ ガバナンス定義
 │   │   ├── DOCUMENTATION_STRUCTURE.yml  # 機械可読
 │   │   ├── AI_GUIDELINES.md            # AI向け
 │   │   └── HIERARCHY_RULES.md          # 人間向け（本文書）
 │   ├── operations/             # 📋 Tier 2: 手順書
-│   │   ├── OPERATIONS.ja.md
-│   │   └── NOTE_SYNC_MANUAL.ja.md
-│   ├── PRD_*.md                # 💡 Tier 3: 要件定義
+│   │   ├── current/
+│   │   │   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   │   │   └── ...
+│   │   └── archive/
+│   ├── prd/                    # 💡 Tier 3: 要件定義
+│   │   ├── active/
+│   │   └── implemented/
 │   ├── project-status.ja.md    # 📊 Tier 1: 状態管理
 │   └── archive/                # 🗄️ アーカイブ
 │       ├── deprecated/         # 非推奨ドキュメント
@@ -52,7 +61,8 @@ nullvariant/
 │   │   └── EmotionMood_Dictionary.md
 │   └── en/ (自動生成)
 ├── CHANGELOG.md                 # 📊 Tier 1: 履歴
-└── docs/project-status.ja.md          # 📝 Tier 4: 一時文書
+└── .github/
+    └── copilot-instructions.md # 🏛️ GitHub Copilot向けガイド
 ```
 
 ---
@@ -73,7 +83,7 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 | ファイル | 目的 | 編集可否 | 備考 |
 |---------|------|---------|------|
-| `docs/decisions/ADR-*.md` | 決定記録 | ✅ | 新規ADRは追加のみ（既存は編集禁止） |
+| `docs/decisions/active/{YYYY}/{MM}/*.md` | 決定記録 | ✅ | 新規ADRは追加のみ（既存は編集禁止） |
 | `content/ja/AGENT.md` | 仕様書（日本語） | ✅ | 自動生成の source ファイル |
 | `content/ja/EmotionMood_Dictionary.md` | 感情辞書 | ✅ | 感情定義変更時のみ |
 | `AGENT.md` | 仕様書（英語） | ❌ | CI/CDが自動生成 |
@@ -266,14 +276,14 @@ python scripts/record_decision.py \
   --author "Claude Code"
 
 # 2. ADRを編集（Status を Accepted に変更）
-vim docs/decisions/ADR-0001-ci-cd-pause.md
+vim docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md
 
 # 3. 関連ドキュメントを更新
 vim docs/project-status.ja.md  # 現在の状態を記録
 vim CHANGELOG.md               # [Unreleased] に追記（必要なら）
 
 # 4. コミット
-git add docs/decisions/ADR-0001-ci-cd-pause.md \
+git add docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md \
         docs/project-status.ja.md \
         CHANGELOG.md
 git commit -m "docs: Add ADR-0001 for CI/CD pause decision"
@@ -301,7 +311,7 @@ git mv docs/operations/NOTE_SYNC_MANUAL.ja.md \
 vim docs/operations/NOTE_SYNC_MANUAL.ja.md
 
 # 5. コミット
-git add docs/decisions/ADR-*.md \
+git add docs/decisions/active/2025/10/*.md \
         docs/operations/NOTE_SYNC_MANUAL.ja.md \
         docs/archive/deprecated/20251028-NOTE_SYNC_MANUAL.ja.md
 git commit -m "docs: Simplify note publishing workflow (ADR-XXXX)"

@@ -13,8 +13,8 @@ hierarchy:
     update_frequency: "重要な決定時のみ"
     requires_adr: true
     files:
-      - path: "docs/decisions/"
-        pattern: "ADR-*.md"
+      - path: "docs/decisions/active/{YYYY}/{MM}/"
+        pattern: "{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
         purpose: "全ての重要な決定を時系列で記録"
         format: "ADR (Architecture Decision Records)"
         update_rule: "変更があったら必ず新規ADRを作成"
