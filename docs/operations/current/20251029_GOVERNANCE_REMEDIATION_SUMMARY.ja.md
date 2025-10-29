@@ -4,8 +4,7 @@
 **Date**: 2025-10-29  
 **Author**: GitHub Copilot  
 **Related**: 
-- `docs/operations/current/20251029_GOVERNANCE_SELF_REVIEW_REPORT.md` (セルフレビュー報告書)
-- `docs/governance/GOVERNANCE_SELF_REVIEW_REPORT.md` (詳細分析)
+- `docs/log/2025/10/20251029_governance-self-review.md` (ガバナンスセルフレビュー)
 
 ---
 

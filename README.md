@@ -81,7 +81,8 @@ nullvariant/
 │   │   ├── current/
 │   │   │   ├── 20251028_OPERATIONS.ja.md
 │   │   │   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
-│   │   │   └── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   │   │   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   │   │   └── 20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md
 │   │   ├── DOCUMENTATION_UPDATE_CHECKLIST.md  # 📋 ドキュメント更新チェックリスト
 │   │   ├── archive/
 │   │   └── README.md

@@ -22,15 +22,21 @@ Ops: {YYYYMMDD}_{type}.ja.md
 
 ```
 ✅ 良い例:
-20251028_0001_ci-cd-pause_architecture.md
-20251028_documentation-governance.ja.md
-20251028_OPERATIONS.ja.md
+20251028_0001_ci-cd-pause_architecture.md       # ADR（小文字）
+20251028_documentation-governance.ja.md         # PRD（小文字）
+20251028_OPERATIONS.ja.md                        # Ops（type部分は大文字）
+20251028_NOTE_SYNC_MANUAL.ja.md                  # Ops（type部分は大文字）
 
 ❌ 悪い例（旧形式）:
 0001-ci-cd-pause.md              # 日付なし
-documentation-governance.md  # 日付なし、種類ベース
+documentation-governance.md      # 日付なし
 OPERATIONS.ja.md                 # 日付なし
 ```
+
+**運用手順書のtype部分が大文字である理由**:
+- 運用手順書は「実行必須の参照資料」として、メタドキュメント性が高い
+- ADR-0011の「大文字メタドキュメント」原則に準拠
+- 例: `OPERATIONS`, `NOTE_SYNC_MANUAL`, `WORKFLOW_TEXT_ASSETS`
 
 ---
 
@@ -98,7 +104,7 @@ python scripts/generate_index.py --force
 **大文字（メタドキュメント・業界慣習）:**
 ```
 README.md, CHANGELOG.md, AGENT.md
-docs/operations/OPERATIONS.ja.md      ← 実行必須の手順書
+docs/operations/current/20251028_OPERATIONS.ja.md      ← 実行必須の手順書
 docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
 ```
 理由: 業界標準、参照対象としての固定性、可視性

@@ -17,7 +17,8 @@ operations/
 ├── current/                      # 現在有効な手順書（{YYYYMMDD}_{type}.ja.md 形式）
 │   ├── 20251028_OPERATIONS.ja.md
 │   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
-│   └── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
+│   └── 20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md
 ├── archive/                      # 過去版アーカイブ
 │   └── {YYYY}/{MM}/              # 例: 2025/10/
 │       ├── 20251027_OPERATIONS.ja.md
@@ -89,10 +90,11 @@ operations/
 
 ## 🚀 運用手順書の作成方法
 
-### 1. テンプレートをコピー
+### 1. 既存ファイルをベースにコピー
 
 ```bash
-cp docs/operations/template.md docs/operations/current/my-procedure.ja.md
+# 既存の運用手順書をベースにして新規作成
+cp docs/operations/current/20251028_OPERATIONS.ja.md docs/operations/current/{YYYYMMDD}_{TYPE}.ja.md
 ```
 
 ### 2. 内容を記入

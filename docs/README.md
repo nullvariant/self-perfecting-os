@@ -54,7 +54,7 @@ docs/
 20251028_0005_script-cleanup-makefile_tooling.md
 ```
 
-### PRD・運用手順書
+### PRD（要件定義書）
 
 ```
 {YYYYMMDD}_{slug}.ja.md
@@ -63,7 +63,22 @@ docs/
 **例**:
 ```
 20251028_note-workflow-automation.ja.md
+20251028_documentation-governance.ja.md
+```
+
+### 運用手順書（Operations）
+
+```
+{YYYYMMDD}_{TYPE}.ja.md
+```
+
+**注**: `{TYPE}`は`UPPER_SNAKE_CASE`形式（例: `OPERATIONS`, `NOTE_SYNC_MANUAL`, `WORKFLOW_TEXT_ASSETS`）
+
+**例**:
+```
 20251028_OPERATIONS.ja.md
+20251028_NOTE_SYNC_MANUAL.ja.md
+20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md
 ```
 
 ---

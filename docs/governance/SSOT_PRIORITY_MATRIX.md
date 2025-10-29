@@ -75,7 +75,7 @@ nullvariant リポジトリのガバナンス体系には、複数の権威文�
 
 **矛盾時の対応**:
 → YAML/ADR が正しい。Markdown は参考資料として扱う
-→ 矛盾を発見したら [Issue/PR](../operations/current/20251029_DOCUMENTATION_UPDATE_CHECKLIST.md) を作成
+→ 矛盾を発見したら [Issue/PR](../operations/DOCUMENTATION_UPDATE_CHECKLIST.md) を作成
 
 ---
 
@@ -172,7 +172,7 @@ scripts/validate_docs.py
 3. **Level 3 更新** (Markdown 同期)
    - ADR 確定後、Markdown ドキュメント全体を確認・同期
    - 対象: AI_GUIDELINES.md, HIERARCHY_RULES.md, README.md
-   - 検査項目は [DOCUMENTATION_UPDATE_CHECKLIST.md](current/20251029_DOCUMENTATION_UPDATE_CHECKLIST.md) を参照
+   - 検査項目は [DOCUMENTATION_UPDATE_CHECKLIST.md](../operations/DOCUMENTATION_UPDATE_CHECKLIST.md) を参照
 
 ### ⏰ 同期スケジュール
 
@@ -250,8 +250,8 @@ Markdown は参考資料。矛盾は Issue 作成。
 ## 関連文書
 
 - **決定根拠**: 
-  - [ADR-0002](../decisions/active/2025/10/20251029_0002_naming-structure_documentation.md) - 命名規則とディレクトリ構造
-  - [ADR-0005](../decisions/active/2025/10/20251029_0005_multilingual-directory-structure_documentation.md) - ドキュメント階層・ポリシー
+  - [ADR-0002](../decisions/active/2025/10/20251028_0002_naming-structure_documentation.md) - 命名規則とディレクトリ構造
+  - [ADR-0005](../decisions/active/2025/10/20251028_0005_multilingual-directory-structure_documentation.md) - ドキュメント階層・ポリシー
   - [ADR-0011](../decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) - ファイル名ケース規則
 
 - **実装ガイド**:
@@ -260,7 +260,7 @@ Markdown は参考資料。矛盾は Issue 作成。
   - [DOCUMENTATION_STRUCTURE.yml](./DOCUMENTATION_STRUCTURE.yml) - 機械可読定義
 
 - **メンテナンス**:
-  - [DOCUMENTATION_UPDATE_CHECKLIST.md](../operations/current/20251029_DOCUMENTATION_UPDATE_CHECKLIST.md) - 構造変更時のチェックリスト
+  - [DOCUMENTATION_UPDATE_CHECKLIST.md](../operations/DOCUMENTATION_UPDATE_CHECKLIST.md) - 構造変更時のチェックリスト
 
 ---
 
@@ -272,4 +272,4 @@ Markdown は参考資料。矛盾は Issue 作成。
 
 ---
 
-**このドキュメントは [GOVERNANCE_SELF_REVIEW_REPORT.md](../operations/current/20251029_GOVERNANCE_SELF_REVIEW_REPORT.md) の Action-3 として作成されました。**
+**このドキュメントは [20251029_governance-self-review.md](../log/2025/10/20251029_governance-self-review.md) の Action-3 として作成されました。**

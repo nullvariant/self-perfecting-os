@@ -127,9 +127,9 @@ git commit -m "docs(adr): Add ADR-XXXX for [簡潔なタイトル]"
 
 **→ 参照:**
 - [`docs/operations/current/`](operations/current/)
-  - `OPERATIONS.ja.md` - 全体運用マニュアル
-  - `NOTE_SYNC_MANUAL.ja.md` - note公開手順
-  - `WORKFLOW_TEXT_ASSETS.ja.md` - テキスト資産管理
+  - `20251028_OPERATIONS.ja.md` - 全体運用マニュアル
+  - `20251028_NOTE_SYNC_MANUAL.ja.md` - note公開手順
+  - `20251028_WORKFLOW_TEXT_ASSETS.ja.md` - テキスト資産管理
 
 ---
 
@@ -185,7 +185,7 @@ git commit -m "docs(adr): Add ADR-XXXX for [簡潔なタイトル]"
 | 「ADR-0001の内容は？」 | INDEX.md で検索 → 該当ADR開く | 2分 |
 | 「新しい決定を記録したい」 | ADR-0000テンプレート → record_decision.py | 10分 |
 | 「ハイフンの規則を確認」 | ADR-0012 | 3分 |
-| 「note記事を公開したい」 | docs/operations/NOTE_SYNC_MANUAL.ja.md | 15分 |
+| 「note記事を公開したい」 | docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md | 15分 |
 | 「ドキュメント構造を修正」 | AI_GUIDELINES.md 判定フロー → ADR | 30分 |
 
 ---

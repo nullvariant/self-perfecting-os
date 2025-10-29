@@ -76,6 +76,12 @@ hierarchy:
         format: "Markdown"
         update_rule: "ワークフロー変更時"
         auto_generated: false
+        
+      - path: "docs/operations/current/20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md"
+        purpose: "ガバナンス是正サマリー"
+        format: "Markdown"
+        update_rule: "是正作業時"
+        auto_generated: false
 
   # Tier 3: 設計文書（PRD）
   tier3_design:
@@ -176,7 +182,7 @@ hierarchy:
         format: "YAML"
         update_rule: "CI/CDが自動生成（編集禁止）"
         auto_generated: true
-        source: "content/AGENT.ja.md"
+        source: "content/ja/AGENT.md"
 
   # 【新規】概念分離図：ドキュメント管理の2つの軸
   concept_layers:
@@ -441,8 +447,15 @@ index_management:
   generation_method: "script"  # Git Hooks ではなくスクリプト実行
   script_path: "scripts/generate_index.py"
   update_timing: "manual"  # ADR追加・変更時に手動実行
-  manual_override: true    # スクリプト生成後の手動編集を許可
+  manual_edit_prohibited: true  # ⚠️ INDEX.md は自動生成ファイル（手動編集禁止）
+  regenerate_command: "python scripts/generate_index.py --target [adr|prd|operations|governance|all]"
   ci_validation: false     # 将来実装予定
+  
+  auto_generated_files:
+    - "docs/decisions/INDEX.md"
+    - "docs/prd/INDEX.md"
+    - "docs/operations/INDEX.md"
+    - "docs/governance/INDEX.md"
   
   sections:
     - category  # カテゴリ別（トピック横断検索用）

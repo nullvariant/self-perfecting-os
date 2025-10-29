@@ -292,22 +292,35 @@ def generate_governance_index(governance_dir: Path, dry_run: bool = False) -> st
     """governance のINDEX.mdを生成（メタドキュメント一覧）"""
     print(f"\n🏛️  governance INDEX.md 生成中...")
 
-    # governance/ 直下のMarkdownファイル（README.md 除外）
-    md_files = []
-    for md_file in sorted(governance_dir.glob("*.md")):
-        if md_file.name not in ["README.md", "INDEX.md"]:
-            md_files.append(md_file)
+    # governance/ 直下のドキュメントファイル（README.md, INDEX.md 除外）
+    # Markdown (.md) と YAML (.yml) の両方を対象
+    doc_files = []
+    for file_path in sorted(governance_dir.glob("*")):
+        if file_path.is_file() and file_path.suffix in [".md", ".yml", ".yaml"]:
+            if file_path.name not in ["README.md", "INDEX.md"]:
+                doc_files.append(file_path)
 
-    if not md_files:
+    if not doc_files:
         print("  ⚠️  ドキュメントが見つかりません")
         return ""
+
+    # 権威文書（SSOT）と説明文書を分類
+    ssot_files = []
+    guide_files = []
+    
+    for doc_file in doc_files:
+        # DOCUMENTATION_STRUCTURE.yml, AI_GUIDELINES.md, SSOT_PRIORITY_MATRIX.md は権威文書
+        if doc_file.name in ["DOCUMENTATION_STRUCTURE.yml", "AI_GUIDELINES.md", "SSOT_PRIORITY_MATRIX.md"]:
+            ssot_files.append(doc_file)
+        else:
+            guide_files.append(doc_file)
 
     # INDEX.md 本文生成
     lines = [
         "# Governance & Documentation Rules",
         "",
         f"**最終更新**: {datetime.now().strftime('%Y-%m-%d')}",
-        f"**ドキュメント数**: {len(md_files)}個",
+        f"**ドキュメント数**: {len(doc_files)}個",
         "",
         "ドキュメント管理とガバナンスの基準ドキュメント一覧です。",
         "",
@@ -317,20 +330,53 @@ def generate_governance_index(governance_dir: Path, dry_run: bool = False) -> st
         "",
     ]
 
-    # ファイル一覧（簡潔版）
-    for md_file in md_files:
-        relative_path = md_file.relative_to(governance_dir)
+    # 権威文書（SSOT）セクション
+    if ssot_files:
+        lines.append("### 権威文書（SSOT）")
+        lines.append("")
         
-        # ファイルから最初の見出しを抽出
-        try:
-            content = md_file.read_text(encoding="utf-8")
-            match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
-            title = match.group(1).strip() if match else relative_path.stem
-        except Exception:
-            title = relative_path.stem
+        for doc_file in sorted(ssot_files):
+            relative_path = doc_file.relative_to(governance_dir)
+            
+            # ファイルから最初の見出しを抽出（Markdownの場合のみ）
+            try:
+                if doc_file.suffix == ".md":
+                    content = doc_file.read_text(encoding="utf-8")
+                    match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+                    title = match.group(1).strip() if match else relative_path.stem
+                else:
+                    # YAMLファイルの場合は説明文を追加
+                    title = "ドキュメント構造定義（機械可読形式）" if "STRUCTURE" in doc_file.name else relative_path.stem
+            except Exception:
+                title = relative_path.stem
 
-        lines.append(f"- [{title}]({relative_path})")
+            lines.append(f"- [{title}]({relative_path})")
+        
+        lines.append("")
 
+    # 説明・ガイド文書セクション
+    if guide_files:
+        lines.append("### 説明・ガイド文書")
+        lines.append("")
+        
+        for doc_file in sorted(guide_files):
+            relative_path = doc_file.relative_to(governance_dir)
+            
+            # ファイルから最初の見出しを抽出
+            try:
+                content = doc_file.read_text(encoding="utf-8")
+                match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+                title = match.group(1).strip() if match else relative_path.stem
+            except Exception:
+                title = relative_path.stem
+
+            lines.append(f"- [{title}]({relative_path})")
+        
+        lines.append("")
+
+    lines.extend(["", "---", "", "## 🗺️ 初めての方へ", ""])
+    lines.append("このディレクトリに初めて来た方は、[README.md](README.md) から始めてください。")
+    lines.append("ユースケース別の導線が記載されています。")
     lines.extend(["", "---", "", "**注記**: このディレクトリは大文字メタドキュメント専用です。"])
     lines.append("時系列記録は `docs/log/` に管理されます。")
 

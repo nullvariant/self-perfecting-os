@@ -298,6 +298,16 @@ ADR作成後、必要に応じて以下も更新：
 1. **自動生成ファイルの直接編集**
    - `AGENT.md` - CI/CDが自動生成（編集禁止）
    - `spec/agent.spec.yaml` - CI/CDが自動生成（編集禁止）
+   - `docs/decisions/INDEX.md` - `scripts/generate_index.py` が自動生成（編集禁止）
+   - `docs/prd/INDEX.md` - `scripts/generate_index.py` が自動生成（編集禁止）
+   - `docs/operations/INDEX.md` - `scripts/generate_index.py` が自動生成（編集禁止）
+   - `docs/governance/INDEX.md` - `scripts/generate_index.py` が自動生成（編集禁止）
+
+   **修正方法**: スクリプトを修正してから再生成
+   ```bash
+   # スクリプト修正後
+   python scripts/generate_index.py --target [adr|prd|operations|governance|all]
+   ```
 
 2. **ADRの削除**
    - 古くなった ADR は削除せず、Status を `Deprecated` に変更

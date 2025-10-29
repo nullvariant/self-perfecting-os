@@ -350,19 +350,19 @@ python scripts/record_decision.py \
   --author "human"
 
 # 2. 手順書を更新
-vim docs/operations/NOTE_SYNC_MANUAL.ja.md
+vim docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md
 
 # 3. 古い手順をアーカイブ
 mkdir -p docs/operations/archive/2025/10
-git mv docs/operations/NOTE_SYNC_MANUAL.ja.md \
+git mv docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md \
        docs/operations/archive/2025/10/20251028_NOTE_SYNC_MANUAL.ja.md
 
 # 4. 新しい手順を作成
-vim docs/operations/NOTE_SYNC_MANUAL.ja.md
+vim docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md
 
 # 5. コミット
 git add docs/decisions/active/2025/10/*.md \
-        docs/operations/NOTE_SYNC_MANUAL.ja.md \
+        docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md \
         docs/operations/archive/2025/10/20251028_NOTE_SYNC_MANUAL.ja.md
 git commit -m "docs: Simplify note publishing workflow (ADR-XXXX)"
 git push origin main
@@ -427,7 +427,7 @@ git push origin main
 
 - [docs/governance/DOCUMENTATION_STRUCTURE.yml](DOCUMENTATION_STRUCTURE.yml) - 機械可読形式の定義
 - [docs/governance/AI_GUIDELINES.md](AI_GUIDELINES.md) - AI向けガイドライン
-- [docs/prd_DOCUMENTATION_GOVERNANCE.ja.md](../documentation-governance.ja.md) - 本ガバナンス体系のPRD
+- [docs/prd/active/20251028_documentation-governance.ja.md](../prd/active/20251028_documentation-governance.ja.md) - 本ガバナンス体系のPRD
 - [Architecture Decision Records (ADR)](https://adr.github.io/) - ADR公式サイト
 
 ---
