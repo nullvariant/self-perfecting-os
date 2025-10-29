@@ -35,34 +35,50 @@ nullvariant/
 │   │   │   ├── 20251028_0001_ci-cd-pause_architecture.md
 │   │   │   ├── 20251028_0002_naming-structure_documentation.md
 │   │   │   └── ...
+│   │   ├── INDEX.md            # ADR全体の索引
 │   │   ├── deprecated/         # 非推奨ADR
 │   │   ├── superseded/         # 上書きされたADR
 │   │   ├── 0000_template.md    # ADRテンプレート
 │   │   └── README.md
 │   ├── governance/             # 🏛️ ガバナンス定義
+│   │   ├── INDEX.md                    # 参考資料一覧
 │   │   ├── DOCUMENTATION_STRUCTURE.yml  # 機械可読
+│   │   ├── HIERARCHY_RULES.md          # 人間向け（本文書）
 │   │   ├── AI_GUIDELINES.md            # AI向け
-│   │   └── HIERARCHY_RULES.md          # 人間向け（本文書）
+│   │   └── NAMING_DECISION_SUMMARY.md  # 命名規則サマリー
 │   ├── operations/             # 📋 Tier 2: 手順書
+│   │   ├── INDEX.md            # current + archive 索引
 │   │   ├── current/
+│   │   │   ├── 20251028_OPERATIONS.ja.md
 │   │   │   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
 │   │   │   └── ...
-│   │   └── archive/
+│   │   └── archive/2025/10/
+│   │       └── ...
 │   ├── prd/                    # 💡 Tier 3: 要件定義
+│   │   ├── INDEX.md            # PRD全体の索引
 │   │   ├── active/
 │   │   └── implemented/
+│   ├── log/                    # � Tier 4.5: 作業ログ記録
+│   │   ├── 2025/10/
+│   │   │   └── *.md            # YYYYMMDD_{slug}.md
+│   │   └── README.md
 │   ├── project-status.ja.md    # 📊 Tier 1: 状態管理
-│   └── archive/                # 🗄️ アーカイブ
-│       ├── deprecated/         # 非推奨ドキュメント
-│       └── completed/          # 完了した一時文書
+│   └── README.md               # docs/ ガイド
 ├── content/                     # 🏆 Tier 0: 一次情報
 │   ├── ja/
 │   │   ├── AGENT.md
 │   │   └── EmotionMood_Dictionary.md
-│   └── en/ (自動生成)
+│   └── en/                      # CI自動生成
+│       ├── AGENT.md
+│       └── EmotionMood_Dictionary.md
 ├── CHANGELOG.md                 # 📊 Tier 1: 履歴
+├── AGENT.md                     # ⚠️ 自動生成（編集禁止）
+├── spec/
+│   ├── agent.schema.json
+│   └── agent.spec.yaml          # ⚠️ 自動生成（編集禁止）
 └── .github/
-    └── copilot-instructions.md # 🏛️ GitHub Copilot向けガイド
+    └── workflows/
+        └── pr-guard.yml         # CI/CD 整合性チェック
 ```
 
 ---
@@ -207,24 +223,11 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 ---
 
-## 📝 Tier 4: 一時的文書
+## 📝 Tier 4: 一時的文書（廃止・Tier 4.5 に統合）
 
-### 役割
-**期限付きの作業記録**。完了後はアーカイブ。
+> 💡 **注記**: 従来の Tier 4（ルートレベル一時文書）は、Tier 4.5（`docs/log/`）に統合されました。詳細は [Tier 4.5](#tier-45-ログ記録作業の時系列記録) を参照してください。
 
-### 配置場所
-- ルートレベル or `docs/temporary/` (検討中)
-
-### 更新頻度
-**適宜**（作業進捗に応じて）
-
-### ファイル一覧
-
-| ファイル | 目的 | 完了後の扱い | 備考 |
-|---------|------|------------|------|
-| `docs/project-status.ja.md` | API移行の進捗 | ADR-0001に統合後、アーカイブ | 一時的 |
-
-### ルール
+### ルール（レガシー）
 
 1. **完了後は必ずアーカイブ**
    - `docs/operations/archive/{YYYY}/{MM}/` に移動
@@ -236,6 +239,45 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 3. **長期化する場合は Tier 1 に昇格**
    - 1ヶ月以上続く場合は `project-status.ja.md` に統合検討
+
+---
+
+## 📝 Tier 4.5: ログ記録（作業の時系列記録）
+
+### 役割
+**ガバナンス監査・品質レビュー・デバッグログなど、作業の時系列記録**。参照対象ではなく、単なる「記録」。
+
+### 配置場所
+- `docs/log/{YYYY}/{MM}/`
+
+### 更新頻度
+**適宜**（作業内容に応じて）
+
+### ファイル一覧
+
+| ファイル | 目的 | ステータス管理 | 備考 |
+|---------|------|--------------|------|
+| `docs/log/2025/10/20251029_governance-self-review.md` | ガバナンス監査レポート | ❌ なし | 月別フォルダで時系列管理 |
+| `docs/log/2025/10/20251030_quality-check-log.md` | 品質チェック結果 | ❌ なし | 任意のスラッグ名可 |
+| `docs/log/2025/11/20251105_performance-test-report.md` | パフォーマンステスト結果 | ❌ なし | YYYYMMDD_{slug}.md 形式 |
+
+### ルール
+
+1. **参照対象ではなく、単なる「記録」**
+   - これらのログから情報を抽出する場合は、ADR や project-status.ja.md に記録
+   - ログ自体は grep や ls で検索可能（INDEX.md 不要）
+
+2. **ステータス管理（active/deprecated）は不要**
+   - 時系列記録なので、すべてのログが保存対象
+   - 削除ポリシーなし（永続保存）
+
+3. **月別フォルダで時系列整理**
+   - `docs/log/{YYYY}/{MM}/` の構造で自動管理
+   - 過去のログは grep で検索可能
+
+4. **命名規則: YYYYMMDD_{slug}.md**
+   - 例: `20251029_governance-self-review.md`
+   - ハイフン使用（urlフレンドリー）
 
 ---
 
@@ -389,6 +431,15 @@ git push origin main
 
 ---
 
-**最終更新**: 2025-10-28  
+**最終更新**: 2025-10-29  
 **次回レビュー**: 2025-11-28  
-**バージョン**: 1.0.0
+**バージョン**: 1.1.0
+
+---
+
+## 📚 更新履歴
+
+| バージョン | 日付 | 変更内容 |
+|-----------|------|---------|
+| 1.1.0 | 2025-10-29 | log/ ディレクトリ追加、Tier 4.5 新規定義、INDEX.md 各種追加対応 |
+| 1.0.0 | 2025-10-28 | 初版公開 |
