@@ -12,19 +12,14 @@
 
 ## 📁 構造
 
-```
-operations/
-├── current/                      # 現在有効な手順書（{YYYYMMDD}_{type}.ja.md 形式）
-│   ├── 20251028_OPERATIONS.ja.md
-│   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
-│   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
-│   └── 20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md
-├── archive/                      # 過去版アーカイブ
-│   └── {YYYY}/{MM}/              # 例: 2025/10/
-│       ├── 20251027_OPERATIONS.ja.md
-│       └── 20251026_NOTE_SYNC_MANUAL.ja.md
-└── README.md                     # このファイル
-```
+> **📘 全体構造とルール**: [`../../governance/HIERARCHY_RULES.md`](../../governance/HIERARCHY_RULES.md) を参照してください。
+
+**ディレクトリ概要**：
+
+- **`current/`** - 現在有効な運用手順書（`{YYYYMMDD}_{type}.ja.md` 形式）
+- **`archive/`** - 過去版アーカイブ（`{YYYY}/{MM}/` で月別管理）
+
+**具体的なファイル構成、命名規則、アーカイブルールの詳細は権威文書を参照してください。**
 
 ---
 

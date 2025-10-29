@@ -21,23 +21,17 @@
 
 ## 📁 構造
 
-```
-docs/
-├── decisions/              # ADR（全ての重要な決定）
-│   ├── active/2025/10/    # 現在有効な決定（月別）
-│   ├── deprecated/        # 非推奨
-│   ├── superseded/        # 上書きされた決定
-│   └── INDEX.md           # 自動生成索引
-├── governance/            # ドキュメント管理ルール
-│   ├── AI_GUIDELINES.md
-│   ├── DOCUMENTATION_STRUCTURE.yml
-│   └── HIERARCHY_RULES.md
-├── prd/                   # Product Requirements Document
-│   └── active/
-├── operations/            # 運用手順書
-│   └── current/
-└── README.md              # このファイル
-```
+> **📘 詳細な構造とルール**: [`./governance/HIERARCHY_RULES.md`](governance/HIERARCHY_RULES.md) および [`./governance/DOCUMENTATION_STRUCTURE.yml`](governance/DOCUMENTATION_STRUCTURE.yml) を参照してください。
+
+**主要ディレクトリ**：
+
+- **`decisions/`** 🏆 - ADR（全ての重要な決定）、月別管理
+- **`governance/`** 🏛️ - ドキュメント管理ルールと権威文書
+- **`prd/`** 💡 - Product Requirements Document（要件定義）
+- **`operations/`** 📋 - 運用手順書（current/archive 分離）
+- **`log/`** 📝 - 作業ログ・記録（時系列管理）
+
+**階層ルール（Tier）、命名規則、ディレクトリ配置の詳細は権威文書を参照してください。**
 
 ---
 

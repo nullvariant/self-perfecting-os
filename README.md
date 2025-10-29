@@ -46,79 +46,18 @@
 > note記事関連は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings) リポジトリへ移行しました（ADR-0007）。  
 > 詳細は **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照。
 
-```
-nullvariant/
-├── content/                      # ✅ 多言語コンテンツ（積極的メンテナンス中）
-│   ├── ja/                       # 🇯🇵 日本語（一次情報・編集対象）
-│   │   ├── AGENT.md
-│   │   └── EmotionMood_Dictionary.md
-│   ├── en/                       # 🇬🇧 英語（自動生成・編集禁止）
-│   │   ├── AGENT.md              # ⚠️ CI未稼働（プレースホルダー）
-│   │   └── EmotionMood_Dictionary.md  # ⚠️ CI未稼働（プレースホルダー）
-│   └── README.md                 # 多言語管理の設計思想
-│
-├── AGENT.md                       # 🇬🇧 英語版エントリポイント（⚠️ CI未稼働）
-├── CHANGELOG.md                   # 📋 バージョン履歴（Keep a Changelog形式）
-│
-├── docs/                          # 📚 ドキュメント管理
-│   ├── decisions/                # 🏆 ADR（全ての重要な決定）✅
-│   │   ├── active/2025/10/      # 現在有効な決定（月別）
-│   │   ├── deprecated/          # 非推奨
-│   │   ├── superseded/          # 上書きされた決定
-│   │   ├── INDEX.md             # 自動生成索引
-│   │   └── README.md            # ADR管理ルール
-│   ├── governance/              # 🏛️ ガバナンス ✅
-│   │   ├── AI_GUIDELINES.md     # AI向けドキュメント記録ガイドライン
-│   │   ├── DOCUMENTATION_STRUCTURE.yml  # 機械可読形式の階層定義
-│   │   ├── HIERARCHY_RULES.md   # 階層ルール説明
-│   │   └── README.md
-│   ├── prd/                     # 💡 要件定義
-│   │   ├── active/              # 現在進行中のPRD
-│   │   ├── implemented/         # 実装済み
-│   │   ├── INDEX.md
-│   │   └── README.md
-│   ├── operations/              # 📋 運用手順書
-│   │   ├── current/
-│   │   │   ├── 20251028_OPERATIONS.ja.md
-│   │   │   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
-│   │   │   ├── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
-│   │   │   └── 20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md
-│   │   ├── DOCUMENTATION_UPDATE_CHECKLIST.md  # 📋 ドキュメント更新チェックリスト
-│   │   ├── archive/
-│   │   └── README.md
-│   ├── project-status.ja.md     # 📊 プロジェクト状況・メンテナンス優先度
-│   └── README.md                # docs/ ディレクトリの構造説明
-│
-├── scripts/                       # 🛠️ 自動化スクリプト
-│   ├── build.py                  # 多言語翻訳＆YAML生成
-│   ├── gen_toc.py                # 目次自動生成
-│   ├── prepare_note_article.py  # note記事自動生成
-│   ├── review.py                 # 類似度検証
-│   ├── record_decision.py        # ADR作成支援
-│   ├── archive_conversation.py  # 対話ログ保存（nullvariant-writings）
-│   ├── check_token_usage.py     # トークン使用量監視
-│   ├── generate_index.py         # INDEX.md自動生成
-│   ├── validate_docs.py          # ドキュメント整合性チェック
-│   └── prompts/                  # LLMプロンプトテンプレート
-│
-├── tests/                         # 🧪 テストファイル管理（ADR-0009）
-│   ├── README.md                 # テストファイル配置ガイド
-│   └── fixtures/
-│       ├── permanent/            # Git管理（単体テスト用・回帰テスト用）
-│       └── temporary/            # .gitignore（一時的な動作確認用）
-│
-├── spec/                          # ⚠️ 自動生成（CI未稼働）
-│   ├── agent.spec.yaml           # YAML構造化仕様
-│   └── agent.schema.json         # JSONスキーマ
-│
-├── i18n/                          # 🌍 国際化リソース
-│   ├── glossary.yml              # 用語固定辞書
-│   └── style/                    # スタイルガイド（日英）
-│
-└── .github/                       # GitHub設定
-    └── workflows/                # CI/CD（一部稼働中）
-        └── validate-docs.yml     # ドキュメント整合性チェック ✅
-```
+> **📘 詳細な構造説明とルール**: [`docs/governance/HIERARCHY_RULES.md`](docs/governance/HIERARCHY_RULES.md) を参照してください。
+
+**主要ディレクトリ概要**：
+
+- **`content/`** ✅ - 多言語コンテンツ（日本語が一次情報、英語は自動生成）
+- **`docs/`** � - ドキュメント管理（ADR 🏆、ガバナンス 🏛️、PRD 💡、運用手順書 📋）
+- **`scripts/`** 🛠️ - 自動化スクリプト（翻訳、目次生成、INDEX生成、検証等）
+- **`tests/`** 🧪 - テストファイル管理（permanent/temporary 分離、ADR-0009）
+- **`spec/`** ⚠️ - YAML/JSON仕様（CI自動生成、現在未稼働）
+- **`i18n/`** 🌍 - 国際化リソース（用語辞書、スタイルガイド）
+
+**階層ルール、命名規則、Tier定義の詳細は権威文書を参照してください。**
 
 ---
 
