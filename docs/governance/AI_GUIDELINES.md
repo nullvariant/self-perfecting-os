@@ -206,18 +206,25 @@ ADR作成後、必要に応じて以下も更新：
 ### Tier 2: プロセス・手順書
 **運用・実行手順の記録**
 
-- `docs/operations/OPERATIONS.ja.md` - 運用手順
-- `docs/operations/NOTE_SYNC_MANUAL.ja.md` - note公開手順
+- `docs/operations/current/{YYYYMMDD}_{type}.ja.md` - 運用手順（最新版）
+  - 例: `docs/operations/current/20251028_OPERATIONS.ja.md`
+  - 例: `docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md`
+- 過去版は `docs/operations/archive/{YYYY}/{MM}/` へ移動
 
 ### Tier 3: 設計文書（PRD）
 **機能開発・改善の要件定義**
 
-- `docs/prd_*.md` - 各機能のPRD
+- `docs/prd/active/{YYYYMMDD}_{slug}.ja.md` - 各機能のPRD（実装前）
+  - 例: `docs/prd/active/20251028_documentation-governance.ja.md`
+  - 例: `docs/prd/active/20251028_note-workflow-automation.ja.md`
+- 実装完了後は `docs/prd/implemented/` へ移動
 
 ### Tier 4: 一時的文書
 **期限付きの作業記録（完了後アーカイブ）**
 
-- `docs/project-status.ja.md` - 移行作業の進捗
+- `docs/operations/current/{YYYYMMDD}_TEMP.ja.md` - 一時的な作業ログ
+- `docs/prd/active/{YYYYMMDD}_EXPERIMENT.ja.md` - 実験的要件案
+- 完了後は対応する `archive/{YYYY}/{MM}/` へ移動
 
 ---
 

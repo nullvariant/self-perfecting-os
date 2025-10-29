@@ -82,15 +82,23 @@ python scripts/record_decision.py \
 nullvariant/
 ├── docs/
 │   ├── decisions/                    # 🏆 ADR（全ての重要な決定）
+│   │   ├── active/{YYYY}/{MM}/       # 確定版
+│   │   ├── deprecated/               # 非推奨版
+│   │   └── superseded/               # 上書きされた版
 │   ├── governance/                   # 🏛️ ドキュメント管理ルール
 │   │   ├── AI_GUIDELINES.md
 │   │   ├── DOCUMENTATION_STRUCTURE.yml
-│   │   └── HIERARCHY_RULES.md
+│   │   ├── HIERARCHY_RULES.md
+│   │   ├── SSOT_PRIORITY_MATRIX.md
+│   │   └── README.md
 │   ├── operations/                   # 📋 運用手順書
-│   │   ├── DOCUMENTATION_UPDATE_CHECKLIST.md  # 構造変更時のチェックリスト
-│   │   └── current/                  # 現行版手順書
+│   │   ├── current/                  # 最新版（current/{YYYYMMDD}_{type}.ja.md）
+│   │   └── archive/{YYYY}/{MM}/      # 過去版
 │   ├── prd/                          # 💡 要件定義
-│   └── project-status.ja.md          # プロジェクト状況
+│   │   ├── active/                   # 実装前（active/{YYYYMMDD}_{slug}.ja.md）
+│   │   └── implemented/              # 実装完了版
+│   ├── project-status.ja.md          # プロジェクト状況
+│   └── README.md                     # ドキュメント全体ガイド
 ├── content/                           # ✅ 一次情報
 │   ├── ja/                           # 🇯🇵 日本語（編集対象）
 │   └── en/                           # 🇬🇧 英語（CI自動生成）

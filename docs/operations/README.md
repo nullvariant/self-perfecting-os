@@ -14,12 +14,15 @@
 
 ```
 operations/
-├── current/                    # 現在有効な手順書
+├── current/                      # 現在有効な手順書（{YYYYMMDD}_{type}.ja.md 形式）
 │   ├── 20251028_OPERATIONS.ja.md
 │   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
 │   └── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
-├── deprecated/                 # 非推奨（参考のみ）
-└── README.md                   # このファイル
+├── archive/                      # 過去版アーカイブ
+│   └── {YYYY}/{MM}/              # 例: 2025/10/
+│       ├── 20251027_OPERATIONS.ja.md
+│       └── 20251026_NOTE_SYNC_MANUAL.ja.md
+└── README.md                     # このファイル
 ```
 
 ---
@@ -110,17 +113,26 @@ cp docs/operations/template.md docs/operations/current/my-procedure.ja.md
 ### 1. Current（現在有効）
 
 ```bash
-# current/ に配置
-docs/operations/current/my-procedure.ja.md
+# current/ に配置（最新の手順）
+docs/operations/current/{YYYYMMDD}_{type}.ja.md
+
+# 例
+docs/operations/current/20251028_OPERATIONS.ja.md
 ```
 
-### 2. Deprecated（非推奨）
+### 2. Archive（過去版保管）
 
 ```bash
-# deprecated/ に移動
-mv docs/operations/current/my-procedure.ja.md \
-   docs/operations/deprecated/
+# 古い手順を月別アーカイブに移動
+mkdir -p docs/operations/archive/{YYYY}/{MM}/
+mv docs/operations/current/20251027_OPERATIONS.ja.md \
+   docs/operations/archive/2025/10/
+
+# 結果
+docs/operations/archive/2025/10/20251027_OPERATIONS.ja.md
 ```
+
+**注意**: `deprecated/` ディレクトリではなく、`archive/{YYYY}/{MM}/` 形式で月別管理
 
 ---
 

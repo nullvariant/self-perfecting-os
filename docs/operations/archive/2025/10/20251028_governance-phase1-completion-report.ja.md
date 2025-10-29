@@ -1,6 +1,7 @@
-# ドキュメント管理ガバナンス体系 - 実装完了サマリー
+# ドキュメント管理ガバナンス体系 - Phase 1 実装完了レポート
 
 **実装日**: 2025-10-28  
+**レポート作成**: 2025-10-29  
 **ステータス**: Phase 1 完了  
 **次のフェーズ**: Phase 2（既存ドキュメント整理統合）
 
@@ -12,12 +13,12 @@
 
 | ファイル | 目的 | 状態 |
 |---------|------|------|
-| `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` | 本ガバナンス体系のPRD | ✅ 作成 |
+| `docs/prd/active/20251028_documentation-governance.ja.md` | 本ガバナンス体系のPRD | ✅ 作成 |
 | `docs/governance/DOCUMENTATION_STRUCTURE.yml` | ドキュメント階層定義（機械可読） | ✅ 作成 |
 | `docs/governance/AI_GUIDELINES.md` | AI向け記録ルール | ✅ 作成 |
 | `docs/governance/HIERARCHY_RULES.md` | 階層ルール説明（人間向け） | ✅ 作成 |
-| `docs/decisions/0000-adr-template.md` | ADRテンプレート | ✅ 作成 |
-| `docs/decisions/0001-ci-cd-pause.md` | 初回ADR（CI/CD停止記録） | ✅ 作成 |
+| `docs/decisions/0000_template.md` | ADRテンプレート | ✅ 作成 |
+| `docs/decisions/active/2025/10/20251029_0001_ci-cd-pause_architecture.md` | 初回ADR（CI/CD停止記録） | ✅ 作成 |
 | `docs/decisions/README.md` | ADR使用ガイド | ✅ 作成 |
 | `scripts/record_decision.py` | ADR生成スクリプト | ✅ 作成 |
 | `scripts/validate_docs.py` | ドキュメント検証スクリプト | ✅ 作成 |
@@ -30,22 +31,35 @@
 ```
 nullvariant/
 ├── docs/
-│   ├── DECISIONS/              # 🆕 ADR保管庫（Tier 0: SSOT）
-│   │   ├── 0000-adr-template.md
-│   │   ├── 0001-ci-cd-pause.md
-│   │   └── README.md
-│   ├── GOVERNANCE/             # 🆕 ガバナンス文書
+│   ├── decisions/               # 🆕 ADR保管庫（Tier 0: SSOT）
+│   │   ├── active/
+│   │   │   └── 2025/10/
+│   │   │       ├── 20251029_0001_ci-cd-pause_architecture.md
+│   │   │       └── ...
+│   │   ├── deprecated/
+│   │   ├── superseded/
+│   │   └── 0000_template.md
+│   ├── governance/              # 🆕 ガバナンス文書（メタドキュメント）
 │   │   ├── DOCUMENTATION_STRUCTURE.yml
 │   │   ├── AI_GUIDELINES.md
-│   │   └── HIERARCHY_RULES.md
-│   ├── operations/             # 既存（Phase 2で整理予定）
-│   ├── PRD_*.md                # 既存（Phase 2で整理予定）
-│   └── project-status.ja.md    # 既存（Phase 2で強化予定）
+│   │   ├── HIERARCHY_RULES.md
+│   │   └── README.md
+│   ├── operations/
+│   │   ├── current/             # 最新版
+│   │   │   ├── OPERATIONS.ja.md
+│   │   │   └── NOTE_SYNC_MANUAL.ja.md
+│   │   └── archive/             # 過去版
+│   │       └── 2025/10/
+│   ├── prd/
+│   │   ├── active/              # 実装前
+│   │   │   └── 20251028_documentation-governance.ja.md
+│   │   └── implemented/         # 実装完了
+│   └── project-status.ja.md     # Tier 1: 状態管理
 ├── scripts/
-│   ├── record_decision.py      # 🆕 ADR自動生成
-│   └── validate_docs.py        # 🆕 ドキュメント検証
+│   ├── record_decision.py       # 🆕 ADR自動生成
+│   └── validate_docs.py         # 🆕 ドキュメント検証
 └── .github/
-    └── copilot-instructions.md # ✅ ADRルール追加済み
+    └── copilot-instructions.md  # ✅ ADRルール追加済み
 ```
 
 ---
@@ -73,7 +87,7 @@ python scripts/validate_docs.py
 
 ```bash
 # ADR-0001 のStatusを確認・編集
-vim docs/decisions/0001-ci-cd-pause.md
+vim docs/decisions/active/2025/10/20251029_0001_ci-cd-pause_architecture.md
 ```
 
 ---
@@ -82,30 +96,30 @@ vim docs/decisions/0001-ci-cd-pause.md
 
 ### AI向け
 
-1. **[docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md)**
+1. **[docs/governance/AI_GUIDELINES.md](../../governance/AI_GUIDELINES.md)**
    - ADRが必要な判断基準
    - 作業前チェックリスト
    - 変更タイプ別の記録場所
 
-2. **[docs/governance/DOCUMENTATION_STRUCTURE.yml](../docs/governance/DOCUMENTATION_STRUCTURE.yml)**
+2. **[docs/governance/DOCUMENTATION_STRUCTURE.yml](../../governance/DOCUMENTATION_STRUCTURE.yml)**
    - 機械可読形式のドキュメント階層定義
    - AI が自動判定に使用
 
-3. **[.github/copilot-instructions.md](../.github/copilot-instructions.md)**
+3. **[.github/copilot-instructions.md](../../../../.github/copilot-instructions.md)**
    - GitHub Copilot 向けルール
    - ADRルールを追加済み
 
 ### 人間向け
 
-1. **[docs/prd_DOCUMENTATION_GOVERNANCE.ja.md](../docs/prd_DOCUMENTATION_GOVERNANCE.ja.md)**
+1. **[docs/prd/active/20251028_documentation-governance.ja.md](../../prd/active/20251028_documentation-governance.ja.md)**
    - 本ガバナンス体系の要件定義
    - Phase 1〜3 の計画
 
-2. **[docs/governance/HIERARCHY_RULES.md](../docs/governance/HIERARCHY_RULES.md)**
+2. **[docs/governance/HIERARCHY_RULES.md](../../governance/HIERARCHY_RULES.md)**
    - 階層ルール詳細説明
    - ワークフロー例
 
-3. **[docs/decisions/README.md](../docs/decisions/README.md)**
+3. **[docs/decisions/README.md](../../decisions/README.md)**
    - ADR使用ガイド
    - ADR一覧
 
@@ -133,9 +147,9 @@ vim docs/decisions/0001-ci-cd-pause.md
 
 ### Week 2: 移行・統合
 - [ ] `docs/operations/` 配下に既存運用文書を整理
-- [ ] `docs/plans/` に PRD を集約（検討）
-- [ ] `docs/temporary/` を新設し、一時文書を移動
-- [ ] `docs/project-status.ja.md` → ADR-0001 に統合
+- [ ] `docs/prd/` に PRD を集約
+- [ ] 一時文書を `docs/operations/archive/{YYYY}/{MM}/` に移動
+- [ ] `docs/project-status.ja.md` → ADR への統合を検討
 
 ### Week 3: 検証・修正
 - [ ] `scripts/validate_docs.py` で矛盾チェック
@@ -153,7 +167,7 @@ vim docs/decisions/0001-ci-cd-pause.md
    - 矛盾があれば新ADRで解決
 
 2. **チェックリストを活用**
-   - [docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md) の作業前チェックリスト
+   - [docs/governance/AI_GUIDELINES.md](../../governance/AI_GUIDELINES.md) の作業前チェックリスト
    - 迷ったら人間に質問
 
 3. **定期的な検証**
@@ -174,8 +188,8 @@ vim docs/decisions/0001-ci-cd-pause.md
 
 ### 人間（nullvariant）が実施
 
-1. [ ] `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` をレビュー
-2. [ ] `docs/decisions/0001-ci-cd-pause.md` の Status を確認
+1. [ ] `docs/prd/active/20251028_documentation-governance.ja.md` をレビュー
+2. [ ] `docs/decisions/active/2025/10/20251029_0001_ci-cd-pause_architecture.md` の Status を確認
 3. [ ] `python scripts/validate_docs.py` を実行して現状確認
 4. [ ] Phase 2 の開始タイミングを決定
 
@@ -193,6 +207,13 @@ vim docs/decisions/0001-ci-cd-pause.md
 
 ---
 
-**作成日**: 2025-10-28  
+## ファイル履歴
+
+- **作成日**: 2025-10-28（当初 `docs/governance/PHASE1_SUMMARY.md` として）
+- **移行日**: 2025-10-29（`docs/operations/archive/2025/10/20251028_governance-phase1-completion-report.ja.md` に移行）
+- **理由**: 一時的な進捗レポートとして、日付付き・archive/ 配下に配置する原則に従うため
+
+---
+
 **Phase 1 完了日**: 2025-10-28  
 **Phase 2 開始予定**: TBD（人間の承認後）

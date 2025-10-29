@@ -164,18 +164,20 @@ NOTE_SYNC_MANUAL.ja.md
 **✅ 既に遵守している場所**:
 ```
 README.md, CHANGELOG.md, AGENT.md      ← 大文字（慣習）OK
-docs/decisions/20251028_000X_*.md      ← 小文字（流動）OK
-docs/prd/active/20251028_*.ja.md       ← 小文字（流動）OK
-docs/operations/OPERATIONS.ja.md       ← 大文字（メタ）OK
+docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md      ← 小文字（流動）OK
+docs/prd/active/20251028_documentation-governance.ja.md       ← 小文字（流動）OK
+docs/operations/current/OPERATIONS.ja.md       ← 大文字（メタ）OK
+docs/operations/archive/2025/10/20251028_*.ja.md    ← 小文字（流動・アーカイブ）OK
 ```
 
-**⚠️ 確認・調整が必要な場所**:
+**✅ 確認・調整完了**:
 ```
-docs/governance/README.md              ← 大文字で OK（メタドキュメント）
-docs/governance/NAMING_DECISION_SUMMARY.md ← 大文字で OK（メタドキュメント）
-docs/governance/HIERARCHY_RULES.md     ← 大文字で OK（メタドキュメント）
-docs/governance/AI_GUIDELINES.md       ← 大文字で OK（メタドキュメント）
-docs/operations/README.md              ← 大文字で OK（メタドキュメント）
+docs/governance/README.md              ← 大文字で OK（メタドキュメント）✅
+docs/governance/NAMING_DECISION_SUMMARY.md ← 大文字で OK（メタドキュメント）✅
+docs/governance/HIERARCHY_RULES.md     ← 大文字で OK（メタドキュメント）✅
+docs/governance/AI_GUIDELINES.md       ← 大文字で OK（メタドキュメント）✅
+docs/operations/current/README.md      ← 大文字で OK（メタドキュメント）✅
+docs/operations/archive/2025/10/20251028_governance-phase1-completion-report.ja.md  ← 小文字（流動）✅
 ```
 
 結論: **既にほぼ従っている。このADRは「根拠の明示」が主目的**

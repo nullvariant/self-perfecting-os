@@ -220,28 +220,48 @@ python scripts/generate_index.py --force
    - ADR追加のたびにスクリプト実行が必要
    - ただし `--dry-run` でプレビュー可能
 
-### 📋 TODO
+## 実装完了状況
 
-- [x] `scripts/generate_index.py` の実装
-- [ ] `scripts/record_decision.py` を新命名規則に対応
-- [ ] 既存ファイルのリネーム（Phase 2）
-- [ ] `DOCUMENTATION_STRUCTURE.yml` に命名規則を追記
-- [ ] CI/CD で INDEX.md 整合性チェック（将来）
-- [ ] 月別ディレクトリ自動作成機能（将来）
+### Phase 1: 命名規則の決定・ドキュメント化
+**ステータス**: ✅ **完了**（2025-10-28）
+- ✅ 本ADR（ADR-0002）の作成と承認
+- ✅ ケース規則の明確化（ADR-0011）
+- ✅ ハイフン・アンダースコア規則の明確化（ADR-0012）
+- ✅ `scripts/generate_index.py` の実装
+
+### Phase 2: 既存ファイルのリネーム
+**ステータス**: ✅ **完了**（2025-10-29）
+- ✅ ディレクトリ構造の確立（`docs/decisions/active/{YYYY}/{MM}/` 等）
+- ✅ 既存ファイルのリネーム実施
+  - ADR-0001: `docs/decisions/0001-ci-cd-pause.md` → `docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md`
+  - ADR-0002: `docs/decisions/0002-naming-and-directory-structure.md` → `docs/decisions/active/2025/10/20251028_0002_naming-structure_documentation.md`
+  - PRD: `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` → `docs/prd/active/20251028_documentation-governance.ja.md`
+- ✅ `DOCUMENTATION_STRUCTURE.yml` に命名規則を反映
+- ✅ `HIERARCHY_RULES.md` に階層ルールを反映
+
+### Phase 3: 継続的改善
+**ステータス**: ⏳ **進行中**（2025-10-29以降）
+- ⏳ `scripts/record_decision.py` を新命名規則に完全対応（自動生成ロジック）
+- ⏳ CI/CD で INDEX.md 整合性チェック（将来実装）
+- ⏳ 月別ディレクトリ自動作成機能の統合（将来実装）
+- ⏳ ADR-0011・ADR-0012の実装をスクリプトで自動化
 
 ## Related
 
 ### 関連するファイル
-- `scripts/generate_index.py` - INDEX.md自動生成スクリプト（本ADRで作成）
-- `scripts/record_decision.py` - ADR生成スクリプト（要更新）
-- `docs/governance/DOCUMENTATION_STRUCTURE.yml` - 階層定義（要更新）
-- `docs/governance/HIERARCHY_RULES.md` - 階層ルール説明（要更新）
+- `scripts/generate_index.py` - INDEX.md自動生成スクリプト（実装完了）
+- `scripts/record_decision.py` - ADR生成スクリプト（新命名規則対応予定）
+- `docs/governance/DOCUMENTATION_STRUCTURE.yml` - 階層定義（最新版に更新）
+- `docs/governance/HIERARCHY_RULES.md` - 階層ルール説明（最新版に更新）
+- `docs/governance/NAMING_DECISION_SUMMARY.md` - 命名規則サマリー（実装完了反映済み）
 
 ### 関連する ADR
 - ADR-0001: CI/CD一時停止（本ADRで命名規則を確立）
+- ADR-0011: ファイル名ケース規則（本ADRの詳細仕様）
+- ADR-0012: ハイフン・アンダースコア規則（本ADRの詳細仕様）
 
 ### 関連する PRD
-- `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` - 本ガバナンス体系のPRD
+- `docs/prd/active/20251028_documentation-governance.ja.md` - 本ガバナンス体系のPRD
 
 ---
 
@@ -271,5 +291,5 @@ python scripts/generate_index.py --force
 ---
 
 **Status**: Accepted  
-**実装状況**: `generate_index.py` 完成、既存ファイルのリネームは Phase 2  
-**次回レビュー**: Phase 2 開始時（既存ドキュメント整理時）
+**実装状況**: Phase 2 実装完了（2025-10-29）  
+**次回レビュー**: Phase 3 実装時（scripts/record_decision.py 更新時）

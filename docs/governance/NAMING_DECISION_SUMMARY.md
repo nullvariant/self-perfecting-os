@@ -197,54 +197,52 @@ docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
 
 ---
 
-## 🚀 次のステップ
+## ✅ 実装完了状況
+
+### Phase 1: 命名規則の決定・ドキュメント化
+**ステータス**: ✅ **完了**（2025-10-28）
+
+- ✅ 命名規則の定義（ADR-0002）
+- ✅ ケース規則の明確化（ADR-0011）
+- ✅ ハイフン・アンダースコア規則の明確化（ADR-0012）
+- ✅ 本ドキュメント（NAMING_DECISION_SUMMARY.md）の作成
 
 ### Phase 2: 既存ファイルのリネーム
+**ステータス**: ✅ **完了**（2025-10-29）
 
-```bash
-# ADR-0001 のリネーム
-mkdir -p docs/decisions/active/2025/10
-mv docs/decisions/0001-ci-cd-pause.md \
-   docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md
+**実施済みのリネーム:**
 
-# ADR-0002 のリネーム（本ADR）
-mv docs/decisions/0002-naming-and-directory-structure.md \
-   docs/decisions/active/2025/10/20251028_0002_naming-structure_documentation.md
+| 旧ファイル | 新ファイル | 状態 |
+|----------|----------|------|
+| `docs/decisions/0001-ci-cd-pause.md` | `docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md` | ✅ 完了 |
+| `docs/decisions/0002-naming-and-directory-structure.md` | `docs/decisions/active/2025/10/20251028_0002_naming-structure_documentation.md` | ✅ 完了 |
+| `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` | `docs/prd/active/20251028_documentation-governance.ja.md` | ✅ 完了 |
 
-# PRDのリネーム
-mkdir -p docs/prd/active
-mv docs/prd_DOCUMENTATION_GOVERNANCE.ja.md \
-   docs/prd/active/20251028_documentation-governance.ja.md
-```
+**ディレクトリ構造の確立:**
+- ✅ `docs/decisions/active/2025/10/` ディレクトリ作成
+- ✅ `docs/prd/active/` ディレクトリ作成
+- ✅ `docs/operations/archive/2025/10/` ディレクトリ作成
+- ✅ 月別階層による組織化の実装
 
-### scripts/record_decision.py の更新
+### Phase 3: スクリプトの対応
+**ステータス**: ⏳ **進行中**（2025-10-29以降）
 
-新しい命名規則に対応する必要がある：
+**scripts/record_decision.py:**
+- 新しい命名規則に対応（`{YYYYMMDD}_{NNNN}_{slug}_{category}.md` 形式）
+- 月別ディレクトリの自動作成ロジック実装予定
+- 実装予定時期: 次のADR作成時
 
-```python
-# 新しいファイル名生成ロジック
-def generate_filename(title, category, date):
-    number = get_next_number()
-    slug = sanitize_slug(title)
-    return f"{date.strftime('%Y%m%d')}_{number:04d}_{slug}_{category}.md"
+**scripts/validate_docs.py:**
+- 命名規則チェック機能の追加予定
+- カテゴリタグの検証機能追加予定
+- 実装予定時期: ガバナンス検証フェーズ
 
-# 月別ディレクトリ自動作成
-def get_output_dir(decisions_dir, date, status="active"):
-    year_month_dir = decisions_dir / status / date.strftime("%Y") / date.strftime("%m")
-    year_month_dir.mkdir(parents=True, exist_ok=True)
-    return year_month_dir
-```
+### Phase 4: INDEX.md 管理の運用化
+**ステータス**: ✅ **運用中**
 
-### validate_docs.py の更新
-
-命名規則チェックを追加：
-
-```python
-def check_naming_convention():
-    """ファイル名が命名規則に従っているかチェック"""
-    # YYYYMMDD_NNNN_slug_category.md 形式かどうか
-    # カテゴリタグが定義済みのものか確認
-```
+- ✅ 手動実行フロー確立（`python scripts/generate_index.py`）
+- ✅ Git Hooks 非採用の決定（HSP特性への配慮）
+- ✅ INDEX.md の定期更新手順を確立
 
 ---
 
@@ -283,5 +281,5 @@ def check_naming_convention():
 ---
 
 **作成日**: 2025-10-28  
-**最終更新**: 2025-10-28  
-**次回更新**: Phase 2（既存ファイルリネーム時）
+**最終更新**: 2025-10-29  
+**ステータス**: Phase 2 実装完了、Phase 3 進行中

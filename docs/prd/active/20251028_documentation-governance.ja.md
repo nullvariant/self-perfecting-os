@@ -36,50 +36,62 @@
 ```
 nullvariant/
 ├── docs/
-│   ├── DECISIONS/              # 🆕 ADR保管庫（最優先参照）
-│   │   ├── 0000-adr-template.md
-│   │   ├── 0001-ci-cd-pause.md
-│   │   └── README.md
-│   ├── GOVERNANCE/             # 🆕 ガバナンス文書
+│   ├── decisions/               # 🆕 ADR保管庫（最優先参照）
+│   │   ├── active/
+│   │   │   └── 2025/10/
+│   │   │       ├── 20251029_0001_ci-cd-pause_architecture.md
+│   │   │       └── ...
+│   │   ├── deprecated/
+│   │   ├── superseded/
+│   │   └── 0000_template.md
+│   ├── governance/              # 🆕 ガバナンス文書
 │   │   ├── DOCUMENTATION_STRUCTURE.yml
 │   │   ├── AI_GUIDELINES.md
 │   │   └── HIERARCHY_RULES.md
-│   ├── operations/             # 🔄 既存を整理
-│   │   ├── OPERATIONS.ja.md
-│   │   └── NOTE_SYNC_MANUAL.ja.md
-│   └── archive/                # 🆕 古いドキュメント退避先
-│       └── deprecated/
-├── content/                     # 変更なし（一次情報）
-│   ├── content/ja/AGENT.md
-│   └── EmotionMood_Dictionary.ja.md
-├── changelogs/                  # 変更なし
-└── scripts/                     # 🆕 ADR生成スクリプト追加
-    ├── record_decision.py       # ADR自動生成
-    └── validate_docs.py         # ドキュメント整合性チェック
+│   ├── operations/
+│   │   ├── current/
+│   │   │   ├── OPERATIONS.ja.md
+│   │   │   └── NOTE_SYNC_MANUAL.ja.md
+│   │   └── archive/             # 過去版アーカイブ
+│   │       └── 2025/10/
+│   ├── prd/
+│   │   ├── active/
+│   │   │   └── 20251028_documentation-governance.ja.md
+│   │   └── implemented/
+│   └── project-status.ja.md
+├── content/                      # 変更なし（一次情報）
+│   ├── ja/
+│   │   ├── AGENT.md
+│   │   └── EmotionMood_Dictionary.md
+│   └── en/
+├── changelogs/                   # 変更なし
+└── scripts/                      # 🆕 ADR生成スクリプト追加
+    ├── record_decision.py        # ADR自動生成
+    └── validate_docs.py          # ドキュメント整合性チェック
 ```
 
 ### 1.2 成果物リスト
 
 | ファイル | 目的 | 状態 |
 |---------|------|------|
-| `docs/decisions/0000-adr-template.md` | ADRテンプレート | 🆕 作成 |
-| `docs/decisions/0001-ci-cd-pause.md` | 初回ADR（API移行記録） | 🆕 作成 |
-| `docs/decisions/README.md` | ADR使用ガイド | 🆕 作成 |
-| `docs/governance/DOCUMENTATION_STRUCTURE.yml` | ドキュメント階層定義（機械可読） | 🆕 作成 |
-| `docs/governance/AI_GUIDELINES.md` | AI向け記録ルール | 🆕 作成 |
-| `docs/governance/HIERARCHY_RULES.md` | 階層ルール説明（人間向け） | 🆕 作成 |
-| `scripts/record_decision.py` | ADR生成スクリプト | 🆕 作成 |
-| `scripts/validate_docs.py` | ドキュメント検証スクリプト | 🆕 作成 |
-| `.github/copilot-instructions.md` | AI向けルール追記 | 🔄 更新 |
+| `docs/decisions/0000_template.md` | ADRテンプレート | ✅ 作成 |
+| `docs/decisions/active/2025/10/20251029_0001_ci-cd-pause_architecture.md` | 初回ADR（CI/CD一時停止） | ✅ 作成 |
+| `docs/decisions/README.md` | ADR使用ガイド | ✅ 作成 |
+| `docs/governance/DOCUMENTATION_STRUCTURE.yml` | ドキュメント階層定義（機械可読） | ✅ 作成 |
+| `docs/governance/AI_GUIDELINES.md` | AI向け記録ルール | ✅ 作成 |
+| `docs/governance/HIERARCHY_RULES.md` | 階層ルール説明（人間向け） | ✅ 作成 |
+| `scripts/record_decision.py` | ADR生成スクリプト | ✅ 作成 |
+| `scripts/validate_docs.py` | ドキュメント検証スクリプト | ✅ 作成 |
+| `.github/copilot-instructions.md` | AI向けルール追記 | ✅ 更新 |
 
 ### 1.3 受け入れ基準
 
-- [ ] ADRテンプレートが作成され、使用方法がドキュメント化されている
-- [ ] CI/CD停止の決定が ADR-0001 として記録されている
-- [ ] `DOCUMENTATION_STRUCTURE.yml` が機械可読形式で存在する
-- [ ] AI向けガイドラインが `.github/copilot-instructions.md` に統合されている
-- [ ] `scripts/record_decision.py` が動作し、ADRを自動生成できる
-- [ ] `scripts/validate_docs.py` がドキュメント間の矛盾を検出できる
+- [x] ADRテンプレートが作成され、使用方法がドキュメント化されている
+- [x] CI/CD停止の決定が ADR-0001 として記録されている
+- [x] `DOCUMENTATION_STRUCTURE.yml` が機械可読形式で存在する
+- [x] AI向けガイドラインが `.github/copilot-instructions.md` に統合されている
+- [x] `scripts/record_decision.py` が動作し、ADRを自動生成できる
+- [x] `scripts/validate_docs.py` がドキュメント間の矛盾を検出できる
 
 ---
 
@@ -92,13 +104,11 @@ nullvariant/
 | ファイル | 役割 | 問題点 | 対応方針 |
 |---------|------|--------|---------|
 | `README.md` | 概要 | 一部古い情報 | Phase 2で整理 |
-| `docs/project-status.ja.md` | 移行状況 | 一時的（完了後削除予定） | ADR-0001に統合検討 |
 | `docs/project-status.ja.md` | プロジェクト状態 | 更新日未記載 | Phase 2で強化 |
-| `docs/operations/current/` | 運用手順 | 一部古い | Phase 2で精査 |
-| `docs/operations/current/` | note公開手順 | 比較的最新 | Phase 2で検証 |
-| `docs/prd_CHANGELOG_MIGRATION.ja.md` | Changelog分離PRD | 実装状況不明 | Phase 2で確認 |
-| `docs/prd_NOTE_WORKFLOW_AUTOMATION.ja.md` | note自動化PRD | 実装状況不明 | Phase 2で確認 |
-| `docs/WORKFLOW_TEXT_ASSETS.ja.md` | テキスト資産管理 | 役割不明確 | Phase 2で整理 |
+| `docs/operations/current/OPERATIONS.ja.md` | 運用手順 | 定期更新必須 | Phase 2で検証 |
+| `docs/operations/current/NOTE_SYNC_MANUAL.ja.md` | note公開手順 | 比較的最新 | Phase 2で検証 |
+| `docs/prd/active/` | PRD（実装前） | ディレクトリ新設 | Phase 2で移行 |
+| `docs/prd/implemented/` | PRD（実装完了） | ディレクトリ新設 | Phase 2で移行 |
 
 ### 2.2 整理統合方針
 
@@ -121,20 +131,21 @@ nullvariant/
 
 #### Tier 2: プロセス・手順書
 - **目的**: 運用・実行手順の記録
-- **配置**: `docs/operations/`
+- **配置**: `docs/operations/current/`（最新版）+ `docs/operations/archive/{YYYY}/{MM}/`（過去版）
 - **更新頻度**: プロセス変更時
 - **ファイル**:
-  - `docs/operations/OPERATIONS.ja.md`
-  - `docs/operations/NOTE_SYNC_MANUAL.ja.md`
+  - `docs/operations/current/OPERATIONS.ja.md`
+  - `docs/operations/current/NOTE_SYNC_MANUAL.ja.md`
+  - 過去版は `docs/operations/archive/2025/10/20251027_OPERATIONS.ja.md` など
 
 #### Tier 3: 設計文書（PRD）
 - **目的**: 機能開発・改善の要件定義
-- **配置**: `docs/plans/` (名称変更検討)
+- **配置**: `docs/prd/active/`（実装前）/ `docs/prd/implemented/`（実装完了）
 - **更新頻度**: 機能開発時
 - **ファイル**:
-  - `docs/plans/changelog-migration.ja.md`
-  - `docs/plans/note-workflow-automation.ja.md`
-  - `docs/plans/documentation-governance.ja.md` (本文書)
+  - `docs/prd/active/20251028_changelog-migration.ja.md`
+  - `docs/prd/active/20251028_note-workflow-automation.ja.md`
+  - `docs/prd/active/20251028_documentation-governance.ja.md` (本文書)
 
 #### Tier 4: 一時的文書
 - **目的**: 期限付きの作業記録（完了後アーカイブ）

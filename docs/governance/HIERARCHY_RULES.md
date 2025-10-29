@@ -155,8 +155,8 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 | ファイル | 目的 | ADR必要 | 備考 |
 |---------|------|---------|------|
-| `docs/operations/OPERATIONS.ja.md` | 運用手順書 | ✅ | プロセス変更は重要な決定 |
-| `docs/operations/NOTE_SYNC_MANUAL.ja.md` | note公開手順 | ✅ | 手順変更時 |
+| `docs/operations/current/{YYYYMMDD}_{type}.ja.md` | 運用手順書（最新版） | ✅ | 例: `20251028_OPERATIONS.ja.md` |
+| 過去版は `docs/operations/archive/{YYYY}/{MM}/` へ移動 | 手順書の履歴管理 | - | ADR の新実装に準ずる |
 
 ### ルール
 
@@ -169,7 +169,7 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
    - 実行結果の期待値を明示
 
 3. **古い手順は削除せず、アーカイブ**
-   - `docs/archive/deprecated/` に移動
+   - `docs/operations/archive/{YYYY}/{MM}/` に移動
    - ADR に「なぜ変更したか」を記録
 
 ---
@@ -189,9 +189,8 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 | ファイル | 目的 | ADR必要 | 備考 |
 |---------|------|---------|------|
-| `docs/prd_CHANGELOG_MIGRATION.ja.md` | Changelog分離の要件 | ❌ | PRD自体は要件定義 |
-| `docs/prd_NOTE_WORKFLOW_AUTOMATION.ja.md` | note自動化の要件 | ❌ | |
-| `docs/prd_DOCUMENTATION_GOVERNANCE.ja.md` | 本ガバナンス体系の要件 | ❌ | |
+| `docs/prd/active/{YYYYMMDD}_{slug}.ja.md` | 各機能のPRD（実装前） | ❌ | 例: `20251028_changelog-migration.ja.md` |
+| 実装完了後は `docs/prd/implemented/` へ移動 | PRDの履歴管理 | - | 将来参照用 |
 
 ### ルール
 
@@ -201,7 +200,7 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 
 2. **PRDのステータス管理**
    - Draft → Review → Approved → Implemented
-   - Implemented 後は `docs/archive/completed/` に移動
+   - Implemented 後は `docs/prd/implemented/` に移動
 
 3. **実装状況を project-status.ja.md に記録**
    - 各PRDの進捗状況を可視化
@@ -228,8 +227,8 @@ AI/人間が**最初に参照すべき真実**。ここが間違っていたら�
 ### ルール
 
 1. **完了後は必ずアーカイブ**
-   - `docs/archive/completed/` に移動
-   - ファイル名を `YYYYMMDD-original-name.md` にリネーム
+   - `docs/operations/archive/{YYYY}/{MM}/` に移動
+   - ファイル名を `YYYYMMDD_original-name.md` にリネーム
 
 2. **恒久的な決定は ADR に抽出**
    - 一時文書から重要な決定を ADR に転記
@@ -303,9 +302,9 @@ python scripts/record_decision.py \
 vim docs/operations/NOTE_SYNC_MANUAL.ja.md
 
 # 3. 古い手順をアーカイブ
-mkdir -p docs/archive/deprecated
+mkdir -p docs/operations/archive/2025/10
 git mv docs/operations/NOTE_SYNC_MANUAL.ja.md \
-       docs/archive/deprecated/20251028-NOTE_SYNC_MANUAL.ja.md
+       docs/operations/archive/2025/10/20251028_NOTE_SYNC_MANUAL.ja.md
 
 # 4. 新しい手順を作成
 vim docs/operations/NOTE_SYNC_MANUAL.ja.md
@@ -313,7 +312,7 @@ vim docs/operations/NOTE_SYNC_MANUAL.ja.md
 # 5. コミット
 git add docs/decisions/active/2025/10/*.md \
         docs/operations/NOTE_SYNC_MANUAL.ja.md \
-        docs/archive/deprecated/20251028-NOTE_SYNC_MANUAL.ja.md
+        docs/operations/archive/2025/10/20251028_NOTE_SYNC_MANUAL.ja.md
 git commit -m "docs: Simplify note publishing workflow (ADR-XXXX)"
 git push origin main
 ```
