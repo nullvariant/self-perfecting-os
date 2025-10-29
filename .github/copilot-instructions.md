@@ -47,13 +47,15 @@ python scripts/record_decision.py \
 
 **✅ 積極的に編集すべきファイル:**
 - `docs/decisions/` - **ADR（全ての重要な決定を記録）**
+  - ADR命名規則: `{YYYYMMDD}_{NNNN}_{lowercase-hyphen-slug}_{category}.md`
+  - 詳細: [ADR-0011](../docs/decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) (ケース規則), [ADR-0012](../docs/decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) (ハイフン規則)
 - `content/ja/AGENT.md` - **日本語一次仕様書（最重要）**
 - `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 - `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式・技術的差分）
 - `docs/` - ドキュメント類（階層ルールに従う）
 
 **📝 note記事関連:**
-- [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - note記事原稿管理（ADR-0007により移行）
+- nullvariant-writings/changelogs/ - note記事原稿管理（ADR-0007により移行）
 - `scripts/prepare_note_article.py` - note記事生成スクリプト（このリポジトリに残存、出力先は nullvariant-writings）
 
 **❌ 直接編集禁止:**

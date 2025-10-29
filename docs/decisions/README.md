@@ -160,12 +160,96 @@ mv docs/decisions/active/2025/10/20251028_0005_*.md \
 
 ---
 
+## 🤖 INDEX.md 自動生成ルール
+
+### 自動化の仕組み
+
+`INDEX.md` は `python scripts/generate_index.py` で自動生成されます。**手動編集しないでください**。
+
+### 自動生成のタイミング
+
+**必ず実行すべき場面:**
+
+| 場面 | コマンド | 理由 |
+|------|---------|------|
+| **新規ADR作成後** | `python scripts/generate_index.py` | INDEX.md に新ADRを反映 |
+| **ADRをrename** | `python scripts/generate_index.py` | ファイル名変更を反映 |
+| **ADRのStatus変更** | `python scripts/generate_index.py` | ステータス変更を反映 |
+| **deprecated/へ移動** | `python scripts/generate_index.py` | ステータス再分類 |
+| **superseded/へ移動** | `python scripts/generate_index.py` | ステータス再分類 |
+
+### 生成プロセス
+
+```bash
+# 1. ADR作成またはメタデータ変更
+# （例：新規ADR, ファイルrename, Status更新）
+
+# 2. INDEX.md再生成
+python scripts/generate_index.py
+
+# 3. 変更を確認
+git diff docs/decisions/INDEX.md
+
+# 4. コミット
+git add docs/decisions/ docs/decisions/INDEX.md
+git commit -m "docs(adr): Update INDEX.md [理由]"
+```
+
+### ドライラン（確認用）
+
+変更前にプレビューしたい場合：
+
+```bash
+python scripts/generate_index.py --dry-run
+# → 標準出力に新しいINDEX.md 内容を表示
+# → ファイルは変更されない
+```
+
+### 検出対象ファイルパターン
+
+`generate_index.py` は以下のパターンを自動検出：
+
+```
+✅ docs/decisions/active/{YYYY}/{MM}/*.md       # 有効なADR
+✅ docs/decisions/deprecated/*.md               # 非推奨ADR
+✅ docs/decisions/superseded/*.md               # 上書きされたADR
+❌ docs/decisions/0000_template.md              # テンプレート（除外）
+❌ docs/decisions/README.md                     # このファイル（除外）
+```
+
+### メタデータ抽出ルール
+
+INDEX.md はファイルの先頭から以下を自動抽出：
+
+```markdown
+# ADR-NNNN: タイトル
+
+**Status**: Active | Draft | Deprecated | Superseded
+**Category**: architecture | documentation | governance | process | security | performance | integration | tooling
+**Created**: YYYY-MM-DD
+**Updated**: YYYY-MM-DD
+```
+
+**重要**: これらのメタデータが正確でないと、INDEX.md の分類が誤ります。
+
+### トラブルシューティング
+
+| 問題 | 原因 | 解決方法 |
+|------|------|---------|
+| **INDEX.md が更新されない** | ファイルパターンが非標準 | ファイルパスが `docs/decisions/active/{YYYY}/{MM}/` か確認 |
+| **古いエントリが残っている** | deprecated.md が削除されていない | ファイルを消さずに `deprecated/` フォルダに移動 |
+| **メタデータが抽出されない** | ヘッダ形式が非標準 | `docs/decisions/0000_template.md` を参照して修正 |
+| **カテゴリが「Other」になっている** | Category フィールド未記入またはタイプミス | ADR内の`**Category**:` フィールドを修正 |
+
+---
+
 ## 📚 関連ドキュメント
 
 - [`docs/governance/AI_GUIDELINES.md`](../governance/AI_GUIDELINES.md)
 - [`docs/governance/HIERARCHY_RULES.md`](../governance/HIERARCHY_RULES.md)
+- [`scripts/README.md`](../../scripts/README.md) - generate_index.py の詳細
 - [ADR GitHub](https://adr.github.io/)
 
 ---
 
-**最終更新**: 2025年10月28日
+**最終更新**: 2025年10月29日

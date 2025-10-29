@@ -93,6 +93,50 @@ python scripts/generate_index.py --force
 
 ## 💡 設計思想
 
+### ケース規則（大文字 vs 小文字）【ADR-0011】
+
+**大文字（メタドキュメント・業界慣習）:**
+```
+README.md, CHANGELOG.md, AGENT.md
+docs/operations/OPERATIONS.ja.md      ← 実行必須の手順書
+docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
+```
+理由: 業界標準、参照対象としての固定性、可視性
+
+**小文字 + ハイフン（流動ドキュメント・URLフレンドリー）:**
+```
+20251028_0001_ci-cd-pause_architecture.md    ← ADR
+20251028_documentation-governance.ja.md      ← PRD
+```
+理由: URLフレンドリー、プログラマティック処理対応、将来変更可能性
+
+→ 詳細は [ADR-0011](./decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) 参照
+
+---
+
+### ハイフン vs アンダースコア【ADR-0012】
+
+ファイル名の構造例:
+```
+{YYYYMMDD} _ {NNNN} _ {slug} _ {category} . {ext}
+     ↓        ↓         ↓        ↓
+   日付    アンダー   ハイフン   アンダー
+          スコア     (複合概念)  スコア
+```
+
+**🔹 アンダースコア（_）= 構造区切り**
+- 日付とシーケンスの区切り: `20251029_0011_`
+- slugとカテゴリの区切り: `_documentation`
+- 理由: 視覚的に「ここで大きく区切られている」が明確
+
+**🔸 ハイフン（-）= 意味内の単語区切り**
+- slug内の複数単語: `ci-cd-pause`, `filename-case-convention`
+- 理由: URLフレンドリー、SEO最適化、標準慣習（ケバブケース）
+
+→ 詳細は [ADR-0012](./decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) 参照
+
+---
+
 ### なぜ日付を先頭に？
 
 1. **直感的な時系列把握**
@@ -206,7 +250,7 @@ def check_naming_convention():
 
 ## 📚 関連ドキュメント
 
-- **ADR-0002**: [docs/decisions/0002-naming-and-directory-structure.md](../DECISIONS/0002-naming-and-directory-structure.md)
+- **ADR-0002**: [docs/decisions/active/2025/10/20251028_0002_naming-structure_documentation.md](../decisions/active/2025/10/20251028_0002_naming-structure_documentation.md)
 - **スクリプト**: `scripts/generate_index.py`
 - **階層定義**: `docs/governance/DOCUMENTATION_STRUCTURE.yml`
 

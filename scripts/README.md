@@ -135,7 +135,111 @@ make val
 
 ---
 
-### 5. test_toc.py
+### 5. generate_index.py
+**用途**: ADR と PRD の INDEX.md を自動生成
+
+**機能**:
+- `docs/decisions/active/` 内の全ADRをスキャン
+- `docs/prd/active/` 内の全PRDをスキャン
+- メタデータ（タイトル、ステータス、カテゴリ、日付）を抽出
+- 機械可読な索引（INDEX.md）を自動生成
+
+**実行方法**:
+```bash
+# 実際の生成
+python scripts/generate_index.py
+
+# ドライラン（プレビュー）
+python scripts/generate_index.py --dry-run
+```
+
+**出力**:
+- `docs/decisions/INDEX.md` - ADR一覧（タイプ別・時系列）
+- `docs/prd/INDEX.md` - PRD一覧
+
+**インデックス内容**:
+
+生成されるINDEX.mdには以下が含まれます：
+
+| 情報 | 説明 |
+|------|------|
+| **メタデータテーブル** | タイトル、ステータス、カテゴリ、作成日、最終更新日 |
+| **カテゴリ別グルーピング** | アーキテクチャ、ドキュメント、ガバナンス等 |
+| **タイムライン** | 年月別の時系列表示 |
+| **ステータスサマリー** | Active/Deprecated/Superseded の数集計 |
+| **関連リンク** | 各ドキュメントへの直接リンク |
+
+**ADRファイル形式（認識対象）**:
+
+```
+docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md
+```
+
+**メタデータ抽出ルール**:
+
+INDEX.mdはファイル先頭の YAML フロントマター（またはマークダウンヘッダ）から以下を抽出：
+
+```markdown
+# ADR-NNNN: タイトル
+
+**Status**: Active | Deprecated | Superseded
+**Category**: architecture | documentation | governance | process | security | performance | integration | tooling
+**Created**: YYYY-MM-DD
+**Updated**: YYYY-MM-DD
+```
+
+**生成パターン例**:
+
+```markdown
+## 📅 2025年10月
+
+| # | タイトル | ステータス | カテゴリ | 更新日 |
+|----|----------|-----------|---------|--------|
+| ADR-0010 | ガバナンス自己レビュー | Active | documentation | 2025-10-29 |
+| ADR-0011 | ファイル名ケース規則 | Active | documentation | 2025-10-29 |
+| ADR-0012 | ハイフン・アンダースコア規則 | Active | documentation | 2025-10-29 |
+```
+
+**自動ファイル発見**:
+
+```bash
+# ADR自動検出対象パターン
+docs/decisions/active/*/*.md
+
+# PRD自動検出対象パターン
+docs/prd/active/*.md
+```
+
+**ドライラン使用例**:
+
+新しいADRを追加した後、内容を確認する：
+
+```bash
+# 1. 新しいADRファイルを作成・配置
+cp docs/decisions/0000_template.md \
+   docs/decisions/active/2025/10/20251030_0013_example-title_category.md
+
+# 2. ドライランで確認
+python scripts/generate_index.py --dry-run
+
+# 3. 実際の生成
+python scripts/generate_index.py
+
+# 4. 変更を確認
+git diff docs/decisions/INDEX.md
+```
+
+**トラブルシューティング**:
+
+| 問題 | 原因 | 解決方法 |
+|------|------|---------|
+| INDEX.mdが更新されない | ファイル検出パターンに合致していない | ファイルパスが `docs/decisions/active/{YYYY}/{MM}/` 形式か確認 |
+| 古いエントリが残っている | deprecated.md や superseded.md も自動検出 | 不要な古いファイルは削除するか、ステータス変更 |
+| メタデータが抽出されない | ファイルフォーマットが非標準 | ADR-0000テンプレートを参考に、ヘッダとメタデータ形式を統一 |
+
+---
+
+### 6. test_toc.py
 **用途**: gen_toc.py のテストスクリプト
 
 **機能**:

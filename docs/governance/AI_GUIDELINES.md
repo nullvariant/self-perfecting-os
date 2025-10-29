@@ -296,6 +296,8 @@ git commit -m "docs: Add ADR-XXXX for [決定内容]"
 - [Architecture Decision Records (ADR)](https://adr.github.io/)
 - [docs/governance/DOCUMENTATION_STRUCTURE.yml](DOCUMENTATION_STRUCTURE.yml) - 機械可読形式の定義
 - [docs/governance/HIERARCHY_RULES.md](HIERARCHY_RULES.md) - 階層ルール詳細
+- **[ADR-0011: ファイル名ケース規則](../decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md)** - 大文字/小文字の使い分けルール
+- **[ADR-0012: ハイフン・アンダースコア規則](../decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md)** - 区切り文字の使い分けルール
 
 ---
 
