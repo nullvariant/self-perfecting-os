@@ -288,4 +288,4 @@ nullvariant/
 
 ---
 
-_Thank you for contributing to NULLVARIANT OS!_
+_Thank you for contributing to Self-Perfecting OS!_
