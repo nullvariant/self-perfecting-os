@@ -288,11 +288,164 @@ def generate_prd_index(prd_dir: Path, dry_run: bool = False) -> str:
     return content
 
 
+def generate_governance_index(governance_dir: Path, dry_run: bool = False) -> str:
+    """governance のINDEX.mdを生成（メタドキュメント一覧）"""
+    print(f"\n🏛️  governance INDEX.md 生成中...")
+
+    # governance/ 直下のMarkdownファイル（README.md 除外）
+    md_files = []
+    for md_file in sorted(governance_dir.glob("*.md")):
+        if md_file.name not in ["README.md", "INDEX.md"]:
+            md_files.append(md_file)
+
+    if not md_files:
+        print("  ⚠️  ドキュメントが見つかりません")
+        return ""
+
+    # INDEX.md 本文生成
+    lines = [
+        "# Governance & Documentation Rules",
+        "",
+        f"**最終更新**: {datetime.now().strftime('%Y-%m-%d')}",
+        f"**ドキュメント数**: {len(md_files)}個",
+        "",
+        "ドキュメント管理とガバナンスの基準ドキュメント一覧です。",
+        "",
+        "---",
+        "",
+        "## 📚 参照ドキュメント",
+        "",
+    ]
+
+    # ファイル一覧（簡潔版）
+    for md_file in md_files:
+        relative_path = md_file.relative_to(governance_dir)
+        
+        # ファイルから最初の見出しを抽出
+        try:
+            content = md_file.read_text(encoding="utf-8")
+            match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+            title = match.group(1).strip() if match else relative_path.stem
+        except Exception:
+            title = relative_path.stem
+
+        lines.append(f"- [{title}]({relative_path})")
+
+    lines.extend(["", "---", "", "**注記**: このディレクトリは大文字メタドキュメント専用です。"])
+    lines.append("時系列記録は `docs/log/` に管理されます。")
+
+    content = "\n".join(lines)
+
+    if dry_run:
+        print(f"\n{'='*60}")
+        print("プレビュー:")
+        print(f"{'='*60}")
+        print(content)
+        print(f"{'='*60}")
+    else:
+        output_path = governance_dir / "INDEX.md"
+        output_path.write_text(content, encoding="utf-8")
+        print(f"  ✅ 生成完了: {output_path}")
+
+    return content
+
+
+def generate_operations_index(operations_dir: Path, dry_run: bool = False) -> str:
+    """operations のINDEX.mdを生成（現在版 + 過去ログ索引）"""
+    print(f"\n📋 operations INDEX.md 生成中...")
+
+    current_dir = operations_dir / "current"
+    archive_dir = operations_dir / "archive"
+
+    # 現在の運用手順
+    current_files = []
+    if current_dir.exists():
+        for md_file in sorted(current_dir.glob("*.md")):
+            if md_file.name != "README.md":
+                current_files.append(md_file)
+
+    # アーカイブ（年月別）
+    archive_files = {}  # {year-month: [files]}
+    if archive_dir.exists():
+        for year_dir in sorted(archive_dir.glob("*"), reverse=True):
+            if year_dir.is_dir():
+                for month_dir in sorted(year_dir.glob("*"), reverse=True):
+                    if month_dir.is_dir():
+                        key = f"{year_dir.name}/{month_dir.name}"
+                        archive_files[key] = sorted(month_dir.glob("*.md"))
+
+    if not current_files and not archive_files:
+        print("  ⚠️  ドキュメントが見つかりません")
+        return ""
+
+    # INDEX.md 本文生成
+    lines = [
+        "# Operations Manual Index",
+        "",
+        f"**最終更新**: {datetime.now().strftime('%Y-%m-%d')}",
+        "",
+        "---",
+        "",
+        "## 📌 現在の運用手順",
+        "",
+    ]
+
+    if current_files:
+        for md_file in current_files:
+            # ファイルから最初の見出しを抽出
+            try:
+                content = md_file.read_text(encoding="utf-8")
+                match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+                title = match.group(1).strip() if match else md_file.stem
+            except Exception:
+                title = md_file.stem
+
+            relative_path = md_file.relative_to(operations_dir)
+            lines.append(f"- [{title}]({relative_path})")
+    else:
+        lines.append("*なし*")
+
+    if archive_files:
+        lines.extend(["", "---", "", "## 📚 過去ログ（アーカイブ）", ""])
+
+        for key in sorted(archive_files.keys(), reverse=True):
+            lines.append(f"### {key}")
+
+            for md_file in sorted(archive_files[key]):
+                # ファイルから最初の見出しを抽出
+                try:
+                    content = md_file.read_text(encoding="utf-8")
+                    match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+                    title = match.group(1).strip() if match else md_file.stem
+                except Exception:
+                    title = md_file.stem
+
+                relative_path = md_file.relative_to(operations_dir)
+                lines.append(f"- [{title}]({relative_path})")
+
+            lines.append("")
+
+    content = "\n".join(lines)
+
+    if dry_run:
+        print(f"\n{'='*60}")
+        print("プレビュー:")
+        print(f"{'='*60}")
+        print(content)
+        print(f"{'='*60}")
+    else:
+        output_path = operations_dir / "INDEX.md"
+        output_path.write_text(content, encoding="utf-8")
+        print(f"  ✅ 生成完了: {output_path}")
+
+    return content
+
+
 def main():
     parser = argparse.ArgumentParser(description="INDEX.md 自動生成スクリプト")
     parser.add_argument(
         "--target",
-        choices=["adr", "prd", "operations", "all"],
+        choices=["adr", "prd", "governance", "operations", "all"],
         default="all",
         help="生成対象（デフォルト: all）",
     )
@@ -317,7 +470,19 @@ def main():
         else:
             print(f"\n⚠️  {TARGETS['prd']} が存在しません（スキップ）")
 
-    # operations は将来実装
+    if args.target in ["governance", "all"]:
+        governance_dir = ROOT / "docs" / "governance"
+        if governance_dir.exists():
+            generate_governance_index(governance_dir, dry_run=args.dry_run)
+        else:
+            print(f"\n⚠️  {governance_dir} が存在しません（スキップ）")
+
+    if args.target in ["operations", "all"]:
+        operations_dir = ROOT / "docs" / "operations"
+        if operations_dir.exists():
+            generate_operations_index(operations_dir, dry_run=args.dry_run)
+        else:
+            print(f"\n⚠️  {operations_dir} が存在しません（スキップ）")
 
     print("\n" + "=" * 60)
     if args.dry_run:
