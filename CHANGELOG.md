@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to [content/ja/AGENT.md](content/ja/AGENT.md) will be documented in this file.
+All notable changes to this repository (spec, docs, scripts, and AGENT) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -74,6 +74,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - トラブルシューティング表
 
 ### Fixed
+// docs: broaden CHANGELOG scope & PRD guide alignment
+- **[CHANGELOG.md](CHANGELOG.md)**
+  - 冒頭方針文を「AGENT.mdのみ」から「リポジトリ全体（仕様・ドキュメント・スクリプト・AGENT）」へ拡張し、実態と整合
+
+- **[docs/prd/README.md](docs/prd/README.md)**
+  - 命名規則を `{YYYYMMDD}_{slug}.ja.md` に統一（英小文字ケバブ）し、日本語スラッグ例を是正
+  - ライフサイクルのディレクトリ表記を `implemented/` と `cancelled/` に統一（`completed/` を廃止）
+  - 存在しない `docs/prd/template.md` 参照を削除し、README内テンプレートブロックの利用に変更（テンプレ参照の解消）
+  - ファイル名末尾カテゴリ付与の規則を廃止し、本文/Front Matterタグ推奨へ変更
 - **7つのADRファイル名を英語スラグに統一**
   - `20251028_0003_ディレクトリ・ファイル名...` → `20251028_0003_lowercase-hyphen-unification_documentation.md`
   - `20251028_0004_github-actions-によるドキュメント...` → `20251028_0004_github-actions-doc-validation_tooling.md`
@@ -85,6 +94,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **1つのPRDファイルを命名規則に統一**
   - `20251029_対話生ログ永続保存システム.md` → `20251029_dialogue-log-persistence.ja.md`
+
+- **[docs/decisions/README.md](docs/decisions/README.md)**
+  - 構造例のファイル一覧を現行の英小文字ケバブスラグへ更新（0010〜0012を追加）
+  - 見出しの文字化け（�）を修正（🗂️/✍️ へ置換）
+
+- **[docs/README.md](docs/README.md)**
+  - ADR命名例のカテゴリを `dev` → `tooling` に是正（公式カテゴリに準拠）
+  - 例示内の文字化け（�）を修正（🏗️へ置換）
+  - 最終更新日の更新（2025-10-29）
+
+- **[docs/governance/DOCUMENTATION_STRUCTURE.yml](docs/governance/DOCUMENTATION_STRUCTURE.yml)**
+  - YAML構文エラーを修正（改行・インデントの是正）
+  - PRD命名規則を `{YYYYMMDD}_{slug}.ja.md` に明記、例を `20251029_dialogue-log-persistence.ja.md` に更新
+  - 参照ファイルを実ファイルに合わせて更新（`20251029_対話生ログ永続保存システム.md` → `docs/prd/active/20251029_dialogue-log-persistence.ja.md`）
+  - 廃止予定の `MIGRATION_STATUS.md` を構造定義から除外（tier4_temporary.files を空配列へ）
 
 - **[docs/governance/NAMING_DECISION_SUMMARY.md](docs/governance/NAMING_DECISION_SUMMARY.md)** - リンク・内容の更新
   - ADR-0002リンク修正（broken path `../DECISIONS/...` → 正確な相対パス）

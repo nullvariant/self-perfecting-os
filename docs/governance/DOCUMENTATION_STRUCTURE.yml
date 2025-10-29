@@ -83,7 +83,7 @@ hierarchy:
     update_frequency: "機能開発時"
     requires_adr: false  # PRD自体は要件定義なのでADR不要
     note: "active版は docs/prd/active/ に配置、実装完了後は docs/prd/implemented/ に移動"
-    naming_convention: "YYYYMMDD_機能名.ja.md (例: 20251029_対話生ログ永続保存システム.md)"
+    naming_convention: "YYYYMMDD_{slug}.ja.md (例: 20251029_dialogue-log-persistence.ja.md)"
     files:
       - path: "docs/prd/active/20251028_changelog-migration.ja.md"
         purpose: "Changelog分離の要件定義"
@@ -103,8 +103,8 @@ hierarchy:
         update_rule: "要件変更時"
         auto_generated: false
         
-      - path: "docs/prd/active/20251029_対話生ログ永続保存システム.md"
-        purpose: "対話生ログ永続保存システムの要件定義"
+      - path: "docs/prd/active/20251029_dialogue-log-persistence.ja.md"
+        purpose: "対話生ログ永続保存（Dialogue Log Persistence System）の要件定義"
         format: "PRD"
         update_rule: "要件変更時"
         auto_generated: false
@@ -114,13 +114,7 @@ hierarchy:
     description: "期限付きの作業記録（完了後アーカイブ）"
     update_frequency: "適宜（完了後は docs/archive/ へ）"
     requires_adr: false
-    files:
-      - path: "MIGRATION_STATUS.md"
-        purpose: "API移行作業の進捗（完了後削除予定）"
-        format: "Markdown"
-        update_rule: "移行完了まで適宜更新"
-        auto_generated: false
-        deprecation_plan: "ADR-0001に統合後、アーカイブ"
+    files: []
 
   # 自動生成ファイル（編集禁止）
   auto_generated:
@@ -207,7 +201,9 @@ ai_decision_rules:
       
     feature_requirement:
       target: "docs/prd/active/{YYYYMMDD}_{slug}.ja.md"
-      requires_adr: false    typo_fix:
+      requires_adr: false
+
+    typo_fix:
       target: "commit message only"
       requires_adr: false
       

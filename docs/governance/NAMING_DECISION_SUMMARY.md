@@ -110,7 +110,7 @@ docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
 ```
 理由: URLフレンドリー、プログラマティック処理対応、将来変更可能性
 
-→ 詳細は [ADR-0011](./decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) 参照
+→ 詳細は [ADR-0011](../decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) 参照
 
 ---
 
@@ -133,7 +133,7 @@ docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
 - slug内の複数単語: `ci-cd-pause`, `filename-case-convention`
 - 理由: URLフレンドリー、SEO最適化、標準慣習（ケバブケース）
 
-→ 詳細は [ADR-0012](./decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) 参照
+→ 詳細は [ADR-0012](../decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) 参照
 
 ---
 

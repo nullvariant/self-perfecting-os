@@ -51,7 +51,7 @@ docs/
 
 **例**:
 ```
-20251028_0005_script-cleanup-makefile_dev.md
+20251028_0005_script-cleanup-makefile_tooling.md
 ```
 
 ### PRD・運用手順書
@@ -202,7 +202,7 @@ ls docs/prd/active/
 
 **例**:
 ```
-� アーキテクチャ変更 → ADR-0001, ADR-0007
+🏗️ アーキテクチャ変更 → ADR-0001, ADR-0007
 📘 ドキュメント構造変更 → ADR-0002, ADR-0011, ADR-0012
 📙 ツール・インフラ → ADR-0004
 ```
@@ -277,5 +277,5 @@ python scripts/validate_docs.py
 
 ---
 
-**最終更新**: 2025年10月28日  
+**最終更新**: 2025年10月29日  
 **関連リポジトリ**: [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings) (Private)

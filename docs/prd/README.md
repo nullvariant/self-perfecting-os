@@ -24,20 +24,20 @@ prd/
 
 ### ファイル名規則
 
-PRDファイルは以下の命名規則に従います：
+PRDファイルは以下の命名規則に従います（英小文字・ケバブケースのスラッグ）：
 
 ```
-YYYYMMDD_機能名.ja.md
+{YYYYMMDD}_{slug}.ja.md
 ```
 
 **例:**
-- `20251029_対話生ログ永続保存システム.md`
+- `20251029_dialogue-log-persistence.ja.md`
 - `20251028_note-workflow-automation.ja.md`
 
 **理由:**
-- ADRと同じく、作成日が明確
-- 時系列で並び替えが容易
-- ファイル名だけで「いつ作られたか」がわかる
+- 作成日が明確で、時系列ソートが容易
+- URLフレンドリーかつプログラマティックに扱いやすい（ケバブケース）
+- ルールは ADR-0011（ケース規則）/ ADR-0012（ハイフン・アンダースコア）に整合
 
 ---
 
@@ -60,7 +60,7 @@ YYYYMMDD_機能名.ja.md
 
 ---
 
-## 📋 PRDのテンプレート
+## 📋 PRDのテンプレート（このページ内のブロックをコピー）
 
 ```markdown
 # PRD: [機能名]
@@ -113,16 +113,14 @@ YYYYMMDD_機能名.ja.md
 命名規則に従ってファイル名を決定：
 
 ```
-YYYYMMDD_機能名.ja.md
+{YYYYMMDD}_{slug}.ja.md
 ```
 
-例: `20251029_新機能名.md`
+例: `20251029_new-feature-name.ja.md`
 
-### 2. テンプレートをコピー
+### 2. テンプレートを使用
 
-```bash
-cp docs/prd/template.md docs/prd/active/20251029_新機能名.md
-```
+このREADME内の「📋 PRDのテンプレート」コードブロックを新規ファイルへ貼り付け、各項目を埋めてください（専用テンプレートファイルは現時点では提供していません）。
 
 ### 3. 内容を記入
 
@@ -150,35 +148,35 @@ cp docs/prd/template.md docs/prd/active/20251029_新機能名.md
 
 ```bash
 # active/ に配置
-docs/prd/active/my-feature_feature.ja.md
+docs/prd/active/my-feature.ja.md
 ```
 
-### 3. Completed（完了）
+### 3. Implemented（実装完了）
 
 ```bash
-# completed/ に移動
-mv docs/prd/active/my-feature_feature.ja.md \
-   docs/prd/completed/
+# implemented/ に移動
+mv docs/prd/active/my-feature.ja.md \
+   docs/prd/implemented/
 ```
 
 ### 4. Cancelled（キャンセル）
 
 ```bash
 # cancelled/ に移動
-mv docs/prd/active/my-feature_feature.ja.md \
+mv docs/prd/active/my-feature.ja.md \
    docs/prd/cancelled/
 ```
 
 ---
 
-## 🏷️ カテゴリ一覧
+## 🏷️ タグ（任意）
 
-PRDのファイル名末尾に付与するカテゴリ:
+ファイル名末尾でのカテゴリ付与は行いません（命名規則簡素化のため）。必要に応じて本文冒頭やFront Matter（使用する場合）で以下のようなタグを付与してください：
 
-- `feature` - 新機能
-- `improvement` - 改善
-- `refactor` - リファクタリング
-- `infrastructure` - インフラ改善
+- `feature`（新機能）
+- `improvement`（改善）
+- `refactor`（リファクタリング）
+- `infrastructure`（インフラ改善）
 
 ---
 
@@ -200,4 +198,4 @@ PRDのファイル名末尾に付与するカテゴリ:
 
 ---
 
-**最終更新**: 2025年10月28日
+**最終更新**: 2025年10月29日

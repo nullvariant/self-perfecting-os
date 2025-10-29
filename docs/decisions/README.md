@@ -10,7 +10,7 @@
 
 ---
 
-## � 構造
+## 🗂️ 構造
 
 ```
 decisions/
@@ -19,13 +19,16 @@ decisions/
 │       └── 10/
 │           ├── 20251028_0001_ci-cd-pause_architecture.md
 │           ├── 20251028_0002_naming-structure_documentation.md
-│           ├── 20251028_0003_ディレクトリ・ファイル名の小文字・ハイフン統一_documentation.md
-│           ├── 20251028_0004_github-actions-によるドキュメント自動バリデー_tooling.md
-│           ├── 20251028_0005_多言語対応-言語別ディレクトリ構造への移行_documentation.md
-│           ├── 20251028_0006_github-pagesランディングページの実装_documentation.md
-│           ├── 20251028_0007_changelogsディレクトリのnullvariant-w_architecture.md
-│           ├── 20251029_0008_対話生ログの永続保存システム確立_governance.md
-│           └── 20251029_0009_テストファイル管理規則testsfixtures配下に集約_process.md
+│           ├── 20251028_0003_lowercase-hyphen-unification_documentation.md
+│           ├── 20251028_0004_github-actions-doc-validation_tooling.md
+│           ├── 20251028_0005_multilingual-directory-structure_documentation.md
+│           ├── 20251028_0006_github-pages-landing-implementation_documentation.md
+│           ├── 20251028_0007_changelogs-migration-nullvariant-writings_architecture.md
+│           ├── 20251029_0008_dialogue-log-persistence-system_governance.md
+│           ├── 20251029_0009_test-fixtures-management_process.md
+│           ├── 20251029_0010_governance-audit_documentation.md
+│           ├── 20251029_0011_filename-case-convention_documentation.md
+│           └── 20251029_0012_hyphen-underscore-convention_documentation.md
 ├── deprecated/                 # 非推奨（参考のみ）
 ├── superseded/                 # 上書きされた決定
 ├── INDEX.md                    # 自動生成索引
@@ -77,7 +80,7 @@ decisions/
 
 ---
 
-## � ADRの作成方法
+## ✍️ ADRの作成方法
 
 ### 1. スクリプト実行
 
