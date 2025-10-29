@@ -156,37 +156,37 @@ hierarchy:
         auto_generated: true
         source: "content/AGENT.ja.md"
 
-# AI向けルール
+  # AI向けルール
 ai_decision_rules:
   # 変更タイプから記録場所を自動判定
   change_type_mapping:
     api_change:
-      target: "docs/decisions/ADR-*.md"
+      target: "docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
       requires_adr: true
       also_update:
         - "docs/project-status.ja.md"
         - "CHANGELOG.md (Unreleased)"
       
     architecture_change:
-      target: "docs/decisions/ADR-*.md"
+      target: "docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
       requires_adr: true
       also_update:
         - "docs/project-status.ja.md"
       
     cicd_change:
-      target: "docs/decisions/ADR-*.md"
+      target: "docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
       requires_adr: true
       also_update:
         - "docs/project-status.ja.md"
       
     document_structure_change:
-      target: "docs/decisions/ADR-*.md"
+      target: "docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
       requires_adr: true
       also_update:
         - "docs/governance/DOCUMENTATION_STRUCTURE.yml"
       
     dependency_change:
-      target: "docs/decisions/ADR-*.md"
+      target: "docs/decisions/active/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md"
       requires_adr: true
       also_update:
         - "CHANGELOG.md (Unreleased)"
@@ -202,14 +202,12 @@ ai_decision_rules:
         - "docs/project-status.ja.md"
       
     process_update:
-      target: "docs/operations/*.md"
+      target: "docs/operations/current/{YYYYMMDD}_{type}.ja.md"
       requires_adr: true
       
     feature_requirement:
-      target: "docs/prd_*.md"
-      requires_adr: false
-      
-    typo_fix:
+      target: "docs/prd/active/{YYYYMMDD}_{slug}.ja.md"
+      requires_adr: false    typo_fix:
       target: "commit message only"
       requires_adr: false
       

@@ -30,7 +30,7 @@
    - 矛盾する場合は新ADRで上書き
 
 3. **[ ] 記録場所は適切か？**
-   - 重要な決定 → `docs/decisions/ADR-*.md`
+   - 重要な決定 → `docs/decisions/active/{YYYY}/{MM}/`
    - 一時的な状態 → `docs/project-status.ja.md`
    - バージョンリリース → `CHANGELOG.md`
 
@@ -59,7 +59,7 @@ python scripts/record_decision.py \
 **❌ 直接編集禁止:**
 - `AGENT.md` - CI自動生成（現在未稼働、手動更新も避ける）
 - `spec/agent.spec.yaml` - CI自動生成（現在未稼働）
-- `docs/decisions/0000-adr-template.md` - テンプレート（コピーして使用）
+- `docs/decisions/0000_template.md` - テンプレート（コピーして使用）
 
 ### 2. 言語・翻訳ポリシー
 

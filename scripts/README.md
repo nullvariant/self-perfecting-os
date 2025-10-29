@@ -15,7 +15,7 @@ Self Perfecting OS の開発・運用を支援する自動化スクリプト集�
 - `content/ja/*.md` を多言語翻訳 → `content/en/*.md`
 - `content/ja/AGENT.md` からYAML構造抽出 → `spec/agent.spec.yaml`
 - `content/en/AGENT.md` をルートにコピー → `AGENT.md`（英語版エントリポイント）
-- OpenAI API を使用（GPT-4o推奨）
+- Claude Sonnet 4.5 使用（第一候補、選定中）
 
 **実行方法**:
 ```bash
@@ -25,7 +25,7 @@ make gen
 ```
 
 **環境変数**:
-- `ANTHROPIC_API_KEY`: OpenAI APIキー（必須）
+- `ANTHROPIC_API_KEY`: Anthropic Claude APIキー（必須）
 
 **プロンプト**:
 - `prompts/01_en_translate.txt`: 英訳プロンプト
@@ -260,11 +260,11 @@ git add tests/fixtures/permanent/sample_agent.md
 
 ## 🔍 トラブルシューティング
 
-### Q1: OpenAI API エラーが出る
+### Q1: Anthropic Claude API エラーが出る
 **A**: 環境変数 `ANTHROPIC_API_KEY` を確認してください。
 
 ```bash
-export ANTHROPIC_API_KEY=sk-...
+export ANTHROPIC_API_KEY=sk-ant-...
 # または .env ファイルに記載
 ```
 

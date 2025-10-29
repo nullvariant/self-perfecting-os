@@ -15,8 +15,9 @@
 ```
 operations/
 ├── current/                    # 現在有効な手順書
-│   ├── release-process.ja.md
-│   └── troubleshooting.ja.md
+│   ├── 20251028_OPERATIONS.ja.md
+│   ├── 20251028_NOTE_SYNC_MANUAL.ja.md
+│   └── 20251028_WORKFLOW_TEXT_ASSETS.ja.md
 ├── deprecated/                 # 非推奨（参考のみ）
 └── README.md                   # このファイル
 ```
@@ -104,20 +105,7 @@ cp docs/operations/template.md docs/operations/current/my-procedure.ja.md
 
 ---
 
-## 🔍 トラブルシューティング索引
-
-### よくあるエラー
-
-| エラー | 対処法 | 参照 |
-|-------|--------|------|
-| ADR番号重複 | `scripts/generate_index.py` 実行 | [troubleshooting.ja.md](current/troubleshooting.ja.md) |
-| CI失敗 | ログ確認 | [troubleshooting.ja.md](current/troubleshooting.ja.md) |
-
-詳細は [`current/troubleshooting.ja.md`](current/troubleshooting.ja.md) を参照。
-
----
-
-## 🔄 運用手順書のライフサイクル
+##  運用手順書のライフサイクル
 
 ### 1. Current（現在有効）
 

@@ -57,12 +57,13 @@ docs/
 ### PRD・運用手順書
 
 ```
-{topic}_{category}.ja.md
+{YYYYMMDD}_{slug}.ja.md
 ```
 
 **例**:
 ```
-note-workflow-automation_feature.ja.md
+20251028_note-workflow-automation.ja.md
+20251028_OPERATIONS.ja.md
 ```
 
 ---

@@ -12,15 +12,15 @@
 
 | 変更タイプ | 記録場所 | ADR必要 | 追加更新 |
 |-----------|---------|---------|---------|
-| 🔧 API変更・移行 | `docs/decisions/ADR-*.md` | ✅ | PROJECT_STATUS, CHANGELOG |
-| 🏗️ アーキテクチャ変更 | `docs/decisions/ADR-*.md` | ✅ | PROJECT_STATUS |
-| ⚙️ CI/CD変更 | `docs/decisions/ADR-*.md` | ✅ | PROJECT_STATUS |
-| 📂 ドキュメント構造変更 | `docs/decisions/ADR-*.md` | ✅ | DOCUMENTATION_STRUCTURE.yml |
-| 📦 重要な依存関係変更 | `docs/decisions/ADR-*.md` | ✅ | CHANGELOG |
+| 🔧 API変更・移行 | `docs/decisions/active/{YYYY}/{MM}/` | ✅ | PROJECT_STATUS, CHANGELOG |
+| 🏗️ アーキテクチャ変更 | `docs/decisions/active/{YYYY}/{MM}/` | ✅ | PROJECT_STATUS |
+| ⚙️ CI/CD変更 | `docs/decisions/active/{YYYY}/{MM}/` | ✅ | PROJECT_STATUS |
+| 📂 ドキュメント構造変更 | `docs/decisions/active/{YYYY}/{MM}/` | ✅ | DOCUMENTATION_STRUCTURE.yml |
+| 📦 重要な依存関係変更 | `docs/decisions/active/{YYYY}/{MM}/` | ✅ | CHANGELOG |
 | 📊 一時的な状態変化 | `docs/project-status.ja.md` | ❌ | - |
 | 🎉 バージョンリリース | `CHANGELOG.md` | ❌ | PROJECT_STATUS |
-| 📝 プロセス・手順変更 | `docs/operations/*.md` | ✅ | - |
-| 💡 機能要件定義 | `docs/prd_*.md` | ❌ | - |
+| 📝 プロセス・手順変更 | `docs/operations/current/` | ✅ | - |
+| 💡 機能要件定義 | `docs/prd/active/` | ❌ | - |
 | 🐛 タイポ修正 | コミットメッセージのみ | ❌ | - |
 | 🔨 軽微なバグ修正 | コミットメッセージのみ | ❌ | - |
 
