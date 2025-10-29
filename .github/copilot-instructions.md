@@ -78,54 +78,55 @@ python scripts/record_decision.py \
 
 ### 4. プロジェクト構造の理解
 
+**📚 詳細は権威文書を参照してください:**
+
+- **[docs/governance/HIERARCHY_RULES.md](../docs/governance/HIERARCHY_RULES.md)** - 人間向け階層ルール説明（最新の構造図あり）
+- **[docs/governance/DOCUMENTATION_STRUCTURE.yml](../docs/governance/DOCUMENTATION_STRUCTURE.yml)** - 機械可読形式の階層定義
+- **[docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md)** - AI向けドキュメント記録ガイドライン
+
+**クイックリファレンス（概要のみ・詳細は上記権威文書を参照）:**
+
 ```
 nullvariant/
 ├── docs/
-│   ├── decisions/                    # 🏆 ADR（全ての重要な決定）
-│   │   ├── active/{YYYY}/{MM}/       # 確定版
-│   │   ├── deprecated/               # 非推奨版
-│   │   └── superseded/               # 上書きされた版
-│   ├── governance/                   # 🏛️ ドキュメント管理ルール
+│   ├── decisions/         # 🏆 Tier 0: ADR（全ての重要な決定）
+│   │   ├── active/{YYYY}/{MM}/
+│   │   ├── INDEX.md       # ⚠️ 自動生成（編集禁止）
+│   │   ├── deprecated/
+│   │   └── superseded/
+│   ├── governance/        # 🏛️ ガバナンス定義（権威文書）
+│   │   ├── INDEX.md       # ⚠️ 自動生成（編集禁止）
 │   │   ├── AI_GUIDELINES.md
 │   │   ├── DOCUMENTATION_STRUCTURE.yml
 │   │   ├── HIERARCHY_RULES.md
-│   │   ├── SSOT_PRIORITY_MATRIX.md
-│   │   └── README.md
-│   ├── operations/                   # 📋 運用手順書
-│   │   ├── current/                  # 最新版（current/{YYYYMMDD}_{type}.ja.md）
-│   │   └── archive/{YYYY}/{MM}/      # 過去版
-│   ├── prd/                          # 💡 要件定義
-│   │   ├── active/                   # 実装前（active/{YYYYMMDD}_{slug}.ja.md）
-│   │   └── implemented/              # 実装完了版
-│   ├── project-status.ja.md          # プロジェクト状況
-│   └── README.md                     # ドキュメント全体ガイド
-├── content/                           # ✅ 一次情報
-│   ├── ja/                           # 🇯🇵 日本語（編集対象）
-│   └── en/                           # 🇬🇧 英語（CI自動生成）
-├── AGENT.md                          # ⚠️ 自動生成（編集禁止）
-├── CHANGELOG.md                      # ✅ バージョン履歴（技術的差分）
-├── scripts/                          # Python自動化スクリプト
-│   ├── check_path_references.py      # パス参照チェック・自動修正
-│   ├── validate_docs.py              # ドキュメント整合性検証
-│   ├── record_decision.py            # ADR作成支援
-│   ├── archive_conversation.py       # 対話ログ保存（nullvariant-writings）
-│   ├── check_token_usage.py          # トークン使用量監視
-│   └── prepare_note_article.py       # note記事生成（出力先: nullvariant-writings）
-├── tests/                            # 🧪 テストファイル管理（ADR-0009）
-│   ├── README.md                     # テストファイル配置ガイド
-│   └── fixtures/
-│       ├── permanent/                # Git管理（単体テスト用・回帰テスト用）
-│       └── temporary/                # .gitignore（一時的な動作確認用）
-├── spec/                             # ⚠️ 自動生成（編集禁止）
-└── i18n/                             # 翻訳用語集・スタイルガイド
+│   │   └── SSOT_PRIORITY_MATRIX.md
+│   ├── operations/        # 📋 Tier 2: 運用手順書
+│   │   ├── INDEX.md       # ⚠️ 自動生成（編集禁止）
+│   │   ├── current/
+│   │   └── archive/{YYYY}/{MM}/
+│   ├── prd/               # 💡 Tier 3: 要件定義
+│   │   ├── INDEX.md       # ⚠️ 自動生成（編集禁止）
+│   │   ├── active/
+│   │   └── implemented/
+│   ├── log/               # 📝 Tier 4.5: 作業ログ記録
+│   │   └── {YYYY}/{MM}/
+│   ├── project-status.ja.md  # 📊 Tier 1: 状態管理
+│   └── README.md
+├── content/               # 🏆 Tier 0: 一次情報
+│   ├── ja/                # 日本語（編集対象）
+│   └── en/                # 英語（CI自動生成）
+├── AGENT.md               # ⚠️ CI自動生成（編集禁止）
+├── CHANGELOG.md           # 📊 Tier 1: バージョン履歴
+├── spec/
+│   └── agent.spec.yaml    # ⚠️ CI自動生成（編集禁止）
+├── scripts/               # Python自動化スクリプト
+└── tests/                 # テストファイル（ADR-0009）
+    └── fixtures/
+        ├── permanent/     # Git管理
+        └── temporary/     # .gitignore
 ```
 
-詳細は以下を参照：
-- `docs/governance/DOCUMENTATION_STRUCTURE.yml` - 機械可読形式の階層定義
-- `docs/governance/HIERARCHY_RULES.md` - 人間向け階層ルール説明
-- `docs/governance/AI_GUIDELINES.md` - AI向けドキュメント記録ガイドライン
-- `docs/project-status.ja.md` - プロジェクト状況
-- `tests/README.md` - テストファイル配置ガイド（ADR-0009）
+**⚠️ 重要**: この構造図は概要のみです。最新の詳細は必ず上記権威文書を参照してください。
 
 ### 5. テストファイル配置ルール（ADR-0009）
 
