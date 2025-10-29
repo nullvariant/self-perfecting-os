@@ -312,7 +312,7 @@ Examples:
     )
     parser.add_argument(
         '--token-usage',
-        help='トークン使用率（例: "8.5% (85,000 / 1,000,000)"）'
+        help='トークン使用率（例: "8.5%% (85,000 / 1,000,000)"）'
     )
     parser.add_argument(
         '--output-dir',
