@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADR) Index
 
-**最終更新**: 2025-10-28
+**最終更新**: 2025-10-29
 **総件数**: 2件（Active: 2, Deprecated: 0, Superseded: 0）
 
 ---

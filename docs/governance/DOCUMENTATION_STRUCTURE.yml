@@ -83,6 +83,7 @@ hierarchy:
     update_frequency: "機能開発時"
     requires_adr: false  # PRD自体は要件定義なのでADR不要
     note: "active版は docs/prd/active/ に配置、実装完了後は docs/prd/implemented/ に移動"
+    naming_convention: "YYYYMMDD_機能名.ja.md (例: 20251029_対話生ログ永続保存システム.md)"
     files:
       - path: "docs/prd/active/20251028_changelog-migration.ja.md"
         purpose: "Changelog分離の要件定義"
@@ -98,6 +99,12 @@ hierarchy:
         
       - path: "docs/prd/active/20251028_documentation-governance.ja.md"
         purpose: "ドキュメント管理ガバナンスの要件定義"
+        format: "PRD"
+        update_rule: "要件変更時"
+        auto_generated: false
+        
+      - path: "docs/prd/active/20251029_対話生ログ永続保存システム.md"
+        purpose: "対話生ログ永続保存システムの要件定義"
         format: "PRD"
         update_rule: "要件変更時"
         auto_generated: false

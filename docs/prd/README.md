@@ -15,12 +15,29 @@
 ```
 prd/
 ├── active/                     # 現在進行中・計画中
-│   ├── note-workflow-automation_feature.ja.md
+│   ├── 20251028_note-workflow-automation.ja.md
 │   └── ...
-├── completed/                  # 完了
+├── implemented/                # 実装完了
 ├── cancelled/                  # キャンセル
 └── README.md                   # このファイル
 ```
+
+### ファイル名規則
+
+PRDファイルは以下の命名規則に従います：
+
+```
+YYYYMMDD_機能名.ja.md
+```
+
+**例:**
+- `20251029_対話生ログ永続保存システム.md`
+- `20251028_note-workflow-automation.ja.md`
+
+**理由:**
+- ADRと同じく、作成日が明確
+- 時系列で並び替えが容易
+- ファイル名だけで「いつ作られたか」がわかる
 
 ---
 
@@ -91,13 +108,23 @@ prd/
 
 ## 🚀 PRDの作成方法
 
-### 1. テンプレートをコピー
+### 1. ファイル名を決定
 
-```bash
-cp docs/prd/template.md docs/prd/active/my-feature_feature.ja.md
+命名規則に従ってファイル名を決定：
+
+```
+YYYYMMDD_機能名.ja.md
 ```
 
-### 2. 内容を記入
+例: `20251029_新機能名.md`
+
+### 2. テンプレートをコピー
+
+```bash
+cp docs/prd/template.md docs/prd/active/20251029_新機能名.md
+```
+
+### 3. 内容を記入
 
 - 目的を明確に
 - 要件を具体的に
