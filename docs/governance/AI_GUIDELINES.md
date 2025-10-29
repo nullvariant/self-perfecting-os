@@ -188,7 +188,57 @@ ADR作成後、必要に応じて以下も更新：
 
 ---
 
-## 📂 原則4: ドキュメント階層の理解
+## � 原則3: 一時的ドキュメント vs メタドキュメント
+
+### 判別フロー
+
+```
+「このドキュメント、どこに保存する？」
+
+  ├─ 決定したこと（重要事項の記録）?
+  │  └─ YES → docs/decisions/active/{YYYY}/{MM}/ (ADR)
+  │
+  ├─ 要件定義（機能仕様）?
+  │  └─ YES → docs/prd/active/ (PRD)
+  │
+  ├─ 運用手順（実行方法）?
+  │  └─ YES → docs/operations/current/ (Operations)
+  │
+  ├─ ガバナンスルール・定義（参照ドキュメント）?
+  │  └─ YES → docs/governance/ (大文字メタドキュメント)
+  │
+  └─ ガバナンス監査・品質レビュー・デバッグログ（記録・履歴）?
+     └─ YES → docs/log/{YYYY}/{MM}/ (作業ログ)
+```
+
+### 一時的ドキュメントの特徴
+
+| 特性 | governance/ | log/ |
+|------|-----------|------|
+| **目的** | ガバナンスルール・定義 | 作業ログ・履歴記録 |
+| **参照頻度** | 高（繰り返し参照） | 低（履歴確認用） |
+| **ステータス管理** | ✅ あり（active/deprecated） | ❌ 不要（時系列自動管理） |
+| **命名** | 大文字、日付なし（恒久的） | 日付付き（時系列） |
+| **例** | `AI_GUIDELINES.md`, `DOCUMENTATION_STRUCTURE.yml` | `20251029_governance-self-review.md` |
+| **Git管理** | ✅ すべて | ✅ すべて（永続保存、削除ポリシーなし） |
+
+### governance/ に含まれるべきもの
+
+- ✅ `AI_GUIDELINES.md` - AI向けガイドライン（参照対象）
+- ✅ `DOCUMENTATION_STRUCTURE.yml` - ドキュメント構造定義（参照対象）
+- ✅ `HIERARCHY_RULES.md` - 階層ルール説明（参照対象）
+- ✅ `NAMING_DECISION_SUMMARY.md` - 命名規則サマリー（参照対象）
+
+### log/ に含まれるべきもの
+
+- ✅ `20251029_governance-self-review.md` - ガバナンス監査レポート
+- ✅ `20251030_quality-check-log.md` - 品質チェック結果
+- ✅ `20251101_debug-investigation.md` - デバッグ調査ログ
+- ✅ `20251105_performance-test-report.md` - パフォーマンステスト結果
+
+---
+
+## �📂 原則4: ドキュメント階層の理解
 
 ### Tier 0: Single Source of Truth (SSOT)
 **AI/人間が最初に参照すべき真実**
@@ -219,14 +269,27 @@ ADR作成後、必要に応じて以下も更新：
   - 例: `docs/prd/active/20251028_note-workflow-automation.ja.md`
 - 実装完了後は `docs/prd/implemented/` へ移動
 
-### Tier 4: 一時的文書
-**期限付きの作業記録（完了後アーカイブ）**
+### Tier 4: 一時的文書（廃止、Tier 4.5 に統合）
+**【廃止】この定義は Tier 4.5 に統合されました**
 
-- `docs/operations/current/{YYYYMMDD}_TEMP.ja.md` - 一時的な作業ログ
-- `docs/prd/active/{YYYYMMDD}_EXPERIMENT.ja.md` - 実験的要件案
-- 完了後は対応する `archive/{YYYY}/{MM}/` へ移動
+- （将来的には、全ての一時的ドキュメントは `docs/log/` で管理）
+
+### Tier 4.5: ログ・記録（作業の時系列記録）
+**ガバナンス監査・品質レビュー・デバッグログなど、作業の時系列記録**
+
+- `docs/log/{YYYY}/{MM}/{YYYYMMDD}_{slug}.md` - 作業ログ（永続保存）
+  - 例: `docs/log/2025/10/20251029_governance-self-review.md`
+  - 例: `docs/log/2025/10/20251030_quality-check-log.md`
+
+**特徴**:
+- 参照対象ではなく、単なる「記録」
+- ステータス管理（active/deprecated）は不要
+- 月別フォルダで時系列整理
+- `grep` やファイルシステムで検索可能
 
 ---
+
+```
 
 ## 🚫 禁止事項
 
@@ -295,6 +358,78 @@ git commit -m "docs: Add ADR-XXXX for [決定内容]"
   - 古い ADR の Status を確認（Deprecated にすべきものはないか）
   - `docs/project-status.ja.md` の最終更新日を確認
   - `DOCUMENTATION_STRUCTURE.yml` との整合性を確認
+
+---
+
+## 🏷️ 補足：カテゴリタグ（category）の活用
+
+### カテゴリタグとは
+
+ADRファイル名の `_{category}` 部分（例：`_architecture`, `_governance`）は、
+ADRの**内容分類タグ** です。これはファイル名に付与されるメタデータで、
+ADRの保存場所（ディレクトリ構造）とは独立した概念です。
+
+### カテゴリタグの役割
+
+**カテゴリタグによる検索・抽出**:
+```bash
+# 「architecture」カテゴリのすべてのADRを検索
+grep -r "_architecture.md" docs/decisions/
+
+# または find で検索
+find docs/decisions -name "*_architecture.md"
+
+# 複数カテゴリで検索
+grep -r "_governance.md\|_process.md" docs/decisions/
+```
+
+**INDEX.md でのカテゴリ別フィルタリング**:
+- `scripts/generate_index.py --group-by-category` でカテゴリ別 INDEX 生成
+- `scripts/generate_index.py --category architecture` で特定カテゴリのみ抽出
+
+### カテゴリタグ vs ディレクトリ構造の違い
+
+| 観点 | カテゴリタグ（`_category`） | ディレクトリ構造（`{status}/{YYYY}/{MM}/`） |
+|------|---------------------------|----------------------------------------|
+| **役割** | 内容分類（コンテンツ軸） | 状態・時期管理（ライフサイクル軸） |
+| **用途** | grep検索、INDEX.md フィルタ | ステータス管理、月別整理 |
+| **例** | `_architecture`, `_process`, `_governance` | `active/2025/10/`, `deprecated/2025/09/` |
+| **独立性** | 独立：新しいカテゴリ追加も可能 | 独立：ディレクトリ階層変更も可能 |
+
+### 検索フロー
+
+```
+「architecture に関する、2025年10月の active ADR を見たい」
+
+     ↓
+ 
+Step 1: ディレクトリで絞り込み
+        → docs/decisions/active/2025/10/
+
+Step 2: カテゴリで絞り込み
+        → find docs/decisions/active/2025/10/ -name "*_architecture.md"
+
+     ↓
+結果: docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md
+```
+
+### AI が判定すべきこと
+
+ADRを新規作成する際、以下を確認：
+
+```
+1. 【ディレクトリ】このADRのステータスは?
+   → active/deprecated/superseded のいずれか?
+
+2. 【ディレクトリ】対象年月は?
+   → {YYYY}/{MM} の形式で正確に指定
+
+3. 【カテゴリタグ】このADRの内容分類は?
+   → DOCUMENTATION_STRUCTURE.yml の categories から選択
+
+4. 【ファイル名】最終的なパスは正確か?
+   → docs/decisions/{status}/{YYYY}/{MM}/{YYYYMMDD}_{NNNN}_{slug}_{category}.md
+```
 
 ---
 

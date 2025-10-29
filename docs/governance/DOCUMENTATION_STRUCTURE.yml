@@ -1,8 +1,8 @@
 # ドキュメント構造定義（機械可読形式）
 # AI はこのファイルを参照して、記録場所を自動判定する
 
-version: "1.0.0"
-last_updated: "2025-10-28"
+version: "1.1.0"
+last_updated: "2025-10-29"
 schema_version: "1.0"
 
 # ドキュメント階層ルール
@@ -109,12 +109,40 @@ hierarchy:
         update_rule: "要件変更時"
         auto_generated: false
 
-  # Tier 4: 一時的文書
+  # Tier 4: 一時的文書（廃止：Tier 4.5 に統合）
   tier4_temporary:
-    description: "期限付きの作業記録（完了後アーカイブ）"
-    update_frequency: "適宜（完了後は docs/archive/ へ）"
+    description: "【廃止】この定義は Tier 4.5（ログ・記録）に統合されました"
+    update_frequency: "N/A"
     requires_adr: false
     files: []
+
+  # Tier 4.5: ログ・記録（作業の時系列記録）
+  tier4_5_logs:
+    description: "ガバナンス監査・品質レビュー・デバッグログなど、作業の時系列記録"
+    update_frequency: "随時（作業完了時に記録）"
+    requires_adr: false
+    retention_policy: "永続保存（運用判断で削除可能）"
+    note: |
+      参照対象ではなく、単なる「記録」。
+      月別フォルダで整理、日付ネーミングで検索可能。
+      ステータス管理（active/deprecated等）は不要。
+      
+      vs governance/:
+      - governance/ = ガバナンスルール・定義（参照対象）
+      - log/ = 作業ログ・記録（履歴、参照対象外）
+    
+    files:
+      - path: "docs/log/{YYYY}/{MM}/"
+        pattern: "{YYYYMMDD}_{slug}.md"
+        example: "20251029_governance-self-review.md"
+        purpose: "ガバナンス監査、品質レビュー、デバッグログ等の時系列記録"
+        format: "Markdown Report"
+        update_rule: "随時（作業記録として）"
+        auto_generated: false
+        search_method:
+          by_month: "docs/log/{YYYY}/{MM}/ を参照"
+          by_keyword: "grep -r 'keyword' docs/log/"
+          latest: "find docs/log -name '*.md' | sort | tail -N"
 
   # 自動生成ファイル（編集禁止）
   auto_generated:
@@ -149,6 +177,35 @@ hierarchy:
         update_rule: "CI/CDが自動生成（編集禁止）"
         auto_generated: true
         source: "content/AGENT.ja.md"
+
+  # 【新規】概念分離図：ドキュメント管理の2つの軸
+  concept_layers:
+    description: "naming_conventions（命名規則）と directory_structure（物理構造）は独立した設計目的を持つ"
+    diagram: |
+      ファイル例: 20251028_0001_ci-cd-pause_architecture.md
+      保存先例: docs/decisions/active/2025/10/
+      
+      ┌─ 軸1（コンテンツ分類軸）: _architecture
+      │  ├─ 定義場所: naming_conventions.adr.categories
+      │  ├─ 役割: ADRの内容を分類し、検索・フィルタリングを可能にする
+      │  ├─ 用途: 
+      │  │  - grep で「architecture カテゴリのADR」を一括抽出
+      │  │  - INDEX.md でカテゴリ別フィルタリング
+      │  │  - 「特定分野の決定履歴」を効率的に参照
+      │  └─ メタデータ性: ファイル名に付与される検索タグ
+      │
+      └─ 軸2（ライフサイクル管理軸）: active/2025/10/
+         ├─ 定義場所: directory_structure.adr
+         ├─ 役割: ADRのステータス、時期、版を管理
+         ├─ 用途:
+         │  - 「現行有効なADR」と「廃止されたADR」を明確に分離
+         │  - 時系列表示（「2025年10月のADR」など）
+         │  - バージョン管理・アーカイブ
+         └─ 物理性: ファイルシステムの保存位置
+
+  key_insight: |
+    categories（メタデータ）と directory_structure（物理構造）は
+    「直交する次元」である。独立して設計・変更可能。
 
   # AI向けルール
 ai_decision_rules:

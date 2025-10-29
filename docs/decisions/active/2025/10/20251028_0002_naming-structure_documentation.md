@@ -152,6 +152,70 @@ docs/operations/
 └── INDEX.md                   # 自動生成（将来）
 ```
 
+### 1.5 概念分離：カテゴリタグ（category）vs ディレクトリ構造
+
+#### 本質的な違い
+
+ファイル名とその保存先には、**異なる設計目的** を持つ2つの軸があります：
+
+```
+ファイル名の構成:     {YYYYMMDD} _ {NNNN} _ {slug} _ {category} . md
+                                                      ↑
+                                   これは「メタデータタグ」
+
+保存先の構成:         docs/decisions / {status} / {YYYY} / {MM} / 
+                                     ↑
+                       これは「物理保存場所・ステータス管理」
+```
+
+#### 2つの軸の目的と機能
+
+| 軸 | 名前 | 定義 | 役割 | 実装例 | 用途 |
+|----|------|------|------|--------|------|
+| **軸1: Category（カテゴリ軸）** | `_category` | ADR**ファイル名**に付与される分類タグ | 内容の検索・分類・フィルタリング | `_architecture`, `_process`, `_tooling`, `_governance` | ✅ grep検索でカテゴリ別ADR抽出<br>✅ INDEX.md でカテゴリ別フィルタ<br>✅ 「全ADRの中から architecture に関するもの」を素早く検索 |
+| **軸2: Directory（ディレクトリ軸）** | `{status}/{YYYY}/{MM}/` | ADRの**保存場所**（ステータス+日付） | ファイル版管理・時系列管理・ステータス管理 | `active/2025/10/`, `deprecated/2025/09/` | ✅ ステータス別に active/deprecated/superseded を分離<br>✅ 月別アーカイブで時系列整理<br>✅ 「2025年10月のactive ADR」を素早く検索 |
+
+#### 独立性の意義
+
+**2つの軸は独立して変更可能**です：
+
+- 新しい `category` を追加しても、ディレクトリ構造は変わらない
+- ディレクトリの年月を進めても、`category` の定義は変わらない
+- 例：「governance」カテゴリのADRを、active と deprecated の両方から検索可能
+
+#### INDEX.md での活用例
+
+```markdown
+# ADR INDEX
+
+## カテゴリ別
+
+### Architecture
+- 20251028_0001_ci-cd-pause_architecture.md (active)
+- 20250915_0003_database-schema_architecture.md (deprecated)
+
+### Process
+- 20251015_0004_pr-review-flow_process.md (active)
+
+## 時系列
+
+### 2025年10月
+- 20251028_0001_ci-cd-pause_architecture.md (active)
+- 20251028_0002_naming-structure_documentation.md (active)
+
+## ステータス別
+
+### Active（現行有効）
+- 20251028_0001_ci-cd-pause_architecture.md
+- 20251028_0002_naming-structure_documentation.md
+
+### Deprecated（非推奨）
+- 20250915_0003_database-schema_architecture.md
+```
+
+**この3つの軸（カテゴリ、時系列、ステータス）が組み合わさることで、
+複雑な検索要求に対応できます**。
+
 ### 3. INDEX.md の管理方法
 
 #### 生成方法

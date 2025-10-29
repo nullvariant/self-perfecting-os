@@ -166,6 +166,86 @@ docs/governance/NAMING_DECISION_SUMMARY.md ← メタドキュメント
 2. **トピック横断の可視化**
    - 「CI/CD関連の全決定」を時系列問わず抽出可能
 
+### 【重要】2つの独立した管理軸：カテゴリ vs ディレクトリ構造
+
+本命名規則は、**コンテンツ分類軸**と**ライフサイクル管理軸**を意図的に分離しています：
+
+#### 軸1: コンテンツ分類軸（Category）
+```
+ファイル名の _category 部分
+
+例: 20251028_0001_ci-cd-pause_architecture.md
+                                  ↑
+                        これは「メタデータタグ」
+```
+
+**役割**: 「何について決定したのか」を分類・検索
+- `_architecture` → アーキテクチャ関連の決定
+- `_process` → プロセス・手順関連の決定
+- `_governance` → ガバナンス・ポリシー関連の決定
+
+**活用例**:
+```bash
+# 「governance」カテゴリのすべてのADR
+grep -r "_governance.md" docs/decisions/
+
+# INDEX.md でカテゴリ別フィルタリング
+python scripts/generate_index.py --group-by-category
+```
+
+#### 軸2: ライフサイクル管理軸（Directory）
+```
+ファイルの保存先
+
+例: docs/decisions/active/2025/10/
+                       ↑       ↑  ↑
+              ステータス 年    月
+```
+
+**役割**: 「いつ、どの状態で、どこにあるのか」を管理
+- `active/2025/10/` → 2025年10月の現行有効ADR
+- `deprecated/2025/09/` → 2025年9月の非推奨ADR
+- `superseded/2025/08/` → 2025年8月の上書きされたADR
+
+**活用例**:
+```bash
+# 「2025年10月の有効なADR」
+ls docs/decisions/active/2025/10/
+
+# ステータス別検索
+find docs/decisions/deprecated -name "*.md"
+```
+
+#### 2つの軸の独立性
+
+```
+シナリオ: 「2025年10月の active かつ architecture 関連」を検索
+
+Step 1: ディレクトリで絞る
+        → docs/decisions/active/2025/10/
+
+Step 2: カテゴリで絞る
+        → grep "_architecture.md" docs/decisions/active/2025/10/
+
+         ↓
+
+結果: docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md
+```
+
+**この2つの軸が直交することで、複雑な検索要求に対応可能**です。
+
+#### なぜ分離したか
+
+❌ **1つの軸だけでは足りない**:
+- カテゴリのみ → 古いADRと新しいADRが混在
+- ディレクトリのみ → 「architecture 関連の決定」が時系列問わず散在
+
+✅ **2つの軸を独立させると**:
+- 各軸を独立して設計・変更可能
+- INDEX.md で複数軸の組み合わせ検索が容易
+- 新しいカテゴリ追加時にディレクトリ構造は変わらない
+- ディレクトリ移動時にカテゴリは変わらない
+
 ### なぜGit Hooksを採用しない？
 
 1. **HSP特性との整合性**
