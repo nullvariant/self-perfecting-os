@@ -14,6 +14,7 @@ on:
       - 'docs/**'
       - 'content/**'
       - 'scripts/validate_docs.py'
+      - '.github/workflows/validate-docs.yml'
 
 jobs:
   validate:
@@ -35,17 +36,26 @@ jobs:
         pip install pyyaml
         
     - name: ドキュメント整合性チェック
+      id: validate
       run: |
         python scripts/validate_docs.py
+        echo "validation_result=$?" >> $GITHUB_OUTPUT
         
     - name: 結果サマリー
       if: always()
       run: |
         echo "## 📝 ドキュメント検証結果" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        if [ $? -eq 0 ]; then
-          echo "✅ 全てのチェックに合格しました！" >> $GITHUB_STEP_SUMMARY
+        echo "### チェック項目:" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ ADR 連番検証" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ ファイル存在確認" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ 最終更新日時チェック" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ log/ ファイル命名規則（YYYYMMDD_slug.md）" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ governance/ メタドキュメント純粋性（大文字のみ）" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ steps.validate.outcome }}" == "success" ]; then
+          echo "**結果: ✅ 全てのチェックに合格しました！**" >> $GITHUB_STEP_SUMMARY
         else
-          echo "❌ バリデーションエラーが発生しました。" >> $GITHUB_STEP_SUMMARY
+          echo "**結果: ❌ バリデーションエラーが発生しました。**" >> $GITHUB_STEP_SUMMARY
           echo "詳細はログを確認してください。" >> $GITHUB_STEP_SUMMARY
         fi

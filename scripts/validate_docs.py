@@ -7,6 +7,8 @@
 2. DOCUMENTATION_STRUCTURE.yml に記載された全ファイルの存在確認
 3. project-status.ja.md の最終更新日チェック（7日以上前なら警告）
 4. 自動生成ファイル（AGENT.md, spec/agent.spec.yaml）への直接編集チェック
+5. docs/log/ ファイルの命名規則チェック（YYYYMMDD_slug.md形式）
+6. docs/governance/ に一時的ドキュメント混入がないかチェック
 
 Usage:
     python scripts/validate_docs.py
@@ -22,7 +24,9 @@ import re
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
 DECISIONS_DIR = ROOT / "docs" / "decisions"
-STRUCTURE_FILE = ROOT / "docs" / "governance" / "DOCUMENTATION_STRUCTURE.yml"
+LOG_DIR = ROOT / "docs" / "log"
+GOVERNANCE_DIR = ROOT / "docs" / "governance"
+STRUCTURE_FILE = GOVERNANCE_DIR / "DOCUMENTATION_STRUCTURE.yml"
 PROJECT_STATUS = ROOT / "docs" / "project-status.ja.md"
 AUTO_GEN_FILES = [
     ROOT / "AGENT.md",
@@ -93,16 +97,25 @@ def check_file_existence():
     missing_files = []
 
     # 各Tierのファイルをチェック
-    for tier_name, tier_data in structure.get("hierarchy", {}).items():
+    hierarchy = structure.get("hierarchy", {})
+    
+    for tier_name, tier_data in hierarchy.items():
+        # tier_data が dict 型かチェック（yaml 解析の構造により文字列の場合もある）
+        if not isinstance(tier_data, dict):
+            continue
+            
         for file_entry in tier_data.get("files", []):
+            if not isinstance(file_entry, dict):
+                continue
+                
             path_str = file_entry.get("path", "")
 
-            # ディレクトリの場合はスキップ
+            # ディレクトリの場合はスキップ（例: docs/decisions/active/{YYYY}/{MM}/）
             if path_str.endswith("/"):
                 continue
 
-            # パターンマッチの場合はスキップ（ADR-*.md など）
-            if "*" in path_str:
+            # パターンマッチの場合はスキップ（{YYYYMMDD}_{NNNN}_{slug}_{category}.md など）
+            if "{" in path_str:
                 continue
 
             file_path = ROOT / path_str
@@ -117,6 +130,7 @@ def check_file_existence():
         errors += len(missing_files)
     else:
         print(f"  ✅ 全ての記載ファイルが存在します")
+
 
 
 def check_project_status_date():
@@ -178,6 +192,79 @@ def check_auto_gen_files():
             errors += 1
 
 
+def check_log_directory_naming():
+    """docs/log/ ファイルの命名規則チェック"""
+    global errors, warnings
+    print("\n📋 docs/log/ ファイル命名規則チェック...")
+
+    if not LOG_DIR.exists():
+        print(f"  ℹ️  docs/log/ ディレクトリが見つかりません")
+        return
+
+    log_files = [f for f in LOG_DIR.rglob("*.md") if f.parent != LOG_DIR]  # サブディレクトリ内のファイルのみ
+
+    if not log_files:
+        print(f"  ℹ️  docs/log/{{YYYY}}/{{MM}}/ にログファイルが見つかりません")
+        return
+
+    invalid_files = []
+
+    for f in log_files:
+        # 期待形式: YYYYMMDD_slug.md
+        # YYYYMMDD: 8桁の数字, slug: 小文字・ハイフン・数字のみ
+        match = re.match(r"(\d{8})_([a-z0-9-]+)\.md$", f.name)
+
+        if not match:
+            invalid_files.append(f.name)
+
+    if invalid_files:
+        print(f"  ❌ 命名規則に合わないファイルが見つかりました:")
+        for fname in invalid_files:
+            print(f"     - {fname}")
+            print(f"        期待形式: YYYYMMDD_slug.md (例: 20251029_governance-self-review.md)")
+        errors += len(invalid_files)
+    else:
+        print(f"  ✅ 全てのログファイルが正しく命名されています（計{len(log_files)}件）")
+
+
+def check_governance_purity():
+    """docs/governance/ に一時的ドキュメント混入がないかチェック"""
+    global errors, warnings
+    print("\n🛡️  docs/governance/ 純粋性チェック...")
+
+    if not GOVERNANCE_DIR.exists():
+        print(f"  ℹ️  docs/governance/ ディレクトリが見つかりません")
+        return
+
+    gov_files = list(GOVERNANCE_DIR.glob("*.md")) + list(GOVERNANCE_DIR.glob("*.yml")) + list(GOVERNANCE_DIR.glob("*.yaml"))
+
+    # governance/ は大文字のメタドキュメントのみ許可
+    # 期待されるファイル名: README.md, AI_GUIDELINES.md, HIERARCHY_RULES.md 等
+    expected_patterns = [
+        r"^[A-Z][A-Z_]*\.(md|yml|yaml)$",  # 大文字_大文字.md 形式
+        r"^README\.md$",
+    ]
+
+    suspicious_files = []
+
+    for f in gov_files:
+        # パターンマッチ
+        is_valid = any(re.match(pattern, f.name) for pattern in expected_patterns)
+
+        if not is_valid:
+            suspicious_files.append(f.name)
+
+    if suspicious_files:
+        print(f"  ⚠️  ガバナンス以外のファイルが見つかりました:")
+        for fname in suspicious_files:
+            print(f"     - {fname}")
+            print(f"        対策: docs/log/2025/MM/{fname} に移動してください（日付ネーミング適用）")
+        warnings += len(suspicious_files)
+    else:
+        print(f"  ✅ docs/governance/ は大文字メタドキュメントのみです（計{len(gov_files)}件）")
+
+
+
 def main():
     print("=" * 60)
     print("📝 ドキュメント整合性検証")
@@ -187,6 +274,8 @@ def main():
     check_file_existence()
     check_project_status_date()
     check_auto_gen_files()
+    check_log_directory_naming()
+    check_governance_purity()
 
     print("\n" + "=" * 60)
     print(f"📊 検証結果: {errors} エラー, {warnings} 警告")

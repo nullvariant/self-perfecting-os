@@ -3,6 +3,10 @@
 ADR自動生成スクリプト
 
 Usage:
+    # 対話型モード
+    python scripts/record_decision.py
+
+    # コマンドラインオプション
     python scripts/record_decision.py \
       --title "決定のタイトル" \
       --context "背景・理由" \
@@ -18,12 +22,14 @@ Options:
     --related     : 関連ファイル（複数指定可能）
     --output-dir  : 出力ディレクトリ（デフォルト: docs/decisions/active/YYYY/MM）
     --date        : 決定日（デフォルト: 今日、YYYYMMDD形式）
+    --interactive : 対話型モード有効化
 """
 
 import argparse
 from pathlib import Path
 from datetime import datetime
 import re
+import sys
 
 # ディレクトリ定義
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -142,15 +148,44 @@ def sanitize_filename(title: str) -> str:
     return filename
 
 
+def interactive_input(prompt: str, default: str = "") -> str:
+    """対話型入力"""
+    if default:
+        user_input = input(f"{prompt} (デフォルト: {default}): ").strip()
+        return user_input if user_input else default
+    else:
+        while True:
+            user_input = input(f"{prompt} (必須): ").strip()
+            if user_input:
+                return user_input
+            print("  ❌ 入力は必須です")
+
+
+def select_category(categories: list) -> str:
+    """カテゴリ選択（対話型）"""
+    print("\n📂 カテゴリを選択してください:")
+    for i, cat in enumerate(categories, 1):
+        print(f"   {i}. {cat}")
+    
+    while True:
+        try:
+            choice = int(input(f"\n選択 (1-{len(categories)}): ").strip())
+            if 1 <= choice <= len(categories):
+                return categories[choice - 1]
+            print(f"  ❌ 1-{len(categories)} の範囲で入力してください")
+        except ValueError:
+            print("  ❌ 数値で入力してください")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="ADR (Architecture Decision Record) 自動生成スクリプト"
     )
-    parser.add_argument("--title", required=True, help="決定のタイトル")
-    parser.add_argument("--context", required=True, help="背景・理由")
+    parser.add_argument("--title", default=None, help="決定のタイトル")
+    parser.add_argument("--context", default=None, help="背景・理由")
     parser.add_argument(
         "--category",
-        required=True,
+        default=None,
         choices=CATEGORIES,
         help=f"カテゴリタグ（必須）: {', '.join(CATEGORIES)}",
     )
@@ -171,7 +206,30 @@ def main():
         choices=["active", "deprecated", "superseded"],
         help="ステータス（デフォルト: active）",
     )
+    parser.add_argument(
+        "--interactive",
+        action="store_true",
+        help="対話型モード有効化（オプション指定なしの場合は自動有効）",
+    )
     args = parser.parse_args()
+
+    # 対話型モード判定：必須オプションなし or --interactive フラグ
+    is_interactive = (
+        not args.title or not args.context or not args.category
+    ) or args.interactive
+
+    if is_interactive:
+        print("\n" + "=" * 60)
+        print("🤖 ADR自動生成スクリプト（対話型）")
+        print("=" * 60)
+
+        args.title = interactive_input("📝 ADRのタイトル")
+        args.context = interactive_input("📚 背景・理由（複数行の場合は改行で入力）")
+        args.category = select_category(CATEGORIES)
+        args.author = interactive_input("👤 決定者", default="AI")
+
+        related_input = interactive_input("🔗 関連ファイル（スペース区切り、なければEnter）", default="")
+        args.related = related_input.split() if related_input else []
 
     # 日付パース
     if args.date:
@@ -211,7 +269,7 @@ def main():
     # ファイル書き込み
     filepath.write_text(content, encoding="utf-8")
 
-    print(f"✅ ADR作成完了: {filepath}")
+    print(f"\n✅ ADR作成完了: {filepath}")
     print(f"\n📝 次のステップ:")
     print(f"   1. {filepath} を編集してください")
     print(f"   2. Status を 'Draft' → 'Accepted' に変更してください")
