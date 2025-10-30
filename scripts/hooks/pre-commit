@@ -44,7 +44,7 @@ while IFS= read -r file; do
             ;;
         
         # docs/prd/ 配下（INDEX.md, README.md を除く .md ファイル）
-        docs/prd/active/*.md|docs/prd/implemented/*.md)
+        docs/prd/active/*.md|docs/prd/implemented/*.md|docs/prd/deprecated/*.md)
             if [[ "$file" != *"/INDEX.md" ]] && [[ "$file" != *"/README.md" ]]; then
                 NEED_PRD=1
             fi
