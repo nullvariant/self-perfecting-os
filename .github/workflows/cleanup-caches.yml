@@ -1,0 +1,35 @@
+name: Cleanup Old Caches
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 毎週日曜 3:00 UTC（日本時間 月曜日 12:00）
+    - cron: '0 3 * * 0'
+
+permissions:
+  actions: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup old caches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo "🧹 Fetching cache list for ${REPO}..."
+          
+          # キャッシュをアクセス時間の降順で取得
+          # 最新10件は保持し、それ以降のキャッシュを削除
+          gh actions-cache list -R "${REPO}" --sort accessed --order desc | \
+          tail -n +11 | \
+          awk '{print $1}' | \
+          while read cache_key; do
+            if [ -n "$cache_key" ]; then
+              echo "🗑️  Deleting cache: $cache_key"
+              gh actions-cache delete -R "${REPO}" "$cache_key" --confirm || true
+            fi
+          done
+          
+          echo "✅ Cache cleanup completed"

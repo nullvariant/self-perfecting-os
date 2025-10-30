@@ -2,6 +2,9 @@ name: Copilot Setup Steps
 
 on:
   workflow_dispatch:
+  schedule:
+    # 毎週日曜 2:00 UTC（日本時間 月曜日 11:00）
+    - cron: '0 2 * * 0'
   push:
     paths:
       - .github/workflows/copilot-setup-steps.yml
@@ -19,8 +22,17 @@ jobs:
       PIP_DISABLE_PIP_VERSION_CHECK: "1"
       HF_HOME: ${{ github.workspace }}/.copilot-cache/huggingface
       SENTENCE_TRANSFORMERS_HOME: ${{ github.workspace }}/.copilot-cache/sentence-transformers
+      PYTHONOPTIMIZE: "2"
+      PYTHONDONTWRITEBYTECODE: "0"
+      PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v4
+
+      - name: Configure Git for Copilot
+        run: |
+          git config --global core.preloadindex true
+          git config --global core.autocrlf false
+          git config --global transfer.fsckobjects false
 
       - name: Prepare cache dirs
         run: mkdir -p "${HF_HOME}" "${SENTENCE_TRANSFORMERS_HOME}"

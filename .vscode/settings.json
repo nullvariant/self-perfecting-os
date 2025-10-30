@@ -1,0 +1,51 @@
+{
+  "github.copilot.enable": {
+    "*": false,
+    "python": true,
+    "markdown": true,
+    "json": true,
+    "yaml": true
+  },
+  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.agent.maxRequests": 12,
+  "github.copilot.chat.agent.terminal.allowList": [
+    "python",
+    "make",
+    "pip",
+    "rg",
+    "pytest"
+  ],
+  // ファイルシステムの監視最適化（重要！）
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/.venv/**": true,
+    "**/node_modules/**": true,
+    "**/__pycache__/**": true,
+    "**/.copilot-cache/**": true,
+    "**/sentence-transformers/**": true,
+    "**/.huggingface/**": true,
+    "**/spec/**": false
+  },
+  // Copilot 検索スコープの最適化
+  "github.copilot.chat.search.localWorkspace": true,
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/.copilot-cache": true,
+    "**/node_modules": true
+  },
+  // インデックス化の最適化
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.copilot-cache": true,
+    "**/.huggingface": true
+  },
+  // Copilot チャットのパフォーマンス設定
+  "github.copilot.chat.localization": "off",
+  "github.copilot.chat.useDeprecatedCompletion": false,
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": "on"
+    }
+  }
+}
