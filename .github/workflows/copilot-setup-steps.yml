@@ -43,7 +43,7 @@ jobs:
           path: |
             ${{ env.HF_HOME }}
             ${{ env.SENTENCE_TRANSFORMERS_HOME }}
-          key: ${{ runner.os }}-st-models-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-st-models-${{ hashFiles('requirements.txt', 'scripts/review.py') }}
           restore-keys: |
             ${{ runner.os }}-st-models-
 
@@ -57,6 +57,13 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Prime tiktoken encoding cache
+        run: |
+          python - <<'PY'
+          import tiktoken
+          tiktoken.get_encoding("cl100k_base")
+          PY
 
       - name: Prime sentence-transformers cache
         env:

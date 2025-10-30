@@ -43,6 +43,11 @@
   // Copilot チャットのパフォーマンス設定
   "github.copilot.chat.localization": "off",
   "github.copilot.chat.useDeprecatedCompletion": false,
+  // Copilot の参照範囲制限（workspace.excludedPaths）
+  "github.copilot.workspace.excludedPaths": [
+    "**/spec/**",
+    "**/tests/fixtures/temporary/**"
+  ],
   "[markdown]": {
     "editor.quickSuggestions": {
       "other": "on"
