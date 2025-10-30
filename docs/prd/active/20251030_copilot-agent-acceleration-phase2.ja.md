@@ -1,12 +1,39 @@
 # Copilot エージェント高速化施策 Phase 2
 
-**Status**: Partially Implemented（施策A〜C 適用済み、施策D以降検討中）  
+**Status**: ⚠️ **Deprecated - Cursor移行により不要**  
 **Date**: 2025-10-30  
-**Author**: GitHub Copilot
+**Author**: GitHub Copilot  
+**Deprecated Date**: 2025-10-30  
+**Reason**: VSCode + GitHub Copilot から Cursor への開発環境完全移行（ADR-0016）
 
 ---
 
-## 📋 概要
+## ⚠️ Deprecated Notice
+
+**このPRDは Cursor 移行により非推奨となりました。**
+
+### 移行の経緯
+
+2025-10-30 に開発環境を VSCode + GitHub Copilot から Cursor に完全移行しました（ADR-0016）。
+
+- **理由**: Copilot 有料版を解約し、Cursor に統合
+- **影響**: 本PRDで計画していた Copilot 高速化施策（施策A〜E）は不要に
+- **代替**: Cursor は大規模コンテキスト窓（100万トークン）を持ち、セッション管理の重要度が低下
+
+### 実装済み施策の扱い
+
+施策A〜Cは `.github/workflows/copilot-setup-steps.yml` に反映済みですが、今後は使用されません。
+- ワークフローファイルは互換性のため残存
+- 施策D〜Eは未実装のまま終了
+
+### 参照
+
+- **ADR-0016**: VSCode/Copilot → Cursor 移行決定
+- **`.cursor/rules/project.mdc`**: Cursor 向け設定ファイル（Copilot セッション管理不要）
+
+---
+
+## 📋 概要（アーカイブ）
 
 Phase 1 で実装した基本的な高速化施策（20-30% 改善）に加えて、さらなる最適化の機会が4つあります。
 
