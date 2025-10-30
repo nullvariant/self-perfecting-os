@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+#### 開発環境
+
+- **[ADR-0016](docs/decisions/active/2025/10/20251030_0016_vscode-copilot-to-cursor-migration_tooling.md)**: VSCode/Copilot から Cursor への開発環境移行
+  - **背景**: Copilot有料版解約、Cursor に完全移行
+  - **構成**: `.cursor/rules/` に2ファイル配置
+    - `project.mdc` (alwaysApply: true) - プロジェクト本質（約250行）
+    - `coding-style.mdc` (alwaysApply: false) - 実装詳細（約70行）
+  - **最適化**: Copilotセッション管理（62行）削除、Cursor特有機能追加
+  - **方針**: 権威文書への参照で情報分散回避、長期的な美しさ重視
+  - **互換性**: `.github/copilot-instructions.md` は残存（将来的な互換性のため）
+
 #### ガバナンス・ドキュメント管理
 
 - **[ADR-0010](docs/decisions/active/2025/10/20251029_0010_governance-audit_documentation.md)**: ガバナンス自己レビュー報告書
