@@ -215,9 +215,9 @@ def generate_prd_index(prd_dir: Path, dry_run: bool = False) -> str:
     """PRDのINDEX.mdを生成"""
     print(f"\n💡 PRD INDEX.md 生成中...")
 
-    # active/, implemented/ 配下のファイルを取得
+    # active/, implemented/, deprecated/ 配下のファイルを取得
     prd_files = []
-    status_dirs = ["active", "implemented"]
+    status_dirs = ["active", "implemented", "deprecated"]
 
     for status_dir in status_dirs:
         status_path = prd_dir / status_dir
@@ -260,6 +260,7 @@ def generate_prd_index(prd_dir: Path, dry_run: bool = False) -> str:
         status_label = {
             "active": "Active (策定中・未実装)",
             "implemented": "Implemented (実装完了)",
+            "deprecated": "Deprecated (不要・中止)",
         }[status]
 
         lines.append(f"### {status_label}")
