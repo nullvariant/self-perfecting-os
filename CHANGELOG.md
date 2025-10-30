@@ -36,6 +36,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### ガバナンス・ドキュメント管理
 
+- **[ADR-0017](docs/decisions/active/2025/10/20251030_0017_prd-status-management-enhancement_governance.md)**: PRDステータス管理の拡張（deprecated対応）
+  - **背景**: PRDのStatus変更時にディレクトリ移動が自動化されていない問題を発見
+  - **実装**: `docs/prd/deprecated/` ディレクトリを追加
+  - **Status定義**: Active（策定中）、Implemented（実装完了）、Deprecated（不要）
+  - **AI向けチェックリスト**: Status変更時のファイル移動ルールを明文化
+  - **ルール更新**: `DOCUMENTATION_STRUCTURE.yml`、`.cursor/rules/project.mdc` に反映
+  - **対象**: `20251030_copilot-agent-acceleration-phase2.ja.md` を `deprecated/` に移動（Cursor移行により不要）
+
 - **[ADR-0010](docs/decisions/active/2025/10/20251029_0010_governance-audit_documentation.md)**: ガバナンス自己レビュー報告書
   - nullvariantリポジトリ全体のドキュメント命名規則監査
   - 4つの主要矛盾点を特定・分類

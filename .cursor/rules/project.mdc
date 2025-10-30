@@ -242,6 +242,21 @@ HSS型HSPの特性により、「自由な子ども」が2つの矛盾した形�
 5. **品質維持**: HSP特性に配慮した緻密な実装を推奨
 6. **Changelog更新**: 変更時は必ず `CHANGELOG.md` への記載を促す
 7. **ADR記録**: 重要な決定は必ずADRに記録
+8. **Status変更時のファイル移動**: PRDのStatusを変更した場合、適切なディレクトリに移動（ADR-0017）
+
+### PRD Status 変更時のチェックリスト（ADR-0017）
+
+PRD（`docs/prd/`）の Status フィールドを変更した場合、**必ずファイルを適切なディレクトリに移動**してください：
+
+| Status変更 | 移動コマンド | 説明 |
+|-----------|-------------|------|
+| **Active → Implemented** | `git mv docs/prd/active/{file} docs/prd/implemented/{file}` | 実装完了 |
+| **Active → Deprecated** | `git mv docs/prd/active/{file} docs/prd/deprecated/{file}` | 不要になった（中止・方針転換・ツール移行等） |
+| **Implemented → Deprecated** | `git mv docs/prd/implemented/{file} docs/prd/deprecated/{file}` | 実装済みだが後に不要と判明 |
+
+**重要**: ファイル移動後、Git Hooks が自動的に `docs/prd/INDEX.md` を再生成します。
+
+詳細は `docs/governance/DOCUMENTATION_STRUCTURE.yml` の `ai_checklist.after_prd_status_change` を参照。
 
 ## その他の注意事項
 

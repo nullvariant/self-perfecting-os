@@ -322,6 +322,29 @@ ai_checklist:
       check: "変更理由と影響範囲を明確に説明できるか"
       action_if_yes: "作業実行"
       action_if_no: "追加情報を人間に質問"
+  
+  # PRDステータス変更時の自動チェック（ADR-0017）
+  after_prd_status_change:
+    - question: "PRD の Status フィールドが変更されたか？"
+      check: "Status: の値を確認"
+      action_map:
+        "Active → Implemented":
+          description: "実装完了により PRD を implemented/ に移動"
+          steps:
+            - "git mv docs/prd/active/{filename} docs/prd/implemented/{filename}"
+            - "コミット時に Git Hooks が INDEX.md を自動再生成"
+        "Active → Deprecated":
+          description: "不要になった PRD を deprecated/ に移動"
+          steps:
+            - "git mv docs/prd/active/{filename} docs/prd/deprecated/{filename}"
+            - "コミット時に Git Hooks が INDEX.md を自動再生成"
+            - "CHANGELOG.md に記録（Deprecated理由を明記）"
+        "Implemented → Deprecated":
+          description: "実装済みだが後に不要と判明"
+          steps:
+            - "git mv docs/prd/implemented/{filename} docs/prd/deprecated/{filename}"
+            - "コミット時に Git Hooks が INDEX.md を自動再生成"
+            - "CHANGELOG.md に記録"
 
 # メタデータ
 metadata:
@@ -431,9 +454,14 @@ directory_structure:
   prd:
     pattern: "docs/prd/{status}/"
     status_dirs:
-      - active      # 策定中・未実装
-      - implemented # 実装完了
-    monthly_archive: false  # 件数が少ないため不要
+      - active       # 策定中・未実装
+      - implemented  # 実装完了
+      - deprecated   # 不要になった（中止・方針転換・環境変化等）
+    monthly_archive: false
+    status_definitions:
+      active: "策定中・未実装の要件定義"
+      implemented: "実装完了した要件"
+      deprecated: "不要になった要件（プロジェクト方針転換、ツール移行、実装中止等）"
     
   operations:
     pattern: "docs/operations/{status}/"
