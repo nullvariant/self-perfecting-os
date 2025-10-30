@@ -140,10 +140,11 @@ make val   # review.py 実行（類似度検証）
 
 ## 🌐 GitHub Actions
 
-### build.yml
+### build.yml（現在は `build.yml.disabled` として一時停止中）
 - **トリガー**: `content/ja/AGENT.md` への push
 - **処理**: 多言語翻訳＆YAML生成 → 自動commit
 - **出力**: `content/en/*.md`, `AGENT.md`, `spec/agent.spec.yaml`
+- **補足**: 2025-10-30 時点では Anthropic Tier 1 制限に到達し予想外のトークンコストが発生したため、自動実行を避ける目的でファイル名を `.disabled` に変更しています（コスト対策と運用方針が固まり次第、元の名称へ戻す想定）
 
 ### pr-guard.yml
 - **トリガー**: Pull Request作成時
@@ -218,7 +219,7 @@ nullvariant/
 │   └── style/                  # スタイルガイド（日英）
 └── .github/
     └── workflows/
-        ├── build.yml           # 多言語翻訳（未稼働）
+        ├── build.yml.disabled  # 多言語翻訳（Anthropic Tier 1 制限・コスト対策のため一時退避）
         ├── pr-guard.yml        # PR検証（未稼働）
         └── validate-docs.yml   # ドキュメント整合性チェック（✅ 稼働中）
 ```

@@ -15,7 +15,8 @@
 **現在の正確な状態**:
 - LLM API: **選定中（最終候補: Claude Sonnet 4.5）**
 - `scripts/build.py`, `scripts/review.py`: **実装済み（モデル切り替え対応予定）**
-- CI/CD (`.github/workflows/build.yml`): **設定完了、APIキー未登録のため未稼働**
+- CI/CD: **Anthropic Tier 1 制限と想定以上のトークンコスト発生により意図的に一時停止中**  
+  ↳ `.github/workflows/build.yml` は 2025-10-30 時点で `.github/workflows/build.yml.disabled` にリネーム済み。APIキー自体は稼働しているが、費用暴走を避けるために自動実行を止めている（コスト対策完了後に復帰予定）
 
 そのため、以下の「自動生成」とされるファイルは**実際には古い手動生成版または未更新**です。
 
@@ -99,7 +100,7 @@
 ### 🚧 未着手・計画段階
 
 - **🔴 LLM API選定**: OpenAI vs Claude vs その他（最優先）
-- **🔴 CI/CDパイプラインの稼働**: `build.yml`の動作確認
+- **🔴 CI/CDパイプラインの稼働**: `build.yml.disabled` を元に戻したうえで動作確認
 - **英語版仕様書の自動生成**: `AGENT.md`の最新化
 - **多言語対応**: `content/ja/EmotionMood_Dictionary.md`の英語版
 - **`docs/`配下の全面見直し**: 実装との整合性チェック（一部完了: パス参照は2025-10-28修正済み）
@@ -127,18 +128,19 @@
    - **次のステップ**:
      1. Claude Sonnet 4.5 でローカルテスト実施
      2. 品質評価（翻訳・YAML・思想的違和感の有無）
-     3. 問題なければ本採用、APIキー登録
+     3. 問題なければ本採用、Anthropic コンソールで利用上限・課金設定を最適化
      4. `scripts/build.py` を Claude 対応に修正
 
 2. **CI/CDパイプラインの初回稼働**
-   - **現状**: `.github/workflows/build.yml`が未稼働
+   - **現状**: `.github/workflows/build.yml` を `.github/workflows/build.yml.disabled` に退避中（Anthropic Tier 1 制限・高コスト対策のため意図的に停止）
    - **影響**: `AGENT.md`と`spec/agent.spec.yaml`が最新ではない
    - **前提条件**: LLM API選定完了
    - **対応**:
-     1. API キーをGitHub Secretsに登録
-     2. ローカルで`make gen`の動作確認
-     3. CI実行とエラー対応
-     4. 初回自動生成後、手動版との差分確認
+     1. Anthropic Tier 1 制限に対する運用方針を決定（Tier 2 申請 / 実行頻度制御 / バッチ運用）
+     2. トークン消費量の監視・アラート設定（想定コストの上限を定義）
+     3. ローカルで`make gen`を再実行し、コスト見積もりと動作確認
+     4. 対策完了後に `.github/workflows/build.yml.disabled` を元のファイル名へ戻し、CI実行とエラー対応
+     5. 初回自動生成後、手動版との差分確認
 
 ### 🟡 優先度: 高（基盤稼働後）
 
@@ -190,8 +192,9 @@
   - ローカルで動作確認
   - 環境変数 `ANTHROPIC_API_KEY` 設定
 - [ ] **CI/CDパイプラインの初回稼働** 🔴
-  - GitHub Secrets に `ANTHROPIC_API_KEY` 登録
-  - `.github/workflows/build.yml` の動作確認
+  - Anthropic Tier 1 制限に対する長期的な運用策（Tier アップ申請 / 月次実行スケジュール）を決定
+  - コスト監視・上限設定とトークン削減施策を実装
+  - `.github/workflows/build.yml.disabled` を元のファイル名に戻し、ワークフローの動作確認
   - エラーハンドリングと通知設定
 - [ ] **英語版仕様書の自動生成開始**
   - `AGENT.md`の最新化
