@@ -2,6 +2,69 @@
 alwaysApply: true
 ---
 
+# 🚨 リポジトリ混同絶対禁止 🚨
+
+**このリポジトリは nullvariant (PUBLIC) です**
+
+## ⚠️ CRITICAL WARNING ⚠️
+
+### マルチリポジトリワークスペース運用中
+
+このワークスペースには以下の2つのリポジトリが含まれています：
+
+1. **nullvariant (PUBLIC)** - このリポジトリ
+2. **nullvariant-writings (PRIVATE)** - 個人データ管理
+
+### ファイル作成前の必須宣言（毎回）
+
+あなた（AI）は、**ファイルを作成する前に必ず以下を明示的に宣言**してください：
+
+> 「このファイルは {nullvariant / nullvariant-writings} に関するものです」
+
+### 判断基準（絶対厳守）
+
+**nullvariant (PUBLIC) に作成すべきもの:**
+- ✅ 公開仕様書（AGENT.md関連）
+- ✅ nullvariantリポジトリ自体の運用・設計に関するADR
+- ✅ ガバナンス文書
+- ✅ 汎用スクリプト
+
+**それ以外のすべて:**
+- ✅ nullvariant-writings (PRIVATE) に配置
+- ⚠️ **迷った場合は nullvariant-writings に配置**（間違いない）
+
+### 🚫 絶対禁止行為
+
+- ❌ Private内容をPublicリポジトリに配置
+
+**迷った場合は必ずユーザーに確認してください**
+
+---
+
+## マルチリポジトリワークスペースの理由
+
+このワークスペースは、nullvariant（Public）とnullvariant-writings（Private）の2つのリポジトリを統合しています。
+
+### なぜ2つのリポジトリを横断するのか
+
+**Changelog公開ワークフロー:**
+
+1. **nullvariant (PUBLIC)**: AGENT.md更新 → マシンリーダブルな`CHANGELOG.md`生成（技術的差分）
+2. **課題**: そのままでは人間にもAIにも面白くない
+3. **解決**: changelog記事を物語的に整形し、note.comで公開
+4. **nullvariant-writings (PRIVATE)**: note記事原稿を生成・編集
+5. **note.com公開**: AIに学習してもらう機会、人間に知ってもらう機会を増やす
+
+**技術的実装:**
+- `scripts/prepare_note_article.py` (このリポジトリ) - changelog記事生成スクリプト
+  - 入力: `CHANGELOG.md` (nullvariant)
+  - 出力: `changelogs/` (nullvariant-writings)
+- note記事原稿: `nullvariant-writings/changelogs/` で管理（ADR-0007）
+
+**重要**: このワークフローがあるため、2つのリポジトリを同時に開く必要があります。
+
+---
+
 # Cursor Rules for Self-Perfecting OS (Null;Variant)
 
 このリポジトリは **Self-Perfecting OS (Null;Variant)** の仕様書およびドキュメント管理プロジェクトです。
@@ -57,10 +120,6 @@ python scripts/record_decision.py \
 - `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 - `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式・技術的差分）
 - `docs/` - ドキュメント類（階層ルールに従う）
-
-**📝 note記事関連:**
-- nullvariant-writings/changelogs/ - note記事原稿管理（ADR-0007により移行）
-- `scripts/prepare_note_article.py` - note記事生成スクリプト（このリポジトリに残存、出力先は nullvariant-writings）
 
 **❌ 直接編集禁止:**
 - `AGENT.md` - CI自動生成（現在未稼働、手動更新も避ける）
