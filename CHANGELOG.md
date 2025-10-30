@@ -21,6 +21,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **方針**: 権威文書への参照で情報分散回避、長期的な美しさ重視
   - **互換性**: `.github/copilot-instructions.md` は残存（将来的な互換性のため）
 
+#### 自動化・ツール
+
+- **[ADR-0015](docs/decisions/active/2025/10/20251030_0015_git-hooks-index-generation_tooling.md)**: Git Hooks による INDEX.md 自動再生成の実装
+  - **背景**: INDEX.md の手動更新忘れによる stale 化問題を解決
+  - **実装**: Git pre-commit hook で自動生成
+    - `scripts/hooks/pre-commit` - フック本体（Bash スクリプト）
+    - `scripts/install-hooks.sh` - インストールスクリプト
+  - **監視対象**: `docs/decisions/`, `docs/prd/`, `docs/operations/`, `docs/governance/`
+  - **動作**: コミット時に変更を検知し、該当する INDEX.md を自動再生成・ステージング
+  - **スキップ**: `git commit --no-verify` で無効化可能
+  - **セットアップ**: `bash scripts/install-hooks.sh` でインストール
+  - **ドキュメント**: README.md, CONTRIBUTING.md にセットアップ手順を追記
+
 #### ガバナンス・ドキュメント管理
 
 - **[ADR-0010](docs/decisions/active/2025/10/20251029_0010_governance-audit_documentation.md)**: ガバナンス自己レビュー報告書

@@ -71,21 +71,30 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...  # Claude API（予定）
 
-# 2. 日本語仕様書を編集
+# 2. Git Hooks のインストール（初回のみ）
+bash scripts/install-hooks.sh
+# → INDEX.md の自動再生成が有効になります（ADR-0015）
+
+# 3. 日本語仕様書を編集
 vim content/ja/AGENT.md
 
-# 3. 目次再生成（必要な場合）
+# 4. 目次再生成（必要な場合）
 python scripts/gen_toc.py
 
-# 4. 多言語翻訳＆YAML生成（⚠️ CI未稼働）
+# 5. 多言語翻訳＆YAML生成（⚠️ CI未稼働）
 make gen
 
-# 5. スキーマ検証
+# 6. スキーマ検証
 make val
 
-# 6. ドキュメント整合性チェック
+# 7. ドキュメント整合性チェック
 python scripts/validate_docs.py
 ```
+
+**Git Hooks について**:
+- `docs/decisions/`, `docs/prd/`, `docs/operations/`, `docs/governance/` の変更時、INDEX.md が自動再生成されます
+- フックをスキップしたい場合: `git commit --no-verify`
+- 詳細は [ADR-0015](docs/decisions/active/2025/10/20251030_0015_git-hooks-index-generation_tooling.md) を参照
 
 ### バージョンリリース
 

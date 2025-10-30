@@ -1,8 +1,9 @@
 # ADR-0015: Git Hooks による INDEX.md 自動生成の実装
 
-**Status**: Draft → 🔄 **Pending Approval**  
+**Status**: ✅ **Accepted & Implemented**  
 **Decision Date**: 2025-10-30  
-**Author**: GitHub Copilot (with human approval pending)  
+**Implementation Date**: 2025-10-30  
+**Author**: GitHub Copilot → Claude Code (implementation)  
 **Related**: ADR-0002 (CI/CD pause, future Git Hooks mention)
 
 ---
@@ -409,6 +410,67 @@ from watchdog.observers import Observer
 
 ---
 
-**Status**: 🔄 **PENDING USER APPROVAL**  
-**Next Action**: ユーザー承認後、Implementation Plan Phase 1 を開始  
+**Status**: ✅ **ACCEPTED & IMPLEMENTED**  
+**Implementation Completed**: 2025-10-30  
 **Last Updated**: 2025-10-30
+
+---
+
+## Implementation Record
+
+### 実装完了日時
+2025-10-30
+
+### 実装内容
+
+| ファイル | 内容 | 状態 |
+|---------|------|------|
+| `scripts/hooks/pre-commit` | pre-commit フック本体（Bash スクリプト） | ✅ 実装完了 |
+| `scripts/install-hooks.sh` | フックインストールスクリプト | ✅ 実装完了 |
+| `README.md` | Git Hooks セットアップ手順追記 | ✅ 更新完了 |
+| `CONTRIBUTING.md` | Git Hooks セットアップ手順追記 | ✅ 更新完了 |
+| `docs/operations/current/20251030_INDEX_AUTOGEN_HOOK_IMPLEMENTATION.ja.md` | 実装計画書（Draft） | 📋 参照 |
+
+### フック動作仕様
+
+**監視対象ディレクトリ**:
+- `docs/decisions/` → `docs/decisions/INDEX.md`
+- `docs/prd/` → `docs/prd/INDEX.md`
+- `docs/operations/` → `docs/operations/INDEX.md`
+- `docs/governance/` → `docs/governance/INDEX.md`
+
+**トリガー条件**:
+- `.md`, `.yml`, `.yaml` ファイルの追加・変更・削除（INDEX.md, README.md を除く）
+
+**実行フロー**:
+1. `git commit` 実行
+2. pre-commit フックが `git diff --cached --name-only` で変更ファイル検知
+3. 対象ディレクトリの変更があれば `python scripts/generate_index.py --target <dir>` 実行
+4. 生成された INDEX.md を自動ステージング（`git add`）
+5. コミット続行
+
+**スキップ方法**:
+```bash
+git commit --no-verify  # フックをスキップ
+```
+
+### インストール方法
+
+```bash
+# リポジトリルートで実行
+bash scripts/install-hooks.sh
+```
+
+### テスト状況
+- ✅ スクリプト構文チェック完了
+- ⏳ 手動テストシナリオは実装後にユーザーがレビュー予定
+
+### 関連ドキュメント
+- 実装計画書: `docs/operations/current/20251030_INDEX_AUTOGEN_HOOK_IMPLEMENTATION.ja.md`
+- ADR-0002: CI/CD一時停止と将来の自動化計画
+- ADR-0013, ADR-0014: 参照型設計パターン
+
+---
+
+**実装者**: Claude Code  
+**レビュアー**: nullvariant (pending)

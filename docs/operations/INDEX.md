@@ -9,6 +9,7 @@
 - [note 同期マニュアル](current/20251028_NOTE_SYNC_MANUAL.ja.md)
 - [運用ドキュメント（Operations Guide / JA）](current/20251028_OPERATIONS.ja.md)
 - [ガバナンス体系一貫性修正 - 実施完了レポート](current/20251029_GOVERNANCE_REMEDIATION_SUMMARY.ja.md)
+- [INDEX.md 自動再生成フック実装計画（Draft）](current/20251030_INDEX_AUTOGEN_HOOK_IMPLEMENTATION.ja.md)
 
 ---
 

@@ -33,6 +33,11 @@ pip install -r requirements.txt
 
 # Anthropic API キー設定
 export ANTHROPIC_API_KEY=sk-ant-...
+
+# Git Hooks のインストール（推奨）
+bash scripts/install-hooks.sh
+# → INDEX.md の自動再生成が有効になります（ADR-0015）
+# → docs/decisions/, docs/prd/, docs/operations/, docs/governance/ の変更時に自動実行
 ```
 
 ### 2. 編集フロー
