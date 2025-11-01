@@ -5,8 +5,8 @@
 > 実装コード（`scripts/`）との不整合がある場合、実装が正である可能性が高いです。
 
 > **📝 note記事関連の変更（2025-10-28）**:  
-> ADR-0007により、note記事原稿は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) リポジトリへ移行しました。  
-> 本ドキュメントのchangelogs/参照は旧パスですが、実際の操作では `../nullvariant-writings/changelogs/` に読み替えてください。
+> ADR-0007により、note記事原稿は [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) リポジトリへ移行しました。  
+> 本ドキュメントのchangelogs/参照は旧パスですが、実際の操作では `../nullvariant-atelier/changelogs/` に読み替えてください。
 
 本書は `content/ja/AGENT.md` / `AGENT.md` (ルート) / `spec/` / `scripts/` 間の生成・検証フローと、今回追加された構造 (`persona_legend`, TOC スクリプト等) の役割を **実務運用者視点** で整理したものです。
 

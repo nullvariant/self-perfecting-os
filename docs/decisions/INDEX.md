@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADR) Index
 
-**最終更新**: 2025-10-30
+**最終更新**: 2025-11-01
 **総件数**: 17件（Active: 17, Deprecated: 0, Superseded: 0）
 
 ---
@@ -9,7 +9,7 @@
 
 ### 🏗️ アーキテクチャ変更
 - [ADR-0001](active/2025/10/20251028_0001_ci-cd-pause_architecture.md) - Claude API レート制限対応によるCI/CD一時停止 (2025-10-28)
-- [ADR-0007](active/2025/10/20251028_0007_changelogs-migration-nullvariant-writings_architecture.md) - changelogsディレクトリのnullvariant-writingsへの移行 (2025-10-28)
+- [ADR-0007](active/2025/10/20251028_0007_changelogs-migration-nullvariant-writings_architecture.md) - changelogsディレクトリのnullvariant-atelierへの移行 (2025-10-28)
 
 ### 📚 ドキュメント構造変更
 - [ADR-0002](active/2025/10/20251028_0002_naming-structure_documentation.md) - ドキュメント命名規則とディレクトリ構造の確立 (2025-10-28)
@@ -55,7 +55,7 @@
 - 2025-10-28: [ADR-0004](active/2025/10/20251028_0004_github-actions-doc-validation_tooling.md) - GitHub Actions によるドキュメント自動バリデーション導入
 - 2025-10-28: [ADR-0005](active/2025/10/20251028_0005_multilingual-directory-structure_documentation.md) - 多言語対応: 言語別ディレクトリ構造への移行
 - 2025-10-28: [ADR-0006](active/2025/10/20251028_0006_github-pages-landing-implementation_documentation.md) - GitHub Pagesランディングページの実装
-- 2025-10-28: [ADR-0007](active/2025/10/20251028_0007_changelogs-migration-nullvariant-writings_architecture.md) - changelogsディレクトリのnullvariant-writingsへの移行
+- 2025-10-28: [ADR-0007](active/2025/10/20251028_0007_changelogs-migration-nullvariant-writings_architecture.md) - changelogsディレクトリのnullvariant-atelierへの移行
 
 ---
 

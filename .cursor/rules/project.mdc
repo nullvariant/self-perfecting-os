@@ -13,13 +13,13 @@ alwaysApply: true
 このワークスペースには以下の2つのリポジトリが含まれています：
 
 1. **nullvariant (PUBLIC)** - このリポジトリ
-2. **nullvariant-writings (PRIVATE)** - 個人データ管理
+2. **nullvariant-atelier (PRIVATE)** - 個人データ管理
 
 ### ファイル作成前の必須宣言（毎回）
 
 あなた（AI）は、**ファイルを作成する前に必ず以下を明示的に宣言**してください：
 
-> 「このファイルは {nullvariant / nullvariant-writings} に関するものです」
+> 「このファイルは {nullvariant / nullvariant-atelier} に関するものです」
 
 ### 判断基準（絶対厳守）
 
@@ -30,8 +30,8 @@ alwaysApply: true
 - ✅ 汎用スクリプト
 
 **それ以外のすべて:**
-- ✅ nullvariant-writings (PRIVATE) に配置
-- ⚠️ **迷った場合は nullvariant-writings に配置**（間違いない）
+- ✅ nullvariant-atelier (PRIVATE) に配置
+- ⚠️ **迷った場合は nullvariant-atelier に配置**（間違いない）
 
 ### 🚫 絶対禁止行為
 
@@ -43,7 +43,7 @@ alwaysApply: true
 
 ## マルチリポジトリワークスペースの理由
 
-このワークスペースは、nullvariant（Public）とnullvariant-writings（Private）の2つのリポジトリを統合しています。
+このワークスペースは、nullvariant（Public）とnullvariant-atelier（Private）の2つのリポジトリを統合しています。
 
 ### なぜ2つのリポジトリを横断するのか
 
@@ -52,14 +52,14 @@ alwaysApply: true
 1. **nullvariant (PUBLIC)**: AGENT.md更新 → マシンリーダブルな`CHANGELOG.md`生成（技術的差分）
 2. **課題**: そのままでは人間にもAIにも面白くない
 3. **解決**: changelog記事を物語的に整形し、note.comで公開
-4. **nullvariant-writings (PRIVATE)**: note記事原稿を生成・編集
+4. **nullvariant-atelier (PRIVATE)**: note記事原稿を生成・編集
 5. **note.com公開**: AIに学習してもらう機会、人間に知ってもらう機会を増やす
 
 **技術的実装:**
 - `scripts/prepare_note_article.py` (このリポジトリ) - changelog記事生成スクリプト
   - 入力: `CHANGELOG.md` (nullvariant)
-  - 出力: `changelogs/` (nullvariant-writings)
-- note記事原稿: `nullvariant-writings/changelogs/` で管理（ADR-0007）
+  - 出力: `changelogs/` (nullvariant-atelier)
+- note記事原稿: `nullvariant-atelier/changelogs/` で管理（ADR-0007）
 
 **重要**: このワークフローがあるため、2つのリポジトリを同時に開く必要があります。
 

@@ -5,14 +5,14 @@
       "name": "nullvariant (main) [PUBLIC ⚠️]"
     },
     {
-      "path": "../nullvariant-writings",
-      "name": "nullvariant-writings [PRIVATE 🔒]"
+      "path": "../nullvariant-atelier",
+      "name": "nullvariant-atelier [PRIVATE 🔒]"
     }
   ],
   "settings": {
     "// ⚠️ WARNING": "🚨 This workspace contains PUBLIC and PRIVATE repositories",
     "// nullvariant": "PUBLIC - Specifications, Public ADRs, Governance, Scripts",
-    "// nullvariant-writings": "PRIVATE - Personal logs, AI dialogues, Health data, Life logs",
+    "// nullvariant-atelier": "PRIVATE - Personal logs, AI dialogues, Health data, Life logs",
     "// ⚠️ CRITICAL": "NEVER mix repository boundaries. Always declare which repository a file belongs to.",
     "files.exclude": {
       "**/.git": false,

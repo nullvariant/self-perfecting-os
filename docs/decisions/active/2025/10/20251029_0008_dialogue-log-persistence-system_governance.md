@@ -46,14 +46,14 @@ Layer 1: リアルタイム記録（会話中）
 └─ VS Code Copilot Chat（揮発性）
 
 Layer 2: 日次保存（毎日終わり）
-└─ nullvariant-writings/docs/log/YYYY/MM/YYYY-MM-DD_*.md
+└─ nullvariant-atelier/docs/log/YYYY/MM/YYYY-MM-DD_*.md
    ├─ 対話生ログ（重要な会話全文）
    ├─ 決定記録（ADR未満の小決定）
    ├─ 感情・EBIログ（ペルソナ状態推移）
    └─ コマンド出力スナップショット
 
 Layer 3: 永続保存（週次・重要時）
-└─ Git commit + push（nullvariant-writings）
+└─ Git commit + push（nullvariant-atelier）
    └─ Dropbox同期による二重バックアップ
 ```
 
@@ -129,7 +129,7 @@ related:
 
 3. **プライバシー管理**
    - 生ログには個人的な思考が含まれる
-   - 対策: nullvariant-writingsはprivateリポジトリ
+   - 対策: nullvariant-atelierはprivateリポジトリ
 
 ### 📋 TODO
 
@@ -158,17 +158,17 @@ related:
 ## Related
 
 ### 関連するファイル
-- `nullvariant-writings/docs/log/` - 保存先ディレクトリ
+- `nullvariant-atelier/docs/log/` - 保存先ディレクトリ
 - `scripts/archive_conversation.py` - 自動保存スクリプト（Phase 2で作成）
 - `.github/copilot-instructions.md` - AI向けガイドライン
 - `content/ja/AGENT.md` - 参照元OS仕様書
 
 ### 関連する ADR
-- [ADR-0007](20251028_0007_changelogsディレクトリのnullvariant-w_architecture.md) - nullvariant-writingsへのコンテンツ移行（本ADRもその延長線上）
+- [ADR-0007](20251028_0007_changelogsディレクトリのnullvariant-w_architecture.md) - nullvariant-atelierへのコンテンツ移行（本ADRもその延長線上）
 
 ### 対話ログ参照
-- `nullvariant-writings/docs/log/2025/10/2025-10-28_命の使い方の本質.md` - 生ログ保存の価値を認識した対話
-- `nullvariant-writings/docs/log/2025/10/2025-10-28_changelogジレンマと散漫メモ.md` - 散漫プロセスの記録例
+- `nullvariant-atelier/docs/log/2025/10/2025-10-28_命の使い方の本質.md` - 生ログ保存の価値を認識した対話
+- `nullvariant-atelier/docs/log/2025/10/2025-10-28_changelogジレンマと散漫メモ.md` - 散漫プロセスの記録例
 
 ---
 

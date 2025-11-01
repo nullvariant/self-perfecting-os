@@ -126,9 +126,9 @@ ls docs/prd/active/
 
 ---
 
-## 🆚 nullvariant-writings との違い
+## 🆚 nullvariant-atelier との違い
 
-| 項目 | nullvariant (Public) | nullvariant-writings (Private) |
+| 項目 | nullvariant (Public) | nullvariant-atelier (Private) |
 |------|---------------------|--------------------------------|
 | **目的** | 公開仕様書 | 執筆・開発作業ログ |
 | **構造** | カテゴリ分類 | 完全時系列（月別のみ） |
@@ -144,7 +144,7 @@ ls docs/prd/active/
 - カテゴリで探しやすい構造が必要
 - ADRで決定の履歴を追跡
 
-**nullvariant-writings**:
+**nullvariant-atelier**:
 - 私的な作業ログ
 - カテゴリ判断の認知負荷を避ける
 - 時系列で作業の流れを追う
@@ -287,4 +287,4 @@ python scripts/validate_docs.py
 ---
 
 **最終更新**: 2025年10月29日  
-**関連リポジトリ**: [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings) (Private)
+**関連リポジトリ**: [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier) (Private)

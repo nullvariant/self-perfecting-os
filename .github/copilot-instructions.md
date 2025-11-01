@@ -55,8 +55,8 @@ python scripts/record_decision.py \
 - `docs/` - ドキュメント類（階層ルールに従う）
 
 **📝 note記事関連:**
-- nullvariant-writings/changelogs/ - note記事原稿管理（ADR-0007により移行）
-- `scripts/prepare_note_article.py` - note記事生成スクリプト（このリポジトリに残存、出力先は nullvariant-writings）
+- nullvariant-atelier/changelogs/ - note記事原稿管理（ADR-0007により移行）
+- `scripts/prepare_note_article.py` - note記事生成スクリプト（このリポジトリに残存、出力先は nullvariant-atelier）
 
 **❌ 直接編集禁止:**
 - `AGENT.md` - CI自動生成（現在未稼働、手動更新も避ける）
@@ -373,7 +373,7 @@ python scripts/test_toc.py
 
 1. **成果物の確認・保存**
    - 重要な出力は Markdown ファイルまたは `.md` テンプレートとしてコピー
-   - 対話ログが必要な場合は、`nullvariant-writings/raw/ai-talks/copilot/` に保存
+   - 対話ログが必要な場合は、`nullvariant-atelier/raw/ai-talks/copilot/` に保存
    - パスフォーマット: `{YYYY}/{MM}/DD_session-N.md`
 
 2. **コンテキスト引き継ぎ（新セッション開始時）**
@@ -383,7 +383,7 @@ python scripts/test_toc.py
 
 3. **セッション間の同期**
    - ファイル変更は即座にローカルに反映（各エージェントが別ファイルを参照可能）
-   - Chat 履歴は `nullvariant-writings/` で時系列管理（参照用）
+   - Chat 履歴は `nullvariant-atelier/` で時系列管理（参照用）
    - 引き継ぎメッセージはセッション開始直後に投入
 
 ### 7.3 Chat 履歴管理の哲学
@@ -394,7 +394,7 @@ python scripts/test_toc.py
 - 履歴の価値は、**最終成果物（コード、ドキュメント）の質**によって判定される
 
 **実装:**
-- **重要対話のみ** `nullvariant-writings/raw/ai-talks/copilot/` に保存
+- **重要対話のみ** `nullvariant-atelier/raw/ai-talks/copilot/` に保存
 - 基準: アーキテクチャ決定、重要な洞察、再利用価値の高い対話
 - 保存形式: `{YYYY}/{MM}/DD_HHmmss_{session-theme}.md`（タイムスタンプ + テーマ）
 

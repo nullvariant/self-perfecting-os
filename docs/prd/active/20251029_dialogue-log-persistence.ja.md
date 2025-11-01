@@ -30,14 +30,14 @@ Layer 1: リアルタイム記録（会話中）
 └─ VS Code Copilot Chat（揮発性）
 
 Layer 2: 日次保存（毎日終わり）
-└─ nullvariant-writings/docs/log/YYYY/MM/YYYY-MM-DD_*.md
+└─ nullvariant-atelier/docs/log/YYYY/MM/YYYY-MM-DD_*.md
    ├─ 対話生ログ（重要な会話全文）
    ├─ 決定記録（ADR未満の小決定）
    ├─ 感情・EBIログ（ペルソナ状態推移）
    └─ コマンド出力スナップショット
 
 Layer 3: 永続保存（週次・重要時）
-└─ Git commit + push（nullvariant-writings）
+└─ Git commit + push（nullvariant-atelier）
    └─ Dropbox同期による二重バックアップ
 ```
 
@@ -74,8 +74,8 @@ Layer 3: 永続保存（週次・重要時）
 **手順**:
 1. VS Code で新規ファイル作成
    ```bash
-   # パス: nullvariant-writings/docs/log/YYYY/MM/YYYY-MM-DD_トピック.md
-   # 例: nullvariant-writings/docs/log/2025/10/2025-10-29_生ログ保存システム検討.md
+   # パス: nullvariant-atelier/docs/log/YYYY/MM/YYYY-MM-DD_トピック.md
+   # 例: nullvariant-atelier/docs/log/2025/10/2025-10-29_生ログ保存システム検討.md
    ```
 
 2. Frontmatterテンプレートを挿入（後述）
@@ -88,7 +88,7 @@ Layer 3: 永続保存（週次・重要時）
 
 4. Git commit
    ```bash
-   cd nullvariant-writings
+   cd nullvariant-atelier
    git add docs/log/2025/10/
    git commit -m "docs: 対話ログ追加 (YYYY-MM-DD)"
    git push origin main
@@ -96,7 +96,7 @@ Layer 3: 永続保存（週次・重要時）
 
 #### 1.2 Frontmatterテンプレート
 
-**保存場所**: `nullvariant-writings/docs/log/TEMPLATE.md`
+**保存場所**: `nullvariant-atelier/docs/log/TEMPLATE.md`
 
 **内容**:
 ```markdown
@@ -125,7 +125,7 @@ related:
 - 散漫の傾向を確認
 - 来週の目標設定
 
-**保存先**: `nullvariant-writings/docs/log/YYYY/MM/weekly-YYYY-MM-DD.md`
+**保存先**: `nullvariant-atelier/docs/log/YYYY/MM/weekly-YYYY-MM-DD.md`
 
 #### 1.4 Phase 1 チェックリスト
 
@@ -162,14 +162,14 @@ related:
 **機能**:
 1. 対話テキストを入力として受け取る
 2. Frontmatterを自動生成
-3. `../nullvariant-writings/docs/log/` に保存
+3. `../nullvariant-atelier/docs/log/` に保存
 4. Git add/commit/push（オプション）
 
 **使用例**:
 ```bash
 # 基本使用
 python scripts/archive_conversation.py \
-  --topic "nullvariant-writings設計" \
+  --topic "nullvariant-atelier設計" \
   --conversation-file conversation.txt
 
 # Frontmatterカスタマイズ
@@ -192,12 +192,12 @@ parser.add_argument('--decisions', help='決定事項（カンマ区切り）')
 parser.add_argument('--emotions', help='感情記録（カンマ区切り）')
 parser.add_argument('--related', help='関連ファイル（カンマ区切り）')
 parser.add_argument('--auto-commit', action='store_true', help='自動commit/push')
-parser.add_argument('--output-dir', default='../nullvariant-writings/docs/log/', help='出力先')
+parser.add_argument('--output-dir', default='../nullvariant-atelier/docs/log/', help='出力先')
 ```
 
 **出力例**:
 ```
-✅ 対話ログ保存完了: ../nullvariant-writings/docs/log/2025/10/2025-10-29_nullvariant-writings設計.md
+✅ 対話ログ保存完了: ../nullvariant-atelier/docs/log/2025/10/2025-10-29_nullvariant-atelier設計.md
 📝 Frontmatter自動生成完了
 🔄 Git操作（オプション）:
    - git add完了
@@ -268,7 +268,7 @@ python scripts/check_token_usage.py
 ```bash
 python scripts/generate_weekly_review.py --week 2025-10-27
 
-# 出力: nullvariant-writings/docs/log/2025/10/weekly-2025-10-27.md
+# 出力: nullvariant-atelier/docs/log/2025/10/weekly-2025-10-27.md
 ```
 
 **レポート内容**:
@@ -360,7 +360,7 @@ related:
 ### ディレクトリ構造
 
 ```
-nullvariant-writings/
+nullvariant-atelier/
 └── docs/
     └── log/
         ├── TEMPLATE.md（Frontmatterテンプレート）
@@ -414,7 +414,7 @@ nullvariant-writings/
 ## 関連ドキュメント
 
 - [ADR-0008](../../decisions/active/2025/10/20251029_0008_対話生ログの永続保存システム確立_governance.md) - 意思決定記録
-- [2025-10-29_生ログ保存システム検討.md](../../../nullvariant-writings/docs/log/2025/10/2025-10-29_生ログ保存システム検討.md) - 初期検討ログ
+- [2025-10-29_生ログ保存システム検討.md](../../../nullvariant-atelier/docs/log/2025/10/2025-10-29_生ログ保存システム検討.md) - 初期検討ログ
 - [content/ja/AGENT.md](../../../content/ja/AGENT.md) - 参照元OS仕様書
 - [content/ja/EmotionMood_Dictionary.md](../../../content/ja/EmotionMood_Dictionary.md) - 感情辞書
 

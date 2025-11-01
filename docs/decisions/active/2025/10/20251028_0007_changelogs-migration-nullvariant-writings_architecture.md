@@ -1,4 +1,4 @@
-# ADR-0007: changelogsディレクトリのnullvariant-writingsへの移行
+# ADR-0007: changelogsディレクトリのnullvariant-atelierへの移行
 
 ## Status
 - **提案日**: 2025-10-28
@@ -9,7 +9,7 @@
 
 ### 背景
 
-2025-10-28の対話で「提案D（SEO最適化・完全分離案）」が正式採用された（`nullvariant-writings/docs/log/2025/10/2025-10-28_changelog-workflow-dilemma.md`参照）。
+2025-10-28の対話で「提案D（SEO最適化・完全分離案）」が正式採用された（`nullvariant-atelier/docs/log/2025/10/2025-10-28_changelog-workflow-dilemma.md`参照）。
 
 **提案Dの核心:**
 - GitHub公開リポジトリとnote.comに同じコンテンツを置くと、SEOペナルティのリスク
@@ -20,7 +20,7 @@
 nullvariant/
   └─ CHANGELOG.md              ← 技術的記録のみ（Keep a Changelog形式）
 
-nullvariant-writings/
+nullvariant-atelier/
   └─ changelogs/               ← note記事の原稿・アーカイブ
       ├─ drafts/
       └─ note-archives/
@@ -28,7 +28,7 @@ nullvariant-writings/
 
 ### 問題
 
-`changelogs/`ディレクトリはnullvariantリポジトリに存在するが、note記事はnullvariant-writingsで管理すべき。
+`changelogs/`ディレクトリはnullvariantリポジトリに存在するが、note記事はnullvariant-atelierで管理すべき。
 
 しかし、`scripts/prepare_note_article.py`は`content/ja/AGENT.md`に依存しているため、スクリプトまで移動すると複雑化する。
 
@@ -48,11 +48,11 @@ nullvariant-writings/
 
 ## Decision
 
-**選択肢Bを採用: changelogsディレクトリのみnullvariant-writingsへ移行し、スクリプトはnullvariantに残す**
+**選択肢Bを採用: changelogsディレクトリのみnullvariant-atelierへ移行し、スクリプトはnullvariantに残す**
 
 **実装:**
-1. `nullvariant/changelogs/` → `nullvariant-writings/changelogs/` へ物理移動
-2. `scripts/prepare_note_article.py` の出力先パスを `../nullvariant-writings/changelogs/` に変更
+1. `nullvariant/changelogs/` → `nullvariant-atelier/changelogs/` へ物理移動
+2. `scripts/prepare_note_article.py` の出力先パスを `../nullvariant-atelier/changelogs/` に変更
 3. スクリプトの入力元（`content/ja/AGENT.md`）はnullvariantに残る
 
 **ディレクトリ構造（移行後）:**
@@ -63,7 +63,7 @@ nullvariant/
   │   └── prepare_note_article.py  ← nullvariantに残す
   └── CHANGELOG.md                  ← 技術記録のみ
 
-nullvariant-writings/
+nullvariant-atelier/
   └── changelogs/                   ← スクリプトが出力
       ├── drafts/
       └── note-archives/
@@ -78,7 +78,7 @@ nullvariant-writings/
    - Google検索での重複コンテンツペナルティを回避
 
 2. **note記事の一元管理**
-   - すべてのnote関連原稿がnullvariant-writingsに集約
+   - すべてのnote関連原稿がnullvariant-atelierに集約
    - Private repositoryでSEO影響なし、AI学習は可能
 
 3. **シンプルな実装**
@@ -87,7 +87,7 @@ nullvariant-writings/
 
 4. **責務の明確化**
    - nullvariant: 技術仕様書・開発ツール
-   - nullvariant-writings: コンテンツ原稿・アーカイブ
+   - nullvariant-atelier: コンテンツ原稿・アーカイブ
 
 ### ⚠️ デメリット
 
@@ -96,22 +96,22 @@ nullvariant-writings/
    - ただし、明確な理由（AGENT.md依存）があるため許容範囲
 
 2. **リポジトリ間の依存**
-   - `prepare_note_article.py` が `../nullvariant-writings/` を前提
+   - `prepare_note_article.py` が `../nullvariant-atelier/` を前提
    - ディレクトリ構造が変わると動かなくなる可能性
    - 対策: ドキュメント化・エラーメッセージ改善
 
 3. **初回実行時の注意**
-   - nullvariant-writingsリポジトリが存在しない環境ではエラー
+   - nullvariant-atelierリポジトリが存在しない環境ではエラー
    - 対策: README.mdに前提条件を記載
 
 ### 📋 TODO
 
 - [x] `scripts/prepare_note_article.py` の出力先パス修正
-- [ ] `nullvariant/changelogs/` を `nullvariant-writings/changelogs/` へ移動
+- [ ] `nullvariant/changelogs/` を `nullvariant-atelier/changelogs/` へ移動
 - [ ] nullvariant側のREADME.md更新（changelogsの移行先を明記）
 - [ ] nullvariant側のCHANGELOG.md更新（`[Unreleased]`に記録）
-- [ ] nullvariant-writings側のREADME.md更新（changelogsの受け入れを明記）
-- [ ] nullvariant-writings側の移行記録ドキュメント作成
+- [ ] nullvariant-atelier側のREADME.md更新（changelogsの受け入れを明記）
+- [ ] nullvariant-atelier側の移行記録ドキュメント作成
 - [ ] スクリプト動作確認
 - [ ] パス参照の全体チェック（`grep -r "changelogs/"` in nullvariant）
 - [ ] リンク切れチェック（`scripts/check_path_references.py`）
@@ -125,7 +125,7 @@ nullvariant-writings/
 - `CHANGELOG.md` - 技術記録のみ（Keep a Changelog形式）
 - `changelogs/` - 移行対象（移行後は削除）
 
-**nullvariant-writings:**
+**nullvariant-atelier:**
 - `changelogs/` - 移行先（受け入れ先）
 - `docs/log/2025/10/2025-10-28_changelog-workflow-dilemma.md` - 提案D決定の経緯
 
@@ -135,8 +135,8 @@ nullvariant-writings/
 
 ### 関連するドキュメント
 
-- `nullvariant-writings/docs/log/2025/10/2025-10-28_changelog-workflow-dilemma.md` - 提案D採用の対話ログ
-- `nullvariant-writings/docs/log/2025/10/2025-10-28_散漫メモ.md` - 設計検討の散漫メモ
+- `nullvariant-atelier/docs/log/2025/10/2025-10-28_changelog-workflow-dilemma.md` - 提案D採用の対話ログ
+- `nullvariant-atelier/docs/log/2025/10/2025-10-28_散漫メモ.md` - 設計検討の散漫メモ
 
 ### 関連する Commit
 

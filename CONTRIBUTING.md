@@ -12,7 +12,7 @@ Self-Perfecting OSへのコントリビューションをありがとうござ�
 - **Changelog**: 全ての変更は `CHANGELOG.md` に記録
 - **現状**: 
   - ✅ `content/ja/`、`docs/decisions/`、`docs/governance/` は積極的に更新中
-  - ✅ note記事原稿は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) で管理（ADR-0007）
+  - ✅ note記事原稿は [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) で管理（ADR-0007）
   - ⚠️ `docs/operations/`配下は整備中
   - ❌ CI/CDパイプラインは未稼働（Claude Sonnet 4.5評価中）
 
@@ -206,10 +206,10 @@ nullvariant/
 ├── scripts/
 │   ├── build.py                # 多言語翻訳＆YAML生成
 │   ├── gen_toc.py              # 目次自動生成
-│   ├── prepare_note_article.py # note記事自動生成（出力先: nullvariant-writings）
+│   ├── prepare_note_article.py # note記事自動生成（出力先: nullvariant-atelier）
 │   ├── review.py               # 類似度検証
 │   ├── record_decision.py      # ADR作成支援
-│   ├── archive_conversation.py # 対話ログ保存（nullvariant-writings）
+│   ├── archive_conversation.py # 対話ログ保存（nullvariant-atelier）
 │   ├── check_token_usage.py    # トークン使用量監視
 │   ├── generate_index.py       # INDEX.md自動生成
 │   ├── validate_docs.py        # ドキュメント整合性チェック
@@ -268,7 +268,7 @@ nullvariant/
 - [docs/decisions/](docs/decisions/): ADR（意思決定記録）
 - [docs/governance/](docs/governance/): ドキュメント管理ルール
 - [content/README.md](content/README.md): 多言語コンテンツ管理
-- [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs): note記事原稿管理（ADR-0007により移行）
+- [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs): note記事原稿管理（ADR-0007により移行）
 
 ---
 

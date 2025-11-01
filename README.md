@@ -35,7 +35,7 @@
 
 ### バージョン履歴
 - **Changelog**: [`CHANGELOG.md`](CHANGELOG.md) - Keep a Changelog形式（技術的差分）
-- **note記事**: [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) - 人間向け物語版
+- **note記事**: [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) - 人間向け物語版
 - **公開記事**: [AI向けChangelog Magazine](https://note.com/nullvariant/m/m0d682a2ae34d) - note.com
 
 ---
@@ -43,7 +43,7 @@
 ## 📂 リポジトリ構成
 
 > **⚠️ メンテナンス状況**: `content/` と `docs/decisions/` は積極的に更新中。  
-> note記事関連は [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings) リポジトリへ移行しました（ADR-0007）。  
+> note記事関連は [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier) リポジトリへ移行しました（ADR-0007）。  
 > 詳細は **[docs/project-status.ja.md](docs/project-status.ja.md)** を参照。
 
 > **📘 詳細な構造説明とルール**: [`docs/governance/HIERARCHY_RULES.md`](docs/governance/HIERARCHY_RULES.md) を参照してください。
@@ -117,7 +117,7 @@ python scripts/prepare_note_article.py
 
 # 5. note公開
 # 詳細は docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md 参照
-# note記事原稿は nullvariant-writings リポジトリで管理（ADR-0007）
+# note記事原稿は nullvariant-atelier リポジトリで管理（ADR-0007）
 ```
 
 ---
@@ -150,7 +150,7 @@ python scripts/prepare_note_article.py
 |------------|------|------|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
 | [docs/operations/](docs/operations/) | 運用手順書 | 🔵 整備中 |
-| [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) | note記事原稿管理（ADR-0007により移行） | 🟢 比較的最新 |
+| [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) | note記事原稿管理（ADR-0007により移行） | 🟢 比較的最新 |
 
 ---
 

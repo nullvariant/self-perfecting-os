@@ -56,7 +56,7 @@
 | **`docs/prd/`** | 🟢 中頻度 | 要件定義書 |
 | **`docs/operations/`** | 🟢 中頻度 | 運用手順書 |
 | **`CHANGELOG.md`** | 🟡 バージョンごと | 全バージョン履歴（Keep a Changelog形式・技術的差分） |
-| **note記事原稿** | 🟡 バージョンごと | [nullvariant-writings](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) で管理（ADR-0007） |
+| **note記事原稿** | 🟡 バージョンごと | [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) で管理（ADR-0007） |
 
 **2025-10-28 更新**: 
 - ドキュメント管理ガバナンス体系の確立（ADR-0001, ADR-0002）
@@ -68,10 +68,10 @@
   - `content/ja/` = 日本語（一次情報・編集対象）
   - `content/en/` = 英語（自動生成・編集禁止）
   - 詳細: `docs/decisions/active/2025/10/20251028_0005_多言語対応-言語別ディレクトリ構造への移行_documentation.md`
-- **note記事原稿のnullvariant-writingsへの移行（ADR-0007）**
-  - `changelogs/` を nullvariant-writings リポジトリへ移行
+- **note記事原稿のnullvariant-atelierへの移行（ADR-0007）**
+  - `changelogs/` を nullvariant-atelier リポジトリへ移行
   - Proposal D（SEO最適化・完全分離案）採用
-  - 技術的差分は CHANGELOG.md、人間向け物語は nullvariant-writings で管理
+  - 技術的差分は CHANGELOG.md、人間向け物語は nullvariant-atelier で管理
   - 詳細: `docs/decisions/active/2025/10/20251028_0007_changelogsディレクトリのnullvariant-w_architecture.md`
 - **パス参照の包括的更新（2025-10-28）**
   - `scripts/check_path_references.py`による自動検出・修正

@@ -129,11 +129,11 @@ def main():
     )
     parser.add_argument(
         "--draft",
-        help="note草稿ファイルパス。省略時は ../nullvariant-writings/changelogs/note-archives/v{version}-note-draft.md"
+        help="note草稿ファイルパス。省略時は ../nullvariant-atelier/changelogs/note-archives/v{version}-note-draft.md"
     )
     parser.add_argument(
         "--output",
-        help="出力ファイルパス。省略時は ../nullvariant-writings/changelogs/note-archives/v{version}-note-complete.md"
+        help="出力ファイルパス。省略時は ../nullvariant-atelier/changelogs/note-archives/v{version}-note-complete.md"
     )
     args = parser.parse_args()
 
@@ -149,8 +149,8 @@ def main():
         print("❌ Version could not be detected. Provide --version explicitly.", file=sys.stderr)
         sys.exit(1)
 
-    # 出力先はnullvariant-writingsリポジトリ（ADR-0007による移行）
-    writings_root = project_root.parent / 'nullvariant-writings'
+    # 出力先はnullvariant-atelierリポジトリ（ADR-0007による移行）
+    writings_root = project_root.parent / 'nullvariant-atelier'
     
     draft_file = Path(args.draft) if args.draft else (
         writings_root / 'changelogs' / f'v{version}-note-draft.md'

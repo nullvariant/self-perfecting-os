@@ -7,7 +7,7 @@ VS Code Copilot Chatの対話を、Frontmatter付きMarkdownとして保存す�
 Usage:
     # 基本使用（対話テキストをファイルから読み込み）
     python scripts/archive_conversation.py \\
-      --topic "nullvariant-writings設計" \\
+      --topic "nullvariant-atelier設計" \\
       --conversation-file conversation.txt
     
     # Frontmatterカスタマイズ
@@ -317,8 +317,8 @@ Examples:
     parser.add_argument(
         '--output-dir',
         type=Path,
-        default=Path('../nullvariant-writings/docs/log/'),
-        help='出力先ディレクトリ（デフォルト: ../nullvariant-writings/docs/log/）'
+        default=Path('../nullvariant-atelier/docs/log/'),
+        help='出力先ディレクトリ（デフォルト: ../nullvariant-atelier/docs/log/）'
     )
     parser.add_argument(
         '--auto-commit',

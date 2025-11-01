@@ -182,6 +182,6 @@ python scripts/check_token_usage.py --detailed
 
 ## 注意事項
 
-- テスト用のログファイルは `../nullvariant-writings/docs/log/` に保存される
+- テスト用のログファイルは `../nullvariant-atelier/docs/log/` に保存される
 - `--auto-commit` オプション使用時は実際にGitコミットされるので注意
 - テストデータに個人情報を含めない

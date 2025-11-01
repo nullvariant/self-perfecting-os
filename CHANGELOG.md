@@ -120,7 +120,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `20251028_0004_github-actions-によるドキュメント...` → `20251028_0004_github-actions-doc-validation_tooling.md`
   - `20251028_0005_多言語対応-言語別ディレクトリ...` → `20251028_0005_multilingual-directory-structure_documentation.md`
   - `20251028_0006_github-pagesランディングページ...` → `20251028_0006_github-pages-landing-implementation_documentation.md`
-  - `20251028_0007_changelogsディレクトリのnullvariant-w...` → `20251028_0007_changelogs-migration-nullvariant-writings_architecture.md`
+  - `20251028_0007_changelogsディレクトリのnullvariant-w...` → `20251028_0007_changelogs-migration-nullvariant-atelier_architecture.md`
   - `20251029_0008_対話生ログの永続保存システム確立...` → `20251029_0008_dialogue-log-persistence-system_governance.md`
   - `20251029_0009_テストファイル管理規則testsfixtures...` → `20251029_0009_test-fixtures-management_process.md`
 
@@ -184,8 +184,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [docs/decisions/INDEX.md](docs/decisions/INDEX.md) - 自動生成ADR索引
 
 ### Removed
-- `changelogs/` ディレクトリを nullvariant-writings リポジトリへ移行（ADR-0007参照）
-  - note記事の人間向け物語版は [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs) で管理
+- `changelogs/` ディレクトリを nullvariant-atelier リポジトリへ移行（ADR-0007参照）
+  - note記事の人間向け物語版は [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) で管理
   - 技術的変更履歴は本CHANGELOG.mdで継続管理
   - SEO最適化のため、技術記録と人間向け物語を完全分離（Proposal D）
 

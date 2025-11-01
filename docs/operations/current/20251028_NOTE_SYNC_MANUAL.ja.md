@@ -5,10 +5,10 @@
 **Purpose**: GitHub → note へのミラーリング手順を標準化
 
 > **⚠️ 重要変更（2025-10-28）**:  
-> ADR-0007により、note記事原稿は **nullvariant-writings リポジトリ** へ移行しました。  
-> - 原稿管理: [nullvariant-writings/changelogs/](https://github.com/nullvariant/nullvariant-writings/tree/main/changelogs)  
+> ADR-0007により、note記事原稿は **nullvariant-atelier リポジトリ** へ移行しました。  
+> - 原稿管理: [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs)  
 > - スクリプト: nullvariant/scripts/prepare_note_article.py（出力先のみ変更）  
-> - 本マニュアルのパス表記は旧パスのままですが、実際の操作時は `../nullvariant-writings/changelogs/` に読み替えてください。
+> - 本マニュアルのパス表記は旧パスのままですが、実際の操作時は `../nullvariant-atelier/changelogs/` に読み替えてください。
 
 ---
 

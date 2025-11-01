@@ -18,7 +18,7 @@
 - しかし、バージョン管理とAI参照は必須
 
 **解決策**: 
-- **Private repository (`nullvariant-writings`)** を新設
+- **Private repository (`nullvariant-atelier`)** を新設
 - note記事の全文を管理しつつSEO競合を回避
 - Obsidian統合で執筆環境とシームレス連携
 - 将来のvariant.fit移行を見据えた設計
@@ -102,7 +102,7 @@
 ### 2.1 含まれるもの（In Scope）
 
 #### フェーズ1: リポジトリ設計（P0）
-- ✅ **Private repository (`nullvariant-writings`)** の新設
+- ✅ **Private repository (`nullvariant-atelier`)** の新設
 - ✅ `writings/` ディレクトリ構造の設計・構築
 - ✅ Public/Privateの境界定義
 - ✅ SEO保護戦略の実装
@@ -170,7 +170,7 @@
 ┌─────────────────────────────────────────────────────────┐
 │ Layer 1: 執筆・バージョン管理                             │
 │ ┌─────────────────────────────────────────────────────┐ │
-│ │ nullvariant-writings (Private Repository)           │ │
+│ │ nullvariant-atelier (Private Repository)           │ │
 │ │ ├─ writings/                                        │ │
 │ │ │  ├─ note/ (note記事原稿)                          │ │
 │ │ │  ├─ zenn/ (将来)                                  │ │
@@ -234,9 +234,9 @@ nullvariant/
 
 ---
 
-#### nullvariant-writings (Private Repository) ← 新設
+#### nullvariant-atelier (Private Repository) ← 新設
 ```
-nullvariant-writings/
+nullvariant-atelier/
 ├── writings/
 │   ├── note/
 │   │   ├── drafts/               # 執筆中の下書き
@@ -280,7 +280,7 @@ note記事の検索順位低下 ❌
 #### 解決策
 ```
 【良い例】
-nullvariant-writings (Private) に note記事全文
+nullvariant-atelier (Private) に note記事全文
     ↓
 Google: 「Private repoは見えない」
     ↓
@@ -300,10 +300,10 @@ GitHub Copilot: 「Private repoも読める」✅
 ```bash
 # Obsidian Vault内にGitリポジトリをリンク
 cd ~/Obsidian/nullvariant-vault/
-ln -s ~/path/to/nullvariant-writings/writings ./GitHub-Writings
+ln -s ~/path/to/nullvariant-atelier/writings ./GitHub-Writings
 
 # または逆方向
-cd ~/path/to/nullvariant-writings/
+cd ~/path/to/nullvariant-atelier/
 ln -s ~/Obsidian/nullvariant-vault/Writings ./obsidian-vault
 ```
 
@@ -320,7 +320,7 @@ ln -s ~/Obsidian/nullvariant-vault/Writings ./obsidian-vault
 #### オプションB: Git Submodule
 ```bash
 cd ~/Obsidian/nullvariant-vault/
-git submodule add git@github.com:nullvariant/nullvariant-writings.git
+git submodule add git@github.com:nullvariant/nullvariant-atelier.git
 ```
 
 **メリット**:
@@ -359,7 +359,7 @@ python scripts/sync_obsidian.py
 **目的**: note記事等のPrivate管理
 
 **タスク**:
-1. GitHubで `nullvariant-writings` Private repo作成
+1. GitHubで `nullvariant-atelier` Private repo作成
 2. ローカルにクローン
 3. 基本的なREADME・.gitignore作成
 
@@ -408,7 +408,7 @@ writings/
 **コマンド**:
 ```bash
 # Private repoで実行
-cd ~/path/to/nullvariant-writings/
+cd ~/path/to/nullvariant-atelier/
 
 python ../nullvariant/scripts/publish_note.py \
     writings/note/drafts/2025-10-16-hss-hsp-hallucination.md \
@@ -453,7 +453,7 @@ word_count: 3500  # 自動計算
 
 **目的**: Copilot/Claudeが文体を学習できる環境
 
-**ファイル**: `nullvariant-writings/CORPUS.md`
+**ファイル**: `nullvariant-atelier/CORPUS.md`
 
 **内容**:
 ```markdown
@@ -514,10 +514,10 @@ word_count: 3500  # 自動計算
 cd ~/Obsidian/Null-Variant-Vault/
 
 # writings ディレクトリをリンク
-ln -s ~/path/to/nullvariant-writings/writings ./GitHub-Writings
+ln -s ~/path/to/nullvariant-atelier/writings ./GitHub-Writings
 
 # または逆方向
-cd ~/path/to/nullvariant-writings/
+cd ~/path/to/nullvariant-atelier/
 ln -s ~/Obsidian/Null-Variant-Vault/Writings ./obsidian-vault
 ```
 
@@ -525,7 +525,7 @@ ln -s ~/Obsidian/Null-Variant-Vault/Writings ./obsidian-vault
 ```
 Obsidian で執筆
   ↓ (リアルタイム反映)
-nullvariant-writings/writings/note/drafts/
+nullvariant-atelier/writings/note/drafts/
   ↓ (git add & commit)
 GitHub (Private)
   ↓ (publish_note.py実行)
@@ -574,11 +574,11 @@ python scripts/import_note_articles.py \
 
 **目的**: CopilotにPrivate repoを参照させる
 
-**ファイル**: `nullvariant-writings/.copilot-instructions.md`
+**ファイル**: `nullvariant-atelier/.copilot-instructions.md`
 
 **内容**:
 ```markdown
-# GitHub Copilot Instructions for nullvariant-writings
+# GitHub Copilot Instructions for nullvariant-atelier
 
 このリポジトリは **Null;Variantの文体学習コーパス** です。
 
@@ -680,9 +680,9 @@ nullvariant/
 └── README.md
 ```
 
-#### nullvariant-writings (Private Repository) - 新設
+#### nullvariant-atelier (Private Repository) - 新設
 ```
-nullvariant-writings/
+nullvariant-atelier/
 ├── writings/
 │   ├── note/
 │   │   ├── drafts/
@@ -991,7 +991,7 @@ analytics:
 ### Phase 1: Private Repository準備（P0: 最優先）
 
 **タスク:**
-1. GitHubで `nullvariant-writings` Private repo作成
+1. GitHubで `nullvariant-atelier` Private repo作成
 2. ローカルにclone
 3. 基本的なREADME・.gitignore作成
 4. ディレクトリ構造構築（writings/note/drafts, published等）
@@ -1537,7 +1537,7 @@ analytics:
 ### 更新対象
 - [ ] `docs/WORKFLOW_TEXT_ASSETS.ja.md` - 全体ワークフロー
 - [ ] `nullvariant/README.md` - Private repoへの言及
-- [ ] `nullvariant-writings/README.md` - 新規作成
+- [ ] `nullvariant-atelier/README.md` - 新規作成
 - [ ] `.github/copilot-instructions.md` - Private repoの説明追加
 
 ### 将来作成予定

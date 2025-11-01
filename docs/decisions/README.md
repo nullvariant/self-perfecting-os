@@ -23,7 +23,7 @@ decisions/
 │           ├── 20251028_0004_github-actions-doc-validation_tooling.md
 │           ├── 20251028_0005_multilingual-directory-structure_documentation.md
 │           ├── 20251028_0006_github-pages-landing-implementation_documentation.md
-│           ├── 20251028_0007_changelogs-migration-nullvariant-writings_architecture.md
+│           ├── 20251028_0007_changelogs-migration-nullvariant-atelier_architecture.md
 │           ├── 20251029_0008_dialogue-log-persistence-system_governance.md
 │           ├── 20251029_0009_test-fixtures-management_process.md
 │           ├── 20251029_0010_governance-audit_documentation.md
