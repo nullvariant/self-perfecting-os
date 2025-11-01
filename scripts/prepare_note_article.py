@@ -153,10 +153,10 @@ def main():
     writings_root = project_root.parent / 'nullvariant-writings'
     
     draft_file = Path(args.draft) if args.draft else (
-        writings_root / 'changelogs' / 'note-archives' / f'v{version}-note-draft.md'
+        writings_root / 'changelogs' / f'v{version}-note-draft.md'
     )
     output_file = Path(args.output) if args.output else (
-        writings_root / 'changelogs' / 'note-archives' / f'v{version}-note-complete.md'
+        writings_root / 'changelogs' / f'v{version}-note-complete.md'
     )
 
     # アンカーと目次を除去
