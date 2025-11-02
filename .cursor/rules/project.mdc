@@ -95,6 +95,30 @@ alwaysApply: true
 
 ---
 
+## 📝 命名規則（絶対厳守）
+
+### ADR命名規則
+```
+{YYYYMMDD}_{NNNN}_{lowercase-hyphen-slug}_{category}.md
+```
+- 日付: アンダースコアなし（YYYYMMDD）
+- 連番: 4桁（0001, 0002, ...）
+- Slug: 小文字、ハイフン区切り
+- Category: architecture, process, documentation, tooling
+
+**例**: `20251029_0011_filename-case-convention_documentation.md`
+
+### スクリプト命名規則
+```
+{動詞}_{対象}_{補足}.py
+```
+- 動詞: export, import, generate, parse など
+- snake_case
+
+**例**: `generate_index.py`, `prepare_note_article.py`
+
+---
+
 ## マルチリポジトリワークスペースの理由
 
 このワークスペースは、nullvariant（Public）とnullvariant-atelier（Private）の2つのリポジトリを統合しています。
