@@ -1,7 +1,7 @@
 # Architecture Decision Records (ADR) Index
 
 **最終更新**: 2025-11-03
-**総件数**: 18件（Active: 18, Deprecated: 0, Superseded: 0）
+**総件数**: 19件（Active: 19, Deprecated: 0, Superseded: 0）
 
 ---
 
@@ -28,6 +28,7 @@
 
 ### 📌 other
 - [ADR-0018](active/2025/11/20251103_0018_adr-category-in-frontmatter.md) - カテゴリをファイル名から削除し、Frontmatterに移行 (2025-11-03)
+- [ADR-0019](active/2025/11/20251103_0019_frontmatter-standards.md) - YAMLフロントマター標準の確立 (2025-11-03)
 
 ### 📋 プロセス・手順変更
 - [ADR-0009](active/2025/10/20251029_0009_test-fixtures-management_process.md) - テストファイル管理規則：tests/fixtures/配下に集約 (2025-10-29)
@@ -43,6 +44,7 @@
 
 ### 2025年11月
 - 2025-11-03: [ADR-0018](active/2025/11/20251103_0018_adr-category-in-frontmatter.md) - カテゴリをファイル名から削除し、Frontmatterに移行
+- 2025-11-03: [ADR-0019](active/2025/11/20251103_0019_frontmatter-standards.md) - YAMLフロントマター標準の確立
 
 ### 2025年10月
 - 2025-10-30: [ADR-0014](active/2025/10/20251030_0014_tree-structure-reference-only_documentation.md) - Tree Structure Reference-Only Design
@@ -68,7 +70,7 @@
 ## 🔍 ステータス別
 
 ### Active (現行有効)
-- ADR-0001, ADR-0002, ADR-0003, ADR-0004, ADR-0005, ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, ADR-0011, ADR-0012, ADR-0013, ADR-0014, ADR-0015, ADR-0016, ADR-0017, ADR-0018
+- ADR-0001, ADR-0002, ADR-0003, ADR-0004, ADR-0005, ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, ADR-0011, ADR-0012, ADR-0013, ADR-0014, ADR-0015, ADR-0016, ADR-0017, ADR-0018, ADR-0019
 
 ### Deprecated (非推奨)
 - なし
