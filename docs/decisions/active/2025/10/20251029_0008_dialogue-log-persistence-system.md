@@ -1,3 +1,10 @@
+---
+category: governance
+date: 2025-10-29
+number: 0008
+status: Accepted
+---
+
 # ADR-0008: 対話生ログの永続保存システム確立
 
 ## Status

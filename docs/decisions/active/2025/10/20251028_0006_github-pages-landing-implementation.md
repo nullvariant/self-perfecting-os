@@ -1,3 +1,10 @@
+---
+category: documentation
+date: 2025-10-28
+number: 0006
+status: Accepted
+---
+
 # ADR-0006: GitHub Pagesランディングページの実装
 
 ## Status

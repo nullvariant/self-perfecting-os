@@ -1,3 +1,11 @@
+---
+category: documentation
+date: 2025-10-30
+number: 0014
+status: Active
+author: GitHub Copilot (with human validation)
+---
+
 # ADR-0014: Tree Structure Reference-Only Design
 
 **Status**: Active  

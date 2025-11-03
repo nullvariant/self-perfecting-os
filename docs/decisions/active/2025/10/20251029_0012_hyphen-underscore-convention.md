@@ -1,3 +1,11 @@
+---
+category: documentation
+date: 2025-10-29
+number: 0012
+status: Accepted
+author: GitHub Copilot (with human validation)
+---
+
 # ADR-0012: ハイフン vs アンダースコア使い分けルール
 
 **Status**: Accepted  

@@ -1,3 +1,11 @@
+---
+category: documentation
+date: 2025-10-29
+number: 0011
+status: Accepted
+author: GitHub Copilot (with human validation)
+---
+
 # ADR-0011: ファイル名ケース規則の明確化（大文字 vs 小文字）
 
 **Status**: Accepted  

@@ -1,3 +1,10 @@
+---
+category: tooling
+date: 2025-10-28
+number: 0004
+status: Accepted
+---
+
 # ADR-0004: GitHub Actions によるドキュメント自動バリデーション導入
 
 ## Status

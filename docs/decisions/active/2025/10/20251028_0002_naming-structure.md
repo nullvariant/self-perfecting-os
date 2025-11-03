@@ -1,3 +1,10 @@
+---
+category: documentation
+date: 2025-10-28
+number: 0002
+status: Accepted
+---
+
 # ADR-0002: ドキュメント命名規則とディレクトリ構造の確立
 
 ## Status

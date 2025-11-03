@@ -1,3 +1,10 @@
+---
+category: documentation
+date: 2025-10-28
+number: 0003
+status: Accepted
+---
+
 # ADR-0003: ディレクトリ・ファイル名の小文字・ハイフン統一
 
 ## Status

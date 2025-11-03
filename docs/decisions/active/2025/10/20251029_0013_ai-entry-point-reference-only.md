@@ -1,3 +1,11 @@
+---
+category: documentation
+date: 2025-10-29
+number: 0013
+status: Accepted
+author: GitHub Copilot (with human validation)
+---
+
 # ADR-0013: AI Entry Point Documentation as Reference-Only
 
 **Status**: Accepted  

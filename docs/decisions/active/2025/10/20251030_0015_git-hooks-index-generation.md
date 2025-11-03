@@ -1,3 +1,11 @@
+---
+category: tooling
+date: 2025-10-30
+number: 0015
+status: Accepted
+author: GitHub Copilot → Claude Code (implementation)
+---
+
 # ADR-0015: Git Hooks による INDEX.md 自動生成の実装
 
 **Status**: ✅ **Accepted & Implemented**  

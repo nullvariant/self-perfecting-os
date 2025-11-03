@@ -1,3 +1,10 @@
+---
+category: documentation
+date: 2025-10-28
+number: 0005
+status: Accepted
+---
+
 # ADR-0005: 多言語対応: 言語別ディレクトリ構造への移行
 
 ## Status

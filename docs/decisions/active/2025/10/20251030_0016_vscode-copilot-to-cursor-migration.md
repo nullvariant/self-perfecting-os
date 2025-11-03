@@ -1,3 +1,10 @@
+---
+category: tooling
+date: 2025-10-30
+number: 0016
+status: Accepted
+---
+
 # ADR-0016: VSCode/Copilot から Cursor への開発環境移行
 
 ## Status

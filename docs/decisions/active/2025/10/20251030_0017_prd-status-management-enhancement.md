@@ -1,3 +1,10 @@
+---
+category: governance
+date: 2025-10-30
+number: 0017
+status: Accepted
+---
+
 # ADR-0017: PRDステータス管理の拡張（deprecated対応）
 
 ## Status

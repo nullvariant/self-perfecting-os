@@ -1,3 +1,10 @@
+---
+category: documentation
+date: 2025-10-29
+number: 0010
+status: Accepted
+---
+
 # ADR-0010: ガバナンス系ドキュメント セルフレビューレポート
 
 **実施日**: 2025-10-29  

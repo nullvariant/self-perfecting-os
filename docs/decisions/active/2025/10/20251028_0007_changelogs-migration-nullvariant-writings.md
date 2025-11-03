@@ -1,3 +1,10 @@
+---
+category: architecture
+date: 2025-10-28
+number: 0007
+status: Accepted
+---
+
 # ADR-0007: changelogsディレクトリのnullvariant-atelierへの移行
 
 ## Status

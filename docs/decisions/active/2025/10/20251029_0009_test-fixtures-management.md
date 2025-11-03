@@ -1,3 +1,10 @@
+---
+category: process
+date: 2025-10-29
+number: 0009
+status: Accepted
+---
+
 # ADR-0009: テストファイル管理規則：tests/fixtures/配下に集約
 
 ## Status
