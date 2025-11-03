@@ -1,7 +1,7 @@
 # Governance & Documentation Rules
 
-**最終更新**: 2025-10-30
-**ドキュメント数**: 5個
+**最終更新**: 2025-11-03
+**ドキュメント数**: 6個
 
 ドキュメント管理とガバナンスの基準ドキュメント一覧です。
 
@@ -17,6 +17,7 @@
 
 ### 説明・ガイド文書
 
+- [YAMLフロントマター標準](FRONTMATTER_STANDARDS.md)
 - [ドキュメント階層ルール（人間向け説明）](HIERARCHY_RULES.md)
 - [命名規則とディレクトリ構造の決定 - サマリー](NAMING_DECISION_SUMMARY.md)
 
