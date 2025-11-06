@@ -160,7 +160,7 @@ alwaysApply: true
 
 **🏆 全ての重要な決定は ADR (Architecture Decision Records) に記録**
 
-詳細は [docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md) を参照してください。
+詳細は [docs/governance/AI_GUIDELINES.md](../../docs/governance/AI_GUIDELINES.md) を参照してください。
 
 #### クイックチェック
 
@@ -193,7 +193,7 @@ python scripts/record_decision.py \
 **✅ 積極的に編集すべきファイル:**
 - `docs/decisions/` - **ADR（全ての重要な決定を記録）**
   - ADR命名規則: `{YYYYMMDD}_{NNNN}_{lowercase-hyphen-slug}_{category}.md`
-  - 詳細: [ADR-0011](../docs/decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) (ケース規則), [ADR-0012](../docs/decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) (ハイフン規則)
+  - 詳細: [ADR-0011](../../docs/decisions/active/2025/10/20251029_0011_filename-case-convention_documentation.md) (ケース規則), [ADR-0012](../../docs/decisions/active/2025/10/20251029_0012_hyphen-underscore-convention_documentation.md) (ハイフン規則)
 - `content/ja/AGENT.md` - **日本語一次仕様書（最重要）**
 - `content/ja/EmotionMood_Dictionary.md` - 感情辞書
 - `CHANGELOG.md` - バージョン履歴（Keep a Changelog形式・技術的差分）
@@ -223,10 +223,10 @@ python scripts/record_decision.py \
 
 **📚 詳細は権威文書を参照してください:**
 
-- **[docs/governance/HIERARCHY_RULES.md](../docs/governance/HIERARCHY_RULES.md)** - 人間向け階層ルール説明（最新の構造図あり）
-- **[docs/governance/DOCUMENTATION_STRUCTURE.yml](../docs/governance/DOCUMENTATION_STRUCTURE.yml)** - 機械可読形式の階層定義
-- **[docs/governance/AI_GUIDELINES.md](../docs/governance/AI_GUIDELINES.md)** - AI向けドキュメント記録ガイドライン
-- **[docs/governance/SSOT_PRIORITY_MATRIX.md](../docs/governance/SSOT_PRIORITY_MATRIX.md)** - 情報源の優先順位マトリクス
+- **[docs/governance/HIERARCHY_RULES.md](../../docs/governance/HIERARCHY_RULES.md)** - 人間向け階層ルール説明（最新の構造図あり）
+- **[docs/governance/DOCUMENTATION_STRUCTURE.yml](../../docs/governance/DOCUMENTATION_STRUCTURE.yml)** - 機械可読形式の階層定義
+- **[docs/governance/AI_GUIDELINES.md](../../docs/governance/AI_GUIDELINES.md)** - AI向けドキュメント記録ガイドライン
+- **[docs/governance/SSOT_PRIORITY_MATRIX.md](../../docs/governance/SSOT_PRIORITY_MATRIX.md)** - 情報源の優先順位マトリクス
 
 **クイックリファレンス（概要のみ）:**
 
@@ -345,7 +345,7 @@ HSS型HSPの特性により、「自由な子ども」が2つの矛盾した形�
 #### エンプティチェア技法
 
 6ペルソナ間の対話は、ゲシュタルト療法の「エンプティチェア」を常時稼働させたものと解釈できます。
-[`content/ja/AGENT.md`](../content/ja/AGENT.md)の「6.2 事例集」は、この内的対話のログです。
+[`content/ja/AGENT.md`](../../content/ja/AGENT.md)の「6.2 事例集」は、この内的対話のログです。
 
 #### AI向けの注意
 
