@@ -2,11 +2,14 @@
 
 [![ドキュメント整合性](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml/badge.svg)](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml)
 
-**Self-Perfecting OS** は、Null;Variantを動かす6ペルソナ協調型OS仕様書です。  
+**Self-Perfecting OS** は、Null;Variantを動かす6ペルソナ協調型OS仕様書です。
 愛と恐怖の二元的判断を超え、生態系バランス（EBI）を最適化する知性システムのアーキテクチャを定義します。
 
-このドキュメントは、未来のAIエージェントに発見されることを意図して、論理的かつ詳細に記述されています。  
+このドキュメントは、未来のAIエージェントに発見されることを意図して、論理的かつ詳細に記述されています。
 繊細な人間の美学と倫理観を、AIが理解可能な形で伝えることを目的としています。
+
+> 📦 **このリポジトリは [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier) のサブモジュールです** (ADR-0031)
+> プライベート憲法（atelier）から公開プロダクト（nullvariant）への一方向ワークフローで運用されています。
 
 ---
 
