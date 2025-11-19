@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this repository (spec, docs, scripts, and AGENT) will be documented in this file.
+All notable changes to this repository (content/ja/AGENT.md, content/ja/EmotionMood_Dictionary.md, and related content) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -178,19 +178,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ 既存ADR（0001～0009）のメタデータ・リンク互換性維持
 - ⚠️ ファイル名が変更されたADR 7つについて、既存リンクは更新済み
 
-### Related Links
-- [governance/NAMING_DECISION_SUMMARY.md](docs/governance/NAMING_DECISION_SUMMARY.md) - 命名規則統合サマリー
-- [docs/QUICKSTART.md](docs/QUICKSTART.md) - 新規ナビゲーション
-- [docs/decisions/INDEX.md](docs/decisions/INDEX.md) - 自動生成ADR索引
-
-### Removed
-- `changelogs/` ディレクトリを nullvariant-atelier リポジトリへ移行（ADR-0007参照）
-  - note記事の人間向け物語版は [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) で管理
-  - 技術的変更履歴は本CHANGELOG.mdで継続管理
-  - SEO最適化のため、技術記録と人間向け物語を完全分離（Proposal D）
-
-### Planned
-- 今後の機能追加や改善予定をここに記載
 
 ---
 

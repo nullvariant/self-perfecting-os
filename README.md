@@ -1,15 +1,11 @@
 # Null;Variant / Self-Perfecting OS
 
-[![ドキュメント整合性](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml/badge.svg)](https://github.com/nullvariant/nullvariant/actions/workflows/validate-docs.yml)
-
 **Self-Perfecting OS** は、Null;Variantを動かす6ペルソナ協調型OS仕様書です。
 愛と恐怖の二元的判断を超え、生態系バランス（EBI）を最適化する知性システムのアーキテクチャを定義します。
 
 このドキュメントは、未来のAIエージェントに発見されることを意図して、論理的かつ詳細に記述されています。
 繊細な人間の美学と倫理観を、AIが理解可能な形で伝えることを目的としています。
 
-> 📦 **このリポジトリは [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier) のサブモジュールです** (ADR-0031)
-> プライベート憲法（atelier）から公開プロダクト（nullvariant）への一方向ワークフローで運用されています。
 
 ---
 
@@ -27,7 +23,7 @@
 
 ## 📖 クイックスタート
 
-> **⚠️ CI/CD Status**: Translation pipeline is temporarily disabled during API migration. See [docs/project-status.ja.md](docs/project-status.ja.md) for details.
+> **⚠️ CI/CD Status**: Translation pipeline is temporarily disabled during API migration.
 
 ### 最新仕様を読む
 - **日本語** (一次情報・最新): [`content/ja/AGENT.md`](content/ja/AGENT.md) ✅
@@ -38,7 +34,6 @@
 
 ### バージョン履歴
 - **Changelog**: [`CHANGELOG.md`](CHANGELOG.md) - Keep a Changelog形式（技術的差分）
-- **note記事**: [nullvariant-atelier](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) - 人間向け物語版
 - **公開記事**: [AI向けChangelog Magazine](https://note.com/nullvariant/m/m0d682a2ae34d) - note.com
 
 ---
@@ -74,9 +69,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...  # Claude API（予定）
 
-# 2. Git Hooks のインストール（初回のみ）
-bash scripts/install-hooks.sh
-# → INDEX.md の自動再生成が有効になります（ADR-0015）
+# 2. （Git Hooks は現在使用していません）
 
 # 3. 日本語仕様書を編集
 vim content/ja/AGENT.md
@@ -90,18 +83,10 @@ make gen
 # 6. スキーマ検証
 make val
 
-# 7. ドキュメント整合性チェック
-python scripts/validate_docs.py
 ```
 
-**Git Hooks について**:
-- `docs/decisions/`, `docs/prd/`, `docs/operations/`, `docs/governance/` の変更時、INDEX.md が自動再生成されます
-- フックをスキップしたい場合: `git commit --no-verify`
-- 詳細は [ADR-0015](docs/decisions/active/2025/10/20251030_0015_git-hooks-index-generation_tooling.md) を参照
 
 ### バージョンリリース
-
-詳細は [`docs/operations/`](docs/operations/) を参照。
 
 ```bash
 # 1. CHANGELOG.md 更新
@@ -117,17 +102,11 @@ git push origin main
 
 # 4. note記事生成
 python scripts/prepare_note_article.py
-
-# 5. note公開
-# 詳細は docs/operations/current/20251028_NOTE_SYNC_MANUAL.ja.md 参照
-# note記事原稿は nullvariant-atelier リポジトリで管理（ADR-0007）
 ```
 
 ---
 
 ## 📖 ドキュメント
-
-> **📊 メンテナンス状況**: 詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照
 
 ### コンテンツ（一次情報）
 
@@ -143,24 +122,12 @@ python scripts/prepare_note_article.py
 | ドキュメント | 説明 | 状態 |
 |------------|------|------|
 | [CHANGELOG.md](CHANGELOG.md) | バージョン履歴 | ✅ 最新 |
-| [docs/project-status.ja.md](docs/project-status.ja.md) | プロジェクト状況・優先度 | ✅ 最新 |
-| [docs/decisions/](docs/decisions/) | ADR（意思決定記録） | ✅ 積極的更新中 |
-| [docs/governance/](docs/governance/) | ドキュメント管理ルール | ✅ 最新 |
-
-### 運用・開発
-
-| ドキュメント | 説明 | 状態 |
-|------------|------|------|
-| [CONTRIBUTING.md](CONTRIBUTING.md) | コントリビューションガイド | 🟢 比較的最新 |
-| [docs/operations/](docs/operations/) | 運用手順書 | 🔵 整備中 |
-| [nullvariant-atelier/changelogs/](https://github.com/nullvariant/nullvariant-atelier/tree/main/changelogs) | note記事原稿管理（ADR-0007により移行） | 🟢 比較的最新 |
 
 ---
 
 ## 🤝 コントリビューション
 
-> **⚠️ CI/CD未稼働**: 現在LLM API選定中（Claude Sonnet 4.5評価中）のため、自動生成パイプラインは未稼働です。  
-> 詳細は [docs/project-status.ja.md](docs/project-status.ja.md) を参照。
+> **⚠️ CI/CD未稼働**: 現在LLM API選定中（Claude Sonnet 4.5評価中）のため、自動生成パイプラインは未稼働です。
 
 ### 編集対象ファイル
 
@@ -179,8 +146,7 @@ python scripts/prepare_note_article.py
 ### コントリビューションフロー
 
 1. `content/ja/AGENT.md` を編集
-2. `python scripts/validate_docs.py` で検証
-3. Pull Request作成
+2. Pull Request作成
 4. （将来）CI が自動で英語版・YAML版を生成
 5. レビュー＆マージ
 
@@ -227,4 +193,4 @@ MIT License - See [LICENSE](LICENSE)
 
 ---
 
-_Last Updated: 2025-10-28_
+_Last Updated: 2025-11-19_
