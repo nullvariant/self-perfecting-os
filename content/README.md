@@ -123,8 +123,6 @@ scripts/build.py --translate ja → zh
 ## 🔗 関連ドキュメント
 
 - [README.md](../README.md) - プロジェクト概要
-- [docs/project-status.ja.md](../docs/project-status.ja.md) - 現在の状態
-- [docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md](../docs/decisions/active/2025/10/20251028_0001_ci-cd-pause_architecture.md) - CI/CD一時停止の決定
 - [scripts/build.py](../scripts/build.py) - 翻訳スクリプト
 
 ---
