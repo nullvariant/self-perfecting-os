@@ -7,42 +7,7 @@
 ehthumbs.db
 Thumbs.db
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
-.coverage
-.pytest_cache/
-htmlcov/
-
-# IDEs
-.vscode/
-!.vscode/settings.json
-.idea/
+# Editor swap files
 *.swp
 *.swo
 *~
-
-# Build outputs
-dist/
-build/
-*.egg-info/
-
-# Tests - 一時ファイルのみ除外（permanent/は Git 管理）
-tests/fixtures/temporary/
-*.test.txt
-*.test.md
-# Snyk Security Extension - AI Rules (auto-generated)
-.cursor/rules/snyk_rules.mdc
-
-# Snyk Security Extension - AI Rules (auto-generated)
-.windsurf/rules/snyk_rules.md
