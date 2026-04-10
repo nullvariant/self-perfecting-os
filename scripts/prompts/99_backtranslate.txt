@@ -1,3 +1,0 @@
-Back-translate English to Japanese literally.
-- Preserve semantics; keep glossary terms unchanged.
-- Output only Japanese Markdown.
